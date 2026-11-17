@@ -1,6 +1,6 @@
 # Sagas of Midgard — Kronika Graczy
 
-Publiczna kronika RPG z interaktywną mapą postaci oraz atlasem lokacji.
+Publiczna kronika RPG z interaktywną mapą postaci, atlasem lokacji i **Kroniką wydarzeń**.
 
 ## Publikacja strony (jednorazowo)
 
@@ -13,7 +13,8 @@ Publiczna kronika RPG z interaktywną mapą postaci oraz atlasem lokacji.
 
 - `index.html` — interfejs strony.
 - `styles.css` — wygląd.
-- `data.js` — NPC, lokacje i **jawne** relacje.
+- `data.js` — NPC, lokacje, **jawne** relacje i publiczne rozdziały w tablicy `chronicle`.
+- Zakładka **Kronika wydarzeń** — filtrowanie historii według lokacji, rozwijanie opowieści oraz odnośniki do miejsc i postaci.
 - `app.js` — zachowanie mapy.
 
 Nazwy postaci pochodzą z tablicy FigJam. Obecnie część kart ma inicjały zamiast portretów, a relacje osobiste zostaną dodane dopiero po potwierdzeniu kanonu.
