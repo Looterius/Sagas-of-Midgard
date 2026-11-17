@@ -53,10 +53,41 @@ window.CHRONICLE = {
       ], participants: []
     }
   ],
+  // Tylko ZNANE graczom regiony. Nigdy nie publikuj w tym pliku ukrytego katalogu Skalda.
+  atlasRegions: [
+    {id: "midgard", name: "Midgard", parentId: null, kind: "Świat", visibility: "known",
+     description: "Świat ludzi, dom bohaterów naszej sagi. Atlas przedstawia tylko poznane przez nich miejsca."},
+    {id: "drengrlands", name: "Ziemie Drengrów", parentId: "midgard", kind: "Obszar", visibility: "known",
+     description: "Ojczyste ziemie nordyckich wojowników, osadników i żeglarzy."},
+    {id: "eylenda", name: "Eylenda", parentId: "drengrlands", kind: "Kraina", visibility: "known",
+     description: "Wyspa pozbawiona jednego króla. Jarlowie spotykają się tutaj na Althingu, by rozstrzygać spory i podejmować decyzje."}
+  ],
+  // Lokacje publiczne, poznane podczas kampanii. Pełny katalog podręcznika pozostaje poza repo.
+  // parentRegionId: null = położenie w konkretnym królestwie nie zostało potwierdzone.
   places: [
-    { id: "eylenda", name: "Eylenda", kind: "Wyspa", description: "Wyspa, na której rozgrywa się część sagi i odbywa się wielkie zgromadzenie.", image: "" },
-    { id: "althing", name: "Althing", kind: "Zgromadzenie", description: "Miejsce obrad, sporów i decyzji politycznych jarlów.", image: "" },
-    { id: "hrafnvik", name: "Hrafnvik", kind: "Osada", description: "Osada związana z historią bohaterów.", image: "" },
-    { id: "skjorvik", name: "Skjǫrvik", kind: "Osada", description: "Jedna z osad występujących w kronice wyprawy.", image: "" }
+    {
+      id: "eylenda", name: "Eylenda", kind: "Wyspa", visibility: "known", parentRegionId: "drengrlands",
+      description: "Wyspa na północnym zachodzie ziem Drengrów. Nie ma tu króla; ważne sprawy rozstrzygają jarlowie zebrani na Althingu.",
+      history: "W czasie obecnej sagi Eylenda stała się miejscem zgromadzenia władców i wojowników. Przybyli tu, aby dyskutować o losach Północy, wyprawie do Winlandu oraz kwestiach wojny i władzy.",
+      image: "assets/locations/eylenda.svg", personIds: []
+    },
+    {
+      id: "althing", name: "Althing", kind: "Zgromadzenie", visibility: "known", parentRegionId: "eylenda",
+      description: "Wielkie zgromadzenie jarlów na Eylendzie. Miejsce przysiąg, sporów, sądów i politycznych rozmów.",
+      history: "Na Wielkim Althingu omawiano wyprawę do Winlandu, wojnę z Frankami oraz koncepcję Króla Królów. Wyniki debat i dalsze losy zgromadzenia będą odnotowywane w kronice po kolejnych sesjach.",
+      image: "assets/locations/althing.svg", personIds: []
+    },
+    {
+      id: "hrafnvik", name: "Hrafnvik", kind: "Osada", visibility: "known", parentRegionId: null,
+      description: "Osada związana z początkami sagi oraz sporami o władzę. Jej dokładne przypisanie do krainy pozostawiono do potwierdzenia.",
+      history: "Hroald utracił władzę i wzrok, a Sigurd objął jego miejsce. Po śmierci Sigurda losy Hrafnviku wciąż wpływają na historię bohaterów.",
+      image: "assets/locations/hrafnvik.svg", personIds: ["hroald","runa","anslem"]
+    },
+    {
+      id: "skjorvik", name: "Skjǫrvik", kind: "Osada", visibility: "known", parentRegionId: null,
+      description: "Osada najechana przez wojowników z Hrafnviku. Jej położenie w ramach królestw nie zostało jeszcze ustalone.",
+      history: "Podczas najazdu osada została zdobyta, a zwycięzcy wrócili z łupami i pojmanymi mieszkańcami. Wśród jeńców był Aslak Cieśla.",
+      image: "assets/locations/skjorvik.svg", personIds: ["aslak"]
+    }
   ]
 };
