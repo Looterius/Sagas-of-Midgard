@@ -164,3 +164,7 @@ h1,h2,h3,.brand-name,.card-name,.person-name{font-family:Georgia,"Times New Roma
 .chronicle-disclaimer,.chronicle-empty{font:13px/1.7 system-ui,Arial,sans-serif;color:#b4a595}
 .chronicle-disclaimer{margin:24px 0 0;padding-top:17px;border-top:1px solid #51483b}
 @media(max-width:720px){.chronicle-view{padding:18px 15px 36px}.chronicle-intro{padding:20px}.chronicle-emblem{font-size:43px}.chronicle-card{grid-template-columns:1fr}.chronicle-cover{min-height:150px;padding:18px}.chronicle-cover-sigil{font-size:51px}.chronicle-body{padding:21px}.chronicle-toolbar{flex-wrap:wrap}.chronicle-lead,.chronicle-story p{font-size:14px}}
+
+/* Mapa publiczna nie jest edytorem: wskazówki kursora nie sugerują przesuwania kart. */
+.person-card,.person-card:active{cursor:pointer}
+.person-card:focus-visible{outline:2px solid var(--gold2);outline-offset:4px}
