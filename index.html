@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#121419">
+  <meta name="description" content="Sagas of Midgard — interaktywna kronika postaci, relacji i lokacji dla graczy.">
+  <title>Sagas of Midgard | Kronika</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+ <div class="app-shell">
+  <aside class="rail">
+   <div class="sigil" aria-hidden="true">ᛟ</div>
+   <div class="brand-name">SAGAS <span>OF</span> MIDGARD</div>
+   <div class="brand-subtitle">KRONIKA GRACZY</div>
+   <div class="rail-divider"></div>
+   <nav class="nav" aria-label="Widoki kroniki">
+    <button class="nav-btn active" type="button" data-view="relationships"><span class="nav-icon">✦</span><span>Sieć postaci</span></button>
+    <button class="nav-btn" type="button" data-view="locations"><span class="nav-icon">⌖</span><span>Atlas lokacji</span></button>
+   </nav>
+   <div class="rail-bottom">
+    <p class="rail-note">„Słowa przemijają.<br>Opowieści trwają.”</p>
+    <div class="privacy"><span class="dot"></span>WIDOK PUBLICZNY</div>
+    <small>Wyłącznie wiedza dostępna graczom</small>
+   </div>
+  </aside>
+
+  <div class="main">
+   <header class="masthead">
+    <div>
+      <p class="eyebrow" id="eyebrow">SAGA · ŚWIAT POSTACI</p>
+      <h1 id="page-title">Sieć postaci</h1>
+      <p class="page-description" id="page-description">Portrety, powiązania i losy ludzi Północy.</p>
+    </div>
+    <div class="header-right">
+      <span class="chapter">EYLENDA <i>·</i> KRONIKA</span>
+      <span class="sun-mark">✧</span>
+    </div>
+   </header>
+
+   <section id="relationships-view" class="view active" aria-label="Sieć postaci">
+     <div class="toolbar">
+       <div class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Szukaj postaci…" aria-label="Szukaj postaci"></div>
+       <div class="counts"><strong id="people-count">0</strong> postaci <span class="sep">·</span> <strong id="links-count">0</strong> znanych relacji</div>
+       <div class="tools">
+        <button id="zoom-out" class="tool" aria-label="Oddal">−</button>
+        <span class="zoom-text" id="zoom-text">100%</span>
+        <button id="zoom-in" class="tool" aria-label="Przybliż">+</button>
+        <button id="fit" class="tool fit" aria-label="Dopasuj widok">⤢</button>
+       </div>
+     </div>
+     <div id="map-viewport" class="map-viewport" tabindex="0" aria-label="Interaktywna mapa postaci; przeciągaj karty i przesuwaj tło">
+      <div class="map-grain" aria-hidden="true"></div>
+      <div id="map-scene" class="map-scene">
+        <svg id="connections" class="connections" viewBox="0 0 1600 1000" aria-hidden="true" preserveAspectRatio="none"></svg>
+        <div id="people-layer"></div>
+      </div>
+      <div class="map-corner top">ᚠ ᚢ ᚦ ᚨ ᚱ</div>
+      <div class="map-corner bottom">P R Z E S U W A J  ·  O D K R Y W A J</div>
+     </div>
+     <div class="map-foot">
+       <div class="legend"><span class="legend-dash"></span> W kronice <span class="sep">·</span> <span class="legend-solid"></span> Potwierdzone relacje (po dodaniu)</div>
+       <div class="hint">Przeciągnij kartę · Kliknij, aby poznać postać · Scroll = zoom</div>
+     </div>
+   </section>
+
+   <section id="locations-view" class="view" aria-label="Atlas lokacji" hidden>
+     <div class="atlas-intro">
+       <div><p class="eyebrow">ODKRYTE MIEJSCA</p><h2>Ziemie Północy</h2></div>
+       <div class="compass" aria-hidden="true">✥</div>
+     </div>
+     <div class="atlas-grid" id="atlas-grid"></div>
+     <div class="atlas-note">To katalog miejsc odkrytych w kampanii, nie mapa geograficzna. Kolejne lokacje pojawią się wraz z opowieścią.</div>
+   </section>
+  </div>
+
+  <aside id="inspector" class="inspector" aria-label="Informacje o postaci">
+   <button id="close-inspector" class="close-inspector" type="button" aria-label="Zamknij informacje">×</button>
+   <div class="inspector-art" id="inspector-art"><span>ᛟ</span></div>
+   <p class="eyebrow" id="inspector-type">KRONIKA POSTACI</p>
+   <h2 id="inspector-name">Wybierz postać</h2>
+   <div class="rule"></div>
+   <p id="inspector-description">Kliknij dowolny portret na mapie, aby zobaczyć jawne informacje o postaci.</p>
+   <h3>Znane powiązania</h3>
+   <div id="inspector-relations" class="relations-empty">Relacje pojawią się po ich ujawnieniu w kampanii.</div>
+   <div class="inspector-foot">ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ</div>
+  </aside>
+ </div>
+ <noscript>Ta interaktywna kronika wymaga włączonego JavaScript.</noscript>
+</body>
+</html>
