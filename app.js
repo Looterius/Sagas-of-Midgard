@@ -31,8 +31,17 @@
 
   function setArt(el, image) {
     if (image && /^assets\/[a-z0-9_\-/]+\.(png|jpe?g|webp|avif)$/i.test(image)) {
-      el.style.backgroundImage = 'linear-gradient(180deg,transparent 55%,#12151a88),url("' + image + '")';
-      el.classList.add("has-photo");
+      // Nie chowaj inicjałów, dopóki plik nie będzie rzeczywiście dostępny.
+      const preview = new Image();
+      preview.onload = () => {
+        el.style.backgroundImage = 'linear-gradient(180deg,transparent 55%,#12151a88),url("' + image + '")';
+        el.classList.add("has-photo");
+      };
+      preview.onerror = () => {
+        el.style.backgroundImage = "";
+        el.classList.remove("has-photo");
+      };
+      preview.src = image;
     }
   }
 
