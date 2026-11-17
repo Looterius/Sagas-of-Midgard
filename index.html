@@ -6,9 +6,9 @@
   <meta name="theme-color" content="#121419">
   <meta name="description" content="Sagas of Midgard — interaktywna kronika postaci, relacji i lokacji dla graczy.">
   <title>Sagas of Midgard | Kronika</title>
-  <link rel="stylesheet" href="styles.css?v=portrait-fit-3">
+  <link rel="stylesheet" href="styles.css?v=character-modal-4">
   <script src="data.js?v=portrait-fix-2" defer></script>
-  <script src="app.js?v=portrait-fix-2" defer></script>
+  <script src="app.js?v=character-modal-4" defer></script>
 </head>
 <body>
  <div class="app-shell">
@@ -53,7 +53,7 @@
         <button id="fit" class="tool fit" aria-label="Dopasuj widok">⤢</button>
        </div>
      </div>
-     <div id="map-viewport" class="map-viewport" tabindex="0" aria-label="Interaktywna mapa postaci; przeciągaj karty i przesuwaj tło">
+     <div id="map-viewport" class="map-viewport" tabindex="0" aria-label="Interaktywna mapa postaci; klikaj karty i przesuwaj tło">
       <div class="map-grain" aria-hidden="true"></div>
       <div id="map-scene" class="map-scene">
         <svg id="connections" class="connections" viewBox="0 0 1130 870" aria-hidden="true" preserveAspectRatio="none"></svg>
@@ -92,17 +92,30 @@
    </section>
   </div>
 
-  <aside id="inspector" class="inspector" aria-label="Informacje o postaci">
-   <button id="close-inspector" class="close-inspector" type="button" aria-label="Zamknij informacje">×</button>
-   <div class="inspector-art" id="inspector-art"><span>ᛟ</span></div>
-   <p class="eyebrow" id="inspector-type">KRONIKA POSTACI</p>
-   <h2 id="inspector-name">Wybierz postać</h2>
-   <div class="rule"></div>
-   <p id="inspector-description">Kliknij dowolny portret na mapie, aby zobaczyć jawne informacje o postaci.</p>
-   <h3>Znane powiązania</h3>
-   <div id="inspector-relations" class="relations-empty">Relacje pojawią się po ich ujawnieniu w kampanii.</div>
-   <div class="inspector-foot">ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ</div>
-  </aside>
+  <div id="inspector" class="character-overlay" role="dialog" aria-modal="true" aria-labelledby="inspector-name" aria-hidden="true" hidden>
+    <article class="character-dialog" tabindex="-1" aria-label="Karta postaci">
+      <button id="close-inspector" class="character-close" type="button" aria-label="Zamknij kartę postaci">×</button>
+      <div class="character-visual">
+        <div class="character-visual-top">SAGAS <span>OF</span> MIDGARD <i>·</i> POSTACIE</div>
+        <div class="character-image" id="inspector-art"><span class="character-placeholder">ᛟ</span></div>
+        <div class="character-visual-bottom">KRONIKA PÓŁNOCY <span aria-hidden="true">ᚠ ᚢ ᚦ ᚨ ᚱ</span></div>
+      </div>
+      <div class="character-details">
+        <p class="character-kicker" id="inspector-type">KRONIKA POSTACI</p>
+        <h2 class="character-title" id="inspector-name">Wybierz postać</h2>
+        <div class="character-rule"></div>
+        <div class="character-section-label">O POSTACI</div>
+        <p class="character-description" id="inspector-description">Kliknij dowolny portret na mapie, aby zobaczyć jawne informacje o postaci.</p>
+        <div class="character-rule muted"></div>
+        <div class="character-section-label">ZNANE POWIĄZANIA</div>
+        <div id="inspector-relations" class="relations-empty">Relacje pojawią się po ich ujawnieniu w kampanii.</div>
+        <div class="character-details-bottom">
+          <span>Wiedza dostępna bohaterom</span>
+          <span aria-hidden="true">✦</span>
+        </div>
+      </div>
+    </article>
+  </div>
  </div>
  <noscript>Ta interaktywna kronika wymaga włączonego JavaScript.</noscript>
 </body>
