@@ -21,6 +21,37 @@ window.CHRONICLE = {
   // Publiczne POWIĄZANIA FABULARNE można dodać dopiero po zatwierdzeniu przez Skalda.
   // Format: {from:"hroald",to:"runa",type:"rodzina",label:"..."}.
   relationships: [],
+
+  // Kronika PUBLICZNA: wyłącznie wydarzenia znane graczom. Nie wpisuj tu sekretów Skalda.
+  chronicle: [
+    {
+      id: "upadek-jarla", chapter: "I", title: "Upadek starego jarla",
+      placeId: "hrafnvik", kind: "Dzieje osady", image: "",
+      intro: "W Hrafnviku stary porządek ustąpił miejsca nowemu, lecz spór o władzę nie zakończył się wraz ze zmianą jarla.",
+      paragraphs: [
+        "W Hrafnviku brat wystąpił przeciw bratu. Hroald utracił władzę i wzrok, a Sigurd zajął jego miejsce. Historia osady nabrała ciężaru, którego nie dało się już zrzucić z barków jednej rodziny.",
+        "Nie minęło wiele czasu, gdy Sigurd został odnaleziony martwy. Jego śmierć otworzyła nowy rozdział sporów, przysiąg i pytań o to, komu przypadnie prawo przewodzenia ludziom Hrafnviku."
+      ], participants: ["hroald"]
+    },
+    {
+      id: "ogien-i-srebro", chapter: "II", title: "Ogień i srebro",
+      placeId: "skjorvik", kind: "Najazd", image: "",
+      intro: "Skjǫrvik zostało zdobyte. Zwycięzcy wrócili z łupami, a pamięć o ogniu przetrwała po obu stronach zatoki.",
+      paragraphs: [
+        "Wojownicy Hrafnviku ruszyli na Skjǫrvik. Osada uległa najeźdźcom, a po walce pozostały dym, rozbite domostwa i losy ludzi, których odtąd nazywano jeńcami.",
+        "Do Hrafnviku przywieziono srebro, towary i pojmanych. Wśród nich znalazł się Aslak Cieśla. Jedni opowiadali o wielkiej zdobyczy, drudzy wspominali przede wszystkim o cenie, jaką przyszło za nią zapłacić."
+      ], participants: ["aslak"]
+    },
+    {
+      id: "glosy-althingu", chapter: "III", title: "Głosy Wielkiego Althingu",
+      placeId: "althing", kind: "Zgromadzenie", image: "",
+      intro: "Na Eylendzie głos zabrali jarlowie i królowie. Sprawy Północy przestały być sprawami pojedynczych osad.",
+      paragraphs: [
+        "Na Wielkim Althingu spotkali się ci, których słowa ważą tyle, co włócznie ich drużyn. Zgromadzenie mówiło o wyprawie ku Winlandowi, o wojnie z Frankami oraz o idei Króla Królów.",
+        "Wielka polityka nie rodzi się wyłącznie na polu bitwy. Powstaje również między ławami zgromadzenia: w rozmowach, obietnicach i publicznych przysięgach. Kronika zapisuje poruszone sprawy, nie przesądzając o ich ostatecznych rozstrzygnięciach."
+      ], participants: []
+    }
+  ],
   places: [
     { id: "eylenda", name: "Eylenda", kind: "Wyspa", description: "Wyspa, na której rozgrywa się część sagi i odbywa się wielkie zgromadzenie.", image: "" },
     { id: "althing", name: "Althing", kind: "Zgromadzenie", description: "Miejsce obrad, sporów i decyzji politycznych jarlów.", image: "" },
