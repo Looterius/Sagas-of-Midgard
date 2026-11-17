@@ -40,6 +40,9 @@
 
   function cardRegion(region) {
     const box = el("article", "atlas2-region");
+    box.dataset.regionId = region.id;
+    if (region.id === "osady-bohaterow") box.classList.add("atlas2-region--home");
+    if (region.id === "eylenda") box.classList.add("atlas2-region--independent");
     const top = el("button", "atlas2-region-heading");
     top.type = "button";
     top.appendChild(el("span", "atlas2-region-icon", region.id === "eylenda" ? "ᚢ" : "ᛟ"));
@@ -72,6 +75,9 @@
         inline.appendChild(item);
       }
       box.appendChild(inline);
+    }
+    if (!children.length && !locations.length && region.kind === "Królestwo Drengrów") {
+      box.appendChild(el("p", "atlas2-region-undiscovered", "Znane lokacje pojawią się wraz z odkryciami drużyny."));
     }
     if (region.id === "eylenda" && getPlace("eylenda")) {
       const about = el("button", "atlas2-about-region", "Poznaj Eylendę");
@@ -146,9 +152,13 @@
         top.appendChild(openBtn);
         cards.appendChild(top);
       }
-      const directPlaces = places().filter(p=>p.parentRegionId === "eylenda");
+    }
+    // Każde królestwo i każda grupa osad używa tej samej listy lokacji.
+    // Miasta, świątynie i inne miejsca to sąsiednie linki rozdzielone przecinkami.
+    const directPlaces = places().filter(p => p.parentRegionId === id && !getRegion(p.id));
+    if (directPlaces.length) {
       const block = el("div", "atlas2-location-collection");
-      block.appendChild(el("h3", "", "Znane lokacje"));
+      block.appendChild(el("h3", "", id === "osady-bohaterow" ? "Osady znane bohaterom" : "Znane lokacje"));
       const names = el("div", "atlas2-commalist");
       directPlaces.forEach((p,i)=>{
         if (i) names.appendChild(el("span", "atlas2-comma", ", "));
@@ -156,8 +166,10 @@
         btn.type = "button";btn.addEventListener("click", e=>open(p.id,e.currentTarget));
         names.appendChild(btn);
       });
-      if (!directPlaces.length) names.appendChild(el("p", "", "Brak ujawnionych lokacji."));
       block.appendChild(names);cards.appendChild(block);
+    }
+    if (id === "osady-bohaterow") {
+      cards.appendChild(el("p", "atlas2-community-note", "Hrafnvik to główna osada znana z kroniki drużyny. Jej przynależność do konkretnego królestwa nie została jeszcze potwierdzona."));
     }
     if (!cards.children.length) {
       cards.appendChild(el("p", "atlas2-empty", "Na razie nie zapisano tutaj żadnych odkrytych miejsc."));
@@ -262,7 +274,8 @@
         else if(!event.shiftKey && idx===buttons.length-1){event.preventDefault();buttons[0].focus();}
       }
     });
-    showRegion("midgard");
+    // Kampania koncentruje się w Ziemiach Drengrów — pokazujemy od razu sześć klocków.
+    showRegion("drengrlands");
   }
   window.SOM_ATLAS = {mount,open,showRegion};
 })();
