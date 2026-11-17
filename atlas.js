@@ -225,7 +225,7 @@
     events.replaceChildren();
     const related = (content.chronicle || []).filter(event=>{
       if(event.placeId===place.id)return true;
-      if(place.id==="eylenda")return event.placeId==="althing";
+      if(place.id==="eylenda")return event.placeId==="ejkjavik";
       return false;
     });
     if(!related.length) events.appendChild(el("p","atlas2-empty-people","Nie zapisano jeszcze wydarzeń związanych z tym miejscem."));
