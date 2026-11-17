@@ -11,7 +11,7 @@
   const svg = $("#connections");
   const defaultPositions = Object.fromEntries(data.people.map(p => [p.id, { x: p.x, y: p.y }]));
   let persisted = {};
-  try { persisted = JSON.parse(localStorage.getItem("som-public-layout-v1") || "{}") || {}; } catch (_) {}
+  try { persisted = JSON.parse(localStorage.getItem("som-public-layout-v2") || "{}") || {}; } catch (_) {}
   const state = {
     zoom: 0.66, panX: 0, panY: 0, selected: null, view: "relationships",
     positions: Object.fromEntries(data.people.map(p => [p.id, {
@@ -54,11 +54,6 @@
 
   function drawConnections() {
     svg.replaceChildren();
-    const hub = { x: 800, y: 488 };
-    data.people.forEach(p => {
-      const pos = state.positions[p.id];
-      addLine(hub.x, hub.y, pos.x + 90, pos.y + 120);
-    });
     (data.relationships || []).forEach(rel => {
       const a = state.positions[rel.from], b = state.positions[rel.to];
       if (!a || !b) return;
@@ -76,11 +71,6 @@
   }
 
   function renderPeople() {
-    const hub = make("div", "hub");
-    hub.appendChild(make("span", "hub-rune", "ᛟ"));
-    hub.appendChild(make("span", "hub-heading", "KRONIKA"));
-    hub.appendChild(make("span", "hub-sub", "KRĄG POSTACI"));
-    layer.appendChild(hub);
     for (const p of data.people) {
       const card = make("div", "person-card");
       card.tabIndex = 0;
@@ -190,7 +180,7 @@
   }
   function fit() {
     if (!viewport.clientWidth || !viewport.clientHeight) return;
-    state.zoom = Math.min(1.05, Math.max(.28, Math.min((viewport.clientWidth - 55) / 1600, (viewport.clientHeight - 65) / 1000)));
+    state.zoom = Math.min(1.05, Math.max(.28, Math.min((viewport.clientWidth - 55) / 1130, (viewport.clientHeight - 65) / 870)));
     state.panX = 0; state.panY = 0;
     applyTransform();
   }
