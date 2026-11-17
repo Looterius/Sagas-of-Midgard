@@ -5,18 +5,19 @@ window.CHRONICLE = {
   subtitle: "Kronika graczy • Eylenda",
   updated: "2026-11-17",
   people: [
-    { id: "haki", name: "Haki Torfinnsson", kind: "Postać", image: "", x: 50, y: 25 },
-    { id: "erik", name: "Erik Żelaznadłoń", kind: "Postać", image: "", x: 333, y: 25 },
-    { id: "ragnvald-p", name: "Ragnvald Prawomówca", kind: "Postać", image: "", x: 616, y: 25 },
-    { id: "styrbjorn", name: "Styrbjorn Ragnsson", kind: "Postać", image: "", x: 899, y: 25 },
-    { id: "hroald", name: "Hroald", kind: "Postać", image: "", x: 50, y: 317 },
-    { id: "ragnvald-s", name: "Ragnvald Skjoldsson", kind: "Postać", image: "", x: 333, y: 317 },
-    { id: "aslak", name: "Aslak Cieśla", kind: "Postać", image: "", x: 616, y: 317 },
-    { id: "morotar", name: "Morotar Jednooki", kind: "Postać", image: "", x: 899, y: 317 },
-    { id: "astrid", name: "Astrid Freyjadottir", kind: "Postać", image: "", x: 50, y: 609 },
-    { id: "anslem", name: "Brat Anslem", kind: "Postać", image: "", x: 333, y: 609 },
-    { id: "svala", name: "Svala Ketilsdóttir i synowie", kind: "Rodzina", image: "", x: 616, y: 609 },
-    { id: "runa", name: "Runa Hroaldsdottir", kind: "Postać", image: "", x: 899, y: 609 }
+    { id: "haki", name: "Haki Torfinnsson", kind: "Postać", image: "", x: 35, y: 25 },
+    { id: "erik", name: "Erik Żelaznadłoń", kind: "Postać", image: "assets/portraits/erik-zelaznadlon.jpg", x: 255, y: 25 },
+    { id: "ragnvald-p", name: "Ragnvald Prawomówca", kind: "Postać", image: "assets/portraits/ragnvald-prawomowca.jpg", x: 475, y: 25 },
+    { id: "styrbjorn", name: "Styrbjorn Ragnsson", kind: "Postać", image: "", x: 695, y: 25 },
+    { id: "hroald", name: "Hroald", kind: "Postać", image: "assets/portraits/hroald.jpg", x: 915, y: 25 },
+    { id: "ragnvald-s", name: "Ragnvald Skjoldsson", kind: "Postać", image: "", x: 145, y: 317 },
+    { id: "aslak", name: "Aslak Cieśla", kind: "Postać", image: "assets/portraits/aslak-ciesla.jpg", x: 365, y: 317 },
+    { id: "morotar", name: "Morotar Jednooki", kind: "Postać", image: "assets/portraits/morotar-jednooki.jpg", x: 585, y: 317 },
+    { id: "astrid", name: "Astrid Freyjadottir", kind: "Postać", image: "assets/portraits/astrid-freyjadottir.jpg", x: 805, y: 317 },
+    { id: "anslem", name: "Brat Anslem", kind: "Postać", image: "assets/portraits/brat-anslem.jpg", x: 145, y: 609 },
+    { id: "svala", name: "Svala Ketilsdóttir i synowie", kind: "Rodzina", image: "assets/portraits/svala-ketilsdottir-i-synowie.jpg", x: 365, y: 609 },
+    { id: "runa", name: "Runa Hroaldsdottir", kind: "Postać", image: "assets/portraits/runa-hroaldsdottir.jpg", x: 585, y: 609 },
+    { id: "leif", name: "Leif Anundsson", kind: "Postać", image: "assets/portraits/leif-anundsson.jpg", x: 805, y: 609 }
   ],
   // Publiczne POWIĄZANIA FABULARNE można dodać dopiero po zatwierdzeniu przez Skalda.
   // Format: {from:"hroald",to:"runa",type:"rodzina",label:"..."}.
