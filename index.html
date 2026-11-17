@@ -20,6 +20,7 @@
    <nav class="nav" aria-label="Widoki kroniki">
     <button class="nav-btn active" type="button" data-view="relationships"><span class="nav-icon">✦</span><span>Sieć postaci</span></button>
     <button class="nav-btn" type="button" data-view="locations"><span class="nav-icon">⌖</span><span>Atlas lokacji</span></button>
+    <button class="nav-btn" type="button" data-view="chronicle"><span class="nav-icon">ᚱ</span><span>Kronika wydarzeń</span></button>
    </nav>
    <div class="rail-bottom">
     <p class="rail-note">„Słowa przemijają.<br>Opowieści trwają.”</p>
@@ -74,6 +75,20 @@
      </div>
      <div class="atlas-grid" id="atlas-grid"></div>
      <div class="atlas-note">To katalog miejsc odkrytych w kampanii, nie mapa geograficzna. Kolejne lokacje pojawią się wraz z opowieścią.</div>
+   </section>
+   <section id="chronicle-view" class="view chronicle-view" aria-label="Kronika wydarzeń" hidden>
+     <div class="chronicle-intro">
+       <div><p class="eyebrow">ZAPISANE W PAMIĘCI PÓŁNOCY</p>
+       <h2>Kronika wydarzeń</h2><p>Opowieści o rozegranych czynach bohaterów. Nowe karty pojawią się wraz z sesjami.</p></div>
+       <span class="chronicle-emblem" aria-hidden="true">ᚱ</span>
+     </div>
+     <div class="chronicle-toolbar">
+       <label for="chronicle-place-filter">Miejsce</label>
+       <select id="chronicle-place-filter"><option value="all">Wszystkie miejsca</option></select>
+       <span id="chronicle-count" aria-live="polite"></span>
+     </div>
+     <div id="chronicle-list" class="chronicle-list"></div>
+     <p class="chronicle-disclaimer">Zapisujemy tylko wydarzenia znane drużynie. Przyszłe sceny, sekrety Skalda i niepotwierdzone pogłoski pozostają poza publiczną kroniką.</p>
    </section>
   </div>
 
