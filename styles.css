@@ -168,3 +168,11 @@ h1,h2,h3,.brand-name,.card-name,.person-name{font-family:Georgia,"Times New Roma
 /* Mapa publiczna nie jest edytorem: wskazówki kursora nie sugerują przesuwania kart. */
 .person-card,.person-card:active{cursor:pointer}
 .person-card:focus-visible{outline:2px solid var(--gold2);outline-offset:4px}
+
+/* Stabilne ładowanie portretów — zwykły znacznik IMG, z fallbackiem do GitHuba. */
+.person-art,.place-top,.chronicle-cover,.inspector-art{position:relative}
+.asset-photo{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;pointer-events:none;z-index:0}
+.person-art.has-photo .avatar-rune,.place-top.has-photo > span,.inspector-art.has-photo > span,.chronicle-cover.has-photo .chronicle-cover-sigil{display:none}
+.person-art:before{z-index:1}
+.chronicle-cover > :not(.asset-photo){position:relative;z-index:2}
+.inspector-art{overflow:hidden}
