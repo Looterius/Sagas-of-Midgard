@@ -6,9 +6,10 @@
   <meta name="theme-color" content="#121419">
   <meta name="description" content="Sagas of Midgard — interaktywna kronika postaci, relacji i lokacji dla graczy.">
   <title>Sagas of Midgard | Kronika</title>
-  <link rel="stylesheet" href="styles.css?v=character-modal-4">
-  <script src="data.js?v=portrait-fix-2" defer></script>
-  <script src="app.js?v=character-modal-4" defer></script>
+  <link rel="stylesheet" href="styles.css?v=atlas-v1">
+  <script src="data.js?v=atlas-v1" defer></script>
+  <script src="atlas.js?v=atlas-v1" defer></script>
+  <script src="app.js?v=atlas-v1" defer></script>
 </head>
 <body>
  <div class="app-shell">
@@ -68,13 +69,24 @@
      </div>
    </section>
 
-   <section id="locations-view" class="view" aria-label="Atlas lokacji" hidden>
-     <div class="atlas-intro">
-       <div><p class="eyebrow">ODKRYTE MIEJSCA</p><h2>Ziemie Północy</h2></div>
-       <div class="compass" aria-hidden="true">✥</div>
+   <section id="locations-view" class="view atlas2-view" aria-label="Atlas lokacji" hidden>
+     <header class="atlas2-hero">
+       <img src="assets/locations/eylenda.svg" alt="" class="atlas2-hero-art">
+       <div class="atlas2-hero-content">
+         <p class="eyebrow">ATLAS · ODKRYTE MIEJSCA</p>
+         <h2>Atlas Midgardu</h2>
+         <p>Świat, krainy i miejsca poznane przez bohaterów. Każda nowa wyprawa może dopisać kolejny rozdział.</p>
+       </div>
+     </header>
+     <div class="atlas2-browser">
+       <nav id="atlas2-breadcrumb" class="atlas2-breadcrumb" aria-label="Ścieżka Atlasu"></nav>
+       <div class="atlas2-section-head">
+         <div><p class="eyebrow">ODKRYTE ZIEMIE</p><h3 id="atlas2-region-title">Midgard</h3></div>
+         <p id="atlas2-region-desc">Miejsca znane bohaterom.</p>
+       </div>
+       <div id="atlas2-region-grid" class="atlas2-region-grid"></div>
+       <div class="atlas2-footnote">Atlas przedstawia wyłącznie miejsca poznane przez drużynę. Geografia może być uzupełniana wraz z kolejnymi sesjami.</div>
      </div>
-     <div class="atlas-grid" id="atlas-grid"></div>
-     <div class="atlas-note">To katalog miejsc odkrytych w kampanii, nie mapa geograficzna. Kolejne lokacje pojawią się wraz z opowieścią.</div>
    </section>
    <section id="chronicle-view" class="view chronicle-view" aria-label="Kronika wydarzeń" hidden>
      <div class="chronicle-intro">
@@ -90,6 +102,27 @@
      <div id="chronicle-list" class="chronicle-list"></div>
      <p class="chronicle-disclaimer">Zapisujemy tylko wydarzenia znane drużynie. Przyszłe sceny, sekrety Skalda i niepotwierdzone pogłoski pozostają poza publiczną kroniką.</p>
    </section>
+  </div>
+
+  <div id="place-dialog" class="atlas2-overlay" role="dialog" aria-modal="true" aria-labelledby="atlas2-dialog-title" aria-hidden="true" hidden>
+    <article class="atlas2-dialog">
+      <button id="atlas2-dialog-close" type="button" class="atlas2-close" aria-label="Zamknij kartę lokacji">×</button>
+      <div class="atlas2-detail-visual">
+        <div id="atlas2-dialog-art" class="atlas2-detail-art"></div>
+        <div class="atlas2-picture-caption">SAGAS OF MIDGARD · ATLAS</div>
+      </div>
+      <div class="atlas2-detail-body">
+        <div id="atlas2-dialog-breadcrumb" class="atlas2-detail-breadcrumb">Midgard</div>
+        <p id="atlas2-dialog-kind" class="atlas2-detail-kind">LOKACJA</p>
+        <h2 id="atlas2-dialog-title" class="atlas2-detail-title">Lokacja</h2>
+        <div class="atlas2-detail-rule"></div>
+        <p id="atlas2-dialog-summary" class="atlas2-detail-lead"></p>
+        <section class="atlas2-detail-section"><h3>Historia miejsca</h3><p id="atlas2-dialog-history"></p></section>
+        <section class="atlas2-detail-section"><h3>Powiązane postacie</h3><div id="atlas2-dialog-people" class="atlas2-npc-grid"></div></section>
+        <section class="atlas2-detail-section"><h3>Wydarzenia w kronice</h3><div id="atlas2-dialog-events" class="atlas2-event-list"></div></section>
+        <p class="atlas2-detail-foot">Wyłącznie informacje poznane w trakcie sagi</p>
+      </div>
+    </article>
   </div>
 
   <div id="inspector" class="character-overlay" role="dialog" aria-modal="true" aria-labelledby="inspector-name" aria-hidden="true" hidden>
