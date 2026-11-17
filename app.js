@@ -9,15 +9,11 @@
   const scene = $("#map-scene");
   const layer = $("#people-layer");
   const svg = $("#connections");
-  const defaultPositions = Object.fromEntries(data.people.map(p => [p.id, { x: p.x, y: p.y }]));
-  let persisted = {};
-  try { persisted = JSON.parse(localStorage.getItem("som-public-layout-v2") || "{}") || {}; } catch (_) {}
+  // Publiczny widok jest tylko do odczytu: pozycje pochodzą z danych kroniki.
+  // Ani kliknięcia, ani ruchy gości nie nadpisują oficjalnego układu.
   const state = {
     zoom: 0.66, panX: 0, panY: 0, selected: null, view: "relationships",
-    positions: Object.fromEntries(data.people.map(p => [p.id, {
-      x: typeof persisted[p.id]?.x === "number" ? persisted[p.id].x : p.x,
-      y: typeof persisted[p.id]?.y === "number" ? persisted[p.id].y : p.y
-    }]))
+    positions: Object.fromEntries(data.people.map(p => [p.id, { x: p.x, y: p.y }]))
   };
   const nodes = new Map();
   const NS = "http://www.w3.org/2000/svg";
@@ -38,10 +34,6 @@
       el.style.backgroundImage = 'linear-gradient(180deg,transparent 55%,#12151a88),url("' + image + '")';
       el.classList.add("has-photo");
     }
-  }
-
-  function savePositions() {
-    try { localStorage.setItem("som-public-layout-v1", JSON.stringify(state.positions)); } catch (_) {}
   }
 
   function addLine(x1, y1, x2, y2, cssClass = "") {
@@ -88,7 +80,9 @@
       nodes.set(p.id, card);
       positionCard(p.id);
       card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectPerson(p.id); } });
-      bindCardDrag(card, p.id);
+      // Otwarcie karty, bez przeciągania obiektu. Tło nadal można przesuwać.
+      card.addEventListener("pointerdown", e => e.stopPropagation());
+      card.addEventListener("click", () => selectPerson(p.id));
     }
     drawConnections();
     $("#people-count").textContent = data.people.length;
@@ -263,34 +257,6 @@
     state.zoom = Math.min(1.05, Math.max(.28, Math.min((viewport.clientWidth - 55) / 1130, (viewport.clientHeight - 65) / 870)));
     state.panX = 0; state.panY = 0;
     applyTransform();
-  }
-
-  function bindCardDrag(card, id) {
-    let drag = null;
-    card.addEventListener("pointerdown", e => {
-      if (e.button !== 0) return;
-      e.stopPropagation();
-      drag = { pointerId: e.pointerId, x: e.clientX, y: e.clientY,
-        startX: state.positions[id].x, startY: state.positions[id].y, moved: false };
-      card.setPointerCapture(e.pointerId);
-      card.style.cursor = "grabbing";
-    });
-    card.addEventListener("pointermove", e => {
-      if (!drag || e.pointerId !== drag.pointerId) return;
-      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
-      if (Math.abs(dx) + Math.abs(dy) > 6) drag.moved = true;
-      if (drag.moved) {
-        state.positions[id] = {x: Math.round(drag.startX + dx / state.zoom), y: Math.round(drag.startY + dy / state.zoom)};
-        positionCard(id); drawConnections();
-      }
-    });
-    card.addEventListener("pointerup", e => {
-      if (!drag || e.pointerId !== drag.pointerId) return;
-      const moved = drag.moved;
-      drag = null; card.style.cursor = "grab";
-      if (moved) savePositions(); else selectPerson(id);
-    });
-    card.addEventListener("pointercancel", () => { drag = null; card.style.cursor = "grab"; });
   }
 
   function bindViewportPan() {
