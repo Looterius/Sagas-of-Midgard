@@ -59,11 +59,21 @@ window.CHRONICLE = {
      description: "Świat ludzi, dom bohaterów naszej sagi. Atlas przedstawia tylko poznane przez nich miejsca."},
     {id: "drengrlands", name: "Ziemie Drengrów", parentId: "midgard", kind: "Obszar", visibility: "known",
      description: "Ojczyste ziemie nordyckich wojowników, osadników i żeglarzy."},
-    {id: "eylenda", name: "Eylenda", parentId: "drengrlands", kind: "Kraina", visibility: "known",
-     description: "Wyspa pozbawiona jednego króla. Jarlowie spotykają się tutaj na Althingu, by rozstrzygać spory i podejmować decyzje."}
+    {id: "agder", name: "Agder", parentId: "drengrlands", kind: "Królestwo Drengrów", visibility: "known",
+     description: "Najstarsze z królestw Drengrów, znane z wojowników i religijnych tradycji. Miejsca zostaną dodane, gdy pozna je drużyna."},
+    {id: "hordalands", name: "Hordalands", parentId: "drengrlands", kind: "Królestwo Drengrów", visibility: "known",
+     description: "Królestwo morskiego handlu, żeglugi i dalekich wypraw. Lokacje będą ujawniane w trakcie kampanii."},
+    {id: "vestmar", name: "Vestmar", parentId: "drengrlands", kind: "Królestwo Drengrów", visibility: "known",
+     description: "Podzielone królestwo, w którym możni rywalizują o władzę. Znane drużynie miejsca pojawią się wraz z opowieścią."},
+    {id: "fjordane", name: "Fjordane", parentId: "drengrlands", kind: "Królestwo Drengrów", visibility: "known",
+     description: "Ziemie słynące z rzemieślników, kowali i mistrzów run. Miejsca będą dodawane po ich poznaniu."},
+    {id: "eylenda", name: "Eylenda", parentId: "drengrlands", kind: "Niezależna wyspa", visibility: "known",
+     description: "Wyspa bez króla. Jarlowie spotykają się tutaj na Althingu, by rozstrzygać spory i podejmować decyzje."},
+    {id: "osady-bohaterow", name: "Osady bohaterów", parentId: "drengrlands", kind: "Osady o nieustalonej przynależności", visibility: "known",
+     description: "Hrafnvik i inne znane drużynie osady, których przypisania do czterech królestw jeszcze nie potwierdziliśmy."}
   ],
   // Lokacje publiczne, poznane podczas kampanii. Pełny katalog podręcznika pozostaje poza repo.
-  // parentRegionId: null = położenie w konkretnym królestwie nie zostało potwierdzone.
+  // Osady z niepotwierdzonym położeniem grupujemy na liście, bez deklarowania granic i przynależności politycznej.
   places: [
     {
       id: "eylenda", name: "Eylenda", kind: "Wyspa", visibility: "known", parentRegionId: "drengrlands",
@@ -78,13 +88,13 @@ window.CHRONICLE = {
       image: "assets/locations/althing.svg", personIds: []
     },
     {
-      id: "hrafnvik", name: "Hrafnvik", kind: "Osada", visibility: "known", parentRegionId: null,
+      id: "hrafnvik", name: "Hrafnvik", kind: "Osada bohaterów", visibility: "known", parentRegionId: "osady-bohaterow",
       description: "Osada związana z początkami sagi oraz sporami o władzę. Jej dokładne przypisanie do krainy pozostawiono do potwierdzenia.",
       history: "Hroald utracił władzę i wzrok, a Sigurd objął jego miejsce. Po śmierci Sigurda losy Hrafnviku wciąż wpływają na historię bohaterów.",
       image: "assets/locations/hrafnvik.svg", personIds: ["hroald","runa","anslem"]
     },
     {
-      id: "skjorvik", name: "Skjǫrvik", kind: "Osada", visibility: "known", parentRegionId: null,
+      id: "skjorvik", name: "Skjǫrvik", kind: "Osada", visibility: "known", parentRegionId: "osady-bohaterow",
       description: "Osada najechana przez wojowników z Hrafnviku. Jej położenie w ramach królestw nie zostało jeszcze ustalone.",
       history: "Podczas najazdu osada została zdobyta, a zwycięzcy wrócili z łupami i pojmanymi mieszkańcami. Wśród jeńców był Aslak Cieśla.",
       image: "assets/locations/skjorvik.svg", personIds: ["aslak"]
