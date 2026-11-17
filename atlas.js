@@ -79,11 +79,6 @@
     if (!children.length && !locations.length && region.kind === "Królestwo Drengrów") {
       box.appendChild(el("p", "atlas2-region-undiscovered", "Znane lokacje pojawią się wraz z odkryciami drużyny."));
     }
-    if (region.id === "eylenda" && getPlace("eylenda")) {
-      const about = el("button", "atlas2-about-region", "Poznaj Eylendę");
-      about.type = "button"; about.addEventListener("click", e => open("eylenda", e.currentTarget));
-      box.appendChild(about);
-    }
     return box;
   }
 
