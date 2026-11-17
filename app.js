@@ -1,0 +1,264 @@
+/* Sagas of Midgard — bez zależności zewnętrznych.
+   Tylko dane publiczne z data.js. Żadnych sekretów MG w frontendzie! */
+(() => {
+  "use strict";
+  const data = window.CHRONICLE;
+  if (!data) return;
+  const $ = (selector) => document.querySelector(selector);
+  const viewport = $("#map-viewport");
+  const scene = $("#map-scene");
+  const layer = $("#people-layer");
+  const svg = $("#connections");
+  const defaultPositions = Object.fromEntries(data.people.map(p => [p.id, { x: p.x, y: p.y }]));
+  let persisted = {};
+  try { persisted = JSON.parse(localStorage.getItem("som-public-layout-v1") || "{}") || {}; } catch (_) {}
+  const state = {
+    zoom: 0.66, panX: 0, panY: 0, selected: null, view: "relationships",
+    positions: Object.fromEntries(data.people.map(p => [p.id, {
+      x: typeof persisted[p.id]?.x === "number" ? persisted[p.id].x : p.x,
+      y: typeof persisted[p.id]?.y === "number" ? persisted[p.id].y : p.y
+    }]))
+  };
+  const nodes = new Map();
+  const NS = "http://www.w3.org/2000/svg";
+
+  function initials(name) {
+    return name.split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join("").toUpperCase();
+  }
+
+  function make(tag, className, text) {
+    const el = document.createElement(tag);
+    if (className) el.className = className;
+    if (text !== undefined) el.textContent = text;
+    return el;
+  }
+
+  function setArt(el, image) {
+    if (image && /^assets\/[a-z0-9_\-/]+\.(png|jpe?g|webp|avif)$/i.test(image)) {
+      el.style.backgroundImage = 'linear-gradient(180deg,transparent 55%,#12151a88),url("' + image + '")';
+      el.classList.add("has-photo");
+    }
+  }
+
+  function savePositions() {
+    try { localStorage.setItem("som-public-layout-v1", JSON.stringify(state.positions)); } catch (_) {}
+  }
+
+  function addLine(x1, y1, x2, y2, cssClass = "") {
+    const l = document.createElementNS(NS, "line");
+    l.setAttribute("x1", x1); l.setAttribute("y1", y1);
+    l.setAttribute("x2", x2); l.setAttribute("y2", y2);
+    if (cssClass) l.setAttribute("class", cssClass);
+    svg.appendChild(l);
+  }
+
+  function drawConnections() {
+    svg.replaceChildren();
+    const hub = { x: 800, y: 488 };
+    data.people.forEach(p => {
+      const pos = state.positions[p.id];
+      addLine(hub.x, hub.y, pos.x + 90, pos.y + 120);
+    });
+    (data.relationships || []).forEach(rel => {
+      const a = state.positions[rel.from], b = state.positions[rel.to];
+      if (!a || !b) return;
+      const ax = a.x + 90, ay = a.y + 120, bx = b.x + 90, by = b.y + 120;
+      addLine(ax, ay, bx, by, "real " + (["hostile","ally"].includes(rel.type) ? rel.type : ""));
+      if (rel.label) {
+        const label = document.createElementNS(NS, "text");
+        label.setAttribute("x", (ax + bx) / 2);
+        label.setAttribute("y", (ay + by) / 2 - 10);
+        label.setAttribute("text-anchor", "middle");
+        label.textContent = rel.label;
+        svg.appendChild(label);
+      }
+    });
+  }
+
+  function renderPeople() {
+    const hub = make("div", "hub");
+    hub.appendChild(make("span", "hub-rune", "ᛟ"));
+    hub.appendChild(make("span", "hub-heading", "KRONIKA"));
+    hub.appendChild(make("span", "hub-sub", "KRĄG POSTACI"));
+    layer.appendChild(hub);
+    for (const p of data.people) {
+      const card = make("div", "person-card");
+      card.tabIndex = 0;
+      card.role = "button";
+      card.setAttribute("aria-label", "Otwórz: " + p.name);
+      card.dataset.id = p.id;
+      const art = make("div", "person-art");
+      art.appendChild(make("span", "avatar-rune", initials(p.name)));
+      setArt(art, p.image);
+      card.appendChild(art);
+      const name = make("div", "card-name" + (p.name.length > 21 ? " long" : ""), p.name);
+      card.appendChild(name);
+      card.appendChild(make("span", "card-corner", "ᛟ"));
+      layer.appendChild(card);
+      nodes.set(p.id, card);
+      positionCard(p.id);
+      card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectPerson(p.id); } });
+      bindCardDrag(card, p.id);
+    }
+    drawConnections();
+    $("#people-count").textContent = data.people.length;
+    $("#links-count").textContent = (data.relationships || []).length;
+  }
+
+  function positionCard(id) {
+    const pos = state.positions[id], card = nodes.get(id);
+    if (card) { card.style.left = pos.x + "px"; card.style.top = pos.y + "px"; }
+  }
+
+  function selectPerson(id) {
+    const p = data.people.find(x => x.id === id);
+    if (!p) return;
+    state.selected = id;
+    nodes.forEach((el, key) => el.classList.toggle("selected", key === id));
+    $("#inspector-type").textContent = p.kind.toUpperCase() + " · KRONIKA";
+    $("#inspector-name").textContent = p.name;
+    $("#inspector-description").textContent =
+      p.description || "Postać znana z kroniki. Jej historia i motywacje będą uzupełniane wraz z odkryciami graczy.";
+    const art = $("#inspector-art");
+    art.style.backgroundImage = "";
+    art.classList.remove("has-photo");
+    art.replaceChildren(make("span", "", initials(p.name)));
+    setArt(art, p.image);
+    const relations = $("#inspector-relations");
+    relations.replaceChildren();
+    const known = (data.relationships || []).filter(r => r.from === id || r.to === id);
+    if (!known.length) {
+      relations.textContent = "Brak ujawnionych relacji. Sieć powiązań zostanie uzupełniona po kolejnych sesjach.";
+      relations.className = "relations-empty";
+    } else {
+      relations.className = "";
+      for (const r of known) {
+        const other = data.people.find(p2 => p2.id === (r.from === id ? r.to : r.from));
+        const chip = make("div", "relation-chip", other ? other.name : "Nieznana postać");
+        chip.appendChild(make("small", "", r.label || r.type || "Powiązanie"));
+        relations.appendChild(chip);
+      }
+    }
+    $("#inspector").classList.add("open");
+  }
+
+  function renderPlaces() {
+    const grid = $("#atlas-grid");
+    grid.replaceChildren();
+    for (const place of data.places) {
+      const article = make("article", "place");
+      const visual = make("div", "place-top");
+      visual.appendChild(make("span", "", "ᛟ"));
+      setArt(visual, place.image);
+      const body = make("div", "place-content");
+      body.appendChild(make("span", "place-kind", place.kind));
+      body.appendChild(make("h3", "", place.name));
+      body.appendChild(make("p", "", place.description));
+      article.appendChild(visual); article.appendChild(body);
+      grid.appendChild(article);
+    }
+  }
+
+  function switchView(view) {
+    state.view = view;
+    for (const b of document.querySelectorAll("[data-view]"))
+      b.classList.toggle("active", b.dataset.view === view);
+    for (const section of document.querySelectorAll(".view")) {
+      const show = section.id === (view === "relationships" ? "relationships-view" : "locations-view");
+      section.classList.toggle("active", show);
+      section.hidden = !show;
+    }
+    $("#page-title").textContent = view === "relationships" ? "Sieć postaci" : "Atlas lokacji";
+    $("#eyebrow").textContent = view === "relationships" ? "SAGA · ŚWIAT POSTACI" : "SAGA · ODKRYTE KRAINY";
+    $("#page-description").textContent = view === "relationships"
+      ? "Portrety, powiązania i losy ludzi Północy."
+      : "Miejsca odwiedzone i wspominane w kronice.";
+    if (view === "relationships") fit();
+    $("#inspector").classList.remove("open");
+  }
+
+  function applyTransform() {
+    scene.style.setProperty("--scale", state.zoom);
+    scene.style.setProperty("--pan-x", state.panX + "px");
+    scene.style.setProperty("--pan-y", state.panY + "px");
+    $("#zoom-text").textContent = Math.round(state.zoom * 100) + "%";
+  }
+
+  function setZoom(value) {
+    state.zoom = Math.max(.28, Math.min(1.7, value));
+    applyTransform();
+  }
+  function fit() {
+    if (!viewport.clientWidth || !viewport.clientHeight) return;
+    state.zoom = Math.min(1.05, Math.max(.28, Math.min((viewport.clientWidth - 55) / 1600, (viewport.clientHeight - 65) / 1000)));
+    state.panX = 0; state.panY = 0;
+    applyTransform();
+  }
+
+  function bindCardDrag(card, id) {
+    let drag = null;
+    card.addEventListener("pointerdown", e => {
+      if (e.button !== 0) return;
+      e.stopPropagation();
+      drag = { pointerId: e.pointerId, x: e.clientX, y: e.clientY,
+        startX: state.positions[id].x, startY: state.positions[id].y, moved: false };
+      card.setPointerCapture(e.pointerId);
+      card.style.cursor = "grabbing";
+    });
+    card.addEventListener("pointermove", e => {
+      if (!drag || e.pointerId !== drag.pointerId) return;
+      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (Math.abs(dx) + Math.abs(dy) > 6) drag.moved = true;
+      if (drag.moved) {
+        state.positions[id] = {x: Math.round(drag.startX + dx / state.zoom), y: Math.round(drag.startY + dy / state.zoom)};
+        positionCard(id); drawConnections();
+      }
+    });
+    card.addEventListener("pointerup", e => {
+      if (!drag || e.pointerId !== drag.pointerId) return;
+      const moved = drag.moved;
+      drag = null; card.style.cursor = "grab";
+      if (moved) savePositions(); else selectPerson(id);
+    });
+    card.addEventListener("pointercancel", () => { drag = null; card.style.cursor = "grab"; });
+  }
+
+  function bindViewportPan() {
+    let pan = null;
+    viewport.addEventListener("pointerdown", e => {
+      if (e.button !== 0 || e.target.closest(".person-card")) return;
+      pan = { id: e.pointerId, x: e.clientX, y: e.clientY, startX: state.panX, startY: state.panY };
+      viewport.setPointerCapture(e.pointerId);
+    });
+    viewport.addEventListener("pointermove", e => {
+      if (!pan || pan.id !== e.pointerId) return;
+      state.panX = pan.startX + e.clientX - pan.x;
+      state.panY = pan.startY + e.clientY - pan.y;
+      applyTransform();
+    });
+    viewport.addEventListener("pointerup", () => { pan = null; });
+    viewport.addEventListener("pointercancel", () => { pan = null; });
+    viewport.addEventListener("wheel", e => {
+      e.preventDefault();
+      setZoom(state.zoom * (e.deltaY < 0 ? 1.08 : .92));
+    }, { passive: false });
+  }
+
+  document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click", () => switchView(b.dataset.view)));
+  $("#search").addEventListener("input", e => {
+    const query = e.target.value.trim().toLocaleLowerCase("pl");
+    nodes.forEach((node, id) => {
+      const p = data.people.find(x => x.id === id);
+      node.classList.toggle("muted", !!query && !p.name.toLocaleLowerCase("pl").includes(query));
+    });
+  });
+  $("#zoom-in").addEventListener("click", () => setZoom(state.zoom * 1.17));
+  $("#zoom-out").addEventListener("click", () => setZoom(state.zoom / 1.17));
+  $("#fit").addEventListener("click", fit);
+  $("#close-inspector").addEventListener("click", () => $("#inspector").classList.remove("open"));
+  window.addEventListener("resize", () => { if (state.view === "relationships") fit(); });
+  renderPeople();
+  renderPlaces();
+  bindViewportPan();
+  fit();
+})();
