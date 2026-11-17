@@ -171,6 +171,12 @@
       while(r && !ids.has(r.id)){
         ids.add(r.id); chain.unshift(r.name);r=getRegion(r.parentId);
       }
+      // Hierarchia geograficzna może być głębsza niż płaska nawigacja:
+      // np. świątynia w mieście, ale obie lokacje są linkami tej samej krainy.
+      if (place.withinSiteId) {
+        const inside = getPlace(place.withinSiteId);
+        if (inside && inside.id !== place.id) chain.splice(chain.length - 1, 0, inside.name);
+      }
       return chain.join(" / ");
     }
     return "Midgard / " + place.name;
