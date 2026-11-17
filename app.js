@@ -144,7 +144,12 @@
         relations.appendChild(chip);
       }
     }
-    $("#inspector").classList.add("open");
+    const dialog = $("#inspector");
+    dialog.hidden = false;
+    dialog.setAttribute("aria-hidden", "false");
+    dialog.classList.add("open");
+    document.body.classList.add("character-modal-open");
+    $("#close-inspector").focus();
   }
 
   function renderPlaces() {
@@ -259,7 +264,18 @@
       : view === "chronicle" ? "Dzieje bohaterów spisane w pamięci Północy."
       : "Miejsca odwiedzone i wspominane w kronice."
     if (view === "relationships") fit();
-    $("#inspector").classList.remove("open");
+    closeCharacter();
+  }
+
+  function closeCharacter() {
+    const dialog = $("#inspector");
+    if (dialog.hidden) return;
+    dialog.classList.remove("open");
+    dialog.setAttribute("aria-hidden", "true");
+    dialog.hidden = true;
+    document.body.classList.remove("character-modal-open");
+    if (state.selected && nodes.get(state.selected)) nodes.get(state.selected).focus({preventScroll:true});
+    state.selected = null;
   }
 
   function applyTransform() {
@@ -312,7 +328,19 @@
   $("#zoom-in").addEventListener("click", () => setZoom(state.zoom * 1.17));
   $("#zoom-out").addEventListener("click", () => setZoom(state.zoom / 1.17));
   $("#fit").addEventListener("click", fit);
-  $("#close-inspector").addEventListener("click", () => $("#inspector").classList.remove("open"));
+  $("#close-inspector").addEventListener("click", closeCharacter);
+  $("#inspector").addEventListener("click", e => {
+    if (e.target === $("#inspector")) closeCharacter();
+  });
+  document.addEventListener("keydown", e => {
+    if ($("#inspector").hidden) return;
+    if (e.key === "Escape") { e.preventDefault(); closeCharacter(); return; }
+    if (e.key === "Tab") {
+      // Modal pozostaje klawiaturowo zamknięty; jedynym interaktywnym elementem jest zamknięcie.
+      e.preventDefault();
+      $("#close-inspector").focus();
+    }
+  });
   window.addEventListener("resize", () => { if (state.view === "relationships") fit(); });
   renderPeople();
   renderPlaces();
