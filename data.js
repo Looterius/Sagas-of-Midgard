@@ -69,8 +69,8 @@ window.CHRONICLE = {
      description: "Ziemie słynące z rzemieślników, kowali i mistrzów run. Miejsca będą dodawane po ich poznaniu."},
     {id: "eylenda", name: "Eylenda", parentId: "drengrlands", kind: "Niezależna wyspa", visibility: "known",
      description: "Wyspa bez króla. Jarlowie spotykają się tutaj na Althingu, by rozstrzygać spory i podejmować decyzje."},
-    {id: "osady-bohaterow", name: "Osady bohaterów", parentId: "drengrlands", kind: "Osady o nieustalonej przynależności", visibility: "known",
-     description: "Hrafnvik i inne znane drużynie osady, których przypisania do czterech królestw jeszcze nie potwierdziliśmy."}
+    {id: "osady-bohaterow", name: "Osada bohaterów", parentId: "drengrlands", kind: "Niezależna w nawigacji", visibility: "known",
+     description: "Hrafnvik — główna wioska drużyny. Jej położenia i przynależności do czterech królestw jeszcze nie potwierdziliśmy."}
   ],
   // Lokacje publiczne, poznane podczas kampanii. Pełny katalog podręcznika pozostaje poza repo.
   // Osady z niepotwierdzonym położeniem grupujemy na liście, bez deklarowania granic i przynależności politycznej.
@@ -94,7 +94,7 @@ window.CHRONICLE = {
       image: "assets/locations/hrafnvik.svg", personIds: ["hroald","runa","anslem"]
     },
     {
-      id: "skjorvik", name: "Skjǫrvik", kind: "Osada", visibility: "known", parentRegionId: "osady-bohaterow",
+      id: "skjorvik", name: "Skjǫrvik", kind: "Osada", visibility: "known", parentRegionId: "drengrlands",
       description: "Osada najechana przez wojowników z Hrafnviku. Jej położenie w ramach królestw nie zostało jeszcze ustalone.",
       history: "Podczas najazdu osada została zdobyta, a zwycięzcy wrócili z łupami i pojmanymi mieszkańcami. Wśród jeńców był Aslak Cieśla.",
       image: "assets/locations/skjorvik.svg", personIds: ["aslak"]
