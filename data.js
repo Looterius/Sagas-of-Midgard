@@ -45,7 +45,7 @@ window.CHRONICLE = {
     },
     {
       id: "glosy-althingu", chapter: "III", title: "Głosy Wielkiego Althingu",
-      placeId: "althing", kind: "Zgromadzenie", image: "",
+      placeId: "ejkjavik", kind: "Zgromadzenie", image: "",
       intro: "Na Eylendzie głos zabrali jarlowie i królowie. Sprawy Północy przestały być sprawami pojedynczych osad.",
       paragraphs: [
         "Na Wielkim Althingu spotkali się ci, których słowa ważą tyle, co włócznie ich drużyn. Zgromadzenie mówiło o wyprawie ku Winlandowi, o wojnie z Frankami oraz o idei Króla Królów.",
@@ -82,9 +82,9 @@ window.CHRONICLE = {
       image: "assets/locations/eylenda.svg", personIds: []
     },
     {
-      id: "althing", name: "Althing", kind: "Zgromadzenie", visibility: "known", parentRegionId: "eylenda", withinSiteId: "thingvellir",
-      description: "Wielkie zgromadzenie jarlów na Eylendzie. Miejsce przysiąg, sporów, sądów i politycznych rozmów.",
-      history: "Na Wielkim Althingu omawiano wyprawę do Winlandu, wojnę z Frankami oraz koncepcję Króla Królów. Wyniki debat i dalsze losy zgromadzenia będą odnotowywane w kronice po kolejnych sesjach.",
+      id: "ejkjavik", name: "Ejkjavik", kind: "Osada", visibility: "known", parentRegionId: "eylenda",
+      description: "Osada na Eylendzie, w której odbywa się Wielki Althing — zgromadzenie jarlów, przysiąg i rozstrzygania sporów.",
+      history: "W Ejkjaviku podczas Wielkiego Althingu omawiano wyprawę do Winlandu, wojnę z Frankami i ideę Króla Królów. Althing jest nazwą zgromadzenia; Ejkjavik to nazwa osady, która je gości.",
       image: "assets/locations/althing.svg", personIds: []
     },
     {
@@ -125,8 +125,8 @@ window.CHRONICLE = {
     },
     {
       id: "thingvellir", name: "Thingvellir", kind: "Płaskowyż", visibility: "known", parentRegionId: "eylenda",
-      description: "Wysoki, płaski górski obszar na Eylendzie, w którym zbierają się jarlowie na Althing.",
-      history: "Thingvellir jest miejscem zgromadzeń i rozstrzygania sporów między możnymi Eylendy. Althing jest zgromadzeniem odbywającym się w tym miejscu, a nie odrębnym miastem.",
+      description: "Wysoki, płaski górski obszar na Eylendzie, wymieniany w opisach tej krainy.",
+      history: "Thingvellir jest jednym z opisanych miejsc Eylendy. Nie należy go mylić z Ejkjavikiem — osadą, w której odbywa się Althing w naszej sadze.",
       image: "", personIds: []
     },
     {
