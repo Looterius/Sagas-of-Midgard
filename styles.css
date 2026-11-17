@@ -383,3 +383,16 @@ body.atlas2-modal-open{overflow:hidden}
  .atlas2-detail-breadcrumb{margin-bottom:20px}
  .atlas2-npc-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
+
+/* Atlas królestw Drengrów: sześć klocków — cztery królestwa, Eylenda i osady bohaterów */
+.atlas2-region-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.atlas2-region{min-height:235px;display:flex;flex-direction:column;overflow-wrap:break-word}
+.atlas2-region-heading{align-items:flex-start}
+.atlas2-region-names strong{font-size:clamp(19px,2vw,26px)}
+.atlas2-region-summary{margin-top:18px;flex:1}
+.atlas2-region--home{background:radial-gradient(ellipse at 95% 0,#73563936,transparent 70%),linear-gradient(155deg,#2a2a28,#1a1e20);border-color:#b08c59}
+.atlas2-region--independent{border-color:#697b74;background:linear-gradient(145deg,#273031,#1a1f23)}
+.atlas2-region-undiscovered{margin:auto 0 0;padding-top:10px;color:#b99e78;font:11px/1.65 Arial,sans-serif;font-style:italic}
+.atlas2-community-note{grid-column:1/-1;padding:7px 4px 0;color:#c7b7a2;font:13px/1.7 Arial,sans-serif}
+@media(max-width:1180px){.atlas2-region-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:710px){.atlas2-region-grid{grid-template-columns:1fr}.atlas2-region{min-height:180px}.atlas2-region-heading{align-items:center}}
