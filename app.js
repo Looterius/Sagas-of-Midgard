@@ -137,6 +137,7 @@
     grid.replaceChildren();
     for (const place of data.places) {
       const article = make("article", "place");
+      article.dataset.placeId = place.id;
       const visual = make("div", "place-top");
       visual.appendChild(make("span", "", "ᛟ"));
       setArt(visual, place.image);
@@ -149,20 +150,99 @@
     }
   }
 
+
+  function renderChronicle() {
+    const placeMap = new Map(data.places.map(p => [p.id, p]));
+    const filter = $("#chronicle-place-filter");
+    const list = $("#chronicle-list");
+    const all = data.chronicle || [];
+    for (const id of new Set(all.map(e => e.placeId))) {
+      const place = placeMap.get(id);
+      if (!place) continue;
+      const opt = make("option", "", place.name);
+      opt.value = id;
+      filter.appendChild(opt);
+    }
+    function paint() {
+      list.replaceChildren();
+      const shown = all.filter(e => filter.value === "all" || e.placeId === filter.value);
+      $("#chronicle-count").textContent = shown.length + (shown.length === 1 ? " rozdział" : " rozdziały");
+      if (!shown.length) list.appendChild(make("p", "chronicle-empty", "Nie zapisano jeszcze wydarzeń z tego miejsca."));
+      for (const item of shown) {
+        const place = placeMap.get(item.placeId);
+        const card = make("article", "chronicle-card");
+        const cover = make("div", "chronicle-cover");
+        cover.appendChild(make("div", "chronicle-chapter", "ROZDZIAŁ " + item.chapter));
+        cover.appendChild(make("div", "chronicle-cover-sigil", "ᚱ"));
+        cover.appendChild(make("div", "chronicle-cover-place", place ? place.name : "Północ"));
+        setArt(cover, item.image);
+        const body = make("div", "chronicle-body");
+        body.appendChild(make("p", "chronicle-overline", item.kind + " · " + (place ? place.name : "Północ")));
+        body.appendChild(make("h3", "chronicle-title", item.title));
+        body.appendChild(make("p", "chronicle-lead", item.intro));
+        const expanded = make("div", "chronicle-story");
+        expanded.hidden = true;
+        for (const paragraph of item.paragraphs) expanded.appendChild(make("p", "", paragraph));
+        if (item.participants && item.participants.length) {
+          const related = make("div", "chronicle-participants");
+          related.appendChild(make("span", "", "Znane postacie: "));
+          for (const id of item.participants) {
+            const person = data.people.find(p => p.id === id);
+            if (!person) continue;
+            const button = make("button", "chronicle-person-link", person.name);
+            button.type = "button";
+            button.addEventListener("click", () => selectPerson(person.id));
+            related.appendChild(button);
+          }
+          expanded.appendChild(related);
+        }
+        body.appendChild(expanded);
+        const actions = make("div", "chronicle-actions");
+        const toggle = make("button", "chronicle-expand", "Czytaj kronikę");
+        toggle.type = "button";
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.addEventListener("click", () => {
+          const opening = expanded.hidden;
+          expanded.hidden = !opening;
+          toggle.textContent = opening ? "Zwiń opowieść" : "Czytaj kronikę";
+          toggle.setAttribute("aria-expanded", String(opening));
+        });
+        actions.appendChild(toggle);
+        if (place) {
+          const go = make("button", "chronicle-place-link", "Miejsce: " + place.name);
+          go.type = "button";
+          go.addEventListener("click", () => {
+            switchView("locations");
+            const el = document.querySelector('[data-place-id="' + item.placeId + '"]');
+            if (el) el.scrollIntoView({behavior:"smooth",block:"center"});
+          });
+          actions.appendChild(go);
+        }
+        body.appendChild(actions);
+        card.appendChild(cover);
+        card.appendChild(body);
+        list.appendChild(card);
+      }
+    }
+    filter.addEventListener("change", paint);
+    paint();
+  }
+
   function switchView(view) {
     state.view = view;
     for (const b of document.querySelectorAll("[data-view]"))
       b.classList.toggle("active", b.dataset.view === view);
     for (const section of document.querySelectorAll(".view")) {
-      const show = section.id === (view === "relationships" ? "relationships-view" : "locations-view");
+      const show = section.id === (view === "relationships" ? "relationships-view" : view === "chronicle" ? "chronicle-view" : "locations-view");
       section.classList.toggle("active", show);
       section.hidden = !show;
     }
-    $("#page-title").textContent = view === "relationships" ? "Sieć postaci" : "Atlas lokacji";
-    $("#eyebrow").textContent = view === "relationships" ? "SAGA · ŚWIAT POSTACI" : "SAGA · ODKRYTE KRAINY";
+    $("#page-title").textContent = view === "relationships" ? "Sieć postaci" : view === "chronicle" ? "Kronika wydarzeń" : "Atlas lokacji";
+    $("#eyebrow").textContent = view === "relationships" ? "SAGA · ŚWIAT POSTACI" : view === "chronicle" ? "SAGA · ZAPISANE CZYNY" : "SAGA · ODKRYTE KRAINY";
     $("#page-description").textContent = view === "relationships"
       ? "Portrety, powiązania i losy ludzi Północy."
-      : "Miejsca odwiedzone i wspominane w kronice.";
+      : view === "chronicle" ? "Dzieje bohaterów spisane w pamięci Północy."
+      : "Miejsca odwiedzone i wspominane w kronice."
     if (view === "relationships") fit();
     $("#inspector").classList.remove("open");
   }
@@ -249,6 +329,7 @@
   window.addEventListener("resize", () => { if (state.view === "relationships") fit(); });
   renderPeople();
   renderPlaces();
+  renderChronicle();
   bindViewportPan();
   fit();
 })();
