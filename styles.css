@@ -176,3 +176,27 @@ h1,h2,h3,.brand-name,.card-name,.person-name{font-family:Georgia,"Times New Roma
 .person-art:before{z-index:1}
 .chronicle-cover > :not(.asset-photo){position:relative;z-index:2}
 .inspector-art{overflow:hidden}
+
+
+/* Portret w panelu postaci: oryginalny kadr 4:5 bez obcinania głowy ani sylwetki. */
+.inspector-art{
+  width:100%;
+  height:auto;
+  aspect-ratio:4 / 5;
+  max-height:none;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:#15181c;
+  margin:0 0 27px;
+}
+.inspector-art .asset-photo{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+}
+@media(max-width:650px){
+  .inspector-art{aspect-ratio:4 / 5;max-height:min(63dvh,520px)}
+  .inspector-art .asset-photo{object-fit:contain}
+}
