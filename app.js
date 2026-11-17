@@ -30,22 +30,31 @@
   }
 
   function setArt(el, image) {
-    // Obsługa oryginalnych nazw plików PNG, także spacji i polskich znaków.
-    // Ścieżka jest lokalna i nie dopuszcza niebezpiecznych znaków ani zewnętrznych adresów.
-    if (image && /^assets\/portraits\/[^<>"'?#\\]+\.(png|jpe?g|webp|avif)$/i.test(image)) {
-      const safeSrc = encodeURI(image);
-      // Nie chowaj inicjałów, dopóki plik nie będzie rzeczywiście dostępny.
-      const preview = new Image();
-      preview.onload = () => {
-        el.style.backgroundImage = 'linear-gradient(180deg,transparent 55%,#12151a88),url("' + safeSrc + '")';
-        el.classList.add("has-photo");
-      };
-      preview.onerror = () => {
-        el.style.backgroundImage = "";
+    // Zdjęcia mogą mieć spacje i polskie znaki. Używamy prawdziwego <img>,
+    // nie tła CSS, i sprawdzamy alternatywny publiczny adres GitHuba.
+    if (!image || !/^assets\/portraits\/[^<>"'?#\\]+\.(png|jpe?g|webp|avif)$/i.test(image)) return;
+    const path = image.split("/").map(encodeURIComponent).join("/");
+    const sources = [
+      path,
+      "https://raw.githubusercontent.com/Looterius/Sagas-of-Midgard/main/" + path
+    ];
+    const portrait = document.createElement("img");
+    portrait.alt = "";
+    portrait.className = "asset-photo";
+    portrait.decoding = "async";
+    portrait.loading = "eager";
+    let attempt = 0;
+    portrait.onload = () => el.classList.add("has-photo");
+    portrait.onerror = () => {
+      attempt++;
+      if (attempt < sources.length) portrait.src = sources[attempt];
+      else {
+        portrait.remove();
         el.classList.remove("has-photo");
-      };
-      preview.src = safeSrc;
-    }
+      }
+    };
+    portrait.src = sources[attempt];
+    el.appendChild(portrait);
   }
 
   function addLine(x1, y1, x2, y2, cssClass = "") {
