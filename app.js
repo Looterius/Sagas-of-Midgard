@@ -153,23 +153,20 @@
   }
 
   function renderPlaces() {
-    const grid = $("#atlas-grid");
-    grid.replaceChildren();
-    for (const place of data.places) {
-      const article = make("article", "place");
-      article.dataset.placeId = place.id;
-      const visual = make("div", "place-top");
-      visual.appendChild(make("span", "", "ᛟ"));
-      setArt(visual, place.image);
-      const body = make("div", "place-content");
-      body.appendChild(make("span", "place-kind", place.kind));
-      body.appendChild(make("h3", "", place.name));
-      body.appendChild(make("p", "", place.description));
-      article.appendChild(visual); article.appendChild(body);
-      grid.appendChild(article);
-    }
+    if (!window.SOM_ATLAS) return;
+    window.SOM_ATLAS.mount({
+      data,
+      openPerson: id => selectPerson(id),
+      openChronicle: eventId => {
+        switchView("chronicle");
+        const card = document.querySelector('[data-event-id="' + eventId + '"]');
+        if (!card) return;
+        const story = card.querySelector(".chronicle-story");
+        if (story && story.hidden) card.querySelector(".chronicle-expand")?.click();
+        card.scrollIntoView({behavior:"smooth",block:"center"});
+      }
+    });
   }
-
 
   function renderChronicle() {
     const placeMap = new Map(data.places.map(p => [p.id, p]));
@@ -191,6 +188,7 @@
       for (const item of shown) {
         const place = placeMap.get(item.placeId);
         const card = make("article", "chronicle-card");
+        card.dataset.eventId = item.id;
         const cover = make("div", "chronicle-cover");
         cover.appendChild(make("div", "chronicle-chapter", "ROZDZIAŁ " + item.chapter));
         cover.appendChild(make("div", "chronicle-cover-sigil", "ᚱ"));
@@ -233,8 +231,7 @@
           go.type = "button";
           go.addEventListener("click", () => {
             switchView("locations");
-            const el = document.querySelector('[data-place-id="' + item.placeId + '"]');
-            if (el) el.scrollIntoView({behavior:"smooth",block:"center"});
+            window.SOM_ATLAS?.open(item.placeId, go);
           });
           actions.appendChild(go);
         }
