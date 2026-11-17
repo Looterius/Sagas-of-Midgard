@@ -60,15 +60,15 @@ window.CHRONICLE = {
     {id: "drengrlands", name: "Ziemie Drengrów", parentId: "midgard", kind: "Obszar", visibility: "known",
      description: "Ojczyste ziemie nordyckich wojowników, osadników i żeglarzy."},
     {id: "agder", name: "Agder", parentId: "drengrlands", kind: "Królestwo Drengrów", visibility: "known",
-     description: "Najstarsze z królestw Drengrów, znane z wojowników i religijnych tradycji. Miejsca zostaną dodane, gdy pozna je drużyna."},
+     description: "Najstarsze z królestw Drengrów, ziemia wojowników, przysiąg i pradawnych tradycji. Rządzi tu Halfdan Czarny, człowiek o ambicjach większych niż granice własnego królestwa."},
     {id: "hordalands", name: "Hordalands", parentId: "drengrlands", kind: "Królestwo Drengrów", visibility: "known",
-     description: "Królestwo morskiego handlu, żeglugi i dalekich wypraw. Lokacje będą ujawniane w trakcie kampanii."},
+     description: "Królestwo żeglarzy i kupców, którego bogactwo płynie z morza. Pod panowaniem Alreka Erikssona handel, polityka i królewskie przysięgi splatają się w sieć trudnych zobowiązań."},
     {id: "vestmar", name: "Vestmar", parentId: "drengrlands", kind: "Królestwo Drengrów", visibility: "known",
-     description: "Podzielone królestwo, w którym możni rywalizują o władzę. Znane drużynie miejsca pojawią się wraz z opowieścią."},
+     description: "Kraina podzielonych koron i rywalizujących możnych. Tutaj władza pozostaje przedmiotem sporów, a sojusze mogą być równie niebezpieczne jak otwarta wojna."},
     {id: "fjordane", name: "Fjordane", parentId: "drengrlands", kind: "Królestwo Drengrów", visibility: "known",
-     description: "Ziemie słynące z rzemieślników, kowali i mistrzów run. Miejsca będą dodawane po ich poznaniu."},
+     description: "Królestwo mistrzów ognia, stali i run. Pod rządami Audbjorna bogactwo rodzi się w kuźniach, gdzie powstaje broń, a dawną wiedzę przekuwa się w potęgę."},
     {id: "eylenda", name: "Eylenda", parentId: "drengrlands", kind: "Niezależna wyspa", visibility: "known",
-     description: "Wyspa bez króla. Jarlowie spotykają się tutaj na Althingu, by rozstrzygać spory i podejmować decyzje."},
+     description: "Surowa, niezależna wyspa, na której jarlowie spotykają się podczas Wielkiego Althingu. To ziemia dawnych bohaterów, wulkanicznego ognia i tajemniczych kurhanów, gdzie żywi wciąż stykają się z legendami umarłych."},
     {id: "osady-bohaterow", name: "Osada bohaterów", parentId: "drengrlands", kind: "Niezależna w nawigacji", visibility: "known",
      description: "Hrafnvik — główna wioska drużyny. Jej położenia i przynależności do czterech królestw jeszcze nie potwierdziliśmy."}
   ],
@@ -77,8 +77,8 @@ window.CHRONICLE = {
   places: [
     {
       id: "eylenda", name: "Eylenda", kind: "Wyspa", visibility: "known", parentRegionId: "drengrlands",
-      description: "Wyspa na północnym zachodzie ziem Drengrów. Nie ma tu króla; ważne sprawy rozstrzygają jarlowie zebrani na Althingu.",
-      history: "W czasie obecnej sagi Eylenda stała się miejscem zgromadzenia władców i wojowników. Przybyli tu, aby dyskutować o losach Północy, wyprawie do Winlandu oraz kwestiach wojny i władzy.",
+      description: "Na tej wyspie bohaterowie stanęli przed najpotężniejszymi ludźmi Północy, przeszli przez krainę ognia i umarłych oraz odzyskali Gungnir, włócznię Odyna. Zwycięstwo miało jednak swoją cenę.",
+      history: "Na Wielkim Althingu możni rozmawiali o Winlandzie, wojnie z Frankami i idei Króla Królów, lecz nie wyłonili wspólnego władcy. Bohaterowie zapuścili się także do kurhanu Haralda Hardrady i odzyskali Gungnir. Wyprawa kosztowała życie Flokiego i Morda. Eylendę naznaczył również żywioł ognia.",
       image: "assets/locations/eylenda.svg", personIds: []
     },
     {
@@ -89,14 +89,14 @@ window.CHRONICLE = {
     },
     {
       id: "hrafnvik", name: "Hrafnvik", kind: "Osada bohaterów", visibility: "known", parentRegionId: "osady-bohaterow",
-      description: "Osada związana z początkami sagi oraz sporami o władzę. Jej dokładne przypisanie do krainy pozostawiono do potwierdzenia.",
-      history: "Hroald utracił władzę i wzrok, a Sigurd objął jego miejsce. Po śmierci Sigurda losy Hrafnviku wciąż wpływają na historię bohaterów.",
+      description: "Osada, w której brat wystąpił przeciw bratu, a przelana krew zmieniła porządek władzy. Tutaj rozpoczęła się opowieść o Sianicie, Styrze i ludziach, których losy odmieniła śmierć jarla Sigurda.",
+      history: "Hroald utracił władzę i wzrok, a jego brat Sigurd objął miejsce jarla. Wkrótce Sigurd został zamordowany, a Sianita przejęła odpowiedzialność za osadę. W Hrafnviku pamięta się zarówno rozlew krwi, jak i tych, którzy zginęli podczas późniejszych wypraw.",
       image: "assets/locations/hrafnvik.svg", personIds: ["hroald","runa","anslem"]
     },
     {
       id: "skjorvik", name: "Skjǫrvik", kind: "Osada", visibility: "known", parentRegionId: "drengrlands",
-      description: "Osada najechana przez wojowników z Hrafnviku. Jej położenie w ramach królestw nie zostało jeszcze ustalone.",
-      history: "Podczas najazdu osada została zdobyta, a zwycięzcy wrócili z łupami i pojmanymi mieszkańcami. Wśród jeńców był Aslak Cieśla.",
+      description: "Osada zdobyta ogniem i żelazem przez wojowników Hrafnviku. Zwycięzcy zabrali stąd srebro, łupy i jeńców, lecz dla pokonanych dzień najazdu stał się początkiem zupełnie innej historii.",
+      history: "Wojownicy Hrafnviku zdobyli osadę, zabierając srebro, towary i jeńców. Wśród pojmanych znalazł się Aslak Cieśla. Dla najeźdźców był to triumf, dla mieszkańców Skjǫrviku — dzień straty, o którym trudno zapomnieć.",
       image: "assets/locations/skjorvik.svg", personIds: ["aslak"]
     }
   ]
