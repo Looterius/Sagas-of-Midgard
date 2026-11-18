@@ -148,7 +148,7 @@
       const name = make("div", "card-name" + (p.name.length > 21 ? " long" : ""), p.name);
       card.appendChild(name);
       card.appendChild(make("span", "card-corner", "ᛟ"));
-      if (p.grouping?.role === "hero") {
+      if (p.grouping?.role === "hero" || p.grouping?.lifeStatus === "deceased") {
         const dead = p.grouping.lifeStatus === "deceased";
         const marker = make("span", "person-role-badge" + (dead ? " is-deceased" : ""),
           dead ? "† ZMARŁY" : "BOHATER");
