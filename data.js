@@ -151,7 +151,7 @@ window.CHRONICLE = {
       id: "hrafnvik", name: "Hrafnvik", kind: "Osada bohaterów", visibility: "known", parentRegionId: "osady-bohaterow",
       description: "Osada, w której brat wystąpił przeciw bratu, a przelana krew zmieniła porządek władzy. Tutaj rozpoczęła się opowieść o Sianicie, Styrze i ludziach, których losy odmieniła śmierć jarla Sigurda.",
       history: "Hroald utracił władzę i wzrok, a jego brat Sigurd objął miejsce jarla. Wkrótce Sigurd został zamordowany, a Sianita przejęła odpowiedzialność za osadę. W Hrafnviku pamięta się zarówno rozlew krwi, jak i tych, którzy zginęli podczas późniejszych wypraw.",
-      image: "assets/locations/hrafnvik.svg", personIds: ["hroald","runa","anslem"]
+      image: "assets/locations/Hrafnvik.png", personIds: ["hroald","runa","anslem"]
     },
     {
       id: "skjorvik", name: "Skjǫrvik", kind: "Osada", visibility: "known", parentRegionId: "drengrlands",
