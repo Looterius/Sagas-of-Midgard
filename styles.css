@@ -689,3 +689,10 @@ body.atlas2-modal-open{overflow:hidden}
     font:italic clamp(48px,13vw,64px)/1 Georgia,serif;
   }
 }
+
+/* Publiczna kronika: wyraźne części sagi, bez nowej nawigacji i bez tajemnic MG. */
+.chronicle-section-heading{padding:23px 4px 13px;border-bottom:1px solid #756143;margin-top:18px}
+.chronicle-section-heading:first-child{margin-top:0}
+.chronicle-section-kicker{display:block;color:#d5b47d;letter-spacing:.24em;text-transform:uppercase;font:11px/1.5 system-ui,Arial,sans-serif;margin-bottom:8px}
+.chronicle-section-title{font:normal clamp(23px,3.1vw,36px)/1.22 Georgia,serif;color:#f4e4c9;margin:0 0 8px}
+.chronicle-section-subtitle{font:13px/1.55 system-ui,Arial,sans-serif;color:#bfb3a0;margin:0}

@@ -2,7 +2,7 @@
 // image: np. "assets/hroald.webp" po dodaniu zdjęcia do repozytorium.
 window.CHRONICLE = {
   title: "Sagas of Midgard",
-  subtitle: "Kronika graczy • Eylenda",
+  subtitle: "Kronika graczy • Drengrlands",
   updated: "2026-11-19",
   // PUBLICZNE biografie. Nowe osoby bez portretów otrzymają ilustracje po ich dostarczeniu.
   // Sten: los niepotwierdzony — nie nadajemy flagi zmarły.
@@ -26,7 +26,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/Sigurd, Jarl of the Northern Stronghold.png",
-      "description": "Sigurd zdobył władzę w Hrafnviku po rebelii przeciw własnemu bratu Hroaldowi. Pokonanego jarla pozbawił wzroku i tronu, lecz zwycięstwo nie zakończyło dawnych sporów. Sigurd był ojcem Sianity Gunnarsdóttir i Halvarda „Snake-Eye”, którym pozostawił skomplikowane dziedzictwo. Wkrótce sam został zamordowany. Jego śmierć wyniosła Sianitę na czoło osady i pozostawiła pytania o zabójcę, dawne przysięgi oraz cenę zdobytej władzy.",
+      "description": "Sigurd zdobył władzę w Hrafnviku po rebelii przeciw własnemu bratu Hroaldowi. Pokonanego jarla pozbawił wzroku i tronu, lecz zwycięstwo nie zakończyło dawnych sporów. Sigurd był ojcem Sianity Gunnarsdóttir i Halwarda „Snake-Eye”, którym pozostawił skomplikowane dziedzictwo. Wkrótce sam został zamordowany. Jego śmierć wyniosła Sianitę na czoło osady i pozostawiła pytania o zabójcę, dawne przysięgi oraz cenę zdobytej władzy.",
       "x": 10,
       "y": 10
     },
@@ -47,7 +47,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/Hroald.png",
-      "description": "Hroald niegdyś władał Hrafnvikiem. Jego własny brat Sigurd obalił go podczas rebelii, odebrał mu władzę i kazał pozbawić wzroku. Podczas wiosennych zgromadzeń starego jarla wystawiano w ciężkiej klatce, pod strażą ludzi nowej władzy. Utracił tron, lecz nie znaczenie: pamięć o jego panowaniu nadal dzieli osadę. Jest ojcem Runy i Stena, a zarazem wujem Sianity i Halvarda. Dla starych rodów pozostaje żywym przypomnieniem dawnych przysiąg.",
+      "description": "Hroald niegdyś władał Hrafnvikiem. Jego własny brat Sigurd obalił go podczas rebelii, odebrał mu władzę i kazał pozbawić wzroku. Podczas wiosennych zgromadzeń starego jarla wystawiano w ciężkiej klatce, pod strażą ludzi nowej władzy. Utracił tron, lecz nie znaczenie: pamięć o jego panowaniu nadal dzieli osadę. Jest ojcem Runy i Stena, a zarazem wujem Sianity i Halwarda. Dla starych rodów pozostaje żywym przypomnieniem dawnych przysiąg.",
       "x": 211,
       "y": 10
     },
@@ -65,7 +65,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/Runa Hroaldsdottir.png",
-      "description": "Runa jest córką oślepionego jarla Hroalda i siostrą Stena. Po obaleniu ojca pozostała blisko starego rodu, zachowując godność również wtedy, gdy inni świętowali zwycięstwo Sigurda. Na zgromadzeniach nie urządza demonstracji: sam sposób, w jaki odmawia toastu za dawną rebelię, mówi mieszkańcom Hrafnviku dość. Jako kuzynka Sianity i Halvarda łączy oba odłamy rodziny, chociaż historia ich ojców wciąż stoi między nimi.",
+      "description": "Runa jest córką oślepionego jarla Hroalda i siostrą Stena. Po obaleniu ojca pozostała blisko starego rodu, zachowując godność również wtedy, gdy inni świętowali zwycięstwo Sigurda. Na zgromadzeniach nie urządza demonstracji: sam sposób, w jaki odmawia toastu za dawną rebelię, mówi mieszkańcom Hrafnviku dość. Jako kuzynka Sianity i Halwarda łączy oba odłamy rodziny, chociaż historia ich ojców wciąż stoi między nimi.",
       "x": 412,
       "y": 10
     },
@@ -111,7 +111,7 @@ window.CHRONICLE = {
     },
     {
       "id": "halvard",
-      "name": "Halvard „Snake-Eye”",
+      "name": "Halward „Snake-Eye”",
       "kind": "Bohater",
       "grouping": {
         "role": "hero",
@@ -124,7 +124,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/836508976_2515877412221096_575784062671443810_n.jpg",
-      "description": "Halvard, znany jako „Snake-Eye”, jest synem Sigurda i bratem jarlowej Sianity. Jako wyznawca Lokiego woli podstęp, negocjacje i grę wpływów od prostych deklaracji. Na Althingu Eylendy zabiegał o poparcie dla drużyny, prowadząc trudne rozmowy z przedstawicielami innych krain. To, co robił w cieniu politycznych sporów, miało znaczenie równie wielkie jak publiczne przemówienia siostry.",
+      "description": "Halward, znany jako „Snake-Eye”, jest synem Sigurda i bratem jarlowej Sianity. Jako wyznawca Lokiego woli podstęp, negocjacje i grę wpływów od prostych deklaracji. Na Althingu Eylendy zabiegał o poparcie dla drużyny, prowadząc trudne rozmowy z przedstawicielami innych krain. To, co robił w cieniu politycznych sporów, miało znaczenie równie wielkie jak publiczne przemówienia siostry.",
       "x": 1015,
       "y": 10
     },
@@ -273,7 +273,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/Hakon Czerwony, Merchant of Midgard.png",
-      "description": "Hakon Czerwony jest najbogatszym mieszkańcem Hrafnviku i właścicielem niemal całej floty osady. Zarządza statkami, warsztatami i handlem; gdy trzeba wypłynąć na rajd lub przygotować poselstwo, jego okręty i srebro ważą wiele. Dawniej zatrudniał Flokiego, wybitnego szkutnika, lecz ich współpraca zakończyła się konfliktem. Teraz w jego szopie pracuje chrześcijański cieśla Aslak. Hakon umie przeliczyć każdy ładunek na zysk i doskonale rozumie, jak silnie jarl zależy od ludzi, którzy utrzymują port.",
+      "description": "Hakon Czerwony jest najbogatszym mieszkańcem Hrafnviku i właścicielem niemal całej floty osady. Zarządza statkami, warsztatami i handlem; jego okręty i srebro wiele znaczą dla każdej wyprawy. Dawniej zatrudniał Flokiego, wybitnego szkutnika, lecz ich współpraca zakończyła się konfliktem. Gdy chrześcijańskiego cieślę Aslaka wygnano z osady, Hakon porwał go i uczynił własnym trallem. Aslak pracuje dziś w jego warsztacie okrętowym wbrew swojej woli. Bogactwo Hakona daje mu wpływy, ale jego postępowanie pozostawia też ciężar dla sumienia Hrafnviku.",
       "x": 1216,
       "y": 255
     },
@@ -303,12 +303,11 @@ window.CHRONICLE = {
           "captive"
         ],
         "settlementIds": [
-          "hrafnvik",
-          "skjorvik"
+          "hrafnvik"
         ]
       },
       "image": "assets/portraits/Aslak Cieśla.png",
-      "description": "Aslak, chrześcijański cieśla Hrafnviku, pracował przy budowie nowego kościoła. Spór wybuchł, gdy robotnicy ścięli stare drzewa z gaju od pokoleń poświęconego Freyi. Sprawa Aslaka trafiła przed Thing, stawiając prawo i dwie religie naprzeciw siebie. Po wyroku jego losy związały się z Hakonem Czerwonym, najbogatszym kupcem osady, w którego warsztacie okrętowym pracuje teraz jako rzemieślnik. Jego historia przypomina, że spór o święte miejsca dotyka również zwyczajnego człowieka, jego pracy i wolności.",
+      "description": "Aslak był wolnym chrześcijańskim cieślą w Hrafnviku. Pracował przy budowie kościoła, której robotnicy ścięli stare drzewa ze świętego gaju Freyi. Sprawa stanęła przed Thingiem i zakończyła się wygnaniem Aslaka. Wkrótce został porwany przez Hakona Czerwonego, najbogatszego kupca osady, i zmuszony do pracy przy jego okrętach jako trall. Nie był jeńcem przywiezionym z najazdu na Skjordvik; utracił wolność z rąk własnego sąsiada.",
       "x": 10,
       "y": 500
     },
@@ -415,7 +414,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/Ragnvald Skjoldsson.png",
-      "description": "Ragnvald Skjoldsson był przywódcą Skjǫrviku, osady, przeciw której wyruszyli wojownicy Hrafnviku. Podczas poszukiwań człowieka oskarżonego o zabójstwo Sigurda jego ludzie znaleźli się po niewłaściwej stronie sporu między osadami. Najazd przyniósł spustoszenie, jeńców i łupy, których pamięć przetrwała także wśród pokonanych. Ragnvald pozostaje postacią przypominającą, że wojowniczy triumf jednych zapisywany jest przez innych jako krzywda.",
+      "description": "Ragnvald Skjoldsson był przywódcą Skjordviku, osady, przeciw której wyruszyli wojownicy Hrafnviku. Podczas poszukiwań człowieka oskarżonego o zabójstwo Sigurda jego ludzie znaleźli się po niewłaściwej stronie sporu między osadami. Najazd przyniósł spustoszenie, jeńców i łupy, których pamięć przetrwała także wśród pokonanych. Ragnvald pozostaje postacią przypominającą, że wojowniczy triumf jednych zapisywany jest przez innych jako krzywda.",
       "x": 1417,
       "y": 500
     },
@@ -430,7 +429,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/Hakiego Torfinnssona.png",
-      "description": "Haki Torfinnsson jest rybakiem i przemytnikiem ze Skjǫrviku, przywykłym do zatok, straży i niebezpiecznych szlaków między wybrzeżami. W czasie najazdu wojowników Hrafnviku znalazł się pomiędzy bezpieczeństwem własnym a lojalnością wobec przywódców osady. Znał drogi, hasła i rytm patroli, dlatego jego wiedza mogła ważyć więcej niż miecz. W kronice pozostaje jednym z ludzi, którzy pokazują wydarzenia wyprawy z perspektywy mieszkańców napadniętego brzegu.",
+      "description": "Haki Torfinnsson jest rybakiem i przemytnikiem ze Skjordviku, przywykłym do zatok, straży i niebezpiecznych szlaków między wybrzeżami. W czasie najazdu wojowników Hrafnviku znalazł się pomiędzy bezpieczeństwem własnym a lojalnością wobec przywódców osady. Znał drogi, hasła i rytm patroli, dlatego jego wiedza mogła ważyć więcej niż miecz. W kronice pozostaje jednym z ludzi, którzy pokazują wydarzenia wyprawy z perspektywy mieszkańców napadniętego brzegu.",
       "x": 10,
       "y": 745
     },
@@ -445,7 +444,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/Orm.png",
-      "description": "Orm Półgłos był rybakiem ze Skjǫrviku, osady zniszczonej podczas najazdu wojowników Hrafnviku. Znał miejscowe wody, szlaki i ludzi przybywających od strony morza. Gdy ogień i żelazo spadły na jego dom, los Orma związał się ze sporem pomiędzy napastnikami a ocalałymi mieszkańcami. Pozostał jednym z tych, którzy mogą opowiedzieć o wydarzeniach z perspektywy pokonanej osady, a nie jej zdobywców.",
+      "description": "Orm Półgłos był rybakiem ze Skjordviku, osady zniszczonej podczas najazdu wojowników Hrafnviku. Znał miejscowe wody, szlaki i ludzi przybywających od strony morza. Gdy ogień i żelazo spadły na jego dom, los Orma związał się ze sporem pomiędzy napastnikami a ocalałymi mieszkańcami. Pozostał jednym z tych, którzy mogą opowiedzieć o wydarzeniach z perspektywy pokonanej osady, a nie jej zdobywców.",
       "x": 211,
       "y": 745
     },
@@ -721,33 +720,447 @@ window.CHRONICLE = {
   },
 
   // Kronika PUBLICZNA: wyłącznie wydarzenia znane graczom. Nie wpisuj tu sekretów Skalda.
+  // Rozdziały kroniki publicznej — wyłącznie fakty znane graczom.
+  chronicleChapters: [
+    {
+      "id": "I",
+      "title": "Zanim rozpoczęła się saga",
+      "subtitle": "Hrafnvik · bunt, zdrada i narodziny nowej władzy"
+    },
+    {
+      "id": "II",
+      "title": "Wiosenne Roztopy",
+      "subtitle": "Sigrblót · pierwszy Thing · wiara i długi krwi"
+    },
+    {
+      "id": "III",
+      "title": "Krew na północnym fiordzie",
+      "subtitle": "Skjordvik · najazd · cena zwycięstwa"
+    },
+    {
+      "id": "IV",
+      "title": "Wielki Althing Eylendy",
+      "subtitle": "Królowie Północy · dyplomacja · wyrok dziewięciu"
+    },
+    {
+      "id": "V",
+      "title": "Kurhany i powrót",
+      "subtitle": "Wyprawa po Gungnir · straty · pamięć poległych"
+    }
+  ],
   chronicle: [
     {
-      id: "upadek-jarla", chapter: "I", title: "Upadek starego jarla",
-      placeId: "hrafnvik", kind: "Dzieje osady", image: "",
-      intro: "W Hrafnviku stary porządek ustąpił miejsca nowemu, lecz spór o władzę nie zakończył się wraz ze zmianą jarla.",
-      paragraphs: [
-        "W Hrafnviku brat wystąpił przeciw bratu. Hroald utracił władzę i wzrok, a Sigurd zajął jego miejsce. Historia osady nabrała ciężaru, którego nie dało się już zrzucić z barków jednej rodziny.",
-        "Nie minęło wiele czasu, gdy Sigurd został odnaleziony martwy. Jego śmierć otworzyła nowy rozdział sporów, przysiąg i pytań o to, komu przypadnie prawo przewodzenia ludziom Hrafnviku."
-      ], participants: ["hroald","sigurd","sianita"]
+      "id": "hrafnvik-dwa-rody",
+      "chapter": "I",
+      "title": "Hrafnvik — osada dwóch braci",
+      "placeId": "hrafnvik",
+      "kind": "Dzieje osady",
+      "image": "",
+      "intro": "Zanim nastały czasy Sianity, o losach Hrafnviku decydował spór dwóch braci.",
+      "paragraphs": [
+        "Jarl Hroald przez lata władał osadą nad fiordem. Kupcy sprowadzali obce towary, szkutnicy budowali okręty, a przy domowych paleniskach opowiadano o dawnych bogach i dalekich morzach. Wraz z przybyszami docierała też nowa wiara, budząc nadzieje jednych i obawy innych.",
+        "Między jarlem Hroaldem a jego bratem Sigurdem narastała niezgoda o władzę i przyszłość osady. Nie wszyscy mieszkańcy chcieli tych samych zmian. Kiedy braterski spór dojrzał do przemocy, Hrafnvik miało już nigdy nie powrócić do dawnego spokoju."
+      ],
+      "participants": [
+        "hroald",
+        "sigurd",
+        "runa",
+        "sten"
+      ]
     },
     {
-      id: "ogien-i-srebro", chapter: "II", title: "Ogień i srebro",
-      placeId: "skjorvik", kind: "Najazd", image: "",
-      intro: "Skjǫrvik zostało zdobyte. Zwycięzcy wrócili z łupami, a pamięć o ogniu przetrwała po obu stronach zatoki.",
-      paragraphs: [
-        "Wojownicy Hrafnviku ruszyli na Skjǫrvik. Osada uległa najeźdźcom, a po walce pozostały dym, rozbite domostwa i losy ludzi, których odtąd nazywano jeńcami.",
-        "Do Hrafnviku przywieziono srebro, towary i pojmanych. Wśród nich znalazł się Aslak Cieśla. Jedni opowiadali o wielkiej zdobyczy, drudzy wspominali przede wszystkim o cenie, jaką przyszło za nią zapłacić."
-      ], participants: ["aslak"]
+      "id": "upadek-jarla",
+      "chapter": "I",
+      "title": "Bunt Sigurda — brat przeciw bratu",
+      "placeId": "hrafnvik",
+      "kind": "Dzieje osady",
+      "image": "",
+      "intro": "Sigurd odebrał Hroaldowi tron, lecz nie zdołał odebrać ludziom pamięci o dawnym jarlu.",
+      "paragraphs": [
+        "Sigurd wystąpił przeciw własnemu bratu i zdobył władzę nad Hrafnvikiem. Hroald został oślepiony i uwięziony. Nowi zwolennicy jarla wznosili toasty za zwycięstwo, podczas gdy ludzie dawnego porządku milczeli przy tych samych stołach.",
+        "Zmiana władzy przyniosła nowe przysięgi, lecz także niewyrównane krzywdy. Rodzina Hroalda wciąż żyła w osadzie, a pamięć o obalonym jarlu stała się osią sporów, które miały powrócić podczas pierwszego Thingu Sianity."
+      ],
+      "participants": [
+        "sigurd",
+        "hroald",
+        "runa",
+        "sten"
+      ]
     },
     {
-      id: "glosy-althingu", chapter: "III", title: "Głosy Wielkiego Althingu",
-      placeId: "ejkjavik", kind: "Zgromadzenie", image: "",
-      intro: "Na Eylendzie głos zabrali jarlowie i królowie. Sprawy Północy przestały być sprawami pojedynczych osad.",
-      paragraphs: [
-        "Na Wielkim Althingu spotkali się ci, których słowa ważą tyle, co włócznie ich drużyn. Zgromadzenie mówiło o wyprawie ku Winlandowi, o wojnie z Frankami oraz o idei Króla Królów.",
-        "Wielka polityka nie rodzi się wyłącznie na polu bitwy. Powstaje również między ławami zgromadzenia: w rozmowach, obietnicach i publicznych przysięgach. Kronika zapisuje poruszone sprawy, nie przesądzając o ich ostatecznych rozstrzygnięciach."
-      ], participants: ["sianita","halvard","haroks","ylva","floki","mord"]
+      "id": "smierc-sigurda",
+      "chapter": "I",
+      "title": "Śmierć Sigurda i dziedzictwo Sianity",
+      "placeId": "hrafnvik",
+      "kind": "Dzieje osady",
+      "image": "",
+      "intro": "Zwycięski jarl sam padł ofiarą zabójstwa. Jego córka odziedziczyła władzę i nierozliczoną krew.",
+      "paragraphs": [
+        "Niedługo po przewrocie Sigurd został zamordowany. Wraz z nim zniknęło Oko Kruka, znane mieszkańcom jako Hrafnsauga. Okoliczności morderstwa nie zostały wyjaśnione, a jego sprawca pozostawał poza zasięgiem ludzi Hrafnviku.",
+        "Sianita Gunnarsdóttir stanęła na czele osady. Jej brat Halward, zwany Snake-Eye, pozostał blisko niej. Nowa jarlowa musiała rządzić pośród ludzi wiernych ojcu i tych, którzy wciąż pamiętali krzywdę Hroalda."
+      ],
+      "participants": [
+        "sigurd",
+        "sianita",
+        "halvard",
+        "hroald"
+      ]
+    },
+    {
+      "id": "sigrblot-roztopy",
+      "chapter": "II",
+      "title": "Sigrblót — święto pierwszych roztopów",
+      "placeId": "hrafnvik",
+      "kind": "Święto",
+      "image": "",
+      "intro": "Pierwsze topniejące śniegi przyniosły Hrafnvikowi obietnicę nowego sezonu wypraw.",
+      "paragraphs": [
+        "Gdy wyciągnięte na brzeg okręty znów zaczęto szykować do żeglugi, mieszkańcy zgromadzili się na Sigrblót. Słychać było pieśni Morotara Jednookiego, modlitwy do dawnych bogów i rozmowy o łupach, handlu oraz ziemiach za morzem.",
+        "Pod świątecznym śmiechem trwała niezgoda. Stronnicy Sigurda i ludzie pamiętający Hroalda spotykali się przy jednym ogniu, lecz nie wszyscy wznosili te same toasty. Wiosna stała się pierwszą próbą nowej władzy."
+      ],
+      "participants": [
+        "sianita",
+        "morotar",
+        "hroald",
+        "astrid"
+      ]
+    },
+    {
+      "id": "wezwanie-odyna",
+      "chapter": "II",
+      "title": "Wezwanie Jednookiego",
+      "placeId": "hrafnvik",
+      "kind": "Tajemnica",
+      "image": "",
+      "intro": "Święto poprowadziło bohaterów ku starej jaskini Odyna i runom, których nie potrafili zapomnieć.",
+      "paragraphs": [
+        "Morotar Jednooki wezwał wojowników z dala od ognisk. Pod dawnym miejscem kultu czekała jaskinia, ślady wielopokoleniowych ofiar oraz znaki poświęcone Odynowi. Bohaterowie przeszli inicjację, która odcisnęła piętno na ich pamięci.",
+        "Nie wszystko, co ujrzeli, można było opisać językiem zwykłych sag. Zabrali ze sobą pytania o runy, kruki i drogi prowadzące poza znany świat. Odpowiedzi miały nadejść dopiero w kolejnych wyprawach."
+      ],
+      "participants": [
+        "sianita",
+        "halvard",
+        "ylva",
+        "floki",
+        "morotar"
+      ]
+    },
+    {
+      "id": "krew-na-thingu",
+      "chapter": "II",
+      "title": "Krew podczas Thingu",
+      "placeId": "hrafnvik",
+      "kind": "Prawo",
+      "image": "",
+      "intro": "Pierwszy Thing Sianity przypomniał, że wojownicy nowego i starego jarla nadal noszą dawne urazy.",
+      "paragraphs": [
+        "Podczas Sigrblótu Leif Anundsson, wierny nowej władzy, starł się ze Styrbjornem Ragnssonem, związanym z dawnymi stronnikami Hroalda. Zaczęło się od odmówionego toastu i obelg, a skończyło na bójce, którą mieszkańcy zapamiętali jako znak niepojednanej osady.",
+        "Przed jarlową stanęło zadanie rozsądzenia sporu bez dalszego rozlewu krwi. Ragnvald Prawomówca przypomniał o prawie i odpowiedzialności za wyrok, a mieszkańcy obserwowali, czy władza Sianity będzie czymś więcej niż zwycięstwem jej ojca."
+      ],
+      "participants": [
+        "sianita",
+        "leif",
+        "styrbjorn",
+        "ragnvald-p"
+      ]
+    },
+    {
+      "id": "swiete-drzewa",
+      "chapter": "II",
+      "title": "Święte drzewa Freyi",
+      "placeId": "hrafnvik",
+      "kind": "Wiara i prawo",
+      "image": "",
+      "intro": "Ścięcie drzew w świętym gaju stało się sporem o miejsce starej i nowej wiary w Hrafnviku.",
+      "paragraphs": [
+        "Podczas budowy chrześcijańskiego kościoła cieśle ścięli stare drzewa należące do gaju Freyi. Vala Astrid Freyjadóttir przypomniała o wielopokoleniowych obrzędach, a brat Anselm i cieśla Aslak stanęli przed pytaniami Thingu.",
+        "Aslak był wówczas wolnym człowiekiem. Po wyroku skazującym go na wygnanie został jednak porwany przez Hakona Czerwonego, najbogatszego kupca Hrafnviku i właściciela niemal całej miejscowej floty. Od tego czasu Aslak pozostaje jego trallem, pracując przy okrętach wbrew własnej woli."
+      ],
+      "participants": [
+        "sianita",
+        "astrid",
+        "anslem",
+        "aslak",
+        "hakon"
+      ]
+    },
+    {
+      "id": "dlug-krwi-svali",
+      "chapter": "II",
+      "title": "Dług krwi Svali",
+      "placeId": "hrafnvik",
+      "kind": "Prawo i ród",
+      "image": "",
+      "intro": "Wdowa po Ketilu Brandssonie upomniała się o krzywdę, której nie zatarło zwycięstwo Sigurda.",
+      "paragraphs": [
+        "Svala Ketilsdóttir stanęła przed Thingiem z żądaniem zadośćuczynienia za męża, pojmanego i zabitego bez sądu podczas rebelii. Nie oskarżała Sianity o osobiste dokonanie zbrodni: domagała się, aby ród dziedziczący władzę uznał również jej ciężar.",
+        "Svali przyznano ziemię, lecz nie wszystkie rany dało się zagoić. Jej synowie, bliźniacy Mord i Ulf, mieli wkrótce znaleźć się w samym środku nowych wypraw i sporów o honor Hrafnviku."
+      ],
+      "participants": [
+        "svala",
+        "sianita",
+        "mord",
+        "ulf"
+      ]
+    },
+    {
+      "id": "wiesci-z-polnocy",
+      "chapter": "III",
+      "title": "Wieści z północnego fiordu",
+      "placeId": "hrafnvik",
+      "kind": "Początek wyprawy",
+      "image": "",
+      "intro": "Pogłoski o zabójcy Sigurda skierowały spojrzenia wojowników ku Skjordvik.",
+      "paragraphs": [
+        "Do Hrafnviku dotarły wiadomości o człowieku łączonym ze śmiercią Sigurda, który miał znaleźć schronienie w osadzie Skjordvik na północnym fiordzie. Tamtejsi mieszkańcy byli Drengrami, tak samo jak ludzie Sianity, lecz dawne spory o łowiska i zobowiązania nigdy całkiem nie wygasły.",
+        "Drużyna zebrała ludzi i wyruszyła morzem. Poszukiwanie sprawiedliwości zaczęło splatać się z polityką osad, ich bogactwem i gotowością wojowników do przemocy."
+      ],
+      "participants": [
+        "sianita",
+        "halvard",
+        "haroks",
+        "floki"
+      ]
+    },
+    {
+      "id": "ogien-i-srebro",
+      "chapter": "III",
+      "title": "Ogień i srebro — upadek Skjordvik",
+      "placeId": "skjorvik",
+      "kind": "Najazd",
+      "image": "",
+      "intro": "Skjordvik padło pod naporem wojowników Hrafnviku. Łupy i zwycięstwo nie wymazały cierpienia pokonanych.",
+      "paragraphs": [
+        "Najeźdźcy zdobyli osadę, a po walkach pozostały zniszczone domostwa, dym i pamięć o ludziach, którzy nie przeżyli. Część mieszkańców pojmano, a srebro i towary zabrano do Hrafnviku.",
+        "To zwycięstwo zmieniło losy obu osad. Dla wojowników jarlowej było dowodem ich potęgi; dla ocalałych — krzywdą, której nie można było odkupić samymi darami. Aslak Cieśla nie pochodził z tej grupy jeńców: został później zniewolony osobno przez Hakona Czerwonego."
+      ],
+      "participants": [
+        "sianita",
+        "haroks",
+        "halvard",
+        "ragnvald-s",
+        "orm"
+      ]
+    },
+    {
+      "id": "cena-najazdu",
+      "chapter": "III",
+      "title": "Zwycięstwo, które wróciło na Thing",
+      "placeId": "hrafnvik",
+      "kind": "Konsekwencje",
+      "image": "",
+      "intro": "Zniszczenie Skjordvik stało się ciężarem, który Hrafnvik poniosło aż na Wielki Althing.",
+      "paragraphs": [
+        "Po powrocie z wyprawy osada dysponowała nowym srebrem, zdobyczami i jeńcami. Jednocześnie rosły nieufność i pamięć o spalonych domach. W poszukiwaniu dalszych odpowiedzi wojownicy przebyli także niebezpieczną Kruczą Gardziel — jeden z etapów ich pierwszych wypraw.",
+        "Wieści o najazdzie dotarły do innych władców. To, co w Hrafnviku opowiadano jako zwycięstwo, na Eylendzie miało zostać przedstawione przed sądem jako sprawa krwi, odpowiedzialności i prawa jarlowej."
+      ],
+      "participants": [
+        "sianita",
+        "halvard",
+        "mord",
+        "hakon"
+      ]
+    },
+    {
+      "id": "trzynascie-pierscieni",
+      "chapter": "IV",
+      "title": "Trzynaście pierścieni króla",
+      "placeId": "hrafnvik",
+      "kind": "Poselstwo",
+      "image": "",
+      "intro": "Alrek Eriksson przysłał Sianicie dary i wojowników, a wraz z nimi oczekiwanie wierności.",
+      "paragraphs": [
+        "Przed podróżą na Eylendę do Hrafnviku dotarł wysłannik Alreka Erikssona, króla Hordalandu. Przywiózł ozdobny naramiennik, trzynastu wojowników oraz pierścienie przysięgi. Dar mógł być znakiem uznania i ochrony, ale zawierał też żądanie politycznego zobowiązania.",
+        "Władza nad niewielką osadą coraz wyraźniej stykała się z ambicjami królów. Jarlowa miała niebawem odpowiedzieć na te oczekiwania osobiście, na zgromadzeniu Północy."
+      ],
+      "participants": [
+        "sianita",
+        "alrek",
+        "halvard"
+      ]
+    },
+    {
+      "id": "glosy-althingu",
+      "chapter": "IV",
+      "title": "Wielki Althing Eylendy",
+      "placeId": "ejkjavik",
+      "kind": "Zgromadzenie",
+      "image": "",
+      "intro": "Na niezależnej Eylendzie zebrały się głosy królów, jarlów i ich poselstw.",
+      "paragraphs": [
+        "W obozach wokół Althingu spotkali się władcy czterech królestw Drengrlands oraz przedstawiciele niezależnych jarldomów. Uczty i rozmowy dotyczyły ziem za morzem, nowej wojny oraz tego, czy Północ powinna podporządkować się jednemu królowi.",
+        "Bohaterowie Hrafnviku przybyli nie tylko słuchać. Poznawali możnych, zdobywali informacje, zawierali znajomości i zabiegali o względy ludzi, których głosy mogły zaważyć na przyszłości ich osady."
+      ],
+      "participants": [
+        "sianita",
+        "halvard",
+        "haroks",
+        "ylva",
+        "floki",
+        "mord"
+      ]
+    },
+    {
+      "id": "korony-i-odmowy",
+      "chapter": "IV",
+      "title": "Korony, przysięgi i odmowy Sianity",
+      "placeId": "ejkjavik",
+      "kind": "Dyplomacja",
+      "image": "",
+      "intro": "Jarlowa odrzuciła żądania Alreka, a wśród możnych Vestmaru poznała trzy oblicza politycznej rywalizacji.",
+      "paragraphs": [
+        "Halfdan Czarny z Agderu rozmawiał z Sianitą o wojnie przeciw Frankom i sprawie Króla Królów. Alrek Eriksson z Hordalandu oczekiwał przysięgi wierności i zaoferował jarlowej małżeństwo ze swoim synem w zamian za bezpieczeństwo jej ludzi. Sianita odmówiła zarówno przysięgi, jak i małżeństwa.",
+        "Na Althingu spotkała również Olafa, Alfhelda i Torstena Gudrodssonów, braci walczących o przyszłość Vestmaru. Olaf domagał się surowej kary dla jarlowej; Alfheld widział dla niej wygnanie, a Torsten dostrzegał możliwość współpracy. Ich odmienne stanowiska ukazały rozdarcie królestwa."
+      ],
+      "participants": [
+        "sianita",
+        "halfdan",
+        "alrek",
+        "olaf-gudrodsson",
+        "alfheld-gudrodsson",
+        "torsten-gudrodsson"
+      ]
+    },
+    {
+      "id": "trzy-glosowania",
+      "chapter": "IV",
+      "title": "Trzy decyzje Północy",
+      "placeId": "ejkjavik",
+      "kind": "Wielka polityka",
+      "image": "",
+      "intro": "Winland, korona dla wszystkich królów i wojna z Frankami odmieniły rozmowy na Eylendzie.",
+      "paragraphs": [
+        "W sprawie Winlandu tylko Eylenda i Fjordane zadeklarowały rzeczywiste finansowe wsparcie dalszych przedsięwzięć. Nie ustanowiono Króla Królów. Sianita pozostała neutralna wobec tej korony, lecz poparła wyprawę przeciw Frankom.",
+        "Większość możnych opowiedziała się za wielką wojną, do której miały przygotowywać się ziemie Drengrlands. Za publicznymi wystąpieniami trwały negocjacje i zabiegi o głosy, w których uczestniczył również Halward, brat jarlowej."
+      ],
+      "participants": [
+        "sianita",
+        "halvard",
+        "halfdan",
+        "alrek",
+        "audbjorn"
+      ]
+    },
+    {
+      "id": "sad-dziewieciu",
+      "chapter": "IV",
+      "title": "Sąd dziewięciu — wyrok dla jarlowej",
+      "placeId": "ejkjavik",
+      "kind": "Proces",
+      "image": "",
+      "intro": "Sprawa spalonego Skjordvik powróciła przed obliczem dziewięciu sędziów.",
+      "paragraphs": [
+        "Olaf Gudrodsson publicznie podniósł sprawę zniszczonej osady. Świadkowie nie rozpoznali napastników, a Mord przyznał się do udziału w wyprawie i działania dla jarlowej. Sianita potwierdziła wydarzenia i przemówiła do zgromadzonych.",
+        "Trzech sędziów opowiedziało się za brakiem sankcji, sześciu za oddaniem sprawy w ręce bogów. Drużyna otrzymała zadanie odzyskania Gungnir, włóczni Odyna, z kurhanu Haralda Hardrady. Taki był wyrok Eylendy."
+      ],
+      "participants": [
+        "sianita",
+        "olaf-gudrodsson",
+        "mord",
+        "orm",
+        "halvard"
+      ]
+    },
+    {
+      "id": "pustkowia-eylendy",
+      "chapter": "V",
+      "title": "Na drodze do krainy umarłych",
+      "placeId": "eylenda",
+      "kind": "Wyprawa",
+      "image": "",
+      "intro": "Wyprawa po Gungnir poprowadziła bohaterów przez ziemię, która zdawała się odmawiać im przejścia.",
+      "paragraphs": [
+        "Za obozami Althingu czekały Czarne Piaski Zapomnienia, gdzie wiatr zacierał ślady wędrowców. Dalej drużyna dotarła do Rzeki Umarłych Koni i niebezpiecznej przeprawy, podczas której poświęcono cenne runy.",
+        "Każdy etap oddalał wojowników od świata zwykłych osad i świąt. Mimo zmęczenia ruszyli dalej, ku górze i kurhanom, w których miał spoczywać Harald Hardrada."
+      ],
+      "participants": [
+        "sianita",
+        "halvard",
+        "haroks",
+        "floki",
+        "ylva",
+        "mord"
+      ]
+    },
+    {
+      "id": "ogien-i-olbrzymy",
+      "chapter": "V",
+      "title": "Ziemia ognia i olbrzymów",
+      "placeId": "eylenda",
+      "kind": "Próby Eylendy",
+      "image": "",
+      "intro": "Popiół, rozpalona ziemia i spotkania z istotami dawnych opowieści naznaczyły drogę ku kurhanom.",
+      "paragraphs": [
+        "Wędrowcy przekraczali wulkaniczne pustkowia, w których płynny ogień wydobywał się spod pękającej skały. W dolinie olbrzymów napotkali trolla więzionego w wielkiej klatce. Nie uwolnili go i pozostawili jego wołanie za sobą.",
+        "Ziemia Eylendy wydawała się coraz mniej gościnna. Każdy kolejny krok wymagał odwagi, ale też wyboru, komu pomagać, a kiedy ocalić przede wszystkim własnych towarzyszy."
+      ],
+      "participants": [
+        "haroks",
+        "sianita",
+        "ylva",
+        "floki"
+      ]
+    },
+    {
+      "id": "gospodarstwo-zapomnianych",
+      "chapter": "V",
+      "title": "Gospodarstwo tych, którzy zapomnieli o śmierci",
+      "placeId": "eylenda",
+      "kind": "Spotkanie z duchami",
+      "image": "",
+      "intro": "Na odludziu bohaterowie spotkali gospodarzy, których pamięć zatrzymała się po śmierci.",
+      "paragraphs": [
+        "W opuszczonym gospodarstwie przebywały dusze ludzi nieświadomych własnego losu. Dawne krzywdy i zapomniane mogiły wiązały ich z miejscem, do którego nie należeli już jako żywi.",
+        "Drużyna pomogła im poznać prawdę i odejść ku Helheimowi. Była to jedna z prób, w których współczucie i cierpliwość okazały się cenniejsze od miecza."
+      ],
+      "participants": [
+        "sianita",
+        "ylva",
+        "haroks",
+        "floki"
+      ]
+    },
+    {
+      "id": "kurhan-gungnir",
+      "chapter": "V",
+      "title": "Kurhan Haralda Hardrady — cena Gungnira",
+      "placeId": "hardrada-mound",
+      "kind": "Heroiczny czyn",
+      "image": "",
+      "intro": "Bohaterowie zdobyli włócznię Odyna, lecz wyprawa zabrała wielu spośród ich towarzyszy.",
+      "paragraphs": [
+        "Pośród mogił i draugrów drużyna dotarła do kurhanu Haralda Hardrady. W ostatnim starciu odzyskała Gungnir, legendarną włócznię Odyna. Zdobycz była dowodem, że wyrok Althingu został wypełniony.",
+        "Za zwycięstwo zapłacono krwią. Polegli Floki, szkutnik i wizjoner, oraz Mord, syn Svali. W czasie wyprawy zginęło też dziesięciu wojowników związanych z drużyną przysięgą krwi — dziesięciu braci krwi, których imiona zasługiwały na pamięć równie mocno jak imiona wielkich bohaterów."
+      ],
+      "participants": [
+        "sianita",
+        "halvard",
+        "haroks",
+        "ylva",
+        "floki",
+        "mord"
+      ]
+    },
+    {
+      "id": "powrot-i-pogrzeby",
+      "chapter": "V",
+      "title": "Powrót z Gungnirem — pamięć żywych i umarłych",
+      "placeId": "hrafnvik",
+      "kind": "Powrót",
+      "image": "",
+      "intro": "Zwycięzcy wrócili z włócznią Odyna, ale nie ze wszystkimi, którzy wyruszyli z nimi.",
+      "paragraphs": [
+        "Drużyna przyniosła Gungnir na Althing. Sędziowie nie ustalili, komu ma przypaść włócznia, więc pozostała przy bohaterach. Wkrótce ziemią Eylendy wstrząsnęły erupcje wulkanów. Po dalszej żegludze ludzie Hrafnviku ujrzeli znów własne brzegi.",
+        "Morda pochowała rodzina. Ciało Flokiego spoczęło w kadłubie jego niedokończonego statku, przeniesionego do świętego lasu Odyna. Miejscowy kowal wyrzeźbił kamień runiczny upamiętniający jego ostatnią walkę. Pamiętano także o dziesięciu poległych braciach krwi: zwycięstwo było wielkie, lecz strata nieodwracalna."
+      ],
+      "participants": [
+        "sianita",
+        "haroks",
+        "floki",
+        "mord",
+        "ulf",
+        "asgrim"
+      ]
     }
   ],
   // Tylko ZNANE graczom regiony. Nigdy nie publikuj w tym pliku ukrytego katalogu Skalda.
@@ -846,15 +1259,15 @@ window.CHRONICLE = {
     },
     {
       id: "hrafnvik", name: "Hrafnvik", kind: "Osada bohaterów", visibility: "known", parentRegionId: "osady-bohaterow",
-      description: "Osada, w której brat wystąpił przeciw bratu, a przelana krew zmieniła porządek władzy. Tutaj rozpoczęła się opowieść o Sianicie, Halvardzie i ludziach, których losy odmieniła śmierć jarla Sigurda.",
+      description: "Osada, w której brat wystąpił przeciw bratu, a przelana krew zmieniła porządek władzy. Tutaj rozpoczęła się opowieść o Sianicie, Halwardzie i ludziach, których losy odmieniła śmierć jarla Sigurda.",
       history: "Hroald utracił władzę i wzrok, a jego brat Sigurd objął miejsce jarla. Wkrótce Sigurd został zamordowany, a Sianita przejęła odpowiedzialność za osadę. W Hrafnviku pamięta się zarówno rozlew krwi, jak i tych, którzy zginęli podczas późniejszych wypraw.",
       image: "assets/locations/Hrafnvik.png", personIds: ["sigurd","hroald","runa","sten","sianita","halvard","asgrim","svala","mord","ulf","erik","ragnvald-p","styrbjorn","leif","hakon","floki","aslak","torvald","morotar","astrid","anslem","haroks","ylva"]
     },
     {
-      id: "skjorvik", name: "Skjǫrvik", kind: "Osada", visibility: "known", parentRegionId: "drengrlands",
+      id: "skjorvik", name: "Skjordvik", kind: "Osada", visibility: "known", parentRegionId: "drengrlands",
       description: "Osada zdobyta ogniem i żelazem przez wojowników Hrafnviku. Zwycięzcy zabrali stąd srebro, łupy i jeńców, lecz dla pokonanych dzień najazdu stał się początkiem zupełnie innej historii.",
-      history: "Wojownicy Hrafnviku zdobyli osadę, zabierając srebro, towary i jeńców. Wśród pojmanych znalazł się Aslak Cieśla. Dla najeźdźców był to triumf, dla mieszkańców Skjǫrviku — dzień straty, o którym trudno zapomnieć.",
-      image: "assets/locations/skjorvik.svg", personIds: ["aslak","haki","ragnvald-s","orm"]
+      history: "Wojownicy Hrafnviku zdobyli osadę, zabierając srebro, towary i jeńców. Dla najeźdźców był to triumf, dla mieszkańców Skjordvik — dzień straty, o którym trudno zapomnieć. Aslak Cieśla nie został pojmany podczas tego najazdu: wcześniej był wolnym rzemieślnikiem Hrafnviku, a po wyroku wygnania porwał go kupiec Hakon Czerwony i uczynił swoim trallem.",
+      image: "assets/locations/skjorvik.svg", personIds: ["haki","ragnvald-s","orm"]
     }
   ]
 };
