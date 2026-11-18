@@ -436,16 +436,13 @@ window.CHRONICLE = {
     },
     {
       "id": "orm",
-      "name": "Orm Półgłos",
+      "name": "Orm",
       "kind": "Postać",
       "grouping": {
-        "role": "npc",
-        "settlementIds": [
-          "skjorvik"
-        ]
+        "role": "npc"
       },
       "image": "assets/portraits/Orm.png",
-      "description": "Orm Półgłos jest rybakiem ze Skjǫrviku, przywykłym do ukrytych zatok i ludzi, którzy wolą płacić srebrem niż składać publiczne przysięgi. Po najeździe Hrafnviku jego imię pojawiło się w sprawie rozpatrywanej przez możnych na Eylendzie. Jako człowiek znający nadbrzeżne szlaki potrafi powiedzieć więcej o ruchu obcych przybyszy niż wojownicy patrzący wyłącznie na drogę lądową. Nie wiadomo, czy zdoła pozostawić za sobą ciężar tych wydarzeń.",
+      "description": "Orm to postać, której imię pojawia się w dziejach ludzi Północy. Jego pochodzenie, przydomek oraz dokładny udział w wydarzeniach wymagają jeszcze potwierdzenia w kronice. Zachowano wizerunek podpisany imieniem Orm, lecz bez przypisywania mu cudzych czynów, przysiąg lub rodu. Dopóki nie zostanie ustalone, o którego z noszących to imię chodzi, skald pozostawia jego historię otwartą.",
       "x": 211,
       "y": 745
     },
@@ -767,7 +764,7 @@ window.CHRONICLE = {
       id: "skjorvik", name: "Skjǫrvik", kind: "Osada", visibility: "known", parentRegionId: "drengrlands",
       description: "Osada zdobyta ogniem i żelazem przez wojowników Hrafnviku. Zwycięzcy zabrali stąd srebro, łupy i jeńców, lecz dla pokonanych dzień najazdu stał się początkiem zupełnie innej historii.",
       history: "Wojownicy Hrafnviku zdobyli osadę, zabierając srebro, towary i jeńców. Wśród pojmanych znalazł się Aslak Cieśla. Dla najeźdźców był to triumf, dla mieszkańców Skjǫrviku — dzień straty, o którym trudno zapomnieć.",
-      image: "assets/locations/skjorvik.svg", personIds: ["aslak","haki","ragnvald-s","orm"]
+      image: "assets/locations/skjorvik.svg", personIds: ["aslak","haki","ragnvald-s"]
     }
   ]
 };
