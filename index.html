@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#121419">
   <meta name="description" content="Sagas of Midgard — interaktywna kronika postaci, relacji i lokacji dla graczy.">
   <title>Sagas of Midgard | Kronika</title>
-  <link rel="stylesheet" href="styles.css?v=maps-v1">
+  <link rel="stylesheet" href="styles.css?v=maps-v2">
   <script src="data.js?v=atlas-v6" defer></script>
   <script src="atlas.js?v=atlas-v9" defer></script>
-  <script src="maps.js?v=maps-v1" defer></script>
+  <script src="maps.js?v=maps-v2" defer></script>
   <script src="app.js?v=maps-v1" defer></script>
 </head>
 <body>
@@ -99,11 +99,11 @@
            <div id="maps-marker-layer" class="maps-marker-layer"></div>
          </div>
        </div>
-       <p class="maps-accuracy">Mapa poglądowa · symbole krain nie określają dokładnych granic ani odległości.</p>
+       <p class="maps-accuracy" id="maps-accuracy">Mapa poglądowa · symbole krain nie określają dokładnych granic ani odległości.</p>
        <section id="maps-places-section" class="maps-places-section" hidden>
          <div class="maps-place-heading">
            <h3>Znane lokacje</h3>
-           <p>Miejsca bez potwierdzonych współrzędnych otwieraj z listy — nie stawiamy fikcyjnych znaczników.</p>
+           <p>Wszystkie znane lokacje, również te bez klikalnego oznaczenia na mapie.</p>
          </div>
          <div id="maps-place-list" class="maps-place-list"></div>
        </section>
