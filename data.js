@@ -840,10 +840,12 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Tajemnica",
       "image": "",
-      "intro": "Święto poprowadziło bohaterów ku starej jaskini Odyna i runom, których nie potrafili zapomnieć.",
+      "intro": "Gdy przycichły śpiewy Sigrblótu, Morotar Jednooki wezwał bohaterów w miejsce, gdzie głosy ludzi ustępują głosom dawnych bogów.",
       "paragraphs": [
-        "Morotar Jednooki wezwał wojowników z dala od ognisk. Pod dawnym miejscem kultu czekała jaskinia, ślady wielopokoleniowych ofiar oraz znaki poświęcone Odynowi. Bohaterowie przeszli inicjację, która odcisnęła piętno na ich pamięci.",
-        "Nie wszystko, co ujrzeli, można było opisać językiem zwykłych sag. Zabrali ze sobą pytania o runy, kruki i drogi prowadzące poza znany świat. Odpowiedzi miały nadejść dopiero w kolejnych wyprawach."
+        "Noc jeszcze nie dobiegła końca, gdy Morotar Jednooki odszedł od świątecznych ognisk. Nie potrzebował tłumu ani wielkich obwieszczeń. Ci, których wezwał, mieli opuścić ciepło sali, śmiech towarzyszy i zapach miodu. Ich droga prowadziła poza Hrafnvik, ku staremu miejscu kultu pamiętającemu czasy, gdy nie było tutaj chrześcijańskiego kościoła ani współczesnego jarla.",
+        "Pod świętym miejscem znajdowała się jaskinia Odyna. Skałę poczernił dym wielu ofiar, a na kamieniu widniały runy wyżłobione przez dawno nieżyjące ręce. Światło ognia wydobywało z ciemności kruki, ślady starych znaków i kształty, których w zwykłej grocie nikt nie oczekiwałby ujrzeć. Bohaterowie nie znaleźli tam ani sali narad, ani łatwego zadania do wykonania. Stanęli przed doświadczeniem, które należało do porządku obrzędu, przysięgi i próby.",
+        "To, co przeżyli, nie dało się przekazać później przy miodzie tak łatwo jak opis walki. Ogień, runy, krew i obrazy kruków splatały się ze wspomnieniami, a sens wizji pozostawał niejednoznaczny. Morotar wskazał im drogę, ale nie wyręczył ich w przejściu przez nią. Każdy musiał sam unieść ciężar tego, co zobaczył.",
+        "Kiedy powrócili do osady, pozostali mieszkańcy mogli zobaczyć tych samych ludzi co poprzedniego wieczoru. Nie wiedzieli jednak, co zostało w ich pamięci. Od tej chwili pytania o zabójstwo Sigurda, utracone Oko Kruka i dawne znaki Północy miały dla drużyny osobisty wymiar. Wiosna zaczęła się od zwykłych roztopów; noc w jaskini przypomniała im, że świat jest znacznie większy od fiordu."
       ],
       "participants": [
         "sianita",
@@ -860,10 +862,12 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Prawo",
       "image": "",
-      "intro": "Pierwszy Thing Sianity przypomniał, że wojownicy nowego i starego jarla nadal noszą dawne urazy.",
+      "intro": "Pierwszy Thing po śmierci Sigurda nie rozstrzygał jeszcze losów królestw. Musiał odpowiedzieć na pytanie, czy nowa jarlowa potrafi osądzić własnych ludzi.",
       "paragraphs": [
-        "Podczas Sigrblótu Leif Anundsson, wierny nowej władzy, starł się ze Styrbjornem Ragnssonem, związanym z dawnymi stronnikami Hroalda. Zaczęło się od odmówionego toastu i obelg, a skończyło na bójce, którą mieszkańcy zapamiętali jako znak niepojednanej osady.",
-        "Przed jarlową stanęło zadanie rozsądzenia sporu bez dalszego rozlewu krwi. Ragnvald Prawomówca przypomniał o prawie i odpowiedzialności za wyrok, a mieszkańcy obserwowali, czy władza Sianity będzie czymś więcej niż zwycięstwem jej ojca."
+        "Po Sigrblócie na placu Hrafnviku zostały ślady uczty: rozlane napoje, błoto, puste naczynia i pamięć gwałtownej bójki. Na zgromadzenie przyszli mieszkańcy osady, wojownicy nowej drużyny oraz przedstawiciele dawnych rodów. Hroald, oślepiony i pozbawiony władzy, pozostawał widocznym świadectwem minionego buntu. Ragnvald Prawomówca przypominał prawo, ale to do jarlowej należało jego zastosowanie.",
+        "Przed Thingiem stanęli Leif Anundsson i Styrbjorn Ragnsson. Pierwszy był gorliwym zwolennikiem władzy Sigurda i Sianity, drugi należał do ludzi pamiętających Hroalda. Podczas uczty padły słowa o zwycięstwie w rebelii. Styrbjorn odmówił toastu; Leif odpowiedział zniewagą. Gniew przeszedł w bójkę, pojawił się nóż i ciężki puchar. Gdy ucichła wrzawa, jeden z mężczyzn nosił ranę oka, a ich stronnicy przedstawiali sprzeczne wersje zajścia.",
+        "Spór dwóch wojowników był tylko powierzchnią dawnej wojny. Ludzie Sigurda pytali, czy człowiek, który odmówił uczczenia zwycięstwa, może być traktowany na równi z jego zwolennikiem. Stronnicy Hroalda obserwowali, czy jarlowa zechce chronić swoich niezależnie od tego, kto zaczął. Dla Ragnvalda ważniejsze od gniewu było ustalenie, jak nowe rządy będą rozumiały sprawiedliwość.",
+        "Wyrok i sposób wysłuchania stron stały się częścią pamięci osady. W Hrafnviku nie było jeszcze zgody na wspólną przeszłość; obie strony musiały jednak żyć razem, pracować, wypływać na morze i stanąć obok siebie w razie obcego najazdu. Thing przypomniał, że trzymanie miecza daje władzę nad walką, lecz utrzymanie pokoju wymaga czegoś trudniejszego: prawa, którego nie zmienia się zależnie od nazwiska oskarżonego."
       ],
       "participants": [
         "sianita",
@@ -879,10 +883,13 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Wiara i prawo",
       "image": "",
-      "intro": "Ścięcie drzew w świętym gaju stało się sporem o miejsce starej i nowej wiary w Hrafnviku.",
+      "intro": "Ścięte drzewa z gaju Freyi stały się początkiem sporu o wiarę, ziemię i granice władzy nowej jarlowej.",
       "paragraphs": [
-        "Podczas budowy chrześcijańskiego kościoła cieśle ścięli stare drzewa należące do gaju Freyi. Vala Astrid Freyjadóttir przypomniała o wielopokoleniowych obrzędach, a brat Anselm i cieśla Aslak stanęli przed pytaniami Thingu.",
-        "Aslak był wówczas wolnym człowiekiem. Po wyroku skazującym go na wygnanie został jednak porwany przez Hakona Czerwonego, najbogatszego kupca Hrafnviku i właściciela niemal całej miejscowej floty. Od tego czasu Aslak pozostaje jego trallem, pracując przy okrętach wbrew własnej woli."
+        "Na skraju Hrafnviku powstawał chrześcijański kościół. Dla brata Anselma oznaczał miejsce modlitwy i opieki nad ludźmi, których przyciągnęła nowa wiara. Dla innych był znakiem zmian zachodzących w osadzie bez pytania dawnych bogów o zgodę. Cieśla Aslak i jego ludzie potrzebowali drewna na budowę. Ścięli kilka zdrowych, starych pni z pobliskiego gaju, nie traktując ich tak, jak traktowali je wyznawcy Freyi.",
+        "Na korze i pozostałych pniach wciąż widniały ślady obrzędów odbywanych przed wiosennymi wyprawami. Astrid Freyjadóttir, vala związana ze starą wiarą, wystąpiła w obronie tego miejsca. Nie żądała wyłącznie odszkodowania za drewno. Pytała, czy wolno budować nowy dom modlitwy kosztem świętości, którą mieszkańcy uznawali od pokoleń, i czy ktokolwiek może samodzielnie zadecydować o końcu dawnego obyczaju.",
+        "Przed Thingiem stanęli ludzie różnych przekonań. Aslak był cieślą, nie kapłanem; szukał materiału i pracy. Brat Anselm próbował bronić wspólnoty wiernych, a Astrid przypominała, że gaj należał do pamięci rodzin znacznie starszych od niedokończonego kościoła. Jarlowa musiała spojrzeć na konflikt bez łatwego podziału na swoich i obcych. Jedna decyzja mogła uspokoić jednych, a upokorzyć drugich.",
+        "Sprawa zakończyła się wygnaniem Aslaka na pięć lat. Nie był on wówczas trallem ani jeńcem z obcej osady; utracił prawo do pozostania w Hrafnviku w wyniku wyroku. Później los spotkał go jeszcze cięższy. Hakon Czerwony, najbogatszy kupiec i właściciel niemal wszystkich miejscowych okrętów, porwał cieślę i uczynił własnym trallem. Człowiek, który kiedyś pracował jako wolny rzemieślnik, odtąd budował cudze statki wbrew własnej woli.",
+        "Konflikt gaju nie zniknął razem z Aslakiem. W Hrafnviku nadal żyli ludzie Odyna i Freyi, chrześcijanie oraz ci, których bardziej od bogów obchodziły zapasy na zimę. Święte drzewa można było ściąć w jeden dzień. Zaufania między sąsiadami nie dało się odbudować równie szybko."
       ],
       "participants": [
         "sianita",
@@ -899,10 +906,13 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Prawo i ród",
       "image": "",
-      "intro": "Wdowa po Ketilu Brandssonie upomniała się o krzywdę, której nie zatarło zwycięstwo Sigurda.",
+      "intro": "Svala Ketilsdóttir nie przyszła na Thing po litość. Zażądała, by nowa władza odpowiedziała za śmierć jej męża podczas dawnej rebelii.",
       "paragraphs": [
-        "Svala Ketilsdóttir stanęła przed Thingiem z żądaniem zadośćuczynienia za męża, pojmanego i zabitego bez sądu podczas rebelii. Nie oskarżała Sianity o osobiste dokonanie zbrodni: domagała się, aby ród dziedziczący władzę uznał również jej ciężar.",
-        "Svali przyznano ziemię, lecz nie wszystkie rany dało się zagoić. Jej synowie, bliźniacy Mord i Ulf, mieli wkrótce znaleźć się w samym środku nowych wypraw i sporów o honor Hrafnviku."
+        "Na zgromadzeniu stanęła kobieta, której imię wielu znało od lat. Svala Ketilsdóttir była wdową po Ketilu Brandssonie. Jej mąż nie zginął w uczciwym starciu dwóch wojowników. Podczas rebelii Sigurda został pojmany, związany i zabity bez wyroku Thingu. Dla jednych pozostawał człowiekiem należącym do wrogiego obozu; dla Svali był mężem, którego odebrano jej w sposób, na jaki nie pozwalały dawne obyczaje.",
+        "Przed jarlową przyniosła przecięty naramiennik Ketila. Nie potrzebowała krzyku, by przypomnieć, czym jest dług krwi. W Hrafnviku pamiętano ludzi, którzy wydali rozkazy w dniach buntu, lecz nie wszystkich można było dziś wskazać z pewnością. Spór dotyczył czegoś większego niż osoba jednego zabitego: czy ród, który odziedziczył tron i bogactwo Sigurda, odziedziczył również obowiązek naprawienia jego krzywd.",
+        "Sianita nie była człowiekiem, który własną ręką zabił Ketila. To nie rozwiązywało problemu. Jako jarlowa miała dziś decydować o ziemi, srebrze, sprawiedliwości i losach rodzin, które żyły po obu stronach dawnego podziału. Svala nie żądała, by córka zapłaciła życiem za ojca. Żądała uznania, że śmierć męża nie może po prostu zniknąć z opowieści dlatego, że zwycięzcy noszą teraz pierścienie władzy.",
+        "Svali przyznano ziemię i tralli. Było to zadośćuczynienie, które zmieniało jej pozycję w osadzie, choć żaden dar nie przywracał Ketilowi życia. Jej synowie Mord i Ulf dorastali w cieniu tego, co wydarzyło się podczas rebelii. Nie byli jedynie krewnymi kobiety występującej przed sądem — mieli wkrótce sami stanąć wobec decyzji dotyczących honoru, lojalności i przyszłości Hrafnviku.",
+        "Pierwszy Thing zapisał więc w pamięci osady trzy rzeczy: bójkę ludzi dwóch obozów, spór o święte drzewa oraz dług wobec wdowy. Każda z nich wyglądała na lokalną sprawę, którą można zakończyć słowami jarla. Każda miała jednak wrócić w innej postaci, kiedy bohaterowie wyruszą poza bezpieczne brzegi własnego fiordu."
       ],
       "participants": [
         "svala",
