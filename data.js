@@ -756,10 +756,12 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Dzieje osady",
       "image": "",
-      "intro": "Zanim nastały czasy Sianity, o losach Hrafnviku decydował spór dwóch braci.",
+      "intro": "Zanim o Hrafnviku zaczęto śpiewać jako o domu Sianity, nad fiordem żyło dwóch braci, których spór miał podzielić całe pokolenie.",
       "paragraphs": [
-        "Jarl Hroald przez lata władał osadą nad fiordem. Kupcy sprowadzali obce towary, szkutnicy budowali okręty, a przy domowych paleniskach opowiadano o dawnych bogach i dalekich morzach. Wraz z przybyszami docierała też nowa wiara, budząc nadzieje jednych i obawy innych.",
-        "Między jarlem Hroaldem a jego bratem Sigurdem narastała niezgoda o władzę i przyszłość osady. Nie wszyscy mieszkańcy chcieli tych samych zmian. Kiedy braterski spór dojrzał do przemocy, Hrafnvik miało już nigdy nie powrócić do dawnego spokoju."
+        "Hrafnvik stało tam, gdzie ciemna woda fiordu spotykała się z pasem kamienistego brzegu i stromymi zboczami. Zimą okręty odpoczywały wyciągnięte na ląd, a ludzie reperowali sieci, dębowali skóry i liczyli srebro zdobyte podczas ostatniego sezonu. Wiosną szkutnicy wracali do swoich narzędzi, kupcy do targów, wojownicy do marzeń o dalekich ziemiach. Osada nie była wielkim miastem, lecz dla jej mieszkańców stanowiła środek świata — miejsce przodków, rodzinnych mogił i złożonych przysiąg.",
+        "Nad tym światem panował jarl Hroald. Jego ród od dawna wyznaczał rytm wspólnoty, ale nawet stare pierścienie władzy nie potrafiły powstrzymać zmiany czasów. Do Hrafnviku przypływali ludzie przywożący nowe towary i nowe słowa. Obok dawnych bogów zaczęto wypowiadać imię Chrystusa. Dla jednych była to szansa na nowe sojusze i handel, dla innych znak, że obcy obyczaj wchodzi na ziemię poświęconą Odynowi, Freyi i Freyrowi.",
+        "Najgłębszy podział nie przebiegał jednak między starym a nowym wyznaniem. Rodził się wewnątrz jednej rodziny. Sigurd, brat Hroalda, nie zgadzał się z kierunkiem, w którym zmierzała osada. W jego otoczeniu gromadzili się ludzie gotowi upomnieć się o inny porządek. Przy ucztach spory początkowo przybierały postać niedopowiedzianych uwag, milczących toastów i pytań o to, komu naprawdę należy się posłuch.",
+        "Tak właśnie zaczynają się waśnie, które później skaldowie nazywają wojnami rodów. Nie od pierwszego ciosu, lecz od chwili, gdy dwaj bracia przestają ufać własnym słowom, a pozostali muszą zdecydować, za którym z nich staną. Nim w Hrafnviku rozległ się szczęk żelaza, podział istniał już w sercach jego mieszkańców."
       ],
       "participants": [
         "hroald",
@@ -775,10 +777,12 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Dzieje osady",
       "image": "",
-      "intro": "Sigurd odebrał Hroaldowi tron, lecz nie zdołał odebrać ludziom pamięci o dawnym jarlu.",
+      "intro": "Sigurd wystąpił przeciw rodzonemu bratu. Zwyciężył, lecz nad zdobytym tronem pozostał cień człowieka, którego nie zdołał wymazać z pamięci osady.",
       "paragraphs": [
-        "Sigurd wystąpił przeciw własnemu bratu i zdobył władzę nad Hrafnvikiem. Hroald został oślepiony i uwięziony. Nowi zwolennicy jarla wznosili toasty za zwycięstwo, podczas gdy ludzie dawnego porządku milczeli przy tych samych stołach.",
-        "Zmiana władzy przyniosła nowe przysięgi, lecz także niewyrównane krzywdy. Rodzina Hroalda wciąż żyła w osadzie, a pamięć o obalonym jarlu stała się osią sporów, które miały powrócić podczas pierwszego Thingu Sianity."
+        "W Hrafnviku rozgorzał bunt. Wojownicy, którzy jeszcze niedawno wypływali wspólnie na morze, stanęli po przeciwnych stronach, ponieważ wierność jednemu z braci oznaczała zdradę drugiego. Sigurd poprowadził swoich zwolenników przeciw Hroaldowi i przejął władzę. Kiedy ucichł zgiełk walk, osada miała już nowego jarla, ale wielu jej mieszkańców utraciło przyjaciół, zaufanie lub nadzieję na pojednanie.",
+        "Hroald przeżył własne obalenie. Odebrano mu tron i wzrok, a potem uwięziono. W dniach ważnych zgromadzeń wystawiano oślepionego dawnego władcę w ciężkiej klatce, gdzie jego obecność stawała się niemym wyrzutem wobec zwycięzców. Nie mógł już prowadzić wojowników ani sądzić ludzi, lecz dla części starych rodów wciąż pozostawał człowiekiem, któremu kiedyś przysięgano posłuszeństwo.",
+        "Jego córka Runa i syn Sten należeli do pokolenia, które miało zapamiętać tę zmianę inaczej niż potomkowie Sigurda. Dawni stronnicy przestali mówić głośno o swoich żalach, lecz nie przestali ich odczuwać. Inni pragnęli przede wszystkim bezpieczeństwa: zimowych zapasów, spokojnego targu, statków gotowych do wypłynięcia. To, kto nosił naramiennik jarla, miało dla nich znaczenie wtedy, gdy decyzja władcy zaglądała do ich domów.",
+        "Sigurd zdobył władzę, ale nie zakończył sporu. Każdy nowy rozkaz przypominał jednym o zwycięstwie, drugim o upokorzeniu. Rodzina jarla stała się zarazem rodziną zwycięzców i pokonanych. Hrafnvik miało jeszcze wielokrotnie przekonać się, że można odebrać człowiekowi oczy i tron, ale nie można rozkazać innym, by o nim zapomnieli."
       ],
       "participants": [
         "sigurd",
@@ -794,10 +798,12 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Dzieje osady",
       "image": "",
-      "intro": "Zwycięski jarl sam padł ofiarą zabójstwa. Jego córka odziedziczyła władzę i nierozliczoną krew.",
+      "intro": "Niedługo po przewrocie zwycięski Sigurd został zamordowany. Córce pozostawił władzę, której nie zdążył ugruntować, i pytanie, kto po niego przyszedł.",
       "paragraphs": [
-        "Niedługo po przewrocie Sigurd został zamordowany. Wraz z nim zniknęło Oko Kruka, znane mieszkańcom jako Hrafnsauga. Okoliczności morderstwa nie zostały wyjaśnione, a jego sprawca pozostawał poza zasięgiem ludzi Hrafnviku.",
-        "Sianita Gunnarsdóttir stanęła na czele osady. Jej brat Halward, zwany Snake-Eye, pozostał blisko niej. Nowa jarlowa musiała rządzić pośród ludzi wiernych ojcu i tych, którzy wciąż pamiętali krzywdę Hroalda."
+        "Śmierć Sigurda nadeszła, zanim nowy porządek zapuścił korzenie. Człowiek, który obalił własnego brata i przejął Hrafnvik, sam padł ofiarą zabójstwa. Osada znała już cenę rebelii, lecz tym razem nie mogła wskazać zwycięskiej strony. Nie zebrano wojowników do uroczystego ogłoszenia nowego panowania. Pozostała pustka po jarlu i pytanie, dlaczego ktoś postanowił zakończyć jego życie.",
+        "Wraz z Sigurdem zniknął przedmiot znany jako Hrafnsauga, Oko Kruka. Mieszkańcy znali go jako osobliwy relikt, który należał do opowieści o rodzie jarla i dawnych bogach. Jego utrata sprawiła, że zabójstwo wydawało się czymś więcej niż zwykłą zemstą. Ludzie szeptali o człowieku bez rodu, o cudzym srebrze i szlakach prowadzących poza fiord. Nikt jednak nie potrafił przedstawić całej prawdy.",
+        "Po Sigurdzie władzę objęła jego córka, Sianita. U jej boku stał brat Halward, zwany Snake-Eye, wyznawca Lokiego, chętniej szukający przewagi w rozmowie i podstępie niż w głośnych groźbach. Rodzeństwo odziedziczyło tytuł i obowiązki, lecz nie miało tego przywileju, który otrzymują spokojni następcy: czasu, aby oswoić się z nową rolą.",
+        "W sali jarlowej zasiadali ludzie, którzy pamiętali Sigurda jako zwycięzcę. Nieopodal żyli ci, dla których był sprawcą upadku Hroalda. Wdowy pamiętały mężów zabitych podczas buntu; kupcy liczyli przyszłe zyski; kapłani obu wiar czekali na decyzje dotyczące ich świętych miejsc. Sianita musiała rządzić wśród tych spojrzeń. Zanim opowiedziano o jej pierwszych wyprawach, wiedziała już, że każda decyzja przywróci do życia czyjąś dawną krzywdę."
       ],
       "participants": [
         "sigurd",
@@ -813,10 +819,12 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Święto",
       "image": "",
-      "intro": "Pierwsze topniejące śniegi przyniosły Hrafnvikowi obietnicę nowego sezonu wypraw.",
+      "intro": "Gdy zima ustąpiła miejsca pierwszemu błotu i spływającym lodom, Hrafnvik zebrało się na Sigrblót — pierwsze wielkie święto nowej jarlowej.",
       "paragraphs": [
-        "Gdy wyciągnięte na brzeg okręty znów zaczęto szykować do żeglugi, mieszkańcy zgromadzili się na Sigrblót. Słychać było pieśni Morotara Jednookiego, modlitwy do dawnych bogów i rozmowy o łupach, handlu oraz ziemiach za morzem.",
-        "Pod świątecznym śmiechem trwała niezgoda. Stronnicy Sigurda i ludzie pamiętający Hroalda spotykali się przy jednym ogniu, lecz nie wszyscy wznosili te same toasty. Wiosna stała się pierwszą próbą nowej władzy."
+        "Śnieg wciąż zalegał w cieniu dachów, lecz nad fiordem czuć już było wiosnę. Ziemia miękła pod butami, woda odrywała od brzegu resztki lodu, a powracające ptaki ogłaszały porę, w której drakkary znów wychodzą na morze. Ludzie smarowali burty smołą, naprawiali żagle i wypowiadali nazwy krain, do których chcieli dopłynąć. Pierwsze roztopy dawały poczucie początku, nawet jeśli dla wielu rodzin poprzedni rok nie zdążył się zakończyć.",
+        "Na Sigrblót mieszkańcy przyszli z darami dla bogów, z miodem, pieśniami i nadzieją na zwycięski sezon. Śpiew Morotara Jednookiego mieszał się z rozmowami szkutników, kapłanów i wojowników. Astrid Freyjadóttir strzegła obyczaju starej wiary, brat Anselm rozmawiał z ludźmi, dla których nowa religia była coraz bliższa, a Eirik Żelazna Dłoń pilnował, aby świętowanie nie zamieniło się w kolejną bratobójczą walkę.",
+        "Nie wszystkim toasty przechodziły przez gardło z taką samą łatwością. Stronnicy starego jarla Hroalda pamiętali dzień, w którym pozbawiono go oczu i tronu. Wierni Sigurdowi uważali jego zwycięstwo za konieczny początek nowego porządku. Teraz po obu stronach stali ludzie, których musiała prowadzić Sianita. Wystarczył jeden niewłaściwy żart, jedno wspomnienie zabitego krewnego, aby w świątecznej sali zapadła niewygodna cisza.",
+        "Sigrblót miało być świętem odrodzenia, ale stało się także próbą dla nowej władzy. Ludzie przyglądali się jarlowej i jej towarzyszom, szukając odpowiedzi, czy będą rządzić dla wszystkich, czy tylko dla zwycięzców. Podobne pytanie czekało ich już nazajutrz podczas Thingu. Tej nocy przy ogniu nikt jednak jeszcze nie znał ceny nadchodzącej wiosny."
       ],
       "participants": [
         "sianita",
