@@ -821,10 +821,12 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Dzieje osady",
       "image": "",
-      "intro": "Zanim nastały czasy Sianity, o losach Hrafnviku decydował spór dwóch braci.",
+      "intro": "Zanim o Hrafnviku zaczęto śpiewać jako o domu Sianity, nad fiordem żyło dwóch braci, których spór miał podzielić całe pokolenie.",
       "paragraphs": [
-        "Jarl Hroald przez lata władał osadą nad fiordem. Kupcy sprowadzali obce towary, szkutnicy budowali okręty, a przy domowych paleniskach opowiadano o dawnych bogach i dalekich morzach. Wraz z przybyszami docierała też nowa wiara, budząc nadzieje jednych i obawy innych.",
-        "Między jarlem Hroaldem a jego bratem Sigurdem narastała niezgoda o władzę i przyszłość osady. Nie wszyscy mieszkańcy chcieli tych samych zmian. Kiedy braterski spór dojrzał do przemocy, Hrafnvik miało już nigdy nie powrócić do dawnego spokoju."
+        "Hrafnvik stało tam, gdzie ciemna woda fiordu spotykała się z pasem kamienistego brzegu i stromymi zboczami. Zimą okręty odpoczywały wyciągnięte na ląd, a ludzie reperowali sieci, dębowali skóry i liczyli srebro zdobyte podczas ostatniego sezonu. Wiosną szkutnicy wracali do swoich narzędzi, kupcy do targów, wojownicy do marzeń o dalekich ziemiach. Osada nie była wielkim miastem, lecz dla jej mieszkańców stanowiła środek świata — miejsce przodków, rodzinnych mogił i złożonych przysiąg.",
+        "Nad tym światem panował jarl Hroald. Jego ród od dawna wyznaczał rytm wspólnoty, ale nawet stare pierścienie władzy nie potrafiły powstrzymać zmiany czasów. Do Hrafnviku przypływali ludzie przywożący nowe towary i nowe słowa. Obok dawnych bogów zaczęto wypowiadać imię Chrystusa. Dla jednych była to szansa na nowe sojusze i handel, dla innych znak, że obcy obyczaj wchodzi na ziemię poświęconą Odynowi, Freyi i Freyrowi.",
+        "Najgłębszy podział nie przebiegał jednak między starym a nowym wyznaniem. Rodził się wewnątrz jednej rodziny. Sigurd, brat Hroalda, nie zgadzał się z kierunkiem, w którym zmierzała osada. W jego otoczeniu gromadzili się ludzie gotowi upomnieć się o inny porządek. Przy ucztach spory początkowo przybierały postać niedopowiedzianych uwag, milczących toastów i pytań o to, komu naprawdę należy się posłuch.",
+        "Tak właśnie zaczynają się waśnie, które później skaldowie nazywają wojnami rodów. Nie od pierwszego ciosu, lecz od chwili, gdy dwaj bracia przestają ufać własnym słowom, a pozostali muszą zdecydować, za którym z nich staną. Nim w Hrafnviku rozległ się szczęk żelaza, podział istniał już w sercach jego mieszkańców."
       ],
       "participants": [
         "hroald",
@@ -840,10 +842,12 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Dzieje osady",
       "image": "",
-      "intro": "Sigurd odebrał Hroaldowi tron, lecz nie zdołał odebrać ludziom pamięci o dawnym jarlu.",
+      "intro": "Sigurd wystąpił przeciw rodzonemu bratu. Zwyciężył, lecz nad zdobytym tronem pozostał cień człowieka, którego nie zdołał wymazać z pamięci osady.",
       "paragraphs": [
-        "Sigurd wystąpił przeciw własnemu bratu i zdobył władzę nad Hrafnvikiem. Hroald został oślepiony i uwięziony. Nowi zwolennicy jarla wznosili toasty za zwycięstwo, podczas gdy ludzie dawnego porządku milczeli przy tych samych stołach.",
-        "Zmiana władzy przyniosła nowe przysięgi, lecz także niewyrównane krzywdy. Rodzina Hroalda wciąż żyła w osadzie, a pamięć o obalonym jarlu stała się osią sporów, które miały powrócić podczas pierwszego Thingu Sianity."
+        "W Hrafnviku rozgorzał bunt. Wojownicy, którzy jeszcze niedawno wypływali wspólnie na morze, stanęli po przeciwnych stronach, ponieważ wierność jednemu z braci oznaczała zdradę drugiego. Sigurd poprowadził swoich zwolenników przeciw Hroaldowi i przejął władzę. Kiedy ucichł zgiełk walk, osada miała już nowego jarla, ale wielu jej mieszkańców utraciło przyjaciół, zaufanie lub nadzieję na pojednanie.",
+        "Hroald przeżył własne obalenie. Odebrano mu tron i wzrok, a potem uwięziono. W dniach ważnych zgromadzeń wystawiano oślepionego dawnego władcę w ciężkiej klatce, gdzie jego obecność stawała się niemym wyrzutem wobec zwycięzców. Nie mógł już prowadzić wojowników ani sądzić ludzi, lecz dla części starych rodów wciąż pozostawał człowiekiem, któremu kiedyś przysięgano posłuszeństwo.",
+        "Jego córka Runa i syn Sten należeli do pokolenia, które miało zapamiętać tę zmianę inaczej niż potomkowie Sigurda. Dawni stronnicy przestali mówić głośno o swoich żalach, lecz nie przestali ich odczuwać. Inni pragnęli przede wszystkim bezpieczeństwa: zimowych zapasów, spokojnego targu, statków gotowych do wypłynięcia. To, kto nosił naramiennik jarla, miało dla nich znaczenie wtedy, gdy decyzja władcy zaglądała do ich domów.",
+        "Sigurd zdobył władzę, ale nie zakończył sporu. Każdy nowy rozkaz przypominał jednym o zwycięstwie, drugim o upokorzeniu. Rodzina jarla stała się zarazem rodziną zwycięzców i pokonanych. Hrafnvik miało jeszcze wielokrotnie przekonać się, że można odebrać człowiekowi oczy i tron, ale nie można rozkazać innym, by o nim zapomnieli."
       ],
       "participants": [
         "sigurd",
@@ -859,10 +863,12 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Dzieje osady",
       "image": "",
-      "intro": "Zwycięski jarl sam padł ofiarą zabójstwa. Jego córka odziedziczyła władzę i nierozliczoną krew.",
+      "intro": "Niedługo po przewrocie zwycięski Sigurd został zamordowany. Córce pozostawił władzę, której nie zdążył ugruntować, i pytanie, kto po niego przyszedł.",
       "paragraphs": [
-        "Niedługo po przewrocie Sigurd został zamordowany. Wraz z nim zniknęło Oko Kruka, znane mieszkańcom jako Hrafnsauga. Okoliczności morderstwa nie zostały wyjaśnione, a jego sprawca pozostawał poza zasięgiem ludzi Hrafnviku.",
-        "Sianita Gunnarsdóttir stanęła na czele osady. Jej brat Halward, zwany Snake-Eye, pozostał blisko niej. Nowa jarlowa musiała rządzić pośród ludzi wiernych ojcu i tych, którzy wciąż pamiętali krzywdę Hroalda."
+        "Śmierć Sigurda nadeszła, zanim nowy porządek zapuścił korzenie. Człowiek, który obalił własnego brata i przejął Hrafnvik, sam padł ofiarą zabójstwa. Osada znała już cenę rebelii, lecz tym razem nie mogła wskazać zwycięskiej strony. Nie zebrano wojowników do uroczystego ogłoszenia nowego panowania. Pozostała pustka po jarlu i pytanie, dlaczego ktoś postanowił zakończyć jego życie.",
+        "Wraz z Sigurdem zniknął przedmiot znany jako Hrafnsauga, Oko Kruka. Mieszkańcy znali go jako osobliwy relikt, który należał do opowieści o rodzie jarla i dawnych bogach. Jego utrata sprawiła, że zabójstwo wydawało się czymś więcej niż zwykłą zemstą. Ludzie szeptali o człowieku bez rodu, o cudzym srebrze i szlakach prowadzących poza fiord. Nikt jednak nie potrafił przedstawić całej prawdy.",
+        "Po Sigurdzie władzę objęła jego córka, Sianita. U jej boku stał brat Halward, zwany Snake-Eye, wyznawca Lokiego, chętniej szukający przewagi w rozmowie i podstępie niż w głośnych groźbach. Rodzeństwo odziedziczyło tytuł i obowiązki, lecz nie miało tego przywileju, który otrzymują spokojni następcy: czasu, aby oswoić się z nową rolą.",
+        "W sali jarlowej zasiadali ludzie, którzy pamiętali Sigurda jako zwycięzcę. Nieopodal żyli ci, dla których był sprawcą upadku Hroalda. Wdowy pamiętały mężów zabitych podczas buntu; kupcy liczyli przyszłe zyski; kapłani obu wiar czekali na decyzje dotyczące ich świętych miejsc. Sianita musiała rządzić wśród tych spojrzeń. Zanim opowiedziano o jej pierwszych wyprawach, wiedziała już, że każda decyzja przywróci do życia czyjąś dawną krzywdę."
       ],
       "participants": [
         "sigurd",
@@ -878,10 +884,12 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Święto",
       "image": "",
-      "intro": "Pierwsze topniejące śniegi przyniosły Hrafnvikowi obietnicę nowego sezonu wypraw.",
+      "intro": "Gdy zima ustąpiła miejsca pierwszemu błotu i spływającym lodom, Hrafnvik zebrało się na Sigrblót — pierwsze wielkie święto nowej jarlowej.",
       "paragraphs": [
-        "Gdy wyciągnięte na brzeg okręty znów zaczęto szykować do żeglugi, mieszkańcy zgromadzili się na Sigrblót. Słychać było pieśni Morotara Jednookiego, modlitwy do dawnych bogów i rozmowy o łupach, handlu oraz ziemiach za morzem.",
-        "Pod świątecznym śmiechem trwała niezgoda. Stronnicy Sigurda i ludzie pamiętający Hroalda spotykali się przy jednym ogniu, lecz nie wszyscy wznosili te same toasty. Wiosna stała się pierwszą próbą nowej władzy."
+        "Śnieg wciąż zalegał w cieniu dachów, lecz nad fiordem czuć już było wiosnę. Ziemia miękła pod butami, woda odrywała od brzegu resztki lodu, a powracające ptaki ogłaszały porę, w której drakkary znów wychodzą na morze. Ludzie smarowali burty smołą, naprawiali żagle i wypowiadali nazwy krain, do których chcieli dopłynąć. Pierwsze roztopy dawały poczucie początku, nawet jeśli dla wielu rodzin poprzedni rok nie zdążył się zakończyć.",
+        "Na Sigrblót mieszkańcy przyszli z darami dla bogów, z miodem, pieśniami i nadzieją na zwycięski sezon. Śpiew Morotara Jednookiego mieszał się z rozmowami szkutników, kapłanów i wojowników. Astrid Freyjadóttir strzegła obyczaju starej wiary, brat Anselm rozmawiał z ludźmi, dla których nowa religia była coraz bliższa, a Eirik Żelazna Dłoń pilnował, aby świętowanie nie zamieniło się w kolejną bratobójczą walkę.",
+        "Nie wszystkim toasty przechodziły przez gardło z taką samą łatwością. Stronnicy starego jarla Hroalda pamiętali dzień, w którym pozbawiono go oczu i tronu. Wierni Sigurdowi uważali jego zwycięstwo za konieczny początek nowego porządku. Teraz po obu stronach stali ludzie, których musiała prowadzić Sianita. Wystarczył jeden niewłaściwy żart, jedno wspomnienie zabitego krewnego, aby w świątecznej sali zapadła niewygodna cisza.",
+        "Sigrblót miało być świętem odrodzenia, ale stało się także próbą dla nowej władzy. Ludzie przyglądali się jarlowej i jej towarzyszom, szukając odpowiedzi, czy będą rządzić dla wszystkich, czy tylko dla zwycięzców. Podobne pytanie czekało ich już nazajutrz podczas Thingu. Tej nocy przy ogniu nikt jednak jeszcze nie znał ceny nadchodzącej wiosny."
       ],
       "participants": [
         "sianita",
@@ -897,10 +905,12 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Tajemnica",
       "image": "",
-      "intro": "Święto poprowadziło bohaterów ku starej jaskini Odyna i runom, których nie potrafili zapomnieć.",
+      "intro": "Gdy przycichły śpiewy Sigrblótu, Morotar Jednooki wezwał bohaterów w miejsce, gdzie głosy ludzi ustępują głosom dawnych bogów.",
       "paragraphs": [
-        "Morotar Jednooki wezwał wojowników z dala od ognisk. Pod dawnym miejscem kultu czekała jaskinia, ślady wielopokoleniowych ofiar oraz znaki poświęcone Odynowi. Bohaterowie przeszli inicjację, która odcisnęła piętno na ich pamięci.",
-        "Nie wszystko, co ujrzeli, można było opisać językiem zwykłych sag. Zabrali ze sobą pytania o runy, kruki i drogi prowadzące poza znany świat. Odpowiedzi miały nadejść dopiero w kolejnych wyprawach."
+        "Noc jeszcze nie dobiegła końca, gdy Morotar Jednooki odszedł od świątecznych ognisk. Nie potrzebował tłumu ani wielkich obwieszczeń. Ci, których wezwał, mieli opuścić ciepło sali, śmiech towarzyszy i zapach miodu. Ich droga prowadziła poza Hrafnvik, ku staremu miejscu kultu pamiętającemu czasy, gdy nie było tutaj chrześcijańskiego kościoła ani współczesnego jarla.",
+        "Pod świętym miejscem znajdowała się jaskinia Odyna. Skałę poczernił dym wielu ofiar, a na kamieniu widniały runy wyżłobione przez dawno nieżyjące ręce. Światło ognia wydobywało z ciemności kruki, ślady starych znaków i kształty, których w zwykłej grocie nikt nie oczekiwałby ujrzeć. Bohaterowie nie znaleźli tam ani sali narad, ani łatwego zadania do wykonania. Stanęli przed doświadczeniem, które należało do porządku obrzędu, przysięgi i próby.",
+        "To, co przeżyli, nie dało się przekazać później przy miodzie tak łatwo jak opis walki. Ogień, runy, krew i obrazy kruków splatały się ze wspomnieniami, a sens wizji pozostawał niejednoznaczny. Morotar wskazał im drogę, ale nie wyręczył ich w przejściu przez nią. Każdy musiał sam unieść ciężar tego, co zobaczył.",
+        "Kiedy powrócili do osady, pozostali mieszkańcy mogli zobaczyć tych samych ludzi co poprzedniego wieczoru. Nie wiedzieli jednak, co zostało w ich pamięci. Od tej chwili pytania o zabójstwo Sigurda, utracone Oko Kruka i dawne znaki Północy miały dla drużyny osobisty wymiar. Wiosna zaczęła się od zwykłych roztopów; noc w jaskini przypomniała im, że świat jest znacznie większy od fiordu."
       ],
       "participants": [
         "sianita",
@@ -917,10 +927,12 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Prawo",
       "image": "",
-      "intro": "Pierwszy Thing Sianity przypomniał, że wojownicy nowego i starego jarla nadal noszą dawne urazy.",
+      "intro": "Pierwszy Thing po śmierci Sigurda nie rozstrzygał jeszcze losów królestw. Musiał odpowiedzieć na pytanie, czy nowa jarlowa potrafi osądzić własnych ludzi.",
       "paragraphs": [
-        "Podczas Sigrblótu Leif Anundsson, wierny nowej władzy, starł się ze Styrbjornem Ragnssonem, związanym z dawnymi stronnikami Hroalda. Zaczęło się od odmówionego toastu i obelg, a skończyło na bójce, którą mieszkańcy zapamiętali jako znak niepojednanej osady.",
-        "Przed jarlową stanęło zadanie rozsądzenia sporu bez dalszego rozlewu krwi. Ragnvald Prawomówca przypomniał o prawie i odpowiedzialności za wyrok, a mieszkańcy obserwowali, czy władza Sianity będzie czymś więcej niż zwycięstwem jej ojca."
+        "Po Sigrblócie na placu Hrafnviku zostały ślady uczty: rozlane napoje, błoto, puste naczynia i pamięć gwałtownej bójki. Na zgromadzenie przyszli mieszkańcy osady, wojownicy nowej drużyny oraz przedstawiciele dawnych rodów. Hroald, oślepiony i pozbawiony władzy, pozostawał widocznym świadectwem minionego buntu. Ragnvald Prawomówca przypominał prawo, ale to do jarlowej należało jego zastosowanie.",
+        "Przed Thingiem stanęli Leif Anundsson i Styrbjorn Ragnsson. Pierwszy był gorliwym zwolennikiem władzy Sigurda i Sianity, drugi należał do ludzi pamiętających Hroalda. Podczas uczty padły słowa o zwycięstwie w rebelii. Styrbjorn odmówił toastu; Leif odpowiedział zniewagą. Gniew przeszedł w bójkę, pojawił się nóż i ciężki puchar. Gdy ucichła wrzawa, jeden z mężczyzn nosił ranę oka, a ich stronnicy przedstawiali sprzeczne wersje zajścia.",
+        "Spór dwóch wojowników był tylko powierzchnią dawnej wojny. Ludzie Sigurda pytali, czy człowiek, który odmówił uczczenia zwycięstwa, może być traktowany na równi z jego zwolennikiem. Stronnicy Hroalda obserwowali, czy jarlowa zechce chronić swoich niezależnie od tego, kto zaczął. Dla Ragnvalda ważniejsze od gniewu było ustalenie, jak nowe rządy będą rozumiały sprawiedliwość.",
+        "Wyrok i sposób wysłuchania stron stały się częścią pamięci osady. W Hrafnviku nie było jeszcze zgody na wspólną przeszłość; obie strony musiały jednak żyć razem, pracować, wypływać na morze i stanąć obok siebie w razie obcego najazdu. Thing przypomniał, że trzymanie miecza daje władzę nad walką, lecz utrzymanie pokoju wymaga czegoś trudniejszego: prawa, którego nie zmienia się zależnie od nazwiska oskarżonego."
       ],
       "participants": [
         "sianita",
@@ -936,10 +948,13 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Wiara i prawo",
       "image": "",
-      "intro": "Ścięcie drzew w świętym gaju stało się sporem o miejsce starej i nowej wiary w Hrafnviku.",
+      "intro": "Ścięte drzewa z gaju Freyi stały się początkiem sporu o wiarę, ziemię i granice władzy nowej jarlowej.",
       "paragraphs": [
-        "Podczas budowy chrześcijańskiego kościoła cieśle ścięli stare drzewa należące do gaju Freyi. Vala Astrid Freyjadóttir przypomniała o wielopokoleniowych obrzędach, a brat Anselm i cieśla Aslak stanęli przed pytaniami Thingu.",
-        "Aslak był wówczas wolnym człowiekiem. Po wyroku skazującym go na wygnanie został jednak porwany przez Hakona Czerwonego, najbogatszego kupca Hrafnviku i właściciela niemal całej miejscowej floty. Od tego czasu Aslak pozostaje jego trallem, pracując przy okrętach wbrew własnej woli."
+        "Na skraju Hrafnviku powstawał chrześcijański kościół. Dla brata Anselma oznaczał miejsce modlitwy i opieki nad ludźmi, których przyciągnęła nowa wiara. Dla innych był znakiem zmian zachodzących w osadzie bez pytania dawnych bogów o zgodę. Cieśla Aslak i jego ludzie potrzebowali drewna na budowę. Ścięli kilka zdrowych, starych pni z pobliskiego gaju, nie traktując ich tak, jak traktowali je wyznawcy Freyi.",
+        "Na korze i pozostałych pniach wciąż widniały ślady obrzędów odbywanych przed wiosennymi wyprawami. Astrid Freyjadóttir, vala związana ze starą wiarą, wystąpiła w obronie tego miejsca. Nie żądała wyłącznie odszkodowania za drewno. Pytała, czy wolno budować nowy dom modlitwy kosztem świętości, którą mieszkańcy uznawali od pokoleń, i czy ktokolwiek może samodzielnie zadecydować o końcu dawnego obyczaju.",
+        "Przed Thingiem stanęli ludzie różnych przekonań. Aslak był cieślą, nie kapłanem; szukał materiału i pracy. Brat Anselm próbował bronić wspólnoty wiernych, a Astrid przypominała, że gaj należał do pamięci rodzin znacznie starszych od niedokończonego kościoła. Jarlowa musiała spojrzeć na konflikt bez łatwego podziału na swoich i obcych. Jedna decyzja mogła uspokoić jednych, a upokorzyć drugich.",
+        "Sprawa zakończyła się wygnaniem Aslaka na pięć lat. Nie był on wówczas trallem ani jeńcem z obcej osady; utracił prawo do pozostania w Hrafnviku w wyniku wyroku. Później los spotkał go jeszcze cięższy. Hakon Czerwony, najbogatszy kupiec i właściciel niemal wszystkich miejscowych okrętów, porwał cieślę i uczynił własnym trallem. Człowiek, który kiedyś pracował jako wolny rzemieślnik, odtąd budował cudze statki wbrew własnej woli.",
+        "Konflikt gaju nie zniknął razem z Aslakiem. W Hrafnviku nadal żyli ludzie Odyna i Freyi, chrześcijanie oraz ci, których bardziej od bogów obchodziły zapasy na zimę. Święte drzewa można było ściąć w jeden dzień. Zaufania między sąsiadami nie dało się odbudować równie szybko."
       ],
       "participants": [
         "sianita",
@@ -956,10 +971,13 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Prawo i ród",
       "image": "",
-      "intro": "Wdowa po Ketilu Brandssonie upomniała się o krzywdę, której nie zatarło zwycięstwo Sigurda.",
+      "intro": "Svala Ketilsdóttir nie przyszła na Thing po litość. Zażądała, by nowa władza odpowiedziała za śmierć jej męża podczas dawnej rebelii.",
       "paragraphs": [
-        "Svala Ketilsdóttir stanęła przed Thingiem z żądaniem zadośćuczynienia za męża, pojmanego i zabitego bez sądu podczas rebelii. Nie oskarżała Sianity o osobiste dokonanie zbrodni: domagała się, aby ród dziedziczący władzę uznał również jej ciężar.",
-        "Svali przyznano ziemię, lecz nie wszystkie rany dało się zagoić. Jej synowie, bliźniacy Mord i Ulf, mieli wkrótce znaleźć się w samym środku nowych wypraw i sporów o honor Hrafnviku."
+        "Na zgromadzeniu stanęła kobieta, której imię wielu znało od lat. Svala Ketilsdóttir była wdową po Ketilu Brandssonie. Jej mąż nie zginął w uczciwym starciu dwóch wojowników. Podczas rebelii Sigurda został pojmany, związany i zabity bez wyroku Thingu. Dla jednych pozostawał człowiekiem należącym do wrogiego obozu; dla Svali był mężem, którego odebrano jej w sposób, na jaki nie pozwalały dawne obyczaje.",
+        "Przed jarlową przyniosła przecięty naramiennik Ketila. Nie potrzebowała krzyku, by przypomnieć, czym jest dług krwi. W Hrafnviku pamiętano ludzi, którzy wydali rozkazy w dniach buntu, lecz nie wszystkich można było dziś wskazać z pewnością. Spór dotyczył czegoś większego niż osoba jednego zabitego: czy ród, który odziedziczył tron i bogactwo Sigurda, odziedziczył również obowiązek naprawienia jego krzywd.",
+        "Sianita nie była człowiekiem, który własną ręką zabił Ketila. To nie rozwiązywało problemu. Jako jarlowa miała dziś decydować o ziemi, srebrze, sprawiedliwości i losach rodzin, które żyły po obu stronach dawnego podziału. Svala nie żądała, by córka zapłaciła życiem za ojca. Żądała uznania, że śmierć męża nie może po prostu zniknąć z opowieści dlatego, że zwycięzcy noszą teraz pierścienie władzy.",
+        "Svali przyznano ziemię i tralli. Było to zadośćuczynienie, które zmieniało jej pozycję w osadzie, choć żaden dar nie przywracał Ketilowi życia. Jej synowie Mord i Ulf dorastali w cieniu tego, co wydarzyło się podczas rebelii. Nie byli jedynie krewnymi kobiety występującej przed sądem — mieli wkrótce sami stanąć wobec decyzji dotyczących honoru, lojalności i przyszłości Hrafnviku.",
+        "Pierwszy Thing zapisał więc w pamięci osady trzy rzeczy: bójkę ludzi dwóch obozów, spór o święte drzewa oraz dług wobec wdowy. Każda z nich wyglądała na lokalną sprawę, którą można zakończyć słowami jarla. Każda miała jednak wrócić w innej postaci, kiedy bohaterowie wyruszą poza bezpieczne brzegi własnego fiordu."
       ],
       "participants": [
         "svala",
@@ -975,10 +993,13 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Początek wyprawy",
       "image": "",
-      "intro": "Pogłoski o zabójcy Sigurda skierowały spojrzenia wojowników ku Skjordvik.",
+      "intro": "Wieść o człowieku podejrzewanym o zabójstwo Sigurda dotarła do Hrafnviku z północnego fiordu. Ślad prowadził do Skjordvik.",
       "paragraphs": [
-        "Do Hrafnviku dotarły wiadomości o człowieku łączonym ze śmiercią Sigurda, który miał znaleźć schronienie w osadzie Skjordvik na północnym fiordzie. Tamtejsi mieszkańcy byli Drengrami, tak samo jak ludzie Sianity, lecz dawne spory o łowiska i zobowiązania nigdy całkiem nie wygasły.",
-        "Drużyna zebrała ludzi i wyruszyła morzem. Poszukiwanie sprawiedliwości zaczęło splatać się z polityką osad, ich bogactwem i gotowością wojowników do przemocy."
+        "Po pierwszych wyrokach Thingu Hrafnvik nie zdążył jeszcze odzyskać spokoju, gdy przybyły wiadomości z północy. Ktoś widział człowieka łączonego z morderstwem Sigurda — człowieka, którego poszukiwano od czasu zniknięcia Oka Kruka. Miał znaleźć schronienie w Skjordvik, osadzie leżącej kilka dni żeglugi od Hrafnviku, gdzie kamienisty brzeg i wąski fiord osłaniały domy przed otwartym morzem.",
+        "Nie była to ziemia całkowicie obca. Mieszkańcy Skjordvik mówili podobną mową, znali te same pieśni i oddawali cześć tym samym bogom. Od pokoleń ich fiordy łączyły szlaki handlowe, a rozdzielały spory o ryby, granice łowisk, małe wyspy i pamięć dawnych zobowiązań. W jednej osadzie mówiono o uczciwym schronieniu dla przybysza; w drugiej o człowieku, którego należało wydać, zanim uciekł ponownie.",
+        "Dla Sianity wieść miała znaczenie inne niż dla tych, którzy liczyli tylko zdobyczne srebro. Sigurd był jej ojcem. Jego śmierć pchnęła ją ku władzy, o którą nie zabiegała w spokojnych czasach. Każdy kolejny ślad obiecywał możliwość poznania prawdy, ale też groził następną waśnią. Halward i pozostali bohaterowie stali przed wyborem, czy po odpowiedź wyruszyć z poselstwem, garścią towarzyszy, czy całą wojenną drużyną.",
+        "Zebrano ludzi i okręty. Miecze ostrzono nie tylko z pragnienia łupu; wielu wojowników wierzyło, że wyprawa przywróci honor zabitemu jarlowi i pokaże sąsiadom siłę jego następczyni. Inni myśleli o złocie i jeńcach. Na morzu obie motywacje często płyną na jednym statku. Gdy brzeg Hrafnviku zniknął za rufami, nikt nie potrafił jeszcze powiedzieć, która z nich okaże się ważniejsza.",
+        "Tak rozpoczęła się wyprawa, która miała przynieść bogactwo jednej osadzie i ruinę drugiej. Zabójcy Sigurda nie przyprowadzono wtedy w kajdanach. Za to płomień najazdu rozpalił nowy konflikt, który później powrócił aż przed sąd królów i jarlów na Eylendzie."
       ],
       "participants": [
         "sianita",
@@ -994,10 +1015,14 @@ window.CHRONICLE = {
       "placeId": "skjorvik",
       "kind": "Najazd",
       "image": "",
-      "intro": "Skjordvik padło pod naporem wojowników Hrafnviku. Łupy i zwycięstwo nie wymazały cierpienia pokonanych.",
+      "intro": "Wojownicy Hrafnviku zdobyli Skjordvik. Z fiordu zabrali srebro i jeńców; po sobie zostawili zniszczenie, którego pamięć miała przetrwać zwycięskie pieśni.",
       "paragraphs": [
-        "Najeźdźcy zdobyli osadę, a po walkach pozostały zniszczone domostwa, dym i pamięć o ludziach, którzy nie przeżyli. Część mieszkańców pojmano, a srebro i towary zabrano do Hrafnviku.",
-        "To zwycięstwo zmieniło losy obu osad. Dla wojowników jarlowej było dowodem ich potęgi; dla ocalałych — krzywdą, której nie można było odkupić samymi darami. Aslak Cieśla nie pochodził z tej grupy jeńców: został później zniewolony osobno przez Hakona Czerwonego."
+        "Skjordvik leżało pod ciemnymi zboczami północnego fiordu. Domy stały nisko, w cieniu skał, a łodzie wyciągano wysoko na kamienistą plażę, żeby uchronić je przed sztormem. Mieszkańcy żyli z morza, handlu i pracy własnych rąk. Niewielu mogło przypuszczać, że pewnego dnia ten sam akwen, którym przypływały towary i goście, przyniesie okręty wojenne ludzi Hrafnviku.",
+        "Najeźdźcy przygotowywali się do uderzenia, szukając sposobu, by wykorzystać fiord, nadbrzeżne dojścia i obronę osady. Kiedy rozpoczął się atak, dla mieszkańców Skjordvik nie były to próby, rachunki ani opowieść o mistrzowskim dowodzeniu. Był to hałas zbliżających się wojowników, krzyk przy bramach, pośpieszne chwytanie broni i świadomość, że w domach pozostali ludzie, którzy nie mieli jak się bronić.",
+        "Skjordvik zostało pokonane. Ogień pochłonął zabudowania, a walka zebrała krwawe żniwo. Srebro, towary i ludzi zabrano jako zdobycz. Część ocalałych straciła wolność, część domy i bliskich; nie wszyscy przeżyli dzień, który dla wojowników Sianity miał oznaczać zwycięstwo. Mówiąc potem o bogactwie przywiezionym do Hrafnviku, nie można było zapomnieć, skąd się wzięło.",
+        "Zwycięzcy mieli teraz dowód, że młoda jarlowa potrafi poprowadzić wyprawę i powrócić z łupem. Jej wojownicy zyskali sławę, a osada nowe zasoby i jeńców. Nie przywieźli jednak prostego rozwiązania zagadki śmierci Sigurda. Sprawa człowieka bez rodu wciąż kierowała ich ku dalszym miejscom, a po pokonanych pozostały świadectwa, których nie można było bez końca uciszać.",
+        "Wspominając ten najazd, niektórzy opowiadali o odwadze przy szturmie i zdobytym srebrze. Inni pamiętali płonące domy, odchodzące w niewolę rodziny i głosy, które ucichły. Obie pamięci należały do tej samej historii. Dlatego Skjordvik nie pozostało tylko nazwą zwycięskiego rajdu — stało się raną, którą później pokazano całemu Althingowi.",
+        "Osobny był los Aslaka Cieśli. Nie został przywieziony ze Skjordvik jako jeniec: był wolnym mieszkańcem Hrafnviku, którego po wygnaniu porwał Hakon Czerwony i uczynił trallem. Z biegiem czasu opowieści o dwóch rodzajach zniewolenia zaczęły mieszać się w pamięci osady, lecz kronika musi rozróżniać te wydarzenia."
       ],
       "participants": [
         "sianita",
@@ -1014,10 +1039,13 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Konsekwencje",
       "image": "",
-      "intro": "Zniszczenie Skjordvik stało się ciężarem, który Hrafnvik poniosło aż na Wielki Althing.",
+      "intro": "Zwycięstwo na północnym fiordzie nie zamknęło sprawy zabójstwa Sigurda. W Skjordvik pozostała krzywda, a poza jego wałami — niebezpieczny dalszy trop.",
       "paragraphs": [
-        "Po powrocie z wyprawy osada dysponowała nowym srebrem, zdobyczami i jeńcami. Jednocześnie rosły nieufność i pamięć o spalonych domach. W poszukiwaniu dalszych odpowiedzi wojownicy przebyli także niebezpieczną Kruczą Gardziel — jeden z etapów ich pierwszych wypraw.",
-        "Wieści o najazdzie dotarły do innych władców. To, co w Hrafnviku opowiadano jako zwycięstwo, na Eylendzie miało zostać przedstawione przed sądem jako sprawa krwi, odpowiedzialności i prawa jarlowej."
+        "Do Hrafnviku wracało srebro, zdobyczne przedmioty i ludzie pozbawieni wolności. Przy ogniskach wojowników pojawiły się opowieści o sile drużyny, o szturmie i o tym, jak młoda władza potrafi zdobywać bogactwo. Kupcy oceniali wartość łupu. Rodziny wojowników pytały o poległych. Inni przyglądali się jeńcom, których obecność zmieniała codzienne życie osady.",
+        "Na samym Skjordvik poszukiwanie odpowiedzi nie zakończyło się. Trop człowieka łączonego z morderstwem Sigurda kierował dalej ku stromym klifom i Kruczej Gardzieli. Tam drużyna musiała pozostawić za sobą wygodę wojennego oddziału i przejść niebezpiecznym, wąskim szlakiem nad ciemną wodą. To nie była kolejna wyprawa całej warbandy, ale osobiste ryzyko tych, którzy nie chcieli porzucić śladu.",
+        "Krucza Gardziel miała własne zagrożenia: mokrą skałę, zimną wodę, przejścia oświetlane tylko skąpym światłem oraz ślady ludzi, którzy zniknęli pomiędzy fiordami. Bohaterowie przeszli przez nią, przekonując się, że historia zabójstwa jarla nie kończy się na jednym najeździe. Nie każdy trop dawał odpowiedź. Nie każdą zagadkę można było rozwiązać, grożąc mieczem.",
+        "Po powrocie zaczęły mnożyć się następstwa wyprawy. Jeńcy potrzebowali miejsca w osadzie, łupy zmieniały pozycję ludzi, a krewni zabitych ze Skjordvik mieli własne powody, aby pamiętać, skąd przypłynęły okręty. Na drugim brzegu fiordu pozostały ruiny i mieszkańcy, którzy mogli opowiedzieć światu inną wersję tych samych wydarzeń.",
+        "Gdy Hrafnvik zaczęło myśleć o dalszej polityce, sprawa najazdu nie była już prywatnym rachunkiem między dwiema osadami. Wiadomość o ogniu i pojmanych dotarła do potężniejszych władców. Na Wielkim Althingu Eylendy Sianita miała usłyszeć o swojej wyprawie z ust ludzi, którzy nie zamierzali świętować jej zwycięstwa. Srebro można było przeliczyć. Cenę krzywd znacznie trudniej było zamknąć w liczbach."
       ],
       "participants": [
         "sianita",
@@ -1033,10 +1061,13 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Poselstwo",
       "image": "",
-      "intro": "Alrek Eriksson przysłał Sianicie dary i wojowników, a wraz z nimi oczekiwanie wierności.",
+      "intro": "Zanim bohaterowie dotarli na Wielki Althing, Hordaland przypomniał im, że nawet najhojniejszy dar króla może mieć swoją cenę.",
       "paragraphs": [
-        "Przed podróżą na Eylendę do Hrafnviku dotarł wysłannik Alreka Erikssona, króla Hordalandu. Przywiózł ozdobny naramiennik, trzynastu wojowników oraz pierścienie przysięgi. Dar mógł być znakiem uznania i ochrony, ale zawierał też żądanie politycznego zobowiązania.",
-        "Władza nad niewielką osadą coraz wyraźniej stykała się z ambicjami królów. Jarlowa miała niebawem odpowiedzieć na te oczekiwania osobiście, na zgromadzeniu Północy."
+        "Gdy w Hrafnviku wciąż opowiadano o Skjordvik, do osady przybyło poselstwo Alreka Erikssona, króla Hordalandu. Nie przywiozło zwykłego wezwania, które można zignorować bez utraty twarzy. Wśród darów znajdowała się ozdobna szkatuła, kunsztowny naramiennik dla jarlowej oraz pierścienie przeznaczone dla wojowników. Król wysłał trzynastu ludzi, których przysięgi mogły wzmocnić ochronę niewielkiego Hrafnviku.",
+        "Dar ze strony tak potężnego władcy nie był jedynie gestem przyjaźni. Sianita wciąż nie złożyła Alrekowi formalnej przysięgi wierności. Po zniszczeniu Skjordvik jej pozycja stawała się niepewna, a wieści o Wielkim Althingu na Eylendzie zapowiadały, że sprawa może zostać rozpatrzona wśród królów i jarlów. Dodatkowi wojownicy i królewska protekcja wyglądały na ratunek, ale wymagały zobowiązań, które mogły ograniczyć wolność jarlowej.",
+        "W osadzie od dawna wiedziano, ile znaczy naramiennik i publicznie wypowiedziane słowo. Wojownik związany przysięgą nie służy tylko do stania z włócznią przy bramie: jego honor staje się częścią honoru tych, którym ślubował. Dla mieszkańców Hrafnviku trzynastu przybyszów mogło oznaczać silniejszą warbandę. Dla Hordalandu byli też widomym znakiem wpływu wielkiego królestwa na małą osadę.",
+        "Poselstwo przypomniało bohaterom, że czas samodzielnych decyzji jednej jarlowej powoli dobiega końca. To, czy przyjąć dar i na jakich warunkach, splatało się z przyszłością całego rodu Sigurda. Sianita miała spotkać Alreka osobiście na Eylendzie. Tam naramiennik i wojownicy okazywali się nie początkiem rozmowy, lecz jej pierwszą stawką.",
+        "Wypływając na Althing, bohaterowie zabrali ze sobą pamięć o ogniu Skjordvik i świadomość, że potężni sąsiedzi nie zamierzają przyglądać się ich losom bez własnego interesu. Morze oddzielało Hrafnvik od zgromadzenia; nie oddzielało go już od wielkiej polityki."
       ],
       "participants": [
         "sianita",
@@ -1051,10 +1082,13 @@ window.CHRONICLE = {
       "placeId": "ejkjavik",
       "kind": "Zgromadzenie",
       "image": "",
-      "intro": "Na niezależnej Eylendzie zebrały się głosy królów, jarlów i ich poselstw.",
+      "intro": "Eylenda przyjęła królów Północy jako neutralny gospodarz. Między namiotami, ucztami i zgromadzeniami zaczęły się prawdziwe zmagania o przyszłość Drengrlands.",
       "paragraphs": [
-        "W obozach wokół Althingu spotkali się władcy czterech królestw Drengrlands oraz przedstawiciele niezależnych jarldomów. Uczty i rozmowy dotyczyły ziem za morzem, nowej wojny oraz tego, czy Północ powinna podporządkować się jednemu królowi.",
-        "Bohaterowie Hrafnviku przybyli nie tylko słuchać. Poznawali możnych, zdobywali informacje, zawierali znajomości i zabiegali o względy ludzi, których głosy mogły zaważyć na przyszłości ich osady."
+        "Na Eylendę przybyli możni z wielu krain. Wśród obozów wznosiły się sztandary Agderu, Hordalandu, Fjordane i rozdartego sporami Vestmaru. Obok królewskich drużyn rozstawiali się niezależni jarlowie, handlarze, posłańcy i ludzie posiadający więcej wpływu, niż zdradzały ich skromne szaty. Wyspa nie była ziemią jednego z walczących o koronę władców. Miała zapewnić miejsce, na którym można przemawiać, spierać się i słuchać wyroków.",
+        "Przybycie na Althing nie oznaczało od razu wejścia przed oblicze sądu. Zanim padły wielkie przemówienia, należało poznać rozmówców. Bohaterowie Hrafnviku uczestniczyli w ucztach, wypytywali o stanowiska królestw, szukali ludzi gotowych poprzeć ich osadę i starali się dowiedzieć, które obietnice mają rzeczywistą wartość. Niektóre rozmowy przynosiły znajomości, inne kosztowały srebro, jeszcze inne wymagały zaufania, którego trudno udzielać obcym.",
+        "Ylva nawiązała kontakt z Úlfhéðnar, wilczymi wojownikami związanymi z kultem Odyna. Ich obyczaje były surowe, a pojęcie próby wyrażało się bardziej w bólu i wytrwałości niż w łagodnych słowach. Zaprosili drużynę do wspólnego świętowania. Haroks, którego droga związana była z niedźwiedzią siłą, przeszedł z ich udziałem ciężki rytuał mający rozbudzić jego własną przemianę. Nie był to sąd nad nim ani kara; był to brutalny obrzęd, którego znaczenie rozumiały różnie obie strony.",
+        "Floki, szkutnik i marzyciel, znajdował na Althingu nowy język dla swoich pragnień o statkach zdolnych wypływać dalej niż zwykłe morze. Halward zabiegał o kontakty i polityczne wpływy, Sianita poznawała stanowiska królów, a pozostali bohaterowie odkrywali, jak wiele można zdobyć lub stracić bez wyciągania miecza.",
+        "Na Eylendzie ważyły się trzy sprawy: przyszłość Winlandu, pytanie o jednego Króla Królów i plan wojny przeciw Frankom. Ale dla Hrafnviku istniała jeszcze sprawa czwarta, bardziej osobista. Wśród możnych przebywali ludzie, którzy pamiętali Skjordvik. Zanim bohaterowie opuścili wyspę, mieli usłyszeć, że Północ nie zapomniała o ich pierwszym zwycięstwie."
       ],
       "participants": [
         "sianita",
@@ -1072,10 +1106,14 @@ window.CHRONICLE = {
       "placeId": "ejkjavik",
       "kind": "Dyplomacja",
       "image": "",
-      "intro": "Jarlowa odrzuciła żądania Alreka, a wśród możnych Vestmaru poznała trzy oblicza politycznej rywalizacji.",
+      "intro": "Przy wielkich stołach Eylendy Sianita musiała stawić czoło królom. Najważniejsza z jej odpowiedzi brzmiała: nie.",
       "paragraphs": [
-        "Halfdan Czarny z Agderu rozmawiał z Sianitą o wojnie przeciw Frankom i sprawie Króla Królów. Alrek Eriksson z Hordalandu oczekiwał przysięgi wierności i zaoferował jarlowej małżeństwo ze swoim synem w zamian za bezpieczeństwo jej ludzi. Sianita odmówiła zarówno przysięgi, jak i małżeństwa.",
-        "Na Althingu spotkała również Olafa, Alfhelda i Torstena Gudrodssonów, braci walczących o przyszłość Vestmaru. Olaf domagał się surowej kary dla jarlowej; Alfheld widział dla niej wygnanie, a Torsten dostrzegał możliwość współpracy. Ich odmienne stanowiska ukazały rozdarcie królestwa."
+        "Halfdan Czarny z Agderu należał do tych ludzi, których obecność zmieniała wagę rozmowy. O potędze jego królestwa świadczyli wojownicy i posłańcy, ale równie wiele mówiły ambicje. Halfdan widział przyszłość Drengrlands w wielkiej wojnie przeciw Frankom. Rozmawiając z Sianitą, zabiegał o jej głos w tej sprawie i sondował możliwość zjednoczenia Północy pod jedną koroną. Jarlowa nie obiecała mu jednak poparcia jako Królowi Królów.",
+        "Jeszcze poważniejszy charakter miało spotkanie z Alrekiem Erikssonem z Hordalandu. Władca przypomniał o przysiędze, której Sianita nie złożyła, choć jego poselstwo przybyło do Hrafnviku z naramiennikiem i trzynastoma wojownikami. Alrek mówił o bezpieczeństwie osady, lecz równocześnie dawał do zrozumienia, jak niebezpieczna może być samotna pozycja jarlowej, przeciw której ciążyły oskarżenia o zniszczenie Skjordvik.",
+        "Alrek zaproponował jeszcze jedno rozwiązanie. Sianita mogłaby poślubić jego syna, oddać własny tytuł jarla i związać przyszłość swojej osady z potężniejszym rodem. W zamian miała otrzymać obietnicę bezpieczeństwa dla mieszkańców. Oferta mogła uchodzić za korzystną w oczach doradców, którzy nad wszystko stawiali spokój. Dla Sianity oznaczała rezygnację z samodzielnego władania ziemią odziedziczoną po ojcu.",
+        "Jarlowa odmówiła. Nie złożyła Alrekowi oczekiwanej przysięgi, nie przyjęła również małżeństwa, które wymagało porzucenia jej tytułu. Na tak wielkim zgromadzeniu odmowa nie była sprawą prywatną; rozchodziła się po obozach i przy każdym kolejnym spotkaniu zmieniała sposób, w jaki patrzono na Hrafnvik.",
+        "Na Althingu Sianita poznała także trzech braci z Vestmaru: Olafa, Alfhelda i Torstena Gudrodssonów. Najstarszy Olaf domagał się wobec niej surowego rozliczenia za Skjordvik. Alfheld wolał polityczną karę wygnania. Najmłodszy Torsten patrzył na jarlową życzliwiej i dopuszczał przyszłą współpracę. W ten sposób jedna oskarżona kobieta zobaczyła przed sobą nie tylko trzy odmienne stanowiska, ale też pęknięcie samego Vestmaru — krainy, w której bracia rywalizowali o wpływy.",
+        "Gdy kończyły się te rozmowy, nie podpisano wielkiego pojednania i nie zapewniono Hrafnvikowi spokojnej przyszłości. Sianita zachowała jednak swoją odpowiedź. Wśród królów i następców tronów nie zgodziła się, aby jej życie zostało ułożone wyłącznie przez cudzą wolę."
       ],
       "participants": [
         "sianita",
@@ -1093,10 +1131,13 @@ window.CHRONICLE = {
       "placeId": "ejkjavik",
       "kind": "Wielka polityka",
       "image": "",
-      "intro": "Winland, korona dla wszystkich królów i wojna z Frankami odmieniły rozmowy na Eylendzie.",
+      "intro": "Althing rozstrzygnął sprawy, o których mówiono od wielu sezonów: Winland, jedną koronę Północy i wyprawę przeciw Frankom.",
       "paragraphs": [
-        "W sprawie Winlandu tylko Eylenda i Fjordane zadeklarowały rzeczywiste finansowe wsparcie dalszych przedsięwzięć. Nie ustanowiono Króla Królów. Sianita pozostała neutralna wobec tej korony, lecz poparła wyprawę przeciw Frankom.",
-        "Większość możnych opowiedziała się za wielką wojną, do której miały przygotowywać się ziemie Drengrlands. Za publicznymi wystąpieniami trwały negocjacje i zabiegi o głosy, w których uczestniczył również Halward, brat jarlowej."
+        "Pierwsza debata dotyczyła Winlandu, odległych ziem, o których opowiadali żeglarze, handlarze i ludzie przywożący osobliwe rośliny oraz przedmioty. Nie wszyscy widzieli w tych opowieściach obietnicę bogactwa. Wyprawy przez ocean oznaczały ryzyko, nieznane szlaki i długie lata niepewności. Sianita oraz jej towarzysze poparli dalszą eksplorację i inwestycje. Kiedy jednak przyszło do rzeczywistych zobowiązań, gotowość finansowego wsparcia wyraziły przede wszystkim Eylenda i Fjordane.",
+        "Druga sprawa brzmiała prościej, ale mogła odmienić cały układ Drengrlands: czy należy ustanowić Króla Królów. Halfdan Czarny i inni potężni władcy mieli swoich zwolenników, lecz wiele rodów obawiało się utraty niezależności. Wśród jarlów nie brakowało tych, którzy gotowi byli stanąć ramię w ramię przeciw obcemu wrogowi, ale nie mieli ochoty składać własnych pierścieni u stóp jednego pana. Sianita wstrzymała się od głosu. Nie wybrano wspólnego władcy Północy.",
+        "Najwięcej zgody przyniosła sprawa trzecia — przygotowanie wielkiej wojny przeciw Frankom. Mówiono o bogactwach południa, o ziemiach, o które można walczyć, i o przeciwnikach wyznających nową wiarę. Niektóre głosy wzywały do wyprawy po łup, inne do podboju. Sianita poparła wojnę, podobnie jak większość przedstawicieli królestw. Zgromadzenie zaakceptowało przygotowania do wielkiej wyprawy w kolejnym roku.",
+        "Między oficjalnymi debatami toczyła się jednak druga część Althingu: rozmowy na uboczu, obietnice składane pod namiotami i poselstwa między obozami. Halward, brat jarlowej, wykazywał się szczególną sprawnością w tych zakulisowych działaniach. Bohaterowie uczyli się, że nawet prawdziwy głos oddany publicznie może mieć długą historię spotkań, przysług i kosztownych zabiegów.",
+        "Trzy decyzje nie stworzyły jednej Północy. Pozostawiły niezależne królestwa, kilku ambitnych królów i zapowiedź wojny, na którą nikt nie chciał wysłać statku w pojedynkę. Dla Hrafnviku znaczenie miało to, że jego jarlowa po raz pierwszy uczestniczyła w sprawach znacznie większych od rodzinnej osady. Lecz kiedy głosowania dobiegły końca, sama miała stanąć przed prawem Eylendy — nie jako przywódczyni zwycięskiej wyprawy, ale jako oskarżona."
       ],
       "participants": [
         "sianita",
@@ -1113,10 +1154,14 @@ window.CHRONICLE = {
       "placeId": "ejkjavik",
       "kind": "Proces",
       "image": "",
-      "intro": "Sprawa spalonego Skjordvik powróciła przed obliczem dziewięciu sędziów.",
+      "intro": "Przed dziewięcioma sędziami Eylendy wojna z północnego fiordu przestała być opowieścią o łupie. Stała się sprawą krwi i odpowiedzialności.",
       "paragraphs": [
-        "Olaf Gudrodsson publicznie podniósł sprawę zniszczonej osady. Świadkowie nie rozpoznali napastników, a Mord przyznał się do udziału w wyprawie i działania dla jarlowej. Sianita potwierdziła wydarzenia i przemówiła do zgromadzonych.",
-        "Trzech sędziów opowiedziało się za brakiem sankcji, sześciu za oddaniem sprawy w ręce bogów. Drużyna otrzymała zadanie odzyskania Gungnir, włóczni Odyna, z kurhanu Haralda Hardrady. Taki był wyrok Eylendy."
+        "Na Wielkim Althingu podniesiono sprawę Skjordvik. Oskarżenie wysunął Olaf Gudrodsson z Vestmaru, najstarszy z trzech braci rywalizujących o wpływy w swoim królestwie. Przypomniał o zniszczonej osadzie, ludziach wziętych do niewoli i tych, którzy zginęli podczas najazdu. Dla mieszkańców Hrafnviku było to echo wyprawy, którą wspominali jako zwycięstwo. Dla zgromadzonych sędziów oznaczało konieczność wysłuchania obu stron.",
+        "Przed sądem stanęli świadkowie. Orm, jeden z ocalałych, oraz dziecko ze Skjordvik mówili, że w zamieszaniu nie zdołali rozpoznać napastników. Ich świadectwo nie rozwiązało sporu. Ludzie przyglądali się bohaterom Hrafnviku, a pod ciężarem pytań powróciło to, co wydawało się już zamknięte za bramą spalonej osady.",
+        "Następnie wystąpił Mord, syn Svali, jeden z braci bliźniaków z Hrafnviku. Nie próbował wyrzec się udziału w wydarzeniach ani zasłaniać niewiedzą. Przyznał, że działał podczas wyprawy i że służył jarlowej. Wskazał na poszukiwanie człowieka podejrzewanego o zabójstwo Sigurda oraz konflikt z osadą, która udzieliła mu schronienia. Jego słowa nie zmazały krzywdy. Sprawiły jednak, że trudno było już przedstawiać najazd jako dzieło bezimiennych wojowników.",
+        "Sianita sama przemówiła do zgromadzonych. Potwierdziła wydarzenia i stanęła wobec odpowiedzialności za swoich ludzi. Jej mowa przekonała wielu słuchaczy; to, co dla części możnych było dowodem odwagi i szczerości, dla innych nie wystarczało, by uznać sprawę za zakończoną. Król i jarl mogą cenić honor wojownika, ale sędzia musi jeszcze odpowiedzieć na pytanie, co uczynić ze zniszczoną osadą.",
+        "Dziewięciu sędziów rozdzieliło swoje głosy. Trzech opowiedziało się za pozostawieniem jarlowej bez sankcji. Sześciu uznało, że sprawę należy oddać w ręce bogów. Tak zrodził się wyrok, którego nie można było spłacić srebrem ani zręcznym przemówieniem: bohaterowie mieli udać się do kurhanu Haralda Hardrady i odzyskać Gungnir, włócznię Odyna.",
+        "Dla wojowników Hrafnviku nie oznaczało to zwykłego wyjścia z sądu. Dopiero co przyjechali na Eylendę zabiegać o polityczne bezpieczeństwo. Teraz musieli opuścić zgromadzenie i wyruszyć do miejsca, o którym opowiadano w sagach o umarłych. Słowa dziewięciu ludzi wysłały ich na drogę, która miała kosztować życie wielu towarzyszy."
       ],
       "participants": [
         "sianita",
@@ -1133,10 +1178,13 @@ window.CHRONICLE = {
       "placeId": "eylenda",
       "kind": "Wyprawa",
       "image": "",
-      "intro": "Wyprawa po Gungnir poprowadziła bohaterów przez ziemię, która zdawała się odmawiać im przejścia.",
+      "intro": "Wyrok Althingu nie dał bohaterom wytchnienia. Aby odzyskać włócznię Odyna, musieli ruszyć przez ziemie, których nawet mieszkańcy Eylendy nie odwiedzali bez lęku.",
       "paragraphs": [
-        "Za obozami Althingu czekały Czarne Piaski Zapomnienia, gdzie wiatr zacierał ślady wędrowców. Dalej drużyna dotarła do Rzeki Umarłych Koni i niebezpiecznej przeprawy, podczas której poświęcono cenne runy.",
-        "Każdy etap oddalał wojowników od świata zwykłych osad i świąt. Mimo zmęczenia ruszyli dalej, ku górze i kurhanom, w których miał spoczywać Harald Hardrada."
+        "Za obozami zgromadzenia pozostały ogniska, śpiewy i namioty możnych, którzy mogli jeszcze spierzać się przy miodzie o przyszłość Północy. Sianita i jej towarzysze opuścili te miejsca jako ludzie obarczeni wyrokiem. Wyruszali po artefakt, o którym znano pieśni, ale którego zdobycie nie przypominało zwykłej wyprawy po srebro. Pod ich stopami miała znaleźć się ziemia wulkanów, duchów i mogił tak starych, że nawet skaldowie nie potrafili podać ich wieku.",
+        "Jednym z pierwszych miejsc były Czarne Piaski Zapomnienia. Rozciągały się tam ciemne pustkowia, po których wiatr przesuwał suche ziarna popiołu i piasku, zacierając ślady niemal natychmiast po przejściu ludzi. Widoczny przed chwilą szlak znikał. To, co pozostawiali za sobą, przestawało wyglądać jak droga, którą można po prostu odtworzyć. Podróżnicy musieli polegać na sobie nawzajem i na znakach, które potrafili jeszcze rozpoznać.",
+        "Dalej czekała Rzeka Umarłych Koni. Jej zimna, spieniona woda przetaczała się między kamieniami, a kaskady odcinały łatwy marsz naprzód. Przeprawa wymagała nie tylko odwagi. W pewnym momencie droga zażądała zapłaty — bohaterowie oddali cenne runy, przedmioty niosące dla nich znaczenie i własną historię. Tak zrozumieli, że nawet pozornie pusta ziemia może stawiać warunki tym, którzy przez nią przechodzą.",
+        "Nie był to jeszcze kurhan Haralda. Z każdym etapem rosło zmęczenie, a wraz z nim świadomość, jak daleko odeszli od bezpiecznego Hrafnviku. Nie mogli po prostu zawrócić i uznać sprawy za zamkniętą: dziewięciu sędziów wysłało ich po dowód, który miał rozstrzygnąć o losie jarlowej. Nie mogli też wiedzieć, ilu z nich będzie stało przed sędziami podczas powrotu.",
+        "Zapamiętano te pustkowia nie jako pojedynczą walkę, ale jako początek wielkiej próby. Każda mila uczyła wojowników, że w miejscach granicznych człowiek nie zawsze wygrywa siłą. Czasami przechodzi dalej dlatego, że potrafi wytrzymać, zrezygnować z czegoś własnego albo zrozumieć ostrzeżenie, zanim będzie za późno."
       ],
       "participants": [
         "sianita",
@@ -1154,10 +1202,13 @@ window.CHRONICLE = {
       "placeId": "eylenda",
       "kind": "Próby Eylendy",
       "image": "",
-      "intro": "Popiół, rozpalona ziemia i spotkania z istotami dawnych opowieści naznaczyły drogę ku kurhanom.",
+      "intro": "Eylenda ukazała bohaterom ziemię, w której ogień wychodzi spod kamieni, a opowieści o olbrzymach przestają być tylko opowieściami.",
       "paragraphs": [
-        "Wędrowcy przekraczali wulkaniczne pustkowia, w których płynny ogień wydobywał się spod pękającej skały. W dolinie olbrzymów napotkali trolla więzionego w wielkiej klatce. Nie uwolnili go i pozostawili jego wołanie za sobą.",
-        "Ziemia Eylendy wydawała się coraz mniej gościnna. Każdy kolejny krok wymagał odwagi, ale też wyboru, komu pomagać, a kiedy ocalić przede wszystkim własnych towarzyszy."
+        "Im głębiej wyprawa zapuszczała się na wyspę, tym bardziej zmieniał się krajobraz. Zielone doliny i ścieżki znane ludziom ustępowały popękanym skałom, szerokim pasmom popiołu i ziemi, spod której wydobywało się ciepło. W oddali drżało powietrze nad płynnym ogniem, a wiatr niósł zapach siarki. Bohaterowie oglądali miejsca, gdzie granica między Midgardem i ognistymi opowieściami o Muspelheimie zdawała się niemal zanikać.",
+        "Była to droga, na której nikt nie potrzebował przeciwnika z mieczem, aby poczuć strach. Skała potrafiła osunąć się pod nogami, powietrze paliło w płucach, a widok czerwonego blasku za czarnym wzgórzem nie pozwalał zapomnieć, że sama wyspa może się obudzić. Wyprawa po przedmiot należący do dawnych bogów prowadziła przez miejsca, które wyglądały, jakby bogowie wciąż o coś walczyli.",
+        "W dolinie olbrzymów bohaterowie napotkali trolla zamkniętego w żelaznej klatce. Więzień prosił o uwolnienie. Nie był człowiekiem z Hrafnviku ani towarzyszem, któremu kiedyś składano przysięgę; był jednym z mieszkańców świata, w którym drużyna pozostawała gościem. Uwolnienie go mogło być aktem litości, ale mogło również sprowadzić niebezpieczeństwo, którego nie umieli przewidzieć.",
+        "Bohaterowie zdecydowali, że nie otworzą klatki. Zostawili trolla na łaskę olbrzymów, a jego wołanie pozostało w dolinie, kiedy ruszyli dalej. Dla jednych był to rozsądny wybór w wyprawie, której cel wciąż pozostawał daleko. Dla innych mógł być przypomnieniem, że nawet bohaterowie sag nie mają mocy ocalenia każdego napotkanego stworzenia.",
+        "Ziemia ognia pozostawiła po sobie widoki, których nie można było łatwo pomylić z żadnym fiordem Północy. Coraz wyraźniej stawało się też, że dawni mieszkańcy i bogowie nie opuścili całkowicie swoich ścieżek. Za kolejnym wzgórzem bohaterowie mieli zobaczyć coś jeszcze bardziej niepokojącego niż lawa: dom, w którym czas zatrzymał się wraz ze śmiercią jego gospodarzy."
       ],
       "participants": [
         "haroks",
@@ -1173,10 +1224,13 @@ window.CHRONICLE = {
       "placeId": "eylenda",
       "kind": "Spotkanie z duchami",
       "image": "",
-      "intro": "Na odludziu bohaterowie spotkali gospodarzy, których pamięć zatrzymała się po śmierci.",
+      "intro": "W opuszczonym gospodarstwie drużyna spotkała ludzi, którzy żyli tak, jakby nie wiedzieli, że dawno już umarli.",
       "paragraphs": [
-        "W opuszczonym gospodarstwie przebywały dusze ludzi nieświadomych własnego losu. Dawne krzywdy i zapomniane mogiły wiązały ich z miejscem, do którego nie należeli już jako żywi.",
-        "Drużyna pomogła im poznać prawdę i odejść ku Helheimowi. Była to jedna z prób, w których współczucie i cierpliwość okazały się cenniejsze od miecza."
+        "Pośród pustkowia znajdowało się gospodarstwo. Dom i zabudowania przypominały świat dobrze znany z Hrafnviku: miejsce, w którym pracuje się od świtu, przygotowuje jedzenie, troszczy o obejście i czeka na powrót bliskich. Tym bardziej osobliwa była cisza, która otaczała to miejsce. Nie przypominało ono bogatej hali jarla ani zasypanej śniegiem świątyni. Wyglądało raczej jak coś, co świat zdążył zostawić za sobą.",
+        "Mieszkali tam ludzie — a przynajmniej tak przedstawiała się sprawa na początku. Rozmawiali i zachowywali się, jakby zwyczajny czas nadal płynął dla nich z dnia na dzień. Prawda okazała się znacznie trudniejsza. Gospodarze byli duchami, które nie przyjęły do wiadomości własnej śmierci. Pozostali związani z miejscem i wspomnieniami, których nie potrafili opuścić.",
+        "Wojownicy przybyli na Eylendę po włócznię i przez większą część wyprawy musieli troszczyć się przede wszystkim o przetrwanie. Tutaj stali wobec zadania, którego nie można było wykonać, rozbijając przeciwnikowi tarczę. Zanim dusze mogły odejść, trzeba było pomóc im dostrzec prawdę — nie upokorzyć ich, lecz znaleźć sposób, aby zrozumiały, że ich życie naprawdę dobiegło końca.",
+        "Drużyna pomogła mieszkańcom gospodarstwa pożegnać się ze światem żywych. Duchy odnalazły drogę ku Helheimowi, miejscu przeznaczonemu dla wielu zmarłych, których los nie prowadził na wielkie uczty wojowników. Nie było tutaj ani zdobycznego srebra, ani nowego króla, którego można wesprzeć przysięgą. Pozostała tylko pamięć o ludziach, którzy wreszcie mogli odejść.",
+        "Wyprawa po Gungnir była pełna prób odwagi, lecz to spotkanie stało się dowodem czegoś innego. Bohaterowie, którzy potrafili spalić wrogą osadę i stanąć przed sądem Althingu, potrafili również pomóc nieznajomym umarłym. W sagach najczęściej zapamiętuje się zadany cios. Ci, którzy przebyli to gospodarstwo, mieli powód pamiętać także rozmowę i okazane współczucie."
       ],
       "participants": [
         "sianita",
@@ -1192,10 +1246,14 @@ window.CHRONICLE = {
       "placeId": "hardrada-mound",
       "kind": "Heroiczny czyn",
       "image": "",
-      "intro": "Bohaterowie zdobyli włócznię Odyna, lecz wyprawa zabrała wielu spośród ich towarzyszy.",
+      "intro": "W kurhanie Haralda Hardrady bohaterowie zdobyli Gungnir, lecz za włócznię Odyna zapłacili życiem Flokiego, Morda i dziesięciu braci krwi.",
       "paragraphs": [
-        "Pośród mogił i draugrów drużyna dotarła do kurhanu Haralda Hardrady. W ostatnim starciu odzyskała Gungnir, legendarną włócznię Odyna. Zdobycz była dowodem, że wyrok Althingu został wypełniony.",
-        "Za zwycięstwo zapłacono krwią. Polegli Floki, szkutnik i wizjoner, oraz Mord, syn Svali. W czasie wyprawy zginęło też dziesięciu wojowników związanych z drużyną przysięgą krwi — dziesięciu braci krwi, których imiona zasługiwały na pamięć równie mocno jak imiona wielkich bohaterów."
+        "W końcu stanęli przed ziemią przeznaczoną umarłym wojownikom. Kurhan Haralda Hardrady nie wyglądał jak miejsce, do którego można wejść z pochodnią i bezkarnie wynieść królewski dar. Wokół wznosiły się stare mogiły, a przejścia strzegły draugry — ci, którzy po śmierci nie zaprzestali pilnowania własnych grobów. Bohaterowie wiedzieli, że to tutaj kończy się próba nałożona przez Althing. Nie wiedzieli jeszcze, ile zabierze im ostatni odcinek drogi.",
+        "Szli wśród kamienia, ciemności i pozostałości dawnej chwały. Nie każde zagrożenie miało kształt żywego wroga, a nie każdy przeciwnik reagował na strach tak, jak człowiek. Wojownicy przybyli z daleka, by udowodnić przed sędziami, że nie są tylko najeźdźcami ze Skjordvik. Teraz musieli stanąć przeciw tym, o których dotąd słuchali w pieśniach.",
+        "Ostateczną próbą było starcie z Haraldem Hardradą, dawnym królem, którego imię wciąż znali skaldowie. Nie walczono już o łup z cudzej przystani. Stawką był Gungnir, włócznia Odyna, i możliwość powrotu z dowodem, którego oczekiwali sędziowie. Bohaterowie stanęli wobec śmierci i nie cofnęli się. W końcu oręż trafił w ich ręce.",
+        "Zwycięstwo nie przyszło za darmo. Poległ Floki, szkutnik i marzyciel, który widział przed sobą podróże dalsze niż wszystkie znane szlaki. Zginął także Mord, jeden z synów Svali, człowiek, którego ród jeszcze niedawno domagał się sprawiedliwości za śmierć ojca. Wyprawa odebrała również życie dziesięciu wojownikom związanym z drużyną przysięgą krwi — dziesięciu braciom krwi, którzy nie wrócili pod własne dachy.",
+        "Ich śmierć nie była liczbą na rachunku wojennej drużyny. Każdy z nich pozostawił ludzi, którzy mogli czekać na jego statek, broń, naramiennik albo wieść o ostatniej walce. Dla Sianity i pozostałych bohaterów Gungnir był teraz jednocześnie triumfem i ciężarem. Nikt nie mógł już opowiedzieć o kurhanie jedynie jako o chwili zdobycia boskiego oręża.",
+        "Harald Hardrada wreszcie odnalazł spoczynek, a jego saga została domknięta czynem żywych. Dla przybyłych z Hrafnviku oznaczało to jednak początek nowej żałoby. Włócznię można było ponieść wysoko, aby pokazać zgromadzonym jej blask. Poległych trzeba było ponieść do domu, gdzie na ich miejsce nikt nie mógł już powrócić."
       ],
       "participants": [
         "sianita",
@@ -1213,10 +1271,15 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Powrót",
       "image": "",
-      "intro": "Zwycięzcy wrócili z włócznią Odyna, ale nie ze wszystkimi, którzy wyruszyli z nimi.",
+      "intro": "Gungnir wrócił z bohaterami na Eylendę, a potem do Hrafnviku. W rodzinnej osadzie zamiast samych pieśni zwycięstwa rozległy się również pieśni żałobne.",
       "paragraphs": [
-        "Drużyna przyniosła Gungnir na Althing. Sędziowie nie ustalili, komu ma przypaść włócznia, więc pozostała przy bohaterach. Wkrótce ziemią Eylendy wstrząsnęły erupcje wulkanów. Po dalszej żegludze ludzie Hrafnviku ujrzeli znów własne brzegi.",
-        "Morda pochowała rodzina. Ciało Flokiego spoczęło w kadłubie jego niedokończonego statku, przeniesionego do świętego lasu Odyna. Miejscowy kowal wyrzeźbił kamień runiczny upamiętniający jego ostatnią walkę. Pamiętano także o dziesięciu poległych braciach krwi: zwycięstwo było wielkie, lecz strata nieodwracalna."
+        "Powrót z kurhanu okazał się dziwnie inny niż droga, którą przyszło im pokonać. To, co wcześniej wymagało długiej wędrówki i wielu prób, teraz zdawało się mijać w nienaturalnym pośpiechu. Ylva odnalazła osobliwe przejścia, a poszczególni wędrowcy zachowali niejednakowe wspomnienia drogi. Wiedzieli jednak, że ponownie widzą ogniska Althingu — i że przywieźli Gungnir, włócznię, po którą zostali wysłani.",
+        "Na Eylendzie zebrali się ludzie, którzy chcieli zobaczyć oręż Odyna i wysłuchać opowieści o Haraldzie Hardradzie. Dziewięciu sędziów nie zdołało jednak porozumieć się, czy włócznia ma zostać zatrzymana na wyspie, czy należeć do tych, którzy ją odzyskali. Nie ustanowiono nowego właściciela. Gungnir pozostał przy drużynie, a rozmowy o wojnie i królestwach wciąż dzieliły możnych. Na wyspie doszło również do zaręczyn Sianity i Asgrima, syna Halfdana Czarnego z Agderu.",
+        "Wśród powracających krążyła też wiadomość nie mniej niepokojąca niż opowieść o umarłym królu. Idar, wysłannik Alreka Erikssona, przekazał bohaterom wieść, że król Hordalandu wypuścił na wolność człowieka odpowiedzialnego za zabójstwo Sigurda. Poznali jego imię: Vestar Bez Rodu. Miał udać się na Ruś, lecz jego dokładna kryjówka pozostawała nieznana. Nawet z Gungnirem w ręku nie zamknęli więc historii śmierci swojego jarla.",
+        "Tej samej nocy Eylendą wstrząsnęła ziemia. Z głębi gór dochodził pomruk, a nad ciemnymi szczytami pojawił się czerwony blask. Budziły się wulkany. Popiół unosił się ku niebu, konie płoszyły się przy obozach, a część mieszkańców zaczęła przygotowywać się do opuszczenia wyspy. Dla bohaterów był to koniec pobytu na Eylendzie, lecz nie koniec wspomnień, które mieli stamtąd zabrać.",
+        "Ciała Flokiego i Morda przewieziono przez morze w beczkach z solanką, aby nie zostawić ich na obcej ziemi. Po dwóch tygodniach żeglugi okręty znów ujrzały brzegi Hrafnviku. Rodzina Morda mogła odprowadzić go na spoczynek. Floki, budowniczy okrętów, otrzymał szczególny grób: jego niedokończony statek przeniesiono do świętego lasu Odyna, a w kadłubie złożono jego ciało. Miejscowy kowal wyrył na kamieniu runicznym scenę ostatniej walki z Haraldem Hardradą.",
+        "Harrox żegnał brata, mówiąc o jego odwadze i miejscu przy ucztach Valhalli. Wśród żałobników był również chrześcijański kapłan, który przypomniał o Chrystusie i zwycięstwie nad śmiercią. Stara i nowa wiara znalazły się obok siebie tak jak podczas pierwszego Thingu — tym razem przed grobem człowieka, którego nie potrafiła przywrócić żadna z nich. Pamiętano także o dziesięciu braciach krwi, którzy zginęli podczas wyprawy i których nie było już przy powitalnych ogniskach.",
+        "Zakończyła się wielka podróż po Gungnir, ale nie skończyła saga Hrafnviku. W osadzie pozostali żywi, którzy musieli prowadzić handel, bronić ziemi i mierzyć się z dawnymi przysięgami. Zmarli zostawili po sobie puste miejsca. Na brzegu wciąż czekały okręty, w wielkiej sali wisiały tarcze, a w świętym lesie stał niedokończony statek — odtąd już nie obietnica przyszłej wyprawy, lecz pomnik człowieka, który nigdy jej nie odbędzie."
       ],
       "participants": [
         "sianita",
