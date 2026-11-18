@@ -133,6 +133,22 @@
     const layer = $("#maps-marker-layer");
     layer.replaceChildren();
     config.regions.forEach(item => addMarker(layer, item, current));
+    // Dokładne pinezki tylko dla lokacji, których położenie Skald zatwierdził.
+    knownPlaces().forEach(site => {
+      const pin = site.mapPosition;
+      if (!pin || pin.confirmed !== true || pin.mapId !== current) return;
+      if (!Number.isFinite(pin.x) || !Number.isFinite(pin.y) ||
+          pin.x < 5 || pin.x > 95 || pin.y < 5 || pin.y > 95) return;
+      const button = element("button", "maps-marker maps-marker--place", site.name);
+      button.type = "button";
+      button.style.left = pin.x + "%";
+      button.style.top = pin.y + "%";
+      button.title = site.name;
+      button.setAttribute("aria-label", "Otwórz kartę lokacji: " + site.name);
+      button.addEventListener("pointerdown", event => event.stopPropagation());
+      button.addEventListener("click", () => callbacks.openPlace?.(site.id));
+      layer.appendChild(button);
+    });
     resetTransform();
     renderPlaceLinks();
   }
