@@ -32,7 +32,7 @@ window.CHRONICLE = {
     },
     {
       "id": "hroald",
-      "name": "Hroald — oślepiony jarl",
+      "name": "Hroald",
       "kind": "Postać",
       "grouping": {
         "role": "npc",
@@ -167,7 +167,7 @@ window.CHRONICLE = {
     },
     {
       "id": "mord",
-      "name": "Mord — syn Svali",
+      "name": "Mord",
       "kind": "Postać",
       "grouping": {
         "role": "npc",
@@ -186,7 +186,7 @@ window.CHRONICLE = {
     },
     {
       "id": "ulf",
-      "name": "Ulf — syn Svali",
+      "name": "Ulf",
       "kind": "Postać",
       "grouping": {
         "role": "npc",
