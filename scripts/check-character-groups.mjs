@@ -152,7 +152,7 @@ for(const id of ["character-group-tabs","character-group-dimensions","character-
  "character-group-reset","character-group-empty","character-group-summary"])
   assert.ok(html.includes('id="'+id+'"'),"Missing grouping UI "+id);
 assert.ok(html.includes('src="character-groups.js?v='));
-assert.ok(html.includes('data.js?v=canon-v1'),"Bust public data cache after canonical update");
+assert.ok(html.includes('data.js?v=canon-v2'),"Bust public data cache after canonical update");
 assert.ok(css.includes(".person-card[hidden]"));
 assert.ok(app.includes("groupFilter.primary")&&app.includes("state.visibleIds.has(rel.from)"));
 assert.ok(app.includes('card.classList.toggle("is-deceased"')&&
@@ -163,4 +163,9 @@ assert.ok(css.includes("filter:grayscale(1)"));
 assert.ok(app.includes('card.setPointerCapture(e.pointerId)')&&app.includes("drawConnections();"),
   "Existing drag controls must survive expansion");
 assert.ok(app.includes('window.SOM_NAV?.changed()'),"History navigation preserved");
+// Biografie w publicznej kronice nie powinny zawierać roboczych uwag dla MG.
+for(const person of people){
+  assert.ok(!/Dawniej używał imienia Styr|znany również jako Stern|nie bohaterem gracza|Nie jest to Ulf Szary|jeden z bohaterów graczy/i.test(person.description),
+    "Editorial alias/GM note in public character biography: "+person.id);
+}
 console.log("PASS — 25 canonical biographies, 17 public relationships, dead NPC and Atlas links");
