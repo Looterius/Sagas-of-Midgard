@@ -23,7 +23,7 @@ assert.equal(value("npc",null,null).length,26,"26 known NPC");
 equals(value("deceased",null,null),["sigurd","mord","floki"],"Only confirmed deaths");
 equals(value("rulers",null,null),["hroald","sigurd","sianita","alrek","halfdan","audbjorn","olaf-gudrodsson","alfheld-gudrodsson","torsten-gudrodsson"],"Confirmed jarls and claimants");
 equals(value("captives",null,null),["aslak","ragnvald-s"],"Both known prisoners");
-equals(value("all","settlements","skjorvik"),["aslak","haki","ragnvald-s","orm"],"Skjǫrvik persons");
+equals(value("all","settlements","skjorvik"),["haki","ragnvald-s","orm"],"Skjordvik persons");
 assert.equal(value("all","settlements","hrafnvik").length,24,"Hrafnvik plus captive Ragnvald");
 equals(value("deceased","settlements","hrafnvik"),["sigurd","floki","mord"],"Dead Hrafnvik persons");
 equals(value("heroes","settlements","hrafnvik"),["sianita","halvard","haroks","ylva","floki","asgrim"],"Hero settlement");
