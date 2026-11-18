@@ -1,0 +1,81 @@
+name: Temporary Vestmar mobile browser QA
+on:
+  push:
+    branches: [feat/vestmar-brothers-mord-orm-20261119]
+permissions:
+  contents: read
+jobs:
+  mobile-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Chromium driver
+        run: npm install --no-save --no-package-lock playwright-core@1.57.0
+      - name: Verify relationships, death marker, portrait and destroyed village links
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/som-vestmar-site.log 2>&1 &
+          sleep 1
+          node <<'JS'
+          const {chromium}=require("playwright-core"),assert=require("node:assert/strict");
+          (async()=>{
+            const browser=await chromium.launch({executablePath:"/usr/bin/google-chrome",
+              args:["--no-sandbox","--disable-dev-shm-usage"]});
+            const ctx=await browser.newContext({viewport:{width:360,height:780},isMobile:true,hasTouch:true,deviceScaleFactor:2});
+            const page=await ctx.newPage();page.setDefaultTimeout(12000);
+            const errors=[],badImages=[];
+            page.on("pageerror",e=>errors.push(e.message));
+            page.on("response",r=>{if(r.url().includes("/assets/portraits/")&&r.status()>=400)badImages.push([r.url(),r.status()])});
+            await page.goto("http://127.0.0.1:8765/",{waitUntil:"load"});
+            assert.equal(await page.locator(".person-card").count(),32);
+            assert.equal(await page.locator("#links-count").innerText(),"21");
+            assert.equal(await page.locator(".person-card.is-deceased").count(),3);
+            for(const name of ["olaf-gudrodsson","alfheld-gudrodsson","torsten-gudrodsson"]){
+              assert.equal(await page.locator('.person-card[data-id="'+name+'"]').count(),1);
+            }
+            console.log("PASS mobile: 32 cards, 21 relationships, 3 deceased");
+            await page.locator('[data-character-dimension="families"]').click();
+            await page.locator("#character-group-options button").filter({hasText:"Ród Gudrodssonów"}).click();
+            assert.equal(await page.locator(".person-card:visible").count(),3);
+            console.log("PASS family filter selects only three Gudrodsson brothers");
+            await page.locator('.person-card[data-id="olaf-gudrodsson"]').evaluate(el=>el.click());
+            assert.equal(await page.locator("#inspector-name").innerText(),"Olaf Gudrodsson");
+            const pic=await page.locator("#inspector-art img").getAttribute("src");
+            assert.ok(pic.includes("optimized/olaf-gudrodsson-full.webp"),"Olaf full image is not optimized");
+            await page.locator("#inspector-relations .relation-link").filter({hasText:"Torsten"}).click();
+            assert.equal(await page.locator("#inspector-name").innerText(),"Torsten Gudrodsson");
+            await page.evaluate(()=>history.back());
+            await page.waitForFunction(()=>history.state?.somNavigation?.route?.person==="olaf-gudrodsson");
+            assert.equal(await page.locator("#inspector-name").innerText(),"Olaf Gudrodsson");
+            console.log("PASS family link Olaf -> Torsten -> browser Back -> Olaf");
+            await page.locator("#close-inspector").click();
+            await page.waitForFunction(()=>history.state?.somNavigation?.route?.person===null);
+            await page.locator('[data-character-primary="all"]').click();
+            await page.locator("#character-group-reset").evaluate(el=>el.click());
+            await page.locator('.person-card[data-id="mord"]').evaluate(el=>el.click());
+            assert.equal(await page.locator("#inspector-name").innerText(),"Mord");
+            assert.ok(await page.locator("#inspector").evaluate(el=>el.classList.contains("is-deceased")));
+            const mordPhoto=await page.locator("#inspector-art img").getAttribute("src");
+            assert.ok(mordPhoto.includes("optimized/mord-full.webp"),"Missing Mord portrait");
+            await page.locator("#inspector-art img").evaluate(el=>el.decode());
+            console.log("PASS Mord image exists, full WebP loads, deceased marker active");
+            await page.locator("#close-inspector").click();
+            await page.waitForFunction(()=>history.state?.somNavigation?.route?.person===null);
+            await page.evaluate(()=>window.SOM_ATLAS.open("skjorvik"));
+            await page.locator("#atlas2-dialog-people-toggle").click();
+            const orm=page.locator("#atlas2-dialog-people .atlas2-npc-card").filter({hasText:"Orm Półgłos"});
+            assert.equal(await orm.count(),1,"Orm must appear in destroyed settlement");
+            await orm.click();
+            assert.equal(await page.locator("#inspector-name").innerText(),"Orm Półgłos");
+            const bio=await page.locator("#inspector-description").innerText();
+            assert.ok(bio.includes("Skjǫrviku"));
+            console.log("PASS Orm Półgłos in Atlas Skjǫrvik and clickable bio");
+            assert.deepEqual(errors,[],"Runtime exceptions");
+            assert.deepEqual(badImages,[],"Missing portrait requests");
+            console.log("PASS browser: 0 JavaScript errors and 0 missing photos");
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
