@@ -928,10 +928,13 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Początek wyprawy",
       "image": "",
-      "intro": "Pogłoski o zabójcy Sigurda skierowały spojrzenia wojowników ku Skjordvik.",
+      "intro": "Wieść o człowieku podejrzewanym o zabójstwo Sigurda dotarła do Hrafnviku z północnego fiordu. Ślad prowadził do Skjordvik.",
       "paragraphs": [
-        "Do Hrafnviku dotarły wiadomości o człowieku łączonym ze śmiercią Sigurda, który miał znaleźć schronienie w osadzie Skjordvik na północnym fiordzie. Tamtejsi mieszkańcy byli Drengrami, tak samo jak ludzie Sianity, lecz dawne spory o łowiska i zobowiązania nigdy całkiem nie wygasły.",
-        "Drużyna zebrała ludzi i wyruszyła morzem. Poszukiwanie sprawiedliwości zaczęło splatać się z polityką osad, ich bogactwem i gotowością wojowników do przemocy."
+        "Po pierwszych wyrokach Thingu Hrafnvik nie zdążył jeszcze odzyskać spokoju, gdy przybyły wiadomości z północy. Ktoś widział człowieka łączonego z morderstwem Sigurda — człowieka, którego poszukiwano od czasu zniknięcia Oka Kruka. Miał znaleźć schronienie w Skjordvik, osadzie leżącej kilka dni żeglugi od Hrafnviku, gdzie kamienisty brzeg i wąski fiord osłaniały domy przed otwartym morzem.",
+        "Nie była to ziemia całkowicie obca. Mieszkańcy Skjordvik mówili podobną mową, znali te same pieśni i oddawali cześć tym samym bogom. Od pokoleń ich fiordy łączyły szlaki handlowe, a rozdzielały spory o ryby, granice łowisk, małe wyspy i pamięć dawnych zobowiązań. W jednej osadzie mówiono o uczciwym schronieniu dla przybysza; w drugiej o człowieku, którego należało wydać, zanim uciekł ponownie.",
+        "Dla Sianity wieść miała znaczenie inne niż dla tych, którzy liczyli tylko zdobyczne srebro. Sigurd był jej ojcem. Jego śmierć pchnęła ją ku władzy, o którą nie zabiegała w spokojnych czasach. Każdy kolejny ślad obiecywał możliwość poznania prawdy, ale też groził następną waśnią. Halward i pozostali bohaterowie stali przed wyborem, czy po odpowiedź wyruszyć z poselstwem, garścią towarzyszy, czy całą wojenną drużyną.",
+        "Zebrano ludzi i okręty. Miecze ostrzono nie tylko z pragnienia łupu; wielu wojowników wierzyło, że wyprawa przywróci honor zabitemu jarlowi i pokaże sąsiadom siłę jego następczyni. Inni myśleli o złocie i jeńcach. Na morzu obie motywacje często płyną na jednym statku. Gdy brzeg Hrafnviku zniknął za rufami, nikt nie potrafił jeszcze powiedzieć, która z nich okaże się ważniejsza.",
+        "Tak rozpoczęła się wyprawa, która miała przynieść bogactwo jednej osadzie i ruinę drugiej. Zabójcy Sigurda nie przyprowadzono wtedy w kajdanach. Za to płomień najazdu rozpalił nowy konflikt, który później powrócił aż przed sąd królów i jarlów na Eylendzie."
       ],
       "participants": [
         "sianita",
@@ -947,10 +950,14 @@ window.CHRONICLE = {
       "placeId": "skjorvik",
       "kind": "Najazd",
       "image": "",
-      "intro": "Skjordvik padło pod naporem wojowników Hrafnviku. Łupy i zwycięstwo nie wymazały cierpienia pokonanych.",
+      "intro": "Wojownicy Hrafnviku zdobyli Skjordvik. Z fiordu zabrali srebro i jeńców; po sobie zostawili zniszczenie, którego pamięć miała przetrwać zwycięskie pieśni.",
       "paragraphs": [
-        "Najeźdźcy zdobyli osadę, a po walkach pozostały zniszczone domostwa, dym i pamięć o ludziach, którzy nie przeżyli. Część mieszkańców pojmano, a srebro i towary zabrano do Hrafnviku.",
-        "To zwycięstwo zmieniło losy obu osad. Dla wojowników jarlowej było dowodem ich potęgi; dla ocalałych — krzywdą, której nie można było odkupić samymi darami. Aslak Cieśla nie pochodził z tej grupy jeńców: został później zniewolony osobno przez Hakona Czerwonego."
+        "Skjordvik leżało pod ciemnymi zboczami północnego fiordu. Domy stały nisko, w cieniu skał, a łodzie wyciągano wysoko na kamienistą plażę, żeby uchronić je przed sztormem. Mieszkańcy żyli z morza, handlu i pracy własnych rąk. Niewielu mogło przypuszczać, że pewnego dnia ten sam akwen, którym przypływały towary i goście, przyniesie okręty wojenne ludzi Hrafnviku.",
+        "Najeźdźcy przygotowywali się do uderzenia, szukając sposobu, by wykorzystać fiord, nadbrzeżne dojścia i obronę osady. Kiedy rozpoczął się atak, dla mieszkańców Skjordvik nie były to próby, rachunki ani opowieść o mistrzowskim dowodzeniu. Był to hałas zbliżających się wojowników, krzyk przy bramach, pośpieszne chwytanie broni i świadomość, że w domach pozostali ludzie, którzy nie mieli jak się bronić.",
+        "Skjordvik zostało pokonane. Ogień pochłonął zabudowania, a walka zebrała krwawe żniwo. Srebro, towary i ludzi zabrano jako zdobycz. Część ocalałych straciła wolność, część domy i bliskich; nie wszyscy przeżyli dzień, który dla wojowników Sianity miał oznaczać zwycięstwo. Mówiąc potem o bogactwie przywiezionym do Hrafnviku, nie można było zapomnieć, skąd się wzięło.",
+        "Zwycięzcy mieli teraz dowód, że młoda jarlowa potrafi poprowadzić wyprawę i powrócić z łupem. Jej wojownicy zyskali sławę, a osada nowe zasoby i jeńców. Nie przywieźli jednak prostego rozwiązania zagadki śmierci Sigurda. Sprawa człowieka bez rodu wciąż kierowała ich ku dalszym miejscom, a po pokonanych pozostały świadectwa, których nie można było bez końca uciszać.",
+        "Wspominając ten najazd, niektórzy opowiadali o odwadze przy szturmie i zdobytym srebrze. Inni pamiętali płonące domy, odchodzące w niewolę rodziny i głosy, które ucichły. Obie pamięci należały do tej samej historii. Dlatego Skjordvik nie pozostało tylko nazwą zwycięskiego rajdu — stało się raną, którą później pokazano całemu Althingowi.",
+        "Osobny był los Aslaka Cieśli. Nie został przywieziony ze Skjordvik jako jeniec: był wolnym mieszkańcem Hrafnviku, którego po wygnaniu porwał Hakon Czerwony i uczynił trallem. Z biegiem czasu opowieści o dwóch rodzajach zniewolenia zaczęły mieszać się w pamięci osady, lecz kronika musi rozróżniać te wydarzenia."
       ],
       "participants": [
         "sianita",
@@ -967,10 +974,13 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Konsekwencje",
       "image": "",
-      "intro": "Zniszczenie Skjordvik stało się ciężarem, który Hrafnvik poniosło aż na Wielki Althing.",
+      "intro": "Zwycięstwo na północnym fiordzie nie zamknęło sprawy zabójstwa Sigurda. W Skjordvik pozostała krzywda, a poza jego wałami — niebezpieczny dalszy trop.",
       "paragraphs": [
-        "Po powrocie z wyprawy osada dysponowała nowym srebrem, zdobyczami i jeńcami. Jednocześnie rosły nieufność i pamięć o spalonych domach. W poszukiwaniu dalszych odpowiedzi wojownicy przebyli także niebezpieczną Kruczą Gardziel — jeden z etapów ich pierwszych wypraw.",
-        "Wieści o najazdzie dotarły do innych władców. To, co w Hrafnviku opowiadano jako zwycięstwo, na Eylendzie miało zostać przedstawione przed sądem jako sprawa krwi, odpowiedzialności i prawa jarlowej."
+        "Do Hrafnviku wracało srebro, zdobyczne przedmioty i ludzie pozbawieni wolności. Przy ogniskach wojowników pojawiły się opowieści o sile drużyny, o szturmie i o tym, jak młoda władza potrafi zdobywać bogactwo. Kupcy oceniali wartość łupu. Rodziny wojowników pytały o poległych. Inni przyglądali się jeńcom, których obecność zmieniała codzienne życie osady.",
+        "Na samym Skjordvik poszukiwanie odpowiedzi nie zakończyło się. Trop człowieka łączonego z morderstwem Sigurda kierował dalej ku stromym klifom i Kruczej Gardzieli. Tam drużyna musiała pozostawić za sobą wygodę wojennego oddziału i przejść niebezpiecznym, wąskim szlakiem nad ciemną wodą. To nie była kolejna wyprawa całej warbandy, ale osobiste ryzyko tych, którzy nie chcieli porzucić śladu.",
+        "Krucza Gardziel miała własne zagrożenia: mokrą skałę, zimną wodę, przejścia oświetlane tylko skąpym światłem oraz ślady ludzi, którzy zniknęli pomiędzy fiordami. Bohaterowie przeszli przez nią, przekonując się, że historia zabójstwa jarla nie kończy się na jednym najeździe. Nie każdy trop dawał odpowiedź. Nie każdą zagadkę można było rozwiązać, grożąc mieczem.",
+        "Po powrocie zaczęły mnożyć się następstwa wyprawy. Jeńcy potrzebowali miejsca w osadzie, łupy zmieniały pozycję ludzi, a krewni zabitych ze Skjordvik mieli własne powody, aby pamiętać, skąd przypłynęły okręty. Na drugim brzegu fiordu pozostały ruiny i mieszkańcy, którzy mogli opowiedzieć światu inną wersję tych samych wydarzeń.",
+        "Gdy Hrafnvik zaczęło myśleć o dalszej polityce, sprawa najazdu nie była już prywatnym rachunkiem między dwiema osadami. Wiadomość o ogniu i pojmanych dotarła do potężniejszych władców. Na Wielkim Althingu Eylendy Sianita miała usłyszeć o swojej wyprawie z ust ludzi, którzy nie zamierzali świętować jej zwycięstwa. Srebro można było przeliczyć. Cenę krzywd znacznie trudniej było zamknąć w liczbach."
       ],
       "participants": [
         "sianita",
