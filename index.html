@@ -6,12 +6,13 @@
   <meta name="theme-color" content="#121419">
   <meta name="description" content="Sagas of Midgard — interaktywna kronika postaci, relacji i lokacji dla graczy.">
   <title>Sagas of Midgard | Kronika</title>
-  <link rel="stylesheet" href="styles.css?v=drag-v1">
+  <link rel="stylesheet" href="styles.css?v=graph-v1">
   <script src="data.js?v=drag-v1" defer></script>
   <script src="atlas.js?v=atlas-v9" defer></script>
   <script src="maps.js?v=maps-v2" defer></script>
   <script src="character-groups.js?v=groups-v1" defer></script>
-  <script src="app.js?v=drag-v1" defer></script>
+  <script src="graph-geometry.js?v=graph-v1" defer></script>
+  <script src="app.js?v=graph-v1" defer></script>
 </head>
 <body>
  <div class="app-shell">
@@ -84,14 +85,14 @@
       <div class="map-grain" aria-hidden="true"></div>
       <div id="character-group-empty" class="character-group-empty" hidden role="status"></div>
       <div id="map-scene" class="map-scene">
-        <svg id="connections" class="connections" viewBox="0 0 1600 1000" aria-hidden="true" preserveAspectRatio="none"></svg>
+        <svg id="connections" class="connections" width="1600" height="1000" viewBox="0 0 1600 1000" aria-hidden="true" preserveAspectRatio="none"></svg>
         <div id="people-layer"></div>
       </div>
       <div class="map-corner top">ᚠ ᚢ ᚦ ᚨ ᚱ</div>
       <div class="map-corner bottom">P R Z E S U W A J  ·  O D K R Y W A J</div>
      </div>
      <div class="map-foot">
-       <div class="legend"><span class="legend-dash"></span> W kronice <span class="sep">·</span> <span class="legend-solid"></span> Znane relacje <span class="sep">·</span> <span class="legend-family"></span> Rodzina</div>
+       <div class="legend"><span class="legend-solid"></span> Potwierdzone relacje <span class="sep">·</span> <span class="legend-family"></span> Rodzina · Najedź na linię, aby poznać relację</div>
        <div class="hint">Kliknij portret — historia · Lewy przycisk na karcie — przesuń postać · Prawy przycisk lub lewy na tle — przesuń mapę · Kółko — zoom · Zmiany układu są tymczasowe</div>
      </div>
    </section>
