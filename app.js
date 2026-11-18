@@ -407,7 +407,7 @@
   }
 
   function setZoom(value) {
-    state.zoom = Math.max(.28, Math.min(1.7, value));
+    state.zoom = Math.max(.06, Math.min(1.7, value));
     applyTransform();
   }
   function fit() {
@@ -422,7 +422,7 @@
       const minX = Math.min(...visible.map(p => p.x)), maxX = Math.max(...visible.map(p => p.x + 180));
       const minY = Math.min(...visible.map(p => p.y)), maxY = Math.max(...visible.map(p => p.y + 240));
       const width = maxX - minX, height = maxY - minY;
-      state.zoom = Math.max(.28, Math.min(1.15,
+      state.zoom = Math.max(.06, Math.min(1.15,
         (viewport.clientWidth - 90) / width, (viewport.clientHeight - 90) / height));
       state.panX = (800 - (minX + maxX) / 2) * state.zoom;
       state.panY = (500 - (minY + maxY) / 2) * state.zoom;
