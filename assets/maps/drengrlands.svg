@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Symboliczna mapa Ziem Drengrów">
+<defs>
+ <radialGradient id="sea"><stop stop-color="#254b55"/><stop offset=".7" stop-color="#19323c"/><stop offset="1" stop-color="#0d2029"/></radialGradient>
+ <linearGradient id="earth" x1="0" x2=".7" y1="0" y2="1"><stop stop-color="#6e735e"/><stop offset=".55" stop-color="#445a49"/><stop offset="1" stop-color="#2d443d"/></linearGradient>
+ <pattern id="lines" width="120" height="100" patternUnits="userSpaceOnUse"><path d="M0 50Q30 35 65 50T120 50" stroke="#9ebbb6" stroke-opacity=".1" fill="none"/></pattern>
+ <filter id="grain"><feTurbulence baseFrequency=".45" numOctaves="3" seed="3" type="fractalNoise"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".12"/></feComponentTransfer></filter>
+</defs>
+<rect width="1200" height="720" fill="url(#sea)"/><rect width="1200" height="720" fill="url(#lines)"/>
+<path d="M-20 -20H770L751 60 823 112 782 169 839 209 803 262 873 317 823 365 858 399 783 445 821 502 765 550 751 612 700 655 670 741H-20Z" fill="url(#earth)" stroke="#aeb095" stroke-width="5" stroke-opacity=".55"/>
+<g fill="#19323c" opacity=".85">
+ <path d="M-20 165Q186 100 349 159T770 139l-20 43Q521 193 350 202T-20 224Z"/>
+ <path d="M-20 341Q148 299 268 352T790 307l-17 54Q508 376 286 395T-20 403Z"/>
+ <path d="M-20 530Q173 485 304 546T757 504l-19 46Q542 576 312 587T-20 594Z"/>
+</g>
+<path d="M962 180Q1005 145 1050 186L1091 253 1062 306 1080 360 1037 402 967 389 935 320 946 243Z" fill="#4f675a" stroke="#c2b18c" stroke-width="4" stroke-opacity=".74"/>
+<g stroke="#d0bf92" stroke-opacity=".16" fill="none" stroke-width="3" stroke-dasharray="8 20">
+ <path d="M95 115Q434 66 715 145"/><path d="M111 610Q463 625 736 574"/>
+</g>
+<g fill="#c6d2b8" opacity=".32">
+ <path d="m118 115 31-66 32 66h-16l-16-30-14 30Zm75-15 33-75 33 75h-17l-16-38-17 38Zm150 80 36-65 36 65h-18l-18-34-18 34Zm70 10 30-55 30 55h-16l-14-26-14 26Z"/>
+ <path d="m459 448 42-73 42 73h-19l-22-41-22 41Zm83-30 29-54 28 54h-16l-12-24-13 24Zm140-268 29-58 29 58h-16l-13-29-14 29Z"/>
+</g>
+<g opacity=".35" stroke="#c6b78a" fill="none">
+ <circle cx="590" cy="360" r="312" stroke-dasharray="2 17"/><path d="M20 360H1180M600 20V700" stroke-dasharray="3 18"/>
+</g>
+<g transform="translate(1080 98)" stroke="#d8c293" fill="none" opacity=".77"><circle r="43"/><path d="M0-62V62M-62 0H62M-29-29l58 58m-58 0 58-58"/><path d="M0-54 8-8 0-22-8-8Z" fill="#d8c293"/></g>
+<rect x="18" y="18" width="1164" height="684" fill="none" stroke="#bd9b6c" stroke-opacity=".47" stroke-width="2"/>
+<rect width="1200" height="720" filter="url(#grain)" opacity=".38"/>
+</svg>
