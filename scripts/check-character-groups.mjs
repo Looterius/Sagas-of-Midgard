@@ -17,7 +17,7 @@ const value = (primary, dimension, id) => data.people.filter(p =>
   groups.matches(data, p, { primary, dimension, value: id, search: "" })).map(p => p.id).sort();
 
 assert.equal(value("all", null, null).length, data.people.length);
-const confirmedHeroes = ["sianita", "halvard", "haroks", "ylva", "floki"].sort();
+const confirmedHeroes = ["sianita", "halvard", "haroks", "ylva", "floki", "asgrim"].sort();
 assert.equal(value("heroes", null, null).join(","), confirmedHeroes.join(","),
   "Heroes must match the confirmed Hrafnvik player characters");
 assert.equal(value("deceased", null, null).join(","), "floki",
@@ -36,9 +36,12 @@ assert.equal(value("all", null, null).length - 1, data.people.filter(p =>
 
 const settlementOptions = groups.options(data, "settlements").map(x => x.id).sort();
 assert.equal(settlementOptions.join(","), "hrafnvik,skjorvik");
-for (const kind of ["kingdoms", "families", "factions"]) {
+assert.equal(groups.options(data, "kingdoms").map(x => x.id).join(","), "agder",
+  "Asgrim is a son of the ruler of Agder");
+for (const kind of ["families", "factions"]) {
   assert.equal(groups.options(data, kind).length, 0, "No invented " + kind + " relationships");
 }
+assert.equal(value("heroes", "kingdoms", "agder").join(","), "asgrim");
 
 const validRoles = new Set(["hero", "npc"]);
 const validLife = new Set(["living", "deceased"]);
@@ -60,13 +63,14 @@ for (const p of data.people) {
 }
 
 
-// Wszystkie pięć kart mają kompletne jawne opisy i prawidłowe więzi z Hrafnvikiem.
+// Sześć kart ma jawne opisy, istniejące portrety i prawidłowe więzi z Hrafnvikiem.
 const heroes = data.people.filter(p => p.grouping?.role === "hero");
-assert.equal(heroes.length, 5, "Expected exactly five known playable characters");
-assert.equal(data.people.length, 18, "Do not delete or overwrite earlier character cards");
+assert.equal(heroes.length, 6, "Expected exactly six known playable characters");
+assert.equal(data.people.length, 19, "Do not delete or overwrite earlier character cards");
 for (const p of heroes) {
-  assert.ok(p.description?.length > 50, "Public biography missing for " + p.id);
-  assert.equal(p.image, "", "Use portrait placeholders until user uploads approved files: " + p.id);
+  assert.ok(p.description?.length > 220, "Enriched public biography missing for " + p.id);
+  assert.ok(/^assets\/portraits\/[^/]+\.(png|jpe?g)$/i.test(p.image), "Invalid portrait: " + p.id);
+  assert.ok(fs.existsSync(p.image), "Missing uploaded portrait for " + p.id);
   assert.ok(p.grouping.settlementIds.includes("hrafnvik"), "Not linked with Hrafnvik: " + p.id);
   assert.ok(p.grouping.lifeStatus === (p.id === "floki" ? "deceased" : "living"), "Wrong life status: " + p.id);
   assert.ok(Number.isFinite(p.x) && Number.isFinite(p.y), "Missing official map position: " + p.id);
@@ -76,6 +80,16 @@ for (const p of heroes) assert.ok(hrafnvik.personIds.includes(p.id), "Missing Hr
 assert.equal(new Set(hrafnvik.personIds).size, hrafnvik.personIds.length, "Duplicate people in Hrafnvik");
 assert.equal(data.relationships.filter(x => (x.from === "sianita" && x.to === "halvard") ||
   (x.from === "halvard" && x.to === "sianita")).length, 1, "Sibling connection must be present");
+assert.equal(data.relationships.filter(x => (x.from === "sianita" && x.to === "asgrim") ||
+  (x.from === "asgrim" && x.to === "sianita")).length, 1,
+  "Asgrim and Sianita must have their public engagement in relationships");
+assert.ok(data.people.find(p => p.id === "asgrim").description.includes("Albion"),
+  "Preserve Asgrim's heard-about Albion mention without inventing a conquest plan");
+assert.ok(data.people.find(p => p.id === "asgrim").description.includes("Halfdana Czarnego"),
+  "Preserve Asgrim's father");
+assert.ok(data.people.find(p => p.id === "asgrim").grouping.kingdomIds.includes("agder"),
+  "Asgrim has an Agder dynastic connection");
+assert.ok(data.people.find(p => p.id === "floki").grouping.lifeStatus === "deceased");
 assert.ok(!data.people.some(p => p.id === "styr"), "Use Halvard, not retired name Styr");
 const positions = data.people.map(p => ({ id: p.id, x: p.x, y: p.y }));
 for (let a = 0; a < positions.length; a++) {
@@ -107,4 +121,11 @@ assert.ok(html.includes('src="character-groups.js?v='), "Grouping script not loa
 assert.ok(css.includes(".person-card[hidden]"), "Filtered cards should be hidden");
 assert.ok(app.includes("groupFilter.primary") && app.includes("state.visibleIds.has(rel.from)"),
   "Missing filtered layout or relations");
+assert.ok(app.includes('card.classList.toggle("is-deceased"') &&
+  app.includes('dialog.classList.toggle("is-deceased"'),
+  "Deceased photo styling must apply in both map and detailed card");
+assert.ok(css.includes(".person-card.is-deceased .person-art .asset-photo") &&
+  css.includes(".character-overlay.is-deceased .character-image .asset-photo") &&
+  css.includes("filter:grayscale(1)"),
+  "Deceased portraits must be desaturated non-destructively");
 console.log("PASS — character grouping, public metadata, 110-card layout and UI bindings");
