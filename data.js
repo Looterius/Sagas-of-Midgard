@@ -47,7 +47,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/Hroald.png",
-      "description": "Hroald niegdyś władał Hrafnvikiem. Jego własny brat Sigurd obalił go podczas rebelii, odebrał mu władzę i kazał pozbawić wzroku. Podczas wiosennych zgromadzeń starego jarla wystawiano w ciężkiej klatce, pod strażą ludzi nowej władzy. Utracił tron, lecz nie znaczenie: pamięć o jego panowaniu nadal dzieli osadę. Jest ojcem Runy i Stena, a zarazem wujem Sianity i Halvarda. Dla starych rodów pozostaje żywym przypomnieniem dawnych przysiąg.",
+      "description": "Hroald niegdyś władał Hrafnvikiem. Jego własny brat Sigurd obalił go podczas rebelii, odebrał mu władzę i kazał pozbawić wzroku. Podczas wiosennych zgromadzeń starego jarla wystawiano w ciężkiej klatce, pod strażą ludzi nowej władzy. Utracił tron, lecz nie znaczenie: pamięć o jego panowaniu nadal dzieli osadę. Jest ojcem Runy i Stena, a zarazem wujem Sianity i Halvarda. Dla starych rodów pozostaje żywym przypomnieniem dawnych przysiąg. Hroald uznawał Alreka Erikssona z Hordalands za swojego konunga. Po jego obaleniu kwestia tej dawnej zwierzchności powróciła wobec nowej jarlowej.",
       "x": 211,
       "y": 10
     },
@@ -286,10 +286,13 @@ window.CHRONICLE = {
         "lifeStatus": "deceased",
         "settlementIds": [
           "hrafnvik"
+        ],
+        "familyIds": [
+          "rod-morotara"
         ]
       },
       "image": "assets/portraits/843041093_29439569015649515_6290487889105704541_n.jpg",
-      "description": "Floki był znakomitym szkutnikiem i wizjonerem Hrafnviku. Budował okręty, niegdyś pracując dla Hakona Czerwonego, z którym później się poróżnił. Pomógł Torvaldowi Kowalowi powrócić od chrześcijaństwa do wiary w Thora i Odyna. W jednej ze swoich wizji zobaczył możliwość zbudowania statku zdolnego żeglować po gałęziach Yggdrasilu. Podczas wyprawy po Gungnir na Eylendzie poniósł śmierć w starciu z Haraldem Hardradą. Haroks złożył jego ciało w niedokończonym statku w lesie Odyna. Floki pozostał bohaterem sagi — lecz zmarłym.",
+      "description": "Floki był znakomitym szkutnikiem i wizjonerem Hrafnviku. Budował okręty, niegdyś pracując dla Hakona Czerwonego, z którym później się poróżnił. Pomógł Torvaldowi Kowalowi powrócić od chrześcijaństwa do wiary w Thora i Odyna. W jednej ze swoich wizji zobaczył możliwość zbudowania statku zdolnego żeglować po gałęziach Yggdrasilu. Podczas wyprawy po Gungnir na Eylendzie poniósł śmierć w starciu z Haraldem Hardradą. Haroks złożył jego ciało w niedokończonym statku w lesie Odyna. Floki pozostał bohaterem sagi — lecz zmarłym. Jego bratem był Haroks Magnusson, a przybranym ojcem obydwu Morotar Jednooki. Pożegnanie Flokiego przez Haroksa było zatem nie tylko ostatnim hołdem wojownika, lecz także rozstaniem dwóch braci.",
       "x": 1417,
       "y": 255
     },
@@ -335,10 +338,13 @@ window.CHRONICLE = {
         "role": "npc",
         "settlementIds": [
           "hrafnvik"
+        ],
+        "familyIds": [
+          "rod-morotara"
         ]
       },
       "image": "assets/portraits/Morotar Jednooki.png",
-      "description": "Morotar Jednooki jest skaldem, śpiewakiem i strażnikiem opowieści Hrafnviku. Podczas uczt potrafi rozśmieszyć zarówno wojowników nowej władzy, jak i ludzi pamiętających czasy Hroalda. Jego pieśni zachowują imiona poległych, czyny żywych oraz opowieści, które łatwo zagubić pod ciężarem łupów i srebra. To on nadaje słowom wydarzeń miejsce w sadze: przypomina, że sława może przetrwać dłużej niż uczta i że pamięć nie wybiera jedynie zwycięzców.",
+      "description": "Morotar Jednooki jest skaldem, śpiewakiem i strażnikiem opowieści Hrafnviku. Podczas uczt potrafi rozśmieszyć zarówno wojowników nowej władzy, jak i ludzi pamiętających czasy Hroalda. Jego pieśni zachowują imiona poległych, czyny żywych oraz opowieści, które łatwo zagubić pod ciężarem łupów i srebra. To on nadaje słowom wydarzeń miejsce w sadze: przypomina, że sława może przetrwać dłużej niż uczta i że pamięć nie wybiera jedynie zwycięzców. Morotar jest przybranym ojcem Flokiego i Haroksa. Wspólne lata z dwoma synami uczyniły ich rodziną mimo braku więzów krwi. Śmierć Flokiego obciążyła więc także jego pamięć osobistym bólem.",
       "x": 412,
       "y": 500
     },
@@ -350,10 +356,13 @@ window.CHRONICLE = {
         "role": "npc",
         "settlementIds": [
           "hrafnvik"
+        ],
+        "familyIds": [
+          "rod-astrid"
         ]
       },
       "image": "assets/portraits/Astrid Freyjadottir.png",
-      "description": "Astrid Freyjadóttir, vala Freyi, należy do najważniejszych strażniczek starej wiary w Hrafnviku. Przyjmuje dary, przewodzi rytuałom i cieszy się autorytetem wśród wojowników i gospodarzy. Stanęła po stronie świętości dawnego gaju, kiedy cieśle pracujący nad kościołem ścięli drzewa używane podczas obrzędów. Jako matka jednego z bohaterów łączy religijny obowiązek z troską o rodzinę. W czasach przemiany osady jej głos przypomina o przysięgach składanych dawnym bogom.",
+      "description": "Astrid Freyjadóttir, vala Freyi, należy do najważniejszych strażniczek starej wiary w Hrafnviku. Przyjmuje dary, przewodzi rytuałom i cieszy się autorytetem wśród wojowników i gospodarzy. Stanęła po stronie świętości dawnego gaju, kiedy cieśle pracujący nad kościołem ścięli drzewa używane podczas obrzędów. Jako matka Ylvy, łuczniczki drużyny, łączy religijny obowiązek z troską o własną córkę. W czasach przemiany osady jej głos przypomina o przysięgach składanych dawnym bogom.",
       "x": 613,
       "y": 500
     },
@@ -381,10 +390,13 @@ window.CHRONICLE = {
         "lifeStatus": "living",
         "settlementIds": [
           "hrafnvik"
+        ],
+        "familyIds": [
+          "rod-morotara"
         ]
       },
       "image": "assets/portraits/819106917_1403096258558492_2259915694493588498_n.jpg",
-      "description": "Haroks Magnusson jest potężnym berserkerem z drużyny Hrafnviku, wojownikiem związanym z niedźwiedzią naturą. Podczas pobytu na Eylendzie spotkał Úlfhéðnarów, wojowników wilczej tradycji Odyna, którzy poddali go brutalnej próbie, pragnąc obudzić jego własną przemianę. Jego droga nie sprowadza się jednak do samej siły. Po śmierci Flokiego Haroks osobiście pożegnał towarzysza, składając jego ciało w niedokończonym statku w lesie Odyna. Ten gest zapisał się w sadze równie mocno jak walki.",
+      "description": "Haroks Magnusson jest potężnym berserkerem z drużyny Hrafnviku, wojownikiem związanym z niedźwiedzią naturą. Podczas pobytu na Eylendzie spotkał Úlfhéðnarów, wojowników wilczej tradycji Odyna, którzy poddali go brutalnej próbie, pragnąc obudzić jego własną przemianę. Jego droga nie sprowadza się jednak do samej siły. Po śmierci swego brata Flokiego Haroks osobiście go pożegnał, składając jego ciało w niedokończonym statku w lesie Odyna. Ten gest zapisał się w sadze równie mocno jak walki. Wychowywał się razem z Flokim pod opieką przybranego ojca, Morotara Jednookiego, którego łączy z braćmi więź silniejsza niż wspólne wyprawy.",
       "x": 1015,
       "y": 500
     },
@@ -397,10 +409,13 @@ window.CHRONICLE = {
         "lifeStatus": "living",
         "settlementIds": [
           "hrafnvik"
+        ],
+        "familyIds": [
+          "rod-astrid"
         ]
       },
       "image": "assets/portraits/836713553_1631673708686109_4202120061548436723_n.png",
-      "description": "Ylva jest łuczniczką drużyny Hrafnviku, często przedstawianą z sową u boku. Tam, gdzie wojownicy wolą otwartą walkę, jej łuk, cierpliwość i czujność pozwalają dostrzegać więcej. Towarzyszyła wyprawom drużyny oraz uczestniczyła w wydarzeniach Wielkiego Althingu na Eylendzie. Wśród przedstawicieli różnych krain, wojowników i wyznawców dawnych bogów poznawała obyczaje oraz opowieści, które wykraczały poza codzienność rodzinnej osady. Jej droga wciąż wiedzie przez nieznane szlaki, gdzie opowieści Północy dopiero nabierają kształtu.",
+      "description": "Ylva jest łuczniczką drużyny Hrafnviku, często przedstawianą z sową u boku. Tam, gdzie wojownicy wolą otwartą walkę, jej łuk, cierpliwość i czujność pozwalają dostrzegać więcej. Towarzyszyła wyprawom drużyny oraz uczestniczyła w wydarzeniach Wielkiego Althingu na Eylendzie. Wśród przedstawicieli różnych krain, wojowników i wyznawców dawnych bogów poznawała obyczaje oraz opowieści, które wykraczały poza codzienność rodzinnej osady. Jej droga wciąż wiedzie przez nieznane szlaki, gdzie opowieści Północy dopiero nabierają kształtu. Jej matką jest Astrid Freyjadóttir, vala Freyi i strażniczka dawnych obrzędów Hrafnviku, której wiara i troska towarzyszyły Ylvie od młodości.",
       "x": 1216,
       "y": 500
     },
@@ -411,11 +426,15 @@ window.CHRONICLE = {
       "grouping": {
         "role": "npc",
         "settlementIds": [
-          "skjorvik"
+          "skjorvik",
+          "hrafnvik"
+        ],
+        "statuses": [
+          "captive"
         ]
       },
       "image": "assets/portraits/Ragnvald Skjoldsson.png",
-      "description": "Ragnvald Skjoldsson był przywódcą Skjǫrviku, osady, przeciw której wyruszyli wojownicy Hrafnviku. Podczas poszukiwań człowieka oskarżonego o zabójstwo Sigurda jego ludzie znaleźli się po niewłaściwej stronie sporu między osadami. Najazd przyniósł spustoszenie, jeńców i łupy, których pamięć przetrwała także wśród pokonanych. Ragnvald pozostaje postacią przypominającą, że wojowniczy triumf jednych zapisywany jest przez innych jako krzywda.",
+      "description": "Ragnvald Skjoldsson był przywódcą Skjǫrviku, osady zaatakowanej przez wojowników Hrafnviku. Podczas najazdu został pojmany i przewieziony ze swojej zniszczonej osady do Hrafnviku jako jeniec. Utracił wolność oraz dawną pozycję. Jego los łączy historię zwycięskich najeźdźców z historią pokonanych mieszkańców Skjǫrviku i przypomina, że dla dwóch stron ta sama wyprawa oznacza zupełnie odmienne doświadczenie.",
       "x": 1417,
       "y": 500
     },
@@ -463,7 +482,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/Alrek Eriksson.png",
-      "description": "Alrek Eriksson jest królem Hordalands, krainy, której siła opiera się na portach, handlu i flotach kupieckich. Jego dwór znajduje się w Innrihólmur, a Alrekstad pozostaje jednym z głównych ośrodków rodu. Podczas Wielkiego Althingu na Eylendzie uczestniczył w sporach między królami o przyszłość ziem Drengrów. Od Sianity z Hrafnviku domagał się przysięgi i małżeństwa z własnym synem, spotykając się z odmową. W polityce łączy interes królestwa z uważnym szacowaniem wpływów pozostałych władców.",
+      "description": "Alrek Eriksson jest królem Hordalands, krainy, której siła opiera się na portach, handlu i flotach kupieckich. Jego dwór znajduje się w Innrihólmur, a Alrekstad pozostaje jednym z głównych ośrodków rodu. Podczas Wielkiego Althingu na Eylendzie uczestniczył w sporach między królami o przyszłość ziem Drengrów. Hroald, dawny jarl Hrafnviku, uznawał Alreka za swojego konunga. Alrek zażądał od Sianity uznania zwierzchnictwa i złożenia przysięgi, a także zaoferował jej swojego syna za męża. Sianita odmówiła zarówno przysięgi, jak i małżeństwa. W polityce łączy interes królestwa z uważnym szacowaniem wpływów pozostałych władców.",
       "x": 412,
       "y": 745
     },
@@ -695,6 +714,42 @@ window.CHRONICLE = {
       "to": "torsten-gudrodsson",
       "type": "family",
       "label": "Bracia; rywale o władzę w Vestmarze"
+    },
+    {
+      "from": "floki",
+      "to": "haroks",
+      "type": "family",
+      "label": "Bracia"
+    },
+    {
+      "from": "morotar",
+      "to": "floki",
+      "type": "family",
+      "label": "Przybrany ojciec i syn"
+    },
+    {
+      "from": "morotar",
+      "to": "haroks",
+      "type": "family",
+      "label": "Przybrany ojciec i syn"
+    },
+    {
+      "from": "astrid",
+      "to": "ylva",
+      "type": "family",
+      "label": "Matka i córka"
+    },
+    {
+      "from": "alrek",
+      "to": "hroald",
+      "type": "other",
+      "label": "Konung uznawany przez Hroalda"
+    },
+    {
+      "from": "alrek",
+      "to": "sianita",
+      "type": "other",
+      "label": "Odrzucona przysięga i propozycja małżeństwa z królewskim synem"
     }
   ],
 
@@ -714,6 +769,16 @@ window.CHRONICLE = {
       {
         "id": "rod-gudrodssonow",
         "name": "Ród Gudrodssonów",
+        "visibility": "known"
+      },
+      {
+        "id": "rod-morotara",
+        "name": "Rodzina Morotara",
+        "visibility": "known"
+      },
+      {
+        "id": "rod-astrid",
+        "name": "Rodzina Astrid i Ylvy",
         "visibility": "known"
       }
     ],
@@ -848,7 +913,7 @@ window.CHRONICLE = {
       id: "hrafnvik", name: "Hrafnvik", kind: "Osada bohaterów", visibility: "known", parentRegionId: "osady-bohaterow",
       description: "Osada, w której brat wystąpił przeciw bratu, a przelana krew zmieniła porządek władzy. Tutaj rozpoczęła się opowieść o Sianicie, Halvardzie i ludziach, których losy odmieniła śmierć jarla Sigurda.",
       history: "Hroald utracił władzę i wzrok, a jego brat Sigurd objął miejsce jarla. Wkrótce Sigurd został zamordowany, a Sianita przejęła odpowiedzialność za osadę. W Hrafnviku pamięta się zarówno rozlew krwi, jak i tych, którzy zginęli podczas późniejszych wypraw.",
-      image: "assets/locations/Hrafnvik.png", personIds: ["sigurd","hroald","runa","sten","sianita","halvard","asgrim","svala","mord","ulf","erik","ragnvald-p","styrbjorn","leif","hakon","floki","aslak","torvald","morotar","astrid","anslem","haroks","ylva"]
+      image: "assets/locations/Hrafnvik.png", personIds: ["sigurd","hroald","runa","sten","sianita","halvard","asgrim","svala","mord","ulf","erik","ragnvald-p","styrbjorn","leif","hakon","floki","aslak","torvald","morotar","astrid","anslem","haroks","ylva","ragnvald-s"]
     },
     {
       id: "skjorvik", name: "Skjǫrvik", kind: "Osada", visibility: "known", parentRegionId: "drengrlands",
