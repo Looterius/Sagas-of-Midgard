@@ -9,6 +9,7 @@
   const scene = $("#map-scene");
   const layer = $("#people-layer");
   const svg = $("#connections");
+  const graph = window.SOM_GRAPH_GEOMETRY;
   // Użytkownicy mogą przesuwać karty tylko w pamięci bieżącej strony.
   // Pozycje w publicznym data.js pozostają oficjalne i niemodyfikowalne przez gości.
   const officialPositions = Object.fromEntries(data.people.map(p => [p.id, { x: p.x, y: p.y }]));
@@ -63,31 +64,41 @@
     el.appendChild(portrait);
   }
 
-  function addLine(x1, y1, x2, y2, cssClass = "") {
-    const l = document.createElementNS(NS, "line");
-    l.setAttribute("x1", x1); l.setAttribute("y1", y1);
-    l.setAttribute("x2", x2); l.setAttribute("y2", y2);
-    if (cssClass) l.setAttribute("class", cssClass);
-    svg.appendChild(l);
-  }
-
   function drawConnections() {
     svg.replaceChildren();
-    (data.relationships || []).forEach(rel => {
-      if (!state.visibleIds.has(rel.from) || !state.visibleIds.has(rel.to)) return;
-      const a = state.positions[rel.from], b = state.positions[rel.to];
-      if (!a || !b) return;
-      const ax = a.x + 90, ay = a.y + 120, bx = b.x + 90, by = b.y + 120;
-      addLine(ax, ay, bx, by, "real " + (["hostile","ally","family"].includes(rel.type) ? rel.type : ""));
-      if (rel.label) {
-        const label = document.createElementNS(NS, "text");
-        label.setAttribute("x", (ax + bx) / 2);
-        label.setAttribute("y", (ay + by) / 2 - 10);
-        label.setAttribute("text-anchor", "middle");
-        label.textContent = rel.label;
-        svg.appendChild(label);
+    nodes.forEach(node => node.classList.remove("related-highlight"));
+    if (!graph) return;
+    for (const rel of data.relationships || []) {
+      if (!state.visibleIds.has(rel.from) || !state.visibleIds.has(rel.to)) continue;
+      const route = graph.link(rel.from, rel.to, state.positions, state.visibleIds);
+      if (!route) continue;
+      const linkType = ["family", "ally", "hostile"].includes(rel.type) ? rel.type : "other";
+      const path = document.createElementNS(NS, "path");
+      path.setAttribute("d", route.path);
+      path.setAttribute("class", "graph-link graph-link--" + linkType);
+      const from = data.people.find(p => p.id === rel.from);
+      const to = data.people.find(p => p.id === rel.to);
+      const title = document.createElementNS(NS, "title");
+      title.textContent = (from?.name || rel.from) + " — " + (to?.name || rel.to) +
+        (rel.label ? ": " + rel.label : "");
+      path.appendChild(title);
+      const setHighlight = on => {
+        nodes.get(rel.from)?.classList.toggle("related-highlight", on);
+        nodes.get(rel.to)?.classList.toggle("related-highlight", on);
+      };
+      path.addEventListener("pointerenter", () => setHighlight(true));
+      path.addEventListener("pointerleave", () => setHighlight(false));
+      svg.appendChild(path);
+      // Kotwice dokładnie na ramkach portretów, a nie wewnątrz zdjęć.
+      for (const point of [route.from, route.to]) {
+        const dot = document.createElementNS(NS, "circle");
+        dot.setAttribute("cx", point.x);
+        dot.setAttribute("cy", point.y);
+        dot.setAttribute("r", 5);
+        dot.setAttribute("class", "graph-anchor graph-anchor--" + linkType);
+        svg.appendChild(dot);
       }
-    });
+    }
   }
 
   function renderPeople() {
@@ -483,8 +494,10 @@
     const maxY = Math.max(...shown.map(p => p.y + 240));
     const groupWidth = Math.max(180, maxX - minX);
     const groupHeight = Math.max(240, maxY - minY);
-    const availableWidth = Math.max(100, viewport.clientWidth - 70);
-    const availableHeight = Math.max(100, viewport.clientHeight - 70);
+    // Daj kartom margines w obrębie rzeczywistego płótna, bez urywania ramki.
+    const padding = Math.min(52, viewport.clientWidth * .075, viewport.clientHeight * .075);
+    const availableWidth = Math.max(100, viewport.clientWidth - padding * 2);
+    const availableHeight = Math.max(100, viewport.clientHeight - padding * 2);
     state.zoom = Math.max(.06, Math.min(1.15,
       availableWidth / groupWidth, availableHeight / groupHeight));
     state.panX = (800 - (minX + maxX) / 2) * state.zoom;
