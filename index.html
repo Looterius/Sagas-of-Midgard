@@ -6,11 +6,12 @@
   <meta name="theme-color" content="#121419">
   <meta name="description" content="Sagas of Midgard — interaktywna kronika postaci, relacji i lokacji dla graczy.">
   <title>Sagas of Midgard | Kronika</title>
-  <link rel="stylesheet" href="styles.css?v=maps-v2">
-  <script src="data.js?v=atlas-v6" defer></script>
+  <link rel="stylesheet" href="styles.css?v=groups-v1">
+  <script src="data.js?v=groups-v1" defer></script>
   <script src="atlas.js?v=atlas-v9" defer></script>
   <script src="maps.js?v=maps-v2" defer></script>
-  <script src="app.js?v=maps-v1" defer></script>
+  <script src="character-groups.js?v=groups-v1" defer></script>
+  <script src="app.js?v=groups-v1" defer></script>
 </head>
 <body>
  <div class="app-shell">
@@ -56,8 +57,31 @@
         <button id="fit" class="tool fit" aria-label="Dopasuj widok">⤢</button>
        </div>
      </div>
+     <section class="character-groups" aria-label="Grupowanie sieci postaci">
+       <div class="character-group-heading">
+         <span>POKAŻ POSTACIE</span>
+         <span id="character-group-summary" aria-live="polite">Wszystkie znane postacie</span>
+         <button id="character-group-reset" type="button" hidden>Wyczyść filtry</button>
+       </div>
+       <div id="character-group-tabs" class="character-group-tabs" role="group" aria-label="Filtr według roli i statusu">
+         <button type="button" data-character-primary="all" aria-pressed="true">Wszyscy</button>
+         <button type="button" data-character-primary="heroes" aria-pressed="false">Bohaterowie</button>
+         <button type="button" data-character-primary="npc" aria-pressed="false">NPC</button>
+         <button type="button" data-character-primary="deceased" aria-pressed="false">Zmarli</button>
+         <button type="button" data-character-primary="rulers" aria-pressed="false">Władcy i jarlowie</button>
+         <button type="button" data-character-primary="captives" aria-pressed="false">Jeńcy</button>
+       </div>
+       <div class="character-group-dimensions" id="character-group-dimensions" role="group" aria-label="Grupuj według przynależności">
+         <button type="button" data-character-dimension="kingdoms" aria-expanded="false" aria-controls="character-group-options">Królestwa i krainy <span aria-hidden="true">⌄</span></button>
+         <button type="button" data-character-dimension="settlements" aria-expanded="false" aria-controls="character-group-options">Osady <span aria-hidden="true">⌄</span></button>
+         <button type="button" data-character-dimension="families" aria-expanded="false" aria-controls="character-group-options">Rody i rodziny <span aria-hidden="true">⌄</span></button>
+         <button type="button" data-character-dimension="factions" aria-expanded="false" aria-controls="character-group-options">Frakcje <span aria-hidden="true">⌄</span></button>
+       </div>
+       <div id="character-group-options" class="character-group-options" hidden></div>
+     </section>
      <div id="map-viewport" class="map-viewport" tabindex="0" aria-label="Interaktywna mapa postaci; klikaj karty i przesuwaj tło">
       <div class="map-grain" aria-hidden="true"></div>
+      <div id="character-group-empty" class="character-group-empty" hidden role="status"></div>
       <div id="map-scene" class="map-scene">
         <svg id="connections" class="connections" viewBox="0 0 1130 870" aria-hidden="true" preserveAspectRatio="none"></svg>
         <div id="people-layer"></div>
