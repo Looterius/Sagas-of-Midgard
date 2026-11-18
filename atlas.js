@@ -212,23 +212,45 @@
     $("#atlas2-dialog-summary").textContent = place.description || "Miejsce znane bohaterom.";
     $("#atlas2-dialog-history").textContent = place.history || "Dalsze dzieje tego miejsca zostaną dopisane wraz z kolejnymi sesjami.";
     const personArea = $("#atlas2-dialog-people");
+    const peopleToggle = $("#atlas2-dialog-people-toggle");
     personArea.replaceChildren();
+    peopleToggle.hidden = true;
+    peopleToggle.onclick = null;
+    peopleToggle.setAttribute("aria-expanded", "false");
     const linked = (place.personIds || []).map(key=>content.people.find(p=>p.id===key)).filter(Boolean);
+    const initialCount = 6;
     if (!linked.length) {
       personArea.appendChild(el("p", "atlas2-empty-people", "Powiązane postacie zostaną dopisane po potwierdzeniu ich historii."));
     } else {
-      linked.forEach(p=>{
-        const button=el("button", "atlas2-npc-card");
-        button.type="button";
-        const thumb = el("span","atlas2-npc-thumb");
-        art(thumb,p.image,p.name.slice(0,1));
-        button.appendChild(thumb);button.appendChild(el("span","",p.name));
-        button.addEventListener("click",()=>{
+      const addPersonCard = p => {
+        const button = el("button", "atlas2-npc-card");
+        button.type = "button";
+        const thumb = el("span", "atlas2-npc-thumb");
+        art(thumb, p.image, p.name.slice(0, 1));
+        button.appendChild(thumb);
+        button.appendChild(el("span", "", p.name));
+        button.addEventListener("click", () => {
           close();
           if (callbacks.openPerson) callbacks.openPerson(p.id);
         });
         personArea.appendChild(button);
-      });
+      };
+      linked.slice(0, initialCount).forEach(addPersonCard);
+      if (linked.length > initialCount) {
+        let expanded = false;
+        peopleToggle.hidden = false;
+        peopleToggle.textContent = `Pokaż wszystkie (${linked.length})`;
+        peopleToggle.onclick = () => {
+          if (expanded) {
+            while (personArea.children.length > initialCount) personArea.lastElementChild.remove();
+          } else {
+            linked.slice(initialCount).forEach(addPersonCard);
+          }
+          expanded = !expanded;
+          peopleToggle.textContent = expanded ? "Pokaż mniej" : `Pokaż wszystkie (${linked.length})`;
+          peopleToggle.setAttribute("aria-expanded", String(expanded));
+        };
+      }
     }
     const events = $("#atlas2-dialog-events");
     events.replaceChildren();
