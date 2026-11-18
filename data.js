@@ -1113,10 +1113,13 @@ window.CHRONICLE = {
       "placeId": "eylenda",
       "kind": "Wyprawa",
       "image": "",
-      "intro": "Wyprawa po Gungnir poprowadziła bohaterów przez ziemię, która zdawała się odmawiać im przejścia.",
+      "intro": "Wyrok Althingu nie dał bohaterom wytchnienia. Aby odzyskać włócznię Odyna, musieli ruszyć przez ziemie, których nawet mieszkańcy Eylendy nie odwiedzali bez lęku.",
       "paragraphs": [
-        "Za obozami Althingu czekały Czarne Piaski Zapomnienia, gdzie wiatr zacierał ślady wędrowców. Dalej drużyna dotarła do Rzeki Umarłych Koni i niebezpiecznej przeprawy, podczas której poświęcono cenne runy.",
-        "Każdy etap oddalał wojowników od świata zwykłych osad i świąt. Mimo zmęczenia ruszyli dalej, ku górze i kurhanom, w których miał spoczywać Harald Hardrada."
+        "Za obozami zgromadzenia pozostały ogniska, śpiewy i namioty możnych, którzy mogli jeszcze spierzać się przy miodzie o przyszłość Północy. Sianita i jej towarzysze opuścili te miejsca jako ludzie obarczeni wyrokiem. Wyruszali po artefakt, o którym znano pieśni, ale którego zdobycie nie przypominało zwykłej wyprawy po srebro. Pod ich stopami miała znaleźć się ziemia wulkanów, duchów i mogił tak starych, że nawet skaldowie nie potrafili podać ich wieku.",
+        "Jednym z pierwszych miejsc były Czarne Piaski Zapomnienia. Rozciągały się tam ciemne pustkowia, po których wiatr przesuwał suche ziarna popiołu i piasku, zacierając ślady niemal natychmiast po przejściu ludzi. Widoczny przed chwilą szlak znikał. To, co pozostawiali za sobą, przestawało wyglądać jak droga, którą można po prostu odtworzyć. Podróżnicy musieli polegać na sobie nawzajem i na znakach, które potrafili jeszcze rozpoznać.",
+        "Dalej czekała Rzeka Umarłych Koni. Jej zimna, spieniona woda przetaczała się między kamieniami, a kaskady odcinały łatwy marsz naprzód. Przeprawa wymagała nie tylko odwagi. W pewnym momencie droga zażądała zapłaty — bohaterowie oddali cenne runy, przedmioty niosące dla nich znaczenie i własną historię. Tak zrozumieli, że nawet pozornie pusta ziemia może stawiać warunki tym, którzy przez nią przechodzą.",
+        "Nie był to jeszcze kurhan Haralda. Z każdym etapem rosło zmęczenie, a wraz z nim świadomość, jak daleko odeszli od bezpiecznego Hrafnviku. Nie mogli po prostu zawrócić i uznać sprawy za zamkniętą: dziewięciu sędziów wysłało ich po dowód, który miał rozstrzygnąć o losie jarlowej. Nie mogli też wiedzieć, ilu z nich będzie stało przed sędziami podczas powrotu.",
+        "Zapamiętano te pustkowia nie jako pojedynczą walkę, ale jako początek wielkiej próby. Każda mila uczyła wojowników, że w miejscach granicznych człowiek nie zawsze wygrywa siłą. Czasami przechodzi dalej dlatego, że potrafi wytrzymać, zrezygnować z czegoś własnego albo zrozumieć ostrzeżenie, zanim będzie za późno."
       ],
       "participants": [
         "sianita",
@@ -1134,10 +1137,13 @@ window.CHRONICLE = {
       "placeId": "eylenda",
       "kind": "Próby Eylendy",
       "image": "",
-      "intro": "Popiół, rozpalona ziemia i spotkania z istotami dawnych opowieści naznaczyły drogę ku kurhanom.",
+      "intro": "Eylenda ukazała bohaterom ziemię, w której ogień wychodzi spod kamieni, a opowieści o olbrzymach przestają być tylko opowieściami.",
       "paragraphs": [
-        "Wędrowcy przekraczali wulkaniczne pustkowia, w których płynny ogień wydobywał się spod pękającej skały. W dolinie olbrzymów napotkali trolla więzionego w wielkiej klatce. Nie uwolnili go i pozostawili jego wołanie za sobą.",
-        "Ziemia Eylendy wydawała się coraz mniej gościnna. Każdy kolejny krok wymagał odwagi, ale też wyboru, komu pomagać, a kiedy ocalić przede wszystkim własnych towarzyszy."
+        "Im głębiej wyprawa zapuszczała się na wyspę, tym bardziej zmieniał się krajobraz. Zielone doliny i ścieżki znane ludziom ustępowały popękanym skałom, szerokim pasmom popiołu i ziemi, spod której wydobywało się ciepło. W oddali drżało powietrze nad płynnym ogniem, a wiatr niósł zapach siarki. Bohaterowie oglądali miejsca, gdzie granica między Midgardem i ognistymi opowieściami o Muspelheimie zdawała się niemal zanikać.",
+        "Była to droga, na której nikt nie potrzebował przeciwnika z mieczem, aby poczuć strach. Skała potrafiła osunąć się pod nogami, powietrze paliło w płucach, a widok czerwonego blasku za czarnym wzgórzem nie pozwalał zapomnieć, że sama wyspa może się obudzić. Wyprawa po przedmiot należący do dawnych bogów prowadziła przez miejsca, które wyglądały, jakby bogowie wciąż o coś walczyli.",
+        "W dolinie olbrzymów bohaterowie napotkali trolla zamkniętego w żelaznej klatce. Więzień prosił o uwolnienie. Nie był człowiekiem z Hrafnviku ani towarzyszem, któremu kiedyś składano przysięgę; był jednym z mieszkańców świata, w którym drużyna pozostawała gościem. Uwolnienie go mogło być aktem litości, ale mogło również sprowadzić niebezpieczeństwo, którego nie umieli przewidzieć.",
+        "Bohaterowie zdecydowali, że nie otworzą klatki. Zostawili trolla na łaskę olbrzymów, a jego wołanie pozostało w dolinie, kiedy ruszyli dalej. Dla jednych był to rozsądny wybór w wyprawie, której cel wciąż pozostawał daleko. Dla innych mógł być przypomnieniem, że nawet bohaterowie sag nie mają mocy ocalenia każdego napotkanego stworzenia.",
+        "Ziemia ognia pozostawiła po sobie widoki, których nie można było łatwo pomylić z żadnym fiordem Północy. Coraz wyraźniej stawało się też, że dawni mieszkańcy i bogowie nie opuścili całkowicie swoich ścieżek. Za kolejnym wzgórzem bohaterowie mieli zobaczyć coś jeszcze bardziej niepokojącego niż lawa: dom, w którym czas zatrzymał się wraz ze śmiercią jego gospodarzy."
       ],
       "participants": [
         "haroks",
@@ -1153,10 +1159,13 @@ window.CHRONICLE = {
       "placeId": "eylenda",
       "kind": "Spotkanie z duchami",
       "image": "",
-      "intro": "Na odludziu bohaterowie spotkali gospodarzy, których pamięć zatrzymała się po śmierci.",
+      "intro": "W opuszczonym gospodarstwie drużyna spotkała ludzi, którzy żyli tak, jakby nie wiedzieli, że dawno już umarli.",
       "paragraphs": [
-        "W opuszczonym gospodarstwie przebywały dusze ludzi nieświadomych własnego losu. Dawne krzywdy i zapomniane mogiły wiązały ich z miejscem, do którego nie należeli już jako żywi.",
-        "Drużyna pomogła im poznać prawdę i odejść ku Helheimowi. Była to jedna z prób, w których współczucie i cierpliwość okazały się cenniejsze od miecza."
+        "Pośród pustkowia znajdowało się gospodarstwo. Dom i zabudowania przypominały świat dobrze znany z Hrafnviku: miejsce, w którym pracuje się od świtu, przygotowuje jedzenie, troszczy o obejście i czeka na powrót bliskich. Tym bardziej osobliwa była cisza, która otaczała to miejsce. Nie przypominało ono bogatej hali jarla ani zasypanej śniegiem świątyni. Wyglądało raczej jak coś, co świat zdążył zostawić za sobą.",
+        "Mieszkali tam ludzie — a przynajmniej tak przedstawiała się sprawa na początku. Rozmawiali i zachowywali się, jakby zwyczajny czas nadal płynął dla nich z dnia na dzień. Prawda okazała się znacznie trudniejsza. Gospodarze byli duchami, które nie przyjęły do wiadomości własnej śmierci. Pozostali związani z miejscem i wspomnieniami, których nie potrafili opuścić.",
+        "Wojownicy przybyli na Eylendę po włócznię i przez większą część wyprawy musieli troszczyć się przede wszystkim o przetrwanie. Tutaj stali wobec zadania, którego nie można było wykonać, rozbijając przeciwnikowi tarczę. Zanim dusze mogły odejść, trzeba było pomóc im dostrzec prawdę — nie upokorzyć ich, lecz znaleźć sposób, aby zrozumiały, że ich życie naprawdę dobiegło końca.",
+        "Drużyna pomogła mieszkańcom gospodarstwa pożegnać się ze światem żywych. Duchy odnalazły drogę ku Helheimowi, miejscu przeznaczonemu dla wielu zmarłych, których los nie prowadził na wielkie uczty wojowników. Nie było tutaj ani zdobycznego srebra, ani nowego króla, którego można wesprzeć przysięgą. Pozostała tylko pamięć o ludziach, którzy wreszcie mogli odejść.",
+        "Wyprawa po Gungnir była pełna prób odwagi, lecz to spotkanie stało się dowodem czegoś innego. Bohaterowie, którzy potrafili spalić wrogą osadę i stanąć przed sądem Althingu, potrafili również pomóc nieznajomym umarłym. W sagach najczęściej zapamiętuje się zadany cios. Ci, którzy przebyli to gospodarstwo, mieli powód pamiętać także rozmowę i okazane współczucie."
       ],
       "participants": [
         "sianita",
@@ -1172,10 +1181,14 @@ window.CHRONICLE = {
       "placeId": "hardrada-mound",
       "kind": "Heroiczny czyn",
       "image": "",
-      "intro": "Bohaterowie zdobyli włócznię Odyna, lecz wyprawa zabrała wielu spośród ich towarzyszy.",
+      "intro": "W kurhanie Haralda Hardrady bohaterowie zdobyli Gungnir, lecz za włócznię Odyna zapłacili życiem Flokiego, Morda i dziesięciu braci krwi.",
       "paragraphs": [
-        "Pośród mogił i draugrów drużyna dotarła do kurhanu Haralda Hardrady. W ostatnim starciu odzyskała Gungnir, legendarną włócznię Odyna. Zdobycz była dowodem, że wyrok Althingu został wypełniony.",
-        "Za zwycięstwo zapłacono krwią. Polegli Floki, szkutnik i wizjoner, oraz Mord, syn Svali. W czasie wyprawy zginęło też dziesięciu wojowników związanych z drużyną przysięgą krwi — dziesięciu braci krwi, których imiona zasługiwały na pamięć równie mocno jak imiona wielkich bohaterów."
+        "W końcu stanęli przed ziemią przeznaczoną umarłym wojownikom. Kurhan Haralda Hardrady nie wyglądał jak miejsce, do którego można wejść z pochodnią i bezkarnie wynieść królewski dar. Wokół wznosiły się stare mogiły, a przejścia strzegły draugry — ci, którzy po śmierci nie zaprzestali pilnowania własnych grobów. Bohaterowie wiedzieli, że to tutaj kończy się próba nałożona przez Althing. Nie wiedzieli jeszcze, ile zabierze im ostatni odcinek drogi.",
+        "Szli wśród kamienia, ciemności i pozostałości dawnej chwały. Nie każde zagrożenie miało kształt żywego wroga, a nie każdy przeciwnik reagował na strach tak, jak człowiek. Wojownicy przybyli z daleka, by udowodnić przed sędziami, że nie są tylko najeźdźcami ze Skjordvik. Teraz musieli stanąć przeciw tym, o których dotąd słuchali w pieśniach.",
+        "Ostateczną próbą było starcie z Haraldem Hardradą, dawnym królem, którego imię wciąż znali skaldowie. Nie walczono już o łup z cudzej przystani. Stawką był Gungnir, włócznia Odyna, i możliwość powrotu z dowodem, którego oczekiwali sędziowie. Bohaterowie stanęli wobec śmierci i nie cofnęli się. W końcu oręż trafił w ich ręce.",
+        "Zwycięstwo nie przyszło za darmo. Poległ Floki, szkutnik i marzyciel, który widział przed sobą podróże dalsze niż wszystkie znane szlaki. Zginął także Mord, jeden z synów Svali, człowiek, którego ród jeszcze niedawno domagał się sprawiedliwości za śmierć ojca. Wyprawa odebrała również życie dziesięciu wojownikom związanym z drużyną przysięgą krwi — dziesięciu braciom krwi, którzy nie wrócili pod własne dachy.",
+        "Ich śmierć nie była liczbą na rachunku wojennej drużyny. Każdy z nich pozostawił ludzi, którzy mogli czekać na jego statek, broń, naramiennik albo wieść o ostatniej walce. Dla Sianity i pozostałych bohaterów Gungnir był teraz jednocześnie triumfem i ciężarem. Nikt nie mógł już opowiedzieć o kurhanie jedynie jako o chwili zdobycia boskiego oręża.",
+        "Harald Hardrada wreszcie odnalazł spoczynek, a jego saga została domknięta czynem żywych. Dla przybyłych z Hrafnviku oznaczało to jednak początek nowej żałoby. Włócznię można było ponieść wysoko, aby pokazać zgromadzonym jej blask. Poległych trzeba było ponieść do domu, gdzie na ich miejsce nikt nie mógł już powrócić."
       ],
       "participants": [
         "sianita",
@@ -1193,10 +1206,15 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Powrót",
       "image": "",
-      "intro": "Zwycięzcy wrócili z włócznią Odyna, ale nie ze wszystkimi, którzy wyruszyli z nimi.",
+      "intro": "Gungnir wrócił z bohaterami na Eylendę, a potem do Hrafnviku. W rodzinnej osadzie zamiast samych pieśni zwycięstwa rozległy się również pieśni żałobne.",
       "paragraphs": [
-        "Drużyna przyniosła Gungnir na Althing. Sędziowie nie ustalili, komu ma przypaść włócznia, więc pozostała przy bohaterach. Wkrótce ziemią Eylendy wstrząsnęły erupcje wulkanów. Po dalszej żegludze ludzie Hrafnviku ujrzeli znów własne brzegi.",
-        "Morda pochowała rodzina. Ciało Flokiego spoczęło w kadłubie jego niedokończonego statku, przeniesionego do świętego lasu Odyna. Miejscowy kowal wyrzeźbił kamień runiczny upamiętniający jego ostatnią walkę. Pamiętano także o dziesięciu poległych braciach krwi: zwycięstwo było wielkie, lecz strata nieodwracalna."
+        "Powrót z kurhanu okazał się dziwnie inny niż droga, którą przyszło im pokonać. To, co wcześniej wymagało długiej wędrówki i wielu prób, teraz zdawało się mijać w nienaturalnym pośpiechu. Ylva odnalazła osobliwe przejścia, a poszczególni wędrowcy zachowali niejednakowe wspomnienia drogi. Wiedzieli jednak, że ponownie widzą ogniska Althingu — i że przywieźli Gungnir, włócznię, po którą zostali wysłani.",
+        "Na Eylendzie zebrali się ludzie, którzy chcieli zobaczyć oręż Odyna i wysłuchać opowieści o Haraldzie Hardradzie. Dziewięciu sędziów nie zdołało jednak porozumieć się, czy włócznia ma zostać zatrzymana na wyspie, czy należeć do tych, którzy ją odzyskali. Nie ustanowiono nowego właściciela. Gungnir pozostał przy drużynie, a rozmowy o wojnie i królestwach wciąż dzieliły możnych. Na wyspie doszło również do zaręczyn Sianity i Asgrima, syna Halfdana Czarnego z Agderu.",
+        "Wśród powracających krążyła też wiadomość nie mniej niepokojąca niż opowieść o umarłym królu. Idar, wysłannik Alreka Erikssona, przekazał bohaterom wieść, że król Hordalandu wypuścił na wolność człowieka odpowiedzialnego za zabójstwo Sigurda. Poznali jego imię: Vestar Bez Rodu. Miał udać się na Ruś, lecz jego dokładna kryjówka pozostawała nieznana. Nawet z Gungnirem w ręku nie zamknęli więc historii śmierci swojego jarla.",
+        "Tej samej nocy Eylendą wstrząsnęła ziemia. Z głębi gór dochodził pomruk, a nad ciemnymi szczytami pojawił się czerwony blask. Budziły się wulkany. Popiół unosił się ku niebu, konie płoszyły się przy obozach, a część mieszkańców zaczęła przygotowywać się do opuszczenia wyspy. Dla bohaterów był to koniec pobytu na Eylendzie, lecz nie koniec wspomnień, które mieli stamtąd zabrać.",
+        "Ciała Flokiego i Morda przewieziono przez morze w beczkach z solanką, aby nie zostawić ich na obcej ziemi. Po dwóch tygodniach żeglugi okręty znów ujrzały brzegi Hrafnviku. Rodzina Morda mogła odprowadzić go na spoczynek. Floki, budowniczy okrętów, otrzymał szczególny grób: jego niedokończony statek przeniesiono do świętego lasu Odyna, a w kadłubie złożono jego ciało. Miejscowy kowal wyrył na kamieniu runicznym scenę ostatniej walki z Haraldem Hardradą.",
+        "Harrox żegnał brata, mówiąc o jego odwadze i miejscu przy ucztach Valhalli. Wśród żałobników był również chrześcijański kapłan, który przypomniał o Chrystusie i zwycięstwie nad śmiercią. Stara i nowa wiara znalazły się obok siebie tak jak podczas pierwszego Thingu — tym razem przed grobem człowieka, którego nie potrafiła przywrócić żadna z nich. Pamiętano także o dziesięciu braciach krwi, którzy zginęli podczas wyprawy i których nie było już przy powitalnych ogniskach.",
+        "Zakończyła się wielka podróż po Gungnir, ale nie skończyła saga Hrafnviku. W osadzie pozostali żywi, którzy musieli prowadzić handel, bronić ziemi i mierzyć się z dawnymi przysięgami. Zmarli zostawili po sobie puste miejsca. Na brzegu wciąż czekały okręty, w wielkiej sali wisiały tarcze, a w świętym lesie stał niedokończony statek — odtąd już nie obietnica przyszłej wyprawy, lecz pomnik człowieka, który nigdy jej nie odbędzie."
       ],
       "participants": [
         "sianita",
