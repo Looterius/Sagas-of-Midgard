@@ -158,3 +158,18 @@ Z pliku `data.js → people[].image` generator tworzy w katalogu `assets/portrai
 Wynik optymalizacji z 18 listopada 2026: **16 plików** skompresowano z **25,24 MiB oryginałów** do **0,50 MiB łącznych miniaturek** oraz **2,03 MiB łącznych wersji do szczegółów** (część już małych JPEG pozostaje oryginałem w widoku pełnym). To zmniejsza transfer wszystkich 16 miniaturek o **około 98%**. `Svala Ketilsdóttir i synowie` nadal nie ma dostarczonego portretu, dlatego używa placeholdera, bez niepotrzebnego żądania.
 
 **Po dodaniu lub podmianie obrazów:** `node scripts/export-public-portrait-references.mjs > /tmp/som-portrait-refs.json`, następnie `python -m pip install Pillow` i `python scripts/optimize-portraits.py /tmp/som-portrait-refs.json`. Zacommituj wygenerowane pliki WebP i `portrait-assets.js` razem ze zmianą w `data.js`. Walidacja CI: `node scripts/check-portrait-assets.mjs`. Nie dodawać ręcznie nazw/sekretów Skalda — manifest budujemy tylko z publicznych `people[]`.
+
+## Mobilna nawigacja Wstecz (History API)
+
+Strona zachowuje się jak aplikacja z wewnętrznymi ekranami, ale **nie blokuje systemowego przycisku Wstecz**. `navigation.js` zapisuje w historii przeglądarki wyłącznie jawny stan UI (zakładka, aktualny poziom mapy, region Atlasu, ewentualnie karta postaci/miejsca, filtry postaci i otwarte rozdziały Kroniki).
+
+Przykładowe drogi:
+- Sieć postaci → Sianita → Halvard → **Wstecz = Sianita** → **Wstecz = Sieć postaci**.
+- Sieć postaci → Sianita → Hrafnvik w Atlasie → **Wstecz = Sianita** → **Wstecz = Sieć postaci**.
+- Mapy świata → Ziemie Drengrów → **Wstecz = Midgard** → **Wstecz = poprzednia zakładka**.
+- Atlas Midgardu → Ziemie Drengrów → Agder → miejsce → **Wstecz** cofa po jednej karcie i poziomie.
+- **Wstecz z ekranu startowego** nie jest przechwytywane. Przeglądarka wychodzi z aplikacji albo wraca na stronę poprzedzającą jej otwarcie.
+
+Bez sztucznego przechwytywania `popstate` na korzeniu, bez zapętlonego dopisywania historii podczas odtwarzania. W obrębie jednego kliknięcia (np. zamknięcie postaci + otwarcie miejsca) wpisy historii są konsolidowane w jednym mikrozadaniu. X i Escape w modalach cofają do poprzedniego wewnętrznego ekranu, jeśli istnieje wpis w historii. Po odświeżeniu otwartego ekranu można kontynuować nawigację na podstawie `history.state`. Nie używać `sessionStorage` do zapisywania postępów fabularnych; historia nie zawiera sekretów MG.
+
+Test: `node scripts/check-navigation-history.mjs`, uruchamiany w CI; ponadto test interakcji mobilnych w Chromium/Android.
