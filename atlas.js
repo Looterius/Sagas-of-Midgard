@@ -120,6 +120,15 @@
   }
 
   function showRegion(id) {
+    // Gdy Osada bohaterów ma tylko Hrafnvik, pomiń pusty ekran pośredni
+    // i otwórz bezpośrednio istniejącą kartę tej lokacji.
+    if (id === "osady-bohaterow") {
+      const homePlaces = places().filter(p => p.parentRegionId === id);
+      if (homePlaces.length === 1 && homePlaces[0].id === "hrafnvik") {
+        open("hrafnvik");
+        return;
+      }
+    }
     if (!getRegion(id)) id = "midgard";
     current = id;
     breadcrumb();
