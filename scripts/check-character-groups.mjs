@@ -80,6 +80,23 @@ for (const p of heroes) assert.ok(hrafnvik.personIds.includes(p.id), "Missing Hr
 assert.equal(new Set(hrafnvik.personIds).size, hrafnvik.personIds.length, "Duplicate people in Hrafnvik");
 assert.equal(data.relationships.filter(x => (x.from === "sianita" && x.to === "halvard") ||
   (x.from === "halvard" && x.to === "sianita")).length, 1, "Sibling connection must be present");
+for (const [from, to, label] of [
+  ["hroald", "sianita", "Wuj / bratanica"],
+  ["hroald", "halvard", "Wuj / bratanek"]
+]) {
+  const rel = data.relationships.filter(r => r.from === from && r.to === to &&
+    r.type === "family" && r.label === label);
+  assert.equal(rel.length, 1, "Hroald's documented uncle relation must exist: " + from + " -> " + to);
+}
+assert.ok(data.chronicle.some(event => event.paragraphs?.some(text =>
+  text.includes("brat wystąpił przeciw bratu") &&
+  text.includes("Hroald") && text.includes("Sigurd"))),
+  "Public chronicle must support brothers Hroald / Sigurd");
+assert.equal(new Set(data.relationships.map(r => [r.from, r.to].sort().join("/"))).size,
+  data.relationships.length, "Duplicate graph edge");
+for (const rel of data.relationships) {
+  assert.ok(ids.includes(rel.from) && ids.includes(rel.to), "Relation references absent person");
+}
 assert.equal(data.relationships.filter(x => (x.from === "sianita" && x.to === "asgrim") ||
   (x.from === "asgrim" && x.to === "sianita")).length, 1,
   "Asgrim and Sianita must have their public engagement in relationships");
@@ -124,6 +141,25 @@ assert.ok(app.includes("groupFilter.primary") && app.includes("state.visibleIds.
 assert.ok(app.includes('card.classList.toggle("is-deceased"') &&
   app.includes('dialog.classList.toggle("is-deceased"'),
   "Deceased photo styling must apply in both map and detailed card");
+assert.ok(app.includes('if (e.button !== 0 && e.button !== 2) return') &&
+  app.includes('if (e.button === 0 && e.target.closest(".person-card")) return') &&
+  app.includes('viewport.addEventListener("contextmenu", e => e.preventDefault())') &&
+  app.includes("viewport.setPointerCapture(e.pointerId)"),
+  "Right-drag anywhere and left-drag background should pan without native menu");
+assert.ok(app.includes('card.setPointerCapture(e.pointerId)') &&
+  app.includes('dragging.startX + dx / state.zoom') &&
+  app.includes('dragging.startY + dy / state.zoom') &&
+  app.includes('Math.hypot(dx, dy) < 5') &&
+  app.includes('lastDragEnd < 500') &&
+  app.includes('drawConnections();'),
+  "Card dragging must respect zoom, update edges and preserve normal card click");
+assert.ok(app.includes('Object.entries(officialPositions).map(([id, pos]) => [id, { ...pos }])') &&
+  app.includes('$("#reset-positions").addEventListener("click"') &&
+  html.includes('id="reset-positions"') &&
+  html.includes('Prawy przycisk'),
+  "Local-only card position changes need a reset control and instructions");
+assert.ok(css.includes(".person-card.is-dragging") &&
+  css.includes(".connections line.family"), "Dragging and kinship links require visual styling");
 assert.ok(css.includes(".person-card.is-deceased .person-art .asset-photo") &&
   css.includes(".character-overlay.is-deceased .character-image .asset-photo") &&
   css.includes("filter:grayscale(1)"),

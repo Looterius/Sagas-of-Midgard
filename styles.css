@@ -532,3 +532,22 @@ body.atlas2-modal-open{overflow:hidden}
 .character-overlay.is-deceased .character-image{
   border-color:#7b7270;
 }
+
+/* Ergonomiczna nawigacja po Sieci postaci.
+   Przeciąganie jest lokalne dla otwartej strony; GitHub pozostaje źródłem prawdy. */
+.map-viewport.is-panning{cursor:grabbing}
+.map-viewport .person-card{touch-action:none;cursor:grab}
+.map-viewport .person-card:active{cursor:grabbing}
+.map-viewport .person-card.is-dragging{cursor:grabbing;z-index:8;
+  border-color:#e9c38c;box-shadow:0 0 0 2px #c59d66a6,0 34px 85px #000b;
+  transition:none}
+.connections line.family{stroke:#a9b7d0;stroke-width:3.5;opacity:.95}
+.legend-family{display:inline-block;width:22px;height:0;border-top:3px solid #a9b7d0}
+.tool.reset-positions{width:auto;height:31px;white-space:nowrap;padding:0 10px;
+  font:11px/1.25 Arial,sans-serif;letter-spacing:.02em;color:#e9cb9b}
+.tool.reset-positions[hidden]{display:none!important}
+.tool.reset-positions:hover{border-color:var(--gold);background:#393023}
+@media(max-width:650px){
+  .tool.reset-positions{padding:0 8px;font-size:10px}
+  .legend{flex-wrap:wrap}
+}

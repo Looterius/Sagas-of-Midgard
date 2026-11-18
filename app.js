@@ -9,12 +9,14 @@
   const scene = $("#map-scene");
   const layer = $("#people-layer");
   const svg = $("#connections");
-  // Publiczny widok jest tylko do odczytu: pozycje pochodzą z danych kroniki.
-  // Ani kliknięcia, ani ruchy gości nie nadpisują oficjalnego układu.
+  // Użytkownicy mogą przesuwać karty tylko w pamięci bieżącej strony.
+  // Pozycje w publicznym data.js pozostają oficjalne i niemodyfikowalne przez gości.
   const officialPositions = Object.fromEntries(data.people.map(p => [p.id, { x: p.x, y: p.y }]));
   const state = {
     zoom: 0.66, panX: 0, panY: 0, selected: null, view: "relationships",
-    positions: officialPositions,
+    positions: Object.fromEntries(
+      Object.entries(officialPositions).map(([id, pos]) => [id, { ...pos }])
+    ),
     visibleIds: new Set(data.people.map(p => p.id))
   };
   const groupFilter = { primary: "all", dimension: null, value: null, expanded: null, search: "" };
@@ -76,7 +78,7 @@
       const a = state.positions[rel.from], b = state.positions[rel.to];
       if (!a || !b) return;
       const ax = a.x + 90, ay = a.y + 120, bx = b.x + 90, by = b.y + 120;
-      addLine(ax, ay, bx, by, "real " + (["hostile","ally"].includes(rel.type) ? rel.type : ""));
+      addLine(ax, ay, bx, by, "real " + (["hostile","ally","family"].includes(rel.type) ? rel.type : ""));
       if (rel.label) {
         const label = document.createElementNS(NS, "text");
         label.setAttribute("x", (ax + bx) / 2);
@@ -113,9 +115,52 @@
       nodes.set(p.id, card);
       positionCard(p.id);
       card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectPerson(p.id); } });
-      // Otwarcie karty, bez przeciągania obiektu. Tło nadal można przesuwać.
-      card.addEventListener("pointerdown", e => e.stopPropagation());
-      card.addEventListener("click", () => selectPerson(p.id));
+      // Lewy: przeciągaj kartę; zwykłe kliknięcie nadal otwiera historię.
+      // Prawy: zdarzenie przechodzi do viewportu i przesuwa całą mapę.
+      let dragging = null, lastDragEnd = -Infinity;
+      card.addEventListener("pointerdown", e => {
+        if (e.button !== 0 || !state.visibleIds.has(p.id)) return;
+        e.stopPropagation();
+        const pos = state.positions[p.id];
+        dragging = {
+          pointerId: e.pointerId, x: e.clientX, y: e.clientY,
+          startX: pos.x, startY: pos.y, moved: false
+        };
+        card.setPointerCapture(e.pointerId);
+      });
+      card.addEventListener("pointermove", e => {
+        if (!dragging || dragging.pointerId !== e.pointerId) return;
+        const dx = e.clientX - dragging.x;
+        const dy = e.clientY - dragging.y;
+        // Małe ruchy dłoni traktujemy jak kliknięcie, nie przestawienie karty.
+        if (!dragging.moved && Math.hypot(dx, dy) < 5) return;
+        dragging.moved = true;
+        card.classList.add("is-dragging");
+        // Przeliczenie pikseli ekranu na jednostki płótna niezależnie od zoomu.
+        state.positions[p.id] = {
+          x: Math.max(0, Math.min(1600 - 180, dragging.startX + dx / state.zoom)),
+          y: Math.max(0, Math.min(1000 - 240, dragging.startY + dy / state.zoom))
+        };
+        positionCard(p.id);
+        drawConnections();
+        $("#reset-positions").hidden = false;
+      });
+      function stopCardDrag(e) {
+        if (!dragging || dragging.pointerId !== e.pointerId) return;
+        if (dragging.moved) lastDragEnd = e.timeStamp;
+        dragging = null;
+        card.classList.remove("is-dragging");
+      }
+      card.addEventListener("pointerup", stopCardDrag);
+      card.addEventListener("pointercancel", stopCardDrag);
+      card.addEventListener("lostpointercapture", stopCardDrag);
+      card.addEventListener("click", e => {
+        if (e.timeStamp - lastDragEnd < 500) {
+          e.preventDefault(); // po przeciągnięciu nie otwieraj karty
+          return;
+        }
+        selectPerson(p.id);
+      });
     }
     drawConnections();
     $("#people-count").textContent = data.people.length;
@@ -160,7 +205,11 @@
     const isDefault = groupFilter.primary === "all" &&
       !groupFilter.value && !groupFilter.search.trim();
     state.visibleIds = new Set(people.map(person => person.id));
-    state.positions = isDefault ? officialPositions : groups.layout(people);
+    // Filtr zmienia tylko lokalny widok, nie zapisane pozycje postaci.
+    state.positions = isDefault
+      ? Object.fromEntries(Object.entries(officialPositions).map(([id, pos]) => [id, { ...pos }]))
+      : groups.layout(people);
+    $("#reset-positions").hidden = true;
     nodes.forEach((card, id) => {
       card.hidden = !state.visibleIds.has(id);
       if (!card.hidden) {
@@ -445,10 +494,17 @@
 
   function bindViewportPan() {
     let pan = null;
+    // Prawy przycisk: przesuwaj mapę również po rozpoczęciu na portrecie.
+    // Lewy przycisk: przesuwaj tło, natomiast na karcie przeciągaj tę kartę.
+    viewport.addEventListener("contextmenu", e => e.preventDefault());
     viewport.addEventListener("pointerdown", e => {
-      if (e.button !== 0 || e.target.closest(".person-card")) return;
-      pan = { id: e.pointerId, x: e.clientX, y: e.clientY, startX: state.panX, startY: state.panY };
+      if (e.button !== 0 && e.button !== 2) return;
+      if (e.button === 0 && e.target.closest(".person-card")) return;
+      if (e.button === 2) e.preventDefault();
+      pan = { id: e.pointerId, x: e.clientX, y: e.clientY,
+        startX: state.panX, startY: state.panY };
       viewport.setPointerCapture(e.pointerId);
+      viewport.classList.add("is-panning");
     });
     viewport.addEventListener("pointermove", e => {
       if (!pan || pan.id !== e.pointerId) return;
@@ -456,8 +512,14 @@
       state.panY = pan.startY + e.clientY - pan.y;
       applyTransform();
     });
-    viewport.addEventListener("pointerup", () => { pan = null; });
-    viewport.addEventListener("pointercancel", () => { pan = null; });
+    const stopPan = e => {
+      if (!pan || pan.id !== e.pointerId) return;
+      pan = null;
+      viewport.classList.remove("is-panning");
+    };
+    for (const eventName of ["pointerup", "pointercancel", "lostpointercapture"]) {
+      viewport.addEventListener(eventName, stopPan);
+    }
     viewport.addEventListener("wheel", e => {
       e.preventDefault();
       setZoom(state.zoom * (e.deltaY < 0 ? 1.08 : .92));
@@ -477,6 +539,10 @@
   $("#zoom-in").addEventListener("click", () => setZoom(state.zoom * 1.17));
   $("#zoom-out").addEventListener("click", () => setZoom(state.zoom / 1.17));
   $("#fit").addEventListener("click", fit);
+  $("#reset-positions").addEventListener("click", () => {
+    // Przywróć układ aktualnie wybranej grupy; filtr i wyszukiwarka bez zmian.
+    applyGrouping();
+  });
   $("#close-inspector").addEventListener("click", closeCharacter);
   $("#inspector").addEventListener("click", e => {
     if (e.target === $("#inspector")) closeCharacter();

@@ -64,6 +64,8 @@ window.CHRONICLE = {
   relationships: [
     // Ujawniona więź rodzinna bohaterów.
     { from: "sianita", to: "halvard", type: "family", label: "Rodzeństwo" },
+    { from: "hroald", to: "sianita", type: "family", label: "Wuj / bratanica" },
+    { from: "hroald", to: "halvard", type: "family", label: "Wuj / bratanek" },
     { from: "sianita", to: "asgrim", type: "ally", label: "Narzeczeni" }
   ],
   // Uwaga: grouping jest opcjonalne. Niepotwierdzone klasyfikacje pozostają puste.
