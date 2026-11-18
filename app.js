@@ -475,9 +475,19 @@
     function paint() {
       list.replaceChildren();
       const shown = all.filter(e => filter.value === "all" || e.placeId === filter.value);
-      $("#chronicle-count").textContent = shown.length + (shown.length === 1 ? " rozdział" : " rozdziały");
+      $("#chronicle-count").textContent = shown.length + (shown.length === 1 ? " wydarzenie" : " wydarzeń") + " · " + new Set(shown.map(e => e.chapter)).size + " części";
       if (!shown.length) list.appendChild(make("p", "chronicle-empty", "Nie zapisano jeszcze wydarzeń z tego miejsca."));
+      let previousChapter = null;
       for (const item of shown) {
+        if (item.chapter !== previousChapter) {
+          previousChapter = item.chapter;
+          const chapter = (data.chronicleChapters || []).find(c => c.id === item.chapter);
+          const heading = make("header", "chronicle-section-heading");
+          heading.appendChild(make("span", "chronicle-section-kicker", "CZĘŚĆ " + item.chapter));
+          heading.appendChild(make("h3", "chronicle-section-title", chapter?.title || "Kronika"));
+          if (chapter?.subtitle) heading.appendChild(make("p", "chronicle-section-subtitle", chapter.subtitle));
+          list.appendChild(heading);
+        }
         const place = placeMap.get(item.placeId);
         const card = make("article", "chronicle-card");
         card.dataset.eventId = item.id;
