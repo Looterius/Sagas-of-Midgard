@@ -22,18 +22,24 @@ equals(value("npc",null,null),people.filter(p=>p.grouping?.role==="npc").map(p=>
 assert.equal(value("npc",null,null).length,26,"26 known NPC");
 equals(value("deceased",null,null),["sigurd","mord","floki"],"Only confirmed deaths");
 equals(value("rulers",null,null),["hroald","sigurd","sianita","alrek","halfdan","audbjorn","olaf-gudrodsson","alfheld-gudrodsson","torsten-gudrodsson"],"Confirmed jarls and claimants");
-equals(value("captives",null,null),["aslak"],"Existing marked captive");
-equals(value("all","settlements","skjorvik"),["aslak","haki","ragnvald-s","orm"],"Skjǫrvik persons");
-assert.equal(value("all","settlements","hrafnvik").length,23,"Known Hrafnvik associations");
+equals(value("captives",null,null),["aslak","ragnvald-s"],"Both known prisoners");
+equals(value("all","settlements","skjorvik"),["haki","ragnvald-s","orm"],"Skjordvik persons");
+assert.equal(value("all","settlements","hrafnvik").length,24,"Hrafnvik plus captive Ragnvald");
 equals(value("deceased","settlements","hrafnvik"),["sigurd","floki","mord"],"Dead Hrafnvik persons");
 equals(value("heroes","settlements","hrafnvik"),["sianita","halvard","haroks","ylva","floki","asgrim"],"Hero settlement");
 assert.equal(value("heroes","settlements","skjorvik").length,0);
 equals(groups.options(data,"settlements").map(p=>p.id),["ejkjavik","hrafnvik","skjorvik"]);
 equals(groups.options(data,"kingdoms").map(p=>p.id),["agder","hordalands","fjordane","vestmar"]);
-equals(groups.options(data,"families").map(p=>p.id),["rod-jarla","rod-svali","rod-gudrodssonow"]);
+equals(groups.options(data,"families").map(p=>p.id),["rod-jarla","rod-svali","rod-gudrodssonow","rod-morotara","rod-astrid"]);
 assert.equal(groups.options(data,"factions").length,0,"Do not invent factions");
 equals(value("all","families","rod-jarla"),["sigurd","hroald","runa","sten","sianita","halvard"]);
 equals(value("all","families","rod-svali"),["svala","mord","ulf"]);
+equals(value("all","families","rod-morotara"),["morotar","floki","haroks"]);
+equals(value("all","families","rod-astrid"),["astrid","ylva"]);
+assert.ok(peopleById.get("ragnvald-s").description.includes("pojmany"),"Skjǫrvik prisoner history");
+assert.ok(peopleById.get("ragnvald-s").grouping.settlementIds.includes("skjorvik") &&
+ peopleById.get("ragnvald-s").grouping.settlementIds.includes("hrafnvik"),
+ "Ragnvald: origin Skjǫrvik, prisoner in Hrafnvik");
 equals(value("all","kingdoms","vestmar"),["olaf-gudrodsson","alfheld-gudrodsson","torsten-gudrodsson"]);
 equals(value("all","families","rod-gudrodssonow"),["olaf-gudrodsson","alfheld-gudrodsson","torsten-gudrodsson"]);
 equals(value("heroes","kingdoms","agder"),["asgrim"]);
@@ -112,6 +118,12 @@ for(const [a,b,type,label] of [
   ["sianita","asgrim","ally","Narzeczeni"],
   ["hakon","floki","other","Dawny pracodawca / szkutnik"],
   ["hakon","aslak","other","Pracodawca / cieśla"],
+  ["floki","haroks","family","Bracia"],
+  ["morotar","floki","family","Przybrany ojciec i syn"],
+  ["morotar","haroks","family","Przybrany ojciec i syn"],
+  ["astrid","ylva","family","Matka i córka"],
+  ["alrek","hroald","other","Konung uznawany przez Hroalda"],
+  ["alrek","sianita","other","Odrzucona przysięga i propozycja małżeństwa z królewskim synem"],
   ["floki","torvald","other","Floki przywrócił Torvalda dawnej wierze"],
 ])assert.ok(hasRel(a,b,type,label),"Missing named relation: "+a+"/"+b);
 
@@ -131,8 +143,9 @@ for(const id of ["mord","floki"])
 assert.ok(data.places.find(p=>p.id==="skjorvik").personIds.includes("haki"));
 assert.equal(peopleById.get("orm").name,"Orm Półgłos","Orm identity confirmed by GM");
 assert.ok(peopleById.get("orm").grouping.settlementIds.includes("skjorvik"),"Orm from destroyed settlement");
-assert.ok(peopleById.get("orm").description.includes("Skjǫrviku"),"Orm biography should mention destroyed settlement");
+assert.ok(peopleById.get("orm").description.includes("Skjordviku"),"Orm biography should mention destroyed settlement");
 assert.ok(data.places.find(p=>p.id==="skjorvik").personIds.includes("ragnvald-s"));
+assert.ok(data.places.find(p=>p.id==="hrafnvik").personIds.includes("ragnvald-s"),"Ragnvald held in Hrafnvik");
 assert.ok(data.places.find(p=>p.id==="skjorvik").personIds.includes("orm"),"Orm must be linked to destroyed settlement");
 
 const positions=people.map(p=>({id:p.id,x:p.x,y:p.y}));
@@ -162,7 +175,7 @@ for(const id of ["character-group-tabs","character-group-dimensions","character-
  "character-group-reset","character-group-empty","character-group-summary"])
   assert.ok(html.includes('id="'+id+'"'),"Missing grouping UI "+id);
 assert.ok(html.includes('src="character-groups.js?v='));
-assert.ok(html.includes('data.js?v=vestmar-v1'),"Bust public data cache after canonical update");
+assert.ok(html.includes('data.js?v=kinship-chronicle-v1'),"Bust public data cache after canonical update");
 assert.ok(css.includes(".person-card[hidden]"));
 assert.ok(app.includes("groupFilter.primary")&&app.includes("state.visibleIds.has(rel.from)"));
 assert.ok(app.includes('card.classList.toggle("is-deceased"')&&
@@ -205,4 +218,10 @@ assert.ok(hasRel("halfdan","asgrim","family","Ojciec i syn"));
 assert.ok(app.includes("x: dragging.startX + dx / state.zoom") &&
   app.includes("y: dragging.startY + dy / state.zoom"),"Free card dragging must be unclamped");
 assert.ok(!app.includes("Math.min(1600 - 180, dragging.startX"),"Old card boundary must stay removed");
-console.log("PASS — 32 canonical biographies, 21 relationships, Gudrodsson clan, new photos and Orm in destroyed settlement");
+assert.equal(data.relationships.length,27);
+assert.ok(app.includes("const savedLayouts = new Map()") &&
+  app.includes("const editedLayouts = new Set()"),"Filter layouts must survive switching");
+assert.ok(app.includes("380);") && app.includes("clearTouchHold"),
+  "Touch long-press drag must coexist with ordinary one-finger pan");
+assert.ok(app.includes('portrait.draggable = false'),"Prevent native image dragging");
+console.log("PASS — 32 biographies, 27 verified relations, two new families, prisoner Ragnvald and free filtered dragging");
