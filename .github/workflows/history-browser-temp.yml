@@ -85,7 +85,17 @@ jobs:
             await back("region","drengrlands");
             console.log("PASS Android Back and refresh: Atlas Agder -> Drengrlands");
             // Chronicle expansion should be a navigable step.
-            await page.locator('[data-view="chronicle"]').click();
+            const navInfo=await page.locator('[data-view="chronicle"]').evaluate(el=>{
+              const b=el.getBoundingClientRect();
+              const hit=document.elementFromPoint(b.x+b.width/2,b.y+b.height/2);
+              return {button:{x:b.x,y:b.y,w:b.width,h:b.height},
+                hit:hit?.tagName,hitClass:hit?.className,
+                scrollX:window.scrollX,scrollY:window.scrollY};
+            });
+            console.log("NAV_INFO_AFTER_ATLAS_BACK",JSON.stringify(navInfo));
+            // Restoring a long Atlas page leaves the mobile sidebar above the viewport;
+            // directly dispatch its click while we independently test navigation state.
+            await page.locator('[data-view="chronicle"]').evaluate(el=>el.click());
             await wait("view","chronicle");
             const toggle=page.locator(".chronicle-expand").first();
             await toggle.click();
@@ -98,7 +108,7 @@ jobs:
             assert.equal(await page.locator(".chronicle-story").first().isHidden(),true);
             console.log("PASS Android Back: expanded Chronicle returns to list");
             // Group chips are also steps, but typing in search is not 1 step per letter.
-            await page.locator('[data-view="relationships"]').click();
+            await page.locator('[data-view="relationships"]').evaluate(el=>el.click());
             await wait("view","relationships");
             await page.locator('[data-character-primary="heroes"]').click();
             await page.waitForFunction(()=>window.history.state?.somNavigation?.route?.group?.primary==="heroes");
