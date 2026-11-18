@@ -102,6 +102,12 @@
       const name = make("div", "card-name" + (p.name.length > 21 ? " long" : ""), p.name);
       card.appendChild(name);
       card.appendChild(make("span", "card-corner", "ᛟ"));
+      if (p.grouping?.role === "hero") {
+        const dead = p.grouping.lifeStatus === "deceased";
+        const marker = make("span", "person-role-badge" + (dead ? " is-deceased" : ""),
+          dead ? "† ZMARŁY" : "BOHATER");
+        card.appendChild(marker);
+      }
       layer.appendChild(card);
       nodes.set(p.id, card);
       positionCard(p.id);
@@ -225,7 +231,8 @@
     if (!p) return;
     state.selected = id;
     nodes.forEach((el, key) => el.classList.toggle("selected", key === id));
-    $("#inspector-type").textContent = p.kind.toUpperCase() + " · KRONIKA";
+    $("#inspector-type").textContent = p.kind.toUpperCase() +
+      (p.grouping?.lifeStatus === "deceased" ? " · ZMARŁY" : "") + " · KRONIKA";
     $("#inspector-name").textContent = p.name;
     $("#inspector-description").textContent =
       p.description || "Postać znana z kroniki. Jej historia i motywacje będą uzupełniane wraz z odkryciami graczy.";
@@ -412,21 +419,25 @@
   }
   function fit() {
     if (!viewport.clientWidth || !viewport.clientHeight) return;
-    const isDefault = groupFilter.primary === "all" && !groupFilter.value && !groupFilter.search.trim();
-    if (isDefault || state.visibleIds.size === 0) {
-      // Wszyscy: dokładnie ten sam układ i skalowanie, które były przed grupowaniem.
-      state.zoom = Math.min(1.05, Math.max(.28, Math.min((viewport.clientWidth - 55) / 1130, (viewport.clientHeight - 65) / 870)));
-      state.panX = 0; state.panY = 0;
-    } else {
-      const visible = [...state.visibleIds].map(id => state.positions[id]).filter(Boolean);
-      const minX = Math.min(...visible.map(p => p.x)), maxX = Math.max(...visible.map(p => p.x + 180));
-      const minY = Math.min(...visible.map(p => p.y)), maxY = Math.max(...visible.map(p => p.y + 240));
-      const width = maxX - minX, height = maxY - minY;
-      state.zoom = Math.max(.06, Math.min(1.15,
-        (viewport.clientWidth - 90) / width, (viewport.clientHeight - 90) / height));
-      state.panX = (800 - (minX + maxX) / 2) * state.zoom;
-      state.panY = (500 - (minY + maxY) / 2) * state.zoom;
+    // Dopasowanie wszystkich WIDOCZNYCH kart. Ich zapisane pozycje pozostają niezmienione.
+    const shown = [...state.visibleIds].map(id => state.positions[id]).filter(Boolean);
+    if (!shown.length) {
+      state.zoom = .66; state.panX = 0; state.panY = 0;
+      applyTransform();
+      return;
     }
+    const minX = Math.min(...shown.map(p => p.x));
+    const maxX = Math.max(...shown.map(p => p.x + 180));
+    const minY = Math.min(...shown.map(p => p.y));
+    const maxY = Math.max(...shown.map(p => p.y + 240));
+    const groupWidth = Math.max(180, maxX - minX);
+    const groupHeight = Math.max(240, maxY - minY);
+    const availableWidth = Math.max(100, viewport.clientWidth - 70);
+    const availableHeight = Math.max(100, viewport.clientHeight - 70);
+    state.zoom = Math.max(.06, Math.min(1.15,
+      availableWidth / groupWidth, availableHeight / groupHeight));
+    state.panX = (800 - (minX + maxX) / 2) * state.zoom;
+    state.panY = (500 - (minY + maxY) / 2) * state.zoom;
     applyTransform();
   }
 
