@@ -39,8 +39,8 @@ jobs:
             assert.equal(await page.locator("#connections .graph-link").count(),17);
             assert.equal(await page.locator("#links-count").innerText(),"17");
             assert.ok(await page.locator(".person-card[data-id='sigurd']").count());
-            const graph=await page.evaluate(()=>window.SOM_GRAPH_GEOMETRY);
-            assert.ok(graph?.link);
+            const routingLoaded=await page.evaluate(()=>typeof window.SOM_GRAPH_GEOMETRY?.link==="function");
+            assert.ok(routingLoaded);
             console.log("PASS 25 people, 17 visible links and 3 desaturated deceased cards");
             const first=await page.locator("#map-viewport").screenshot({type:"jpeg",quality:53});
             const b64=first.toString("base64");
