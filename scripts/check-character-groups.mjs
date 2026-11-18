@@ -15,25 +15,27 @@ const value=(primary,dimension,id)=>people.filter(p=>groups.matches(data,p,{
 })).map(p=>p.id).sort();
 const equals=(actual,expected,message)=>assert.equal([...actual].sort().join(","),[...expected].sort().join(","),message);
 
-assert.equal(people.length,29,"29 public characters, including three kings and Orm");
+assert.equal(people.length,32,"32 public characters, including the brothers of Vestmar");
 assert.equal(new Set(ids).size,people.length,"Duplicate person ID");
 equals(value("heroes",null,null),["sianita","halvard","haroks","ylva","floki","asgrim"],"Six playable heroes");
 equals(value("npc",null,null),people.filter(p=>p.grouping?.role==="npc").map(p=>p.id),"NPC filter");
-assert.equal(value("npc",null,null).length,23,"23 known NPC");
+assert.equal(value("npc",null,null).length,26,"26 known NPC");
 equals(value("deceased",null,null),["sigurd","mord","floki"],"Only confirmed deaths");
-equals(value("rulers",null,null),["hroald","sigurd","sianita","alrek","halfdan","audbjorn"],"Confirmed jarls and kings");
+equals(value("rulers",null,null),["hroald","sigurd","sianita","alrek","halfdan","audbjorn","olaf-gudrodsson","alfheld-gudrodsson","torsten-gudrodsson"],"Confirmed jarls and claimants");
 equals(value("captives",null,null),["aslak"],"Existing marked captive");
-equals(value("all","settlements","skjorvik"),["aslak","haki","ragnvald-s"],"Skjǫrvik persons");
+equals(value("all","settlements","skjorvik"),["aslak","haki","ragnvald-s","orm"],"Skjǫrvik persons");
 assert.equal(value("all","settlements","hrafnvik").length,23,"Known Hrafnvik associations");
 equals(value("deceased","settlements","hrafnvik"),["sigurd","floki","mord"],"Dead Hrafnvik persons");
 equals(value("heroes","settlements","hrafnvik"),["sianita","halvard","haroks","ylva","floki","asgrim"],"Hero settlement");
 assert.equal(value("heroes","settlements","skjorvik").length,0);
 equals(groups.options(data,"settlements").map(p=>p.id),["ejkjavik","hrafnvik","skjorvik"]);
-equals(groups.options(data,"kingdoms").map(p=>p.id),["agder","hordalands","fjordane"]);
-equals(groups.options(data,"families").map(p=>p.id),["rod-jarla","rod-svali"]);
+equals(groups.options(data,"kingdoms").map(p=>p.id),["agder","hordalands","fjordane","vestmar"]);
+equals(groups.options(data,"families").map(p=>p.id),["rod-jarla","rod-svali","rod-gudrodssonow"]);
 assert.equal(groups.options(data,"factions").length,0,"Do not invent factions");
 equals(value("all","families","rod-jarla"),["sigurd","hroald","runa","sten","sianita","halvard"]);
 equals(value("all","families","rod-svali"),["svala","mord","ulf"]);
+equals(value("all","kingdoms","vestmar"),["olaf-gudrodsson","alfheld-gudrodsson","torsten-gudrodsson"]);
+equals(value("all","families","rod-gudrodssonow"),["olaf-gudrodsson","alfheld-gudrodsson","torsten-gudrodsson"]);
 equals(value("heroes","kingdoms","agder"),["asgrim"]);
 equals(value("all","kingdoms","agder"),["asgrim","halfdan"]);
 equals(value("all","kingdoms","fjordane"),["audbjorn"]);
@@ -43,7 +45,7 @@ const requiredDescriptions=[
   "sigurd","hroald","runa","sten","sianita","halvard","asgrim","svala",
   "mord","ulf","erik","ragnvald-p","styrbjorn","leif","hakon","floki","aslak",
   "torvald","morotar","astrid","anslem","haroks","ylva","ragnvald-s","haki",
-  "orm","alrek","halfdan","audbjorn"
+  "orm","alrek","halfdan","audbjorn","olaf-gudrodsson","alfheld-gudrodsson","torsten-gudrodsson"
 ];
 equals(ids,requiredDescriptions);
 for(const p of people){
@@ -127,10 +129,11 @@ for(const p of people.filter(p=>p.grouping.settlementIds?.includes("hrafnvik")))
 for(const id of ["mord","floki"])
   assert.ok(data.places.find(p=>p.id==="eylenda").personIds.includes(id));
 assert.ok(data.places.find(p=>p.id==="skjorvik").personIds.includes("haki"));
-assert.equal(peopleById.get("orm").name,"Orm","Keep Orm identity neutral");
-assert.equal(peopleById.get("orm").grouping.settlementIds,undefined,"Do not conflate Skjoldvik with Skjǫrvik");
-assert.ok(!peopleById.get("orm").description.includes("Półgłos"),"Do not conflate Orm Półgłos and Jednoręki");
+assert.equal(peopleById.get("orm").name,"Orm Półgłos","Orm identity confirmed by GM");
+assert.ok(peopleById.get("orm").grouping.settlementIds.includes("skjorvik"),"Orm from destroyed settlement");
+assert.ok(peopleById.get("orm").description.includes("Skjǫrviku"),"Orm biography should mention destroyed settlement");
 assert.ok(data.places.find(p=>p.id==="skjorvik").personIds.includes("ragnvald-s"));
+assert.ok(data.places.find(p=>p.id==="skjorvik").personIds.includes("orm"),"Orm must be linked to destroyed settlement");
 
 const positions=people.map(p=>({id:p.id,x:p.x,y:p.y}));
 for(let i=0;i<positions.length;i++)for(let j=i+1;j<positions.length;j++){
@@ -159,7 +162,7 @@ for(const id of ["character-group-tabs","character-group-dimensions","character-
  "character-group-reset","character-group-empty","character-group-summary"])
   assert.ok(html.includes('id="'+id+'"'),"Missing grouping UI "+id);
 assert.ok(html.includes('src="character-groups.js?v='));
-assert.ok(html.includes('data.js?v=portraits-rulers-v1'),"Bust public data cache after canonical update");
+assert.ok(html.includes('data.js?v=vestmar-v1'),"Bust public data cache after canonical update");
 assert.ok(css.includes(".person-card[hidden]"));
 assert.ok(app.includes("groupFilter.primary")&&app.includes("state.visibleIds.has(rel.from)"));
 assert.ok(app.includes('card.classList.toggle("is-deceased"')&&
@@ -182,9 +185,24 @@ assert.ok(peopleById.get("torvald").image.includes("Thorwald"));
 assert.ok(peopleById.get("sten").image.includes("Stern"));
 assert.ok(peopleById.get("ulf").image.includes("Ulf, Vigilant"));
 assert.ok(peopleById.get("orm").image.endsWith("Orm.png"));
-assert.equal(peopleById.get("mord").image,"","Mord portrait still requires verified match");
+assert.equal(peopleById.get("mord").image,"assets/portraits/Mord.png","Mord portrait provided by GM");
+assert.equal(peopleById.get("audbjorn").image,"assets/portraits/Audbjorn.png","Audbjorn image provided");
+for(const [id,file] of [
+  ["olaf-gudrodsson","Olaf Gudrodsson.png"],
+  ["alfheld-gudrodsson","Alfheld Gudrodsson.png"],
+  ["torsten-gudrodsson","Torsten Gudrodsson.png"]
+]){
+  const p=peopleById.get(id);
+  assert.equal(p.image,"assets/portraits/"+file,"Wrong supplied Vestmar image "+id);
+  assert.ok(p.grouping.kingdomIds.includes("vestmar"),"Missing Vestmar group "+id);
+}
+for(const [a,b] of [
+  ["olaf-gudrodsson","alfheld-gudrodsson"],
+  ["olaf-gudrodsson","torsten-gudrodsson"],
+  ["alfheld-gudrodsson","torsten-gudrodsson"]
+])assert.ok(hasRel(a,b,"family","Bracia; rywale o władzę w Vestmarze"),"Missing Vestmar sibling edge");
 assert.ok(hasRel("halfdan","asgrim","family","Ojciec i syn"));
 assert.ok(app.includes("x: dragging.startX + dx / state.zoom") &&
   app.includes("y: dragging.startY + dy / state.zoom"),"Free card dragging must be unclamped");
 assert.ok(!app.includes("Math.min(1600 - 180, dragging.startX"),"Old card boundary must stay removed");
-console.log("PASS — 29 canonical biographies, 18 public relationships, rulers, images and unrestricted dragging");
+console.log("PASS — 32 canonical biographies, 21 relationships, Gudrodsson clan, new photos and Orm in destroyed settlement");
