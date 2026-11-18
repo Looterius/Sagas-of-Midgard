@@ -518,13 +518,13 @@
         }
         body.appendChild(expanded);
         const actions = make("div", "chronicle-actions");
-        const toggle = make("button", "chronicle-expand", "Czytaj kronikę");
+        const toggle = make("button", "chronicle-expand", "Czytaj całą opowieść");
         toggle.type = "button";
         toggle.setAttribute("aria-expanded", "false");
         toggle.addEventListener("click", () => {
           const opening = expanded.hidden;
           expanded.hidden = !opening;
-          toggle.textContent = opening ? "Zwiń opowieść" : "Czytaj kronikę";
+          toggle.textContent = opening ? "Zwiń opowieść" : "Czytaj całą opowieść";
           toggle.setAttribute("aria-expanded", String(opening));
           window.SOM_NAV?.changed();
         });
