@@ -1,0 +1,99 @@
+name: Temporary mobile browser QA
+on:
+  push:
+    branches: [fix/mobile-rwd-pinch-related-navigation-20261118]
+permissions:
+  contents: read
+jobs:
+  mobile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser test driver
+        run: npm install --no-save --no-package-lock playwright-core@1.57.0
+      - name: Test Android-sized browser, pinch, modals and related links
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/qa-site.log 2>&1 &
+          sleep 1
+          node <<'JS'
+          const {chromium}=require("playwright-core");
+          const assert=require("node:assert/strict");
+          (async()=>{
+            const browser=await chromium.launch({
+              executablePath:process.env.CHROME_BIN||"/usr/bin/google-chrome",
+              args:["--no-sandbox","--disable-dev-shm-usage"]
+            });
+            const context=await browser.newContext({
+              viewport:{width:360,height:780},screen:{width:360,height:780},
+              deviceScaleFactor:2,isMobile:true,hasTouch:true
+            });
+            const page=await context.newPage();
+            const errors=[];page.on("pageerror",e=>errors.push(e.message));
+            await page.goto("http://127.0.0.1:8765/",{waitUntil:"load"});
+            await page.locator('[data-character-primary="heroes"]').click();
+            const vp=page.locator("#map-viewport");
+            await vp.scrollIntoViewIfNeeded();
+            const zoom0=Number(await page.locator("#map-scene").evaluate(el=>el.style.getPropertyValue("--scale")));
+            const rect=await vp.boundingBox();assert.ok(rect,"map missing");
+            const cdp=await context.newCDPSession(page);
+            const cx=rect.x+rect.width/2,cy=rect.y+rect.height/2;
+            await cdp.send("Input.dispatchTouchEvent",{type:"touchStart",touchPoints:[
+              {x:cx-25,y:cy},{x:cx+25,y:cy}
+            ]});
+            for(const d of [35,45,60,75]){
+              await cdp.send("Input.dispatchTouchEvent",{type:"touchMove",touchPoints:[
+                {x:cx-d,y:cy},{x:cx+d,y:cy}
+              ]});
+            }
+            await cdp.send("Input.dispatchTouchEvent",{type:"touchEnd",touchPoints:[]});
+            const zoom1=Number(await page.locator("#map-scene").evaluate(el=>el.style.getPropertyValue("--scale")));
+            assert.ok(zoom1>zoom0*1.3,"Pinch did not zoom: "+zoom0+" -> "+zoom1);
+            assert.ok(await page.locator("#inspector").isHidden(),"Pinch accidentally opened modal");
+            console.log("PASS pinch zoom",zoom0,"->",zoom1);
+            await page.locator("#fit").click();
+            await page.waitForTimeout(720);
+            await page.locator('.person-card[data-id="sianita"]').tap();
+            assert.ok(await page.locator("#inspector").isVisible(),"Tap did not open card");
+            const measures=await page.evaluate(()=>{
+              const dialog=document.querySelector(".character-dialog").getBoundingClientRect();
+              const heading=document.querySelector("#inspector-name").getBoundingClientRect();
+              return {innerWidth:innerWidth,
+                documentWidth:document.documentElement.scrollWidth,
+                modalWidth:dialog.width,modalLeft:dialog.left,modalRight:dialog.right,
+                headingLeft:heading.left,headingRight:heading.right};
+            });
+            assert.ok(measures.modalLeft>=-1 && measures.modalRight<=measures.innerWidth+1,
+              "Modal exceeds mobile viewport: "+JSON.stringify(measures));
+            assert.ok(measures.headingLeft>=-1 && measures.headingRight<=measures.innerWidth+1,
+              "Name overflows screen: "+JSON.stringify(measures));
+            assert.ok(measures.documentWidth<=measures.innerWidth+2,
+              "Page has horizontal overflow: "+JSON.stringify(measures));
+            console.log("PASS responsive dialog",JSON.stringify(measures));
+            await page.locator("#inspector-art img").waitFor({state:"visible",timeout:8000});
+            const screenshot=(await page.screenshot({type:"jpeg",quality:65})).toString("base64");
+            for(let i=0;i<screenshot.length;i+=3000)
+              console.log("QA_MOBILE_MODAL_PART_"+String(i/3000).padStart(3,"0")+"="+screenshot.slice(i,i+3000));
+            await page.locator('#inspector-relations .relation-link').filter({hasText:"Halvard"}).click();
+            assert.equal(await page.locator("#inspector-name").innerText(),'Halvard „Snake-Eye”');
+            const scroll=await page.locator(".character-dialog").evaluate(x=>x.scrollTop);
+            assert.equal(scroll,0,"Related person navigation must reset to top");
+            console.log("PASS related person Sianita -> Halvard");
+            await page.locator('#inspector-relations .relation-link--place').filter({hasText:"Hrafnvik"}).click();
+            assert.equal(await page.locator("#page-title").innerText(),"Atlas lokacji");
+            assert.ok(await page.locator("#place-dialog").isVisible(),"Place relation did not open Atlas modal");
+            console.log("PASS related place Halvard -> Hrafnvik Atlas");
+            await page.locator("#atlas2-dialog-close").click();
+            await page.locator('[data-view="relationships"]').click();
+            await page.locator('[data-character-primary="heroes"]').click();
+            await page.locator('.person-card[data-id="asgrim"]').tap();
+            await page.locator('#inspector-relations .relation-link--place').filter({hasText:"Agder"}).click();
+            assert.equal(await page.locator("#page-title").innerText(),"Atlas lokacji");
+            console.log("PASS Asgrim -> Agder region");
+            assert.deepEqual(errors,[],"Unexpected JavaScript error");
+            console.log("PASS mobile browser end-to-end; no runtime errors");
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exitCode=1});
+          JS
