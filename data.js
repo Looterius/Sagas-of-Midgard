@@ -996,10 +996,13 @@ window.CHRONICLE = {
       "placeId": "hrafnvik",
       "kind": "Poselstwo",
       "image": "",
-      "intro": "Alrek Eriksson przysłał Sianicie dary i wojowników, a wraz z nimi oczekiwanie wierności.",
+      "intro": "Zanim bohaterowie dotarli na Wielki Althing, Hordaland przypomniał im, że nawet najhojniejszy dar króla może mieć swoją cenę.",
       "paragraphs": [
-        "Przed podróżą na Eylendę do Hrafnviku dotarł wysłannik Alreka Erikssona, króla Hordalandu. Przywiózł ozdobny naramiennik, trzynastu wojowników oraz pierścienie przysięgi. Dar mógł być znakiem uznania i ochrony, ale zawierał też żądanie politycznego zobowiązania.",
-        "Władza nad niewielką osadą coraz wyraźniej stykała się z ambicjami królów. Jarlowa miała niebawem odpowiedzieć na te oczekiwania osobiście, na zgromadzeniu Północy."
+        "Gdy w Hrafnviku wciąż opowiadano o Skjordvik, do osady przybyło poselstwo Alreka Erikssona, króla Hordalandu. Nie przywiozło zwykłego wezwania, które można zignorować bez utraty twarzy. Wśród darów znajdowała się ozdobna szkatuła, kunsztowny naramiennik dla jarlowej oraz pierścienie przeznaczone dla wojowników. Król wysłał trzynastu ludzi, których przysięgi mogły wzmocnić ochronę niewielkiego Hrafnviku.",
+        "Dar ze strony tak potężnego władcy nie był jedynie gestem przyjaźni. Sianita wciąż nie złożyła Alrekowi formalnej przysięgi wierności. Po zniszczeniu Skjordvik jej pozycja stawała się niepewna, a wieści o Wielkim Althingu na Eylendzie zapowiadały, że sprawa może zostać rozpatrzona wśród królów i jarlów. Dodatkowi wojownicy i królewska protekcja wyglądały na ratunek, ale wymagały zobowiązań, które mogły ograniczyć wolność jarlowej.",
+        "W osadzie od dawna wiedziano, ile znaczy naramiennik i publicznie wypowiedziane słowo. Wojownik związany przysięgą nie służy tylko do stania z włócznią przy bramie: jego honor staje się częścią honoru tych, którym ślubował. Dla mieszkańców Hrafnviku trzynastu przybyszów mogło oznaczać silniejszą warbandę. Dla Hordalandu byli też widomym znakiem wpływu wielkiego królestwa na małą osadę.",
+        "Poselstwo przypomniało bohaterom, że czas samodzielnych decyzji jednej jarlowej powoli dobiega końca. To, czy przyjąć dar i na jakich warunkach, splatało się z przyszłością całego rodu Sigurda. Sianita miała spotkać Alreka osobiście na Eylendzie. Tam naramiennik i wojownicy okazywali się nie początkiem rozmowy, lecz jej pierwszą stawką.",
+        "Wypływając na Althing, bohaterowie zabrali ze sobą pamięć o ogniu Skjordvik i świadomość, że potężni sąsiedzi nie zamierzają przyglądać się ich losom bez własnego interesu. Morze oddzielało Hrafnvik od zgromadzenia; nie oddzielało go już od wielkiej polityki."
       ],
       "participants": [
         "sianita",
@@ -1014,10 +1017,13 @@ window.CHRONICLE = {
       "placeId": "ejkjavik",
       "kind": "Zgromadzenie",
       "image": "",
-      "intro": "Na niezależnej Eylendzie zebrały się głosy królów, jarlów i ich poselstw.",
+      "intro": "Eylenda przyjęła królów Północy jako neutralny gospodarz. Między namiotami, ucztami i zgromadzeniami zaczęły się prawdziwe zmagania o przyszłość Drengrlands.",
       "paragraphs": [
-        "W obozach wokół Althingu spotkali się władcy czterech królestw Drengrlands oraz przedstawiciele niezależnych jarldomów. Uczty i rozmowy dotyczyły ziem za morzem, nowej wojny oraz tego, czy Północ powinna podporządkować się jednemu królowi.",
-        "Bohaterowie Hrafnviku przybyli nie tylko słuchać. Poznawali możnych, zdobywali informacje, zawierali znajomości i zabiegali o względy ludzi, których głosy mogły zaważyć na przyszłości ich osady."
+        "Na Eylendę przybyli możni z wielu krain. Wśród obozów wznosiły się sztandary Agderu, Hordalandu, Fjordane i rozdartego sporami Vestmaru. Obok królewskich drużyn rozstawiali się niezależni jarlowie, handlarze, posłańcy i ludzie posiadający więcej wpływu, niż zdradzały ich skromne szaty. Wyspa nie była ziemią jednego z walczących o koronę władców. Miała zapewnić miejsce, na którym można przemawiać, spierać się i słuchać wyroków.",
+        "Przybycie na Althing nie oznaczało od razu wejścia przed oblicze sądu. Zanim padły wielkie przemówienia, należało poznać rozmówców. Bohaterowie Hrafnviku uczestniczyli w ucztach, wypytywali o stanowiska królestw, szukali ludzi gotowych poprzeć ich osadę i starali się dowiedzieć, które obietnice mają rzeczywistą wartość. Niektóre rozmowy przynosiły znajomości, inne kosztowały srebro, jeszcze inne wymagały zaufania, którego trudno udzielać obcym.",
+        "Ylva nawiązała kontakt z Úlfhéðnar, wilczymi wojownikami związanymi z kultem Odyna. Ich obyczaje były surowe, a pojęcie próby wyrażało się bardziej w bólu i wytrwałości niż w łagodnych słowach. Zaprosili drużynę do wspólnego świętowania. Haroks, którego droga związana była z niedźwiedzią siłą, przeszedł z ich udziałem ciężki rytuał mający rozbudzić jego własną przemianę. Nie był to sąd nad nim ani kara; był to brutalny obrzęd, którego znaczenie rozumiały różnie obie strony.",
+        "Floki, szkutnik i marzyciel, znajdował na Althingu nowy język dla swoich pragnień o statkach zdolnych wypływać dalej niż zwykłe morze. Halward zabiegał o kontakty i polityczne wpływy, Sianita poznawała stanowiska królów, a pozostali bohaterowie odkrywali, jak wiele można zdobyć lub stracić bez wyciągania miecza.",
+        "Na Eylendzie ważyły się trzy sprawy: przyszłość Winlandu, pytanie o jednego Króla Królów i plan wojny przeciw Frankom. Ale dla Hrafnviku istniała jeszcze sprawa czwarta, bardziej osobista. Wśród możnych przebywali ludzie, którzy pamiętali Skjordvik. Zanim bohaterowie opuścili wyspę, mieli usłyszeć, że Północ nie zapomniała o ich pierwszym zwycięstwie."
       ],
       "participants": [
         "sianita",
@@ -1035,10 +1041,14 @@ window.CHRONICLE = {
       "placeId": "ejkjavik",
       "kind": "Dyplomacja",
       "image": "",
-      "intro": "Jarlowa odrzuciła żądania Alreka, a wśród możnych Vestmaru poznała trzy oblicza politycznej rywalizacji.",
+      "intro": "Przy wielkich stołach Eylendy Sianita musiała stawić czoło królom. Najważniejsza z jej odpowiedzi brzmiała: nie.",
       "paragraphs": [
-        "Halfdan Czarny z Agderu rozmawiał z Sianitą o wojnie przeciw Frankom i sprawie Króla Królów. Alrek Eriksson z Hordalandu oczekiwał przysięgi wierności i zaoferował jarlowej małżeństwo ze swoim synem w zamian za bezpieczeństwo jej ludzi. Sianita odmówiła zarówno przysięgi, jak i małżeństwa.",
-        "Na Althingu spotkała również Olafa, Alfhelda i Torstena Gudrodssonów, braci walczących o przyszłość Vestmaru. Olaf domagał się surowej kary dla jarlowej; Alfheld widział dla niej wygnanie, a Torsten dostrzegał możliwość współpracy. Ich odmienne stanowiska ukazały rozdarcie królestwa."
+        "Halfdan Czarny z Agderu należał do tych ludzi, których obecność zmieniała wagę rozmowy. O potędze jego królestwa świadczyli wojownicy i posłańcy, ale równie wiele mówiły ambicje. Halfdan widział przyszłość Drengrlands w wielkiej wojnie przeciw Frankom. Rozmawiając z Sianitą, zabiegał o jej głos w tej sprawie i sondował możliwość zjednoczenia Północy pod jedną koroną. Jarlowa nie obiecała mu jednak poparcia jako Królowi Królów.",
+        "Jeszcze poważniejszy charakter miało spotkanie z Alrekiem Erikssonem z Hordalandu. Władca przypomniał o przysiędze, której Sianita nie złożyła, choć jego poselstwo przybyło do Hrafnviku z naramiennikiem i trzynastoma wojownikami. Alrek mówił o bezpieczeństwie osady, lecz równocześnie dawał do zrozumienia, jak niebezpieczna może być samotna pozycja jarlowej, przeciw której ciążyły oskarżenia o zniszczenie Skjordvik.",
+        "Alrek zaproponował jeszcze jedno rozwiązanie. Sianita mogłaby poślubić jego syna, oddać własny tytuł jarla i związać przyszłość swojej osady z potężniejszym rodem. W zamian miała otrzymać obietnicę bezpieczeństwa dla mieszkańców. Oferta mogła uchodzić za korzystną w oczach doradców, którzy nad wszystko stawiali spokój. Dla Sianity oznaczała rezygnację z samodzielnego władania ziemią odziedziczoną po ojcu.",
+        "Jarlowa odmówiła. Nie złożyła Alrekowi oczekiwanej przysięgi, nie przyjęła również małżeństwa, które wymagało porzucenia jej tytułu. Na tak wielkim zgromadzeniu odmowa nie była sprawą prywatną; rozchodziła się po obozach i przy każdym kolejnym spotkaniu zmieniała sposób, w jaki patrzono na Hrafnvik.",
+        "Na Althingu Sianita poznała także trzech braci z Vestmaru: Olafa, Alfhelda i Torstena Gudrodssonów. Najstarszy Olaf domagał się wobec niej surowego rozliczenia za Skjordvik. Alfheld wolał polityczną karę wygnania. Najmłodszy Torsten patrzył na jarlową życzliwiej i dopuszczał przyszłą współpracę. W ten sposób jedna oskarżona kobieta zobaczyła przed sobą nie tylko trzy odmienne stanowiska, ale też pęknięcie samego Vestmaru — krainy, w której bracia rywalizowali o wpływy.",
+        "Gdy kończyły się te rozmowy, nie podpisano wielkiego pojednania i nie zapewniono Hrafnvikowi spokojnej przyszłości. Sianita zachowała jednak swoją odpowiedź. Wśród królów i następców tronów nie zgodziła się, aby jej życie zostało ułożone wyłącznie przez cudzą wolę."
       ],
       "participants": [
         "sianita",
@@ -1056,10 +1066,13 @@ window.CHRONICLE = {
       "placeId": "ejkjavik",
       "kind": "Wielka polityka",
       "image": "",
-      "intro": "Winland, korona dla wszystkich królów i wojna z Frankami odmieniły rozmowy na Eylendzie.",
+      "intro": "Althing rozstrzygnął sprawy, o których mówiono od wielu sezonów: Winland, jedną koronę Północy i wyprawę przeciw Frankom.",
       "paragraphs": [
-        "W sprawie Winlandu tylko Eylenda i Fjordane zadeklarowały rzeczywiste finansowe wsparcie dalszych przedsięwzięć. Nie ustanowiono Króla Królów. Sianita pozostała neutralna wobec tej korony, lecz poparła wyprawę przeciw Frankom.",
-        "Większość możnych opowiedziała się za wielką wojną, do której miały przygotowywać się ziemie Drengrlands. Za publicznymi wystąpieniami trwały negocjacje i zabiegi o głosy, w których uczestniczył również Halward, brat jarlowej."
+        "Pierwsza debata dotyczyła Winlandu, odległych ziem, o których opowiadali żeglarze, handlarze i ludzie przywożący osobliwe rośliny oraz przedmioty. Nie wszyscy widzieli w tych opowieściach obietnicę bogactwa. Wyprawy przez ocean oznaczały ryzyko, nieznane szlaki i długie lata niepewności. Sianita oraz jej towarzysze poparli dalszą eksplorację i inwestycje. Kiedy jednak przyszło do rzeczywistych zobowiązań, gotowość finansowego wsparcia wyraziły przede wszystkim Eylenda i Fjordane.",
+        "Druga sprawa brzmiała prościej, ale mogła odmienić cały układ Drengrlands: czy należy ustanowić Króla Królów. Halfdan Czarny i inni potężni władcy mieli swoich zwolenników, lecz wiele rodów obawiało się utraty niezależności. Wśród jarlów nie brakowało tych, którzy gotowi byli stanąć ramię w ramię przeciw obcemu wrogowi, ale nie mieli ochoty składać własnych pierścieni u stóp jednego pana. Sianita wstrzymała się od głosu. Nie wybrano wspólnego władcy Północy.",
+        "Najwięcej zgody przyniosła sprawa trzecia — przygotowanie wielkiej wojny przeciw Frankom. Mówiono o bogactwach południa, o ziemiach, o które można walczyć, i o przeciwnikach wyznających nową wiarę. Niektóre głosy wzywały do wyprawy po łup, inne do podboju. Sianita poparła wojnę, podobnie jak większość przedstawicieli królestw. Zgromadzenie zaakceptowało przygotowania do wielkiej wyprawy w kolejnym roku.",
+        "Między oficjalnymi debatami toczyła się jednak druga część Althingu: rozmowy na uboczu, obietnice składane pod namiotami i poselstwa między obozami. Halward, brat jarlowej, wykazywał się szczególną sprawnością w tych zakulisowych działaniach. Bohaterowie uczyli się, że nawet prawdziwy głos oddany publicznie może mieć długą historię spotkań, przysług i kosztownych zabiegów.",
+        "Trzy decyzje nie stworzyły jednej Północy. Pozostawiły niezależne królestwa, kilku ambitnych królów i zapowiedź wojny, na którą nikt nie chciał wysłać statku w pojedynkę. Dla Hrafnviku znaczenie miało to, że jego jarlowa po raz pierwszy uczestniczyła w sprawach znacznie większych od rodzinnej osady. Lecz kiedy głosowania dobiegły końca, sama miała stanąć przed prawem Eylendy — nie jako przywódczyni zwycięskiej wyprawy, ale jako oskarżona."
       ],
       "participants": [
         "sianita",
@@ -1076,10 +1089,14 @@ window.CHRONICLE = {
       "placeId": "ejkjavik",
       "kind": "Proces",
       "image": "",
-      "intro": "Sprawa spalonego Skjordvik powróciła przed obliczem dziewięciu sędziów.",
+      "intro": "Przed dziewięcioma sędziami Eylendy wojna z północnego fiordu przestała być opowieścią o łupie. Stała się sprawą krwi i odpowiedzialności.",
       "paragraphs": [
-        "Olaf Gudrodsson publicznie podniósł sprawę zniszczonej osady. Świadkowie nie rozpoznali napastników, a Mord przyznał się do udziału w wyprawie i działania dla jarlowej. Sianita potwierdziła wydarzenia i przemówiła do zgromadzonych.",
-        "Trzech sędziów opowiedziało się za brakiem sankcji, sześciu za oddaniem sprawy w ręce bogów. Drużyna otrzymała zadanie odzyskania Gungnir, włóczni Odyna, z kurhanu Haralda Hardrady. Taki był wyrok Eylendy."
+        "Na Wielkim Althingu podniesiono sprawę Skjordvik. Oskarżenie wysunął Olaf Gudrodsson z Vestmaru, najstarszy z trzech braci rywalizujących o wpływy w swoim królestwie. Przypomniał o zniszczonej osadzie, ludziach wziętych do niewoli i tych, którzy zginęli podczas najazdu. Dla mieszkańców Hrafnviku było to echo wyprawy, którą wspominali jako zwycięstwo. Dla zgromadzonych sędziów oznaczało konieczność wysłuchania obu stron.",
+        "Przed sądem stanęli świadkowie. Orm, jeden z ocalałych, oraz dziecko ze Skjordvik mówili, że w zamieszaniu nie zdołali rozpoznać napastników. Ich świadectwo nie rozwiązało sporu. Ludzie przyglądali się bohaterom Hrafnviku, a pod ciężarem pytań powróciło to, co wydawało się już zamknięte za bramą spalonej osady.",
+        "Następnie wystąpił Mord, syn Svali, jeden z braci bliźniaków z Hrafnviku. Nie próbował wyrzec się udziału w wydarzeniach ani zasłaniać niewiedzą. Przyznał, że działał podczas wyprawy i że służył jarlowej. Wskazał na poszukiwanie człowieka podejrzewanego o zabójstwo Sigurda oraz konflikt z osadą, która udzieliła mu schronienia. Jego słowa nie zmazały krzywdy. Sprawiły jednak, że trudno było już przedstawiać najazd jako dzieło bezimiennych wojowników.",
+        "Sianita sama przemówiła do zgromadzonych. Potwierdziła wydarzenia i stanęła wobec odpowiedzialności za swoich ludzi. Jej mowa przekonała wielu słuchaczy; to, co dla części możnych było dowodem odwagi i szczerości, dla innych nie wystarczało, by uznać sprawę za zakończoną. Król i jarl mogą cenić honor wojownika, ale sędzia musi jeszcze odpowiedzieć na pytanie, co uczynić ze zniszczoną osadą.",
+        "Dziewięciu sędziów rozdzieliło swoje głosy. Trzech opowiedziało się za pozostawieniem jarlowej bez sankcji. Sześciu uznało, że sprawę należy oddać w ręce bogów. Tak zrodził się wyrok, którego nie można było spłacić srebrem ani zręcznym przemówieniem: bohaterowie mieli udać się do kurhanu Haralda Hardrady i odzyskać Gungnir, włócznię Odyna.",
+        "Dla wojowników Hrafnviku nie oznaczało to zwykłego wyjścia z sądu. Dopiero co przyjechali na Eylendę zabiegać o polityczne bezpieczeństwo. Teraz musieli opuścić zgromadzenie i wyruszyć do miejsca, o którym opowiadano w sagach o umarłych. Słowa dziewięciu ludzi wysłały ich na drogę, która miała kosztować życie wielu towarzyszy."
       ],
       "participants": [
         "sianita",
