@@ -518,3 +518,17 @@ body.atlas2-modal-open{overflow:hidden}
   font:600 10px/1.15 Arial,sans-serif;letter-spacing:.08em;
   pointer-events:none;box-shadow:0 3px 13px #0009}
 .person-role-badge.is-deceased{color:#ecd8cf;background:#372925ee;border-color:#ae8a7c}
+
+/* Zmarli — automatycznie odbarwiaj portrety, zachowując ich oryginalne pliki.
+   Działa również dla przyszłych postaci oznaczonych lifeStatus: "deceased". */
+.person-card.is-deceased .person-art .asset-photo,
+.character-overlay.is-deceased .character-image .asset-photo{
+  filter:grayscale(1) brightness(.68) contrast(.93);
+}
+.person-card.is-deceased .person-art::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,#0d111b18,#10101858);
+}
+.character-overlay.is-deceased .character-image{
+  border-color:#7b7270;
+}

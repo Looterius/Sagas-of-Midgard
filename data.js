@@ -18,44 +18,53 @@ window.CHRONICLE = {
     { id: "svala", name: "Svala Ketilsdóttir i synowie", kind: "Rodzina", image: "assets/portraits/svala-ketilsdottir-i-synowie.jpg", x: 365, y: 609 },
     { id: "runa", name: "Runa Hroaldsdottir", kind: "Postać", grouping: { role: "npc" }, image: "assets/portraits/Runa Hroaldsdottir.png", x: 585, y: 609 },
     { id: "leif", name: "Leif Anundsson", kind: "Postać", image: "assets/portraits/Leif Anundsson.png", x: 805, y: 609 },
-    // Pięcioro bohaterów graczy z Hrafnviku. Floki poległ; reszta żyje.
-    // Bez portretów do czasu dostarczenia zatwierdzonych ilustracji.
+    // Bohaterowie graczy; Asgrim pochodzi z rodu władcy Agder i dołączył do drużyny później.
+    // Floki poległ, inni tutaj żyją. Osada Hrafnvik oznacza znany związek z drużyną,
+    // nie zawsze miejsce urodzenia. Portrety dopasowano z publicznych zdjęć.
     {
-      id: "sianita", name: "Sianita Gunnarsdóttir", kind: "Bohater", image: "",
+      id: "sianita", name: "Sianita Gunnarsdóttir", kind: "Bohater", image: "assets/portraits/841056920_1454607076732851_414940541375700284_n.jpg",
       grouping: { role: "hero", lifeStatus: "living", titles: ["ruler"], settlementIds: ["hrafnvik"] },
-      description: "Jarlowa i tarczowniczka z Hrafnviku. Po śmierci Sigurda wzięła na siebie odpowiedzialność za osadę. Spory o władzę doprowadziły ją przed możnych Północy, a później na Eylendę, gdzie drużyna podjęła wyprawę po Gungnir, włócznię Odyna.",
+      description: "Tarczowniczka i jarlowa Hrafnviku. Po śmierci Sigurda przejęła odpowiedzialność za osadę, w której spory o władzę i dawne przysięgi wciąż dzieliły ludzi. Wobec żądań króla Alreka odmówiła złożenia mu przysięgi oraz małżeństwa z jego synem, co zaprowadziło ją przed możnych na Eylendzie. Razem z drużyną podjęła wyprawę po Gungnir, włócznię Odyna. Jej historia jest opowieścią o ciężarze władzy i wierności własnym wyborom.",
       x: 1135, y: 25
     },
     {
-      id: "halvard", name: "Halvard „Snake-Eye”", kind: "Bohater", image: "",
+      id: "halvard", name: "Halvard „Snake-Eye”", kind: "Bohater", image: "assets/portraits/836508976_2515877412221096_575784062671443810_n.jpg",
       grouping: { role: "hero", lifeStatus: "living", settlementIds: ["hrafnvik"] },
-      description: "Wyznawca Lokiego, młodszy brat Sianity. Pochodzi z Hrafnviku i uczestniczył w losach drużyny, od sporów o władzę w osadzie po wydarzenia na Eylendzie.",
+      description: "Halvard, zwany Snake-Eye, jest młodszym bratem Sianity i synem Sigurda. Wyznawca Lokiego, związany z Hrafnvikiem, od początku pozostawał blisko sporów o władzę i przyszłość swojej rodziny. Spryt i nieufność są dla niego równie ważne jak broń, a losy siostry splatają się z jego własnymi. Towarzyszył drużynie w wydarzeniach, które zaprowadziły wojowników Hrafnviku aż na Eylendę.",
       x: 1355, y: 25
     },
     {
-      id: "haroks", name: "Haroks Magnusson", kind: "Bohater", image: "",
+      id: "haroks", name: "Haroks Magnusson", kind: "Bohater", image: "assets/portraits/819106917_1403096258558492_2259915694493588498_n.jpg",
       grouping: { role: "hero", lifeStatus: "living", settlementIds: ["hrafnvik"] },
-      description: "Berserker z Hrafnviku, wojownik związany z niedźwiedzią naturą. Przetrwał wyprawę na Eylendę. Po śmierci Flokiego pochował towarzysza w niedokończonym statku w lesie Odyna.",
+      description: "Berserker z Hrafnviku, potężny wojownik związany z niedźwiedzią naturą. W swojej drodze mierzył się z brutalnymi próbami wojowników Północy i wyprawami, w których siła nie zawsze wystarczała do zwycięstwa. Przetrwał wydarzenia na Eylendzie, ale nie wyszedł z nich niezmieniony. Gdy Floki poległ, Haroks pochował towarzysza w niedokończonym statku w lesie Odyna — czyn, który na zawsze związał pamięć o obu wojownikach.",
       x: 1135, y: 317
     },
     {
-      id: "ylva", name: "Ylva", kind: "Bohater", image: "",
+      id: "ylva", name: "Ylva", kind: "Bohater", image: "assets/portraits/836713553_1631673708686109_4202120061548436723_n.png",
       grouping: { role: "hero", lifeStatus: "living", settlementIds: ["hrafnvik"] },
-      description: "Łuczniczka z Hrafnviku i członkini drużyny. Jej droga wiodła od wydarzeń rodzinnej osady przez wyprawy wojowników Północy aż po Eylendę i Wielki Althing.",
+      description: "Łuczniczka z Hrafnviku, związana z Freyją i przedstawiana z sową u boku. W drużynie jej łuk jest przeciwwagą dla toporów i tarcz wojowników. Wraz z towarzyszami przeszła drogę od spraw rodzinnej osady po polityczne zgromadzenie na Eylendzie. Brała udział w wydarzeniach, w których dawne legendy Północy zaczęły splatać się z losem żyjących bohaterów.",
       x: 1355, y: 317
     },
     {
-      id: "floki", name: "Floki", kind: "Bohater", image: "",
+      id: "floki", name: "Floki", kind: "Bohater", image: "assets/portraits/843041093_29439569015649515_6290487889105704541_n.jpg",
       grouping: { role: "hero", lifeStatus: "deceased", settlementIds: ["hrafnvik"] },
-      description: "Budowniczy statków i wizjoner z Hrafnviku, zafascynowany runami i opowieściami o Odynie. Wyruszył z drużyną po Gungnir na Eylendę. Poległ w walce z Haraldem Hardradą. Pozostaje jednym z bohaterów tej sagi.",
+      description: "Szkutnik, budowniczy okrętów i wizjoner z Hrafnviku, zafascynowany runami i tajemnicami Odyna. W snutych przez niego wizjach pojawiał się nawet statek zdolny przemierzać Yggdrasil. Wraz z drużyną wyruszył na Eylendę po Gungnir. Tam jego droga zakończyła się bohaterską śmiercią w walce z Haraldem Hardradą. Haroks pożegnał go, składając jego ciało w niedokończonym statku w lesie Odyna. Floki pozostaje bohaterem sagi, choć nie żyje.",
       x: 1135, y: 609
+    },
+    {
+      id: "asgrim", name: "Asgrim", kind: "Bohater",
+      image: "assets/portraits/Asgrim.jpeg",
+      grouping: { role: "hero", lifeStatus: "living", kingdomIds: ["agder"], settlementIds: ["hrafnvik"] },
+      description: "Asgrim, syn Halfdana Czarnego, władcy Agder, dołączył do drużyny po śmierci Flokiego. Przybył wraz ze swoimi tarczownikami, a zaręczyny z Sianitą związały jego losy z jarlową Hrafnviku. Wśród przekazanych przez niego wieści znalazła się zasłyszana od pomniejszego jarla opowieść o ziemiach Albionu — nie był to jego własny plan podboju. Od tej chwili bierze udział w historii drużyny jako jeden z bohaterów graczy.",
+      x: 1355, y: 609
     }
   ],
   // Publiczne POWIĄZANIA FABULARNE można dodać dopiero po zatwierdzeniu przez Skalda.
   // Format: {from:"hroald",to:"runa",type:"rodzina",label:"..."}.
   relationships: [
     // Ujawniona więź rodzinna bohaterów.
-    { from: "sianita", to: "halvard", type: "family", label: "Rodzeństwo" }
+    { from: "sianita", to: "halvard", type: "family", label: "Rodzeństwo" },
+    { from: "sianita", to: "asgrim", type: "ally", label: "Narzeczeni" }
   ],
   // Uwaga: grouping jest opcjonalne. Niepotwierdzone klasyfikacje pozostają puste.
   // role: "hero" lub "npc"; lifeStatus: "deceased"; titles: ["jarl", "ruler"];
@@ -191,7 +200,7 @@ window.CHRONICLE = {
       id: "hrafnvik", name: "Hrafnvik", kind: "Osada bohaterów", visibility: "known", parentRegionId: "osady-bohaterow",
       description: "Osada, w której brat wystąpił przeciw bratu, a przelana krew zmieniła porządek władzy. Tutaj rozpoczęła się opowieść o Sianicie, Styrze i ludziach, których losy odmieniła śmierć jarla Sigurda.",
       history: "Hroald utracił władzę i wzrok, a jego brat Sigurd objął miejsce jarla. Wkrótce Sigurd został zamordowany, a Sianita przejęła odpowiedzialność za osadę. W Hrafnviku pamięta się zarówno rozlew krwi, jak i tych, którzy zginęli podczas późniejszych wypraw.",
-      image: "assets/locations/Hrafnvik.png", personIds: ["hroald","runa","anslem","sianita","halvard","haroks","ylva","floki"]
+      image: "assets/locations/Hrafnvik.png", personIds: ["hroald","runa","anslem","sianita","halvard","haroks","ylva","floki","asgrim"]
     },
     {
       id: "skjorvik", name: "Skjǫrvik", kind: "Osada", visibility: "known", parentRegionId: "drengrlands",
