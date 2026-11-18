@@ -83,7 +83,19 @@ Nowy panel pod wyszukiwarką pozwala wyświetlić tylko wybrane postacie, bez in
 - `data.js → people[].grouping` — **opcjonalne, jawnie potwierdzone** informacje: `role: "hero" | "npc"`, `lifeStatus: "deceased"`, `titles: ["jarl", "ruler"]`, `statuses: ["captive"]`, listy `kingdomIds`, `settlementIds`, `familyIds`, `factionIds`.
 - `data.js → places[].personIds` — znane powiązania postaci z osadą, nie dowód miejsca pochodzenia ani aktualnego zamieszkania.
 - `data.js → characterGroupCatalog` — jawne etykiety rodów i frakcji (puste, dopóki ich przynależności nie zostały zatwierdzone).
-- Początkowo tylko cztery postacie mają potwierdzone metadane na podstawie obecnej publicznej kroniki: Hroald (NPC, dawny jarl), Aslak (NPC, jeniec), Runa i brat Anslem (NPC). Bohaterów graczy, zmarłych, rodów i frakcji **nie domyślamy się**.
+- Pierwsze potwierdzone metadane przypisano Hroaldowi (NPC, dawny jarl), Aslakowi (NPC, jeniec), Runie i bratu Anslemowi (NPC). **Pięcioro bohaterów graczy** zostało następnie jawnie zatwierdzonych dla Hrafnviku: Sianita Gunnarsdóttir, Halvard „Snake-Eye”, Haroks Magnusson, Ylva i Floki. **Tylko Floki z tej piątki jest zmarły**; pozostaje w grupie Bohaterowie. Nie dopisuj innych niepotwierdzonych śmierci, rodów ani frakcji.
 - Kategorie bez przypisań pozostają dostępne, ale pokazują komunikat o braku potwierdzonych danych; nie dorabiaj fabuły, żeby zapełnić widok.
 
 Kontrola: `node scripts/check-character-groups.mjs` (również w CI). Test obejmuje filtry, połączenia kategorii i powtarzalność układu 110 kart.
+
+## Bohaterowie Hrafnviku — pierwsza seria kart
+
+W `data.js → people` dodano pięcioro zatwierdzonych bohaterów. Portrety pozostają puste (`image: ""`) aż do dodania przez autora kampanii plików do `assets/portraits/`. Wówczas uzupełnij ich `image` bez zmiany ID. Ich krótkie biografie są publicznymi streszczeniami znanych wydarzeń; nie zawierają sekretów MG.
+
+- `sianita` — **Sianita Gunnarsdóttir**, jarlowa, żyje, Hrafnvik.
+- `halvard` — **Halvard „Snake-Eye”**, dawniej roboczo nazywany Styr (wycofane imię nie pojawia się na stronie), żyje, Hrafnvik. Ma jedną potwierdzoną więź rodzeństwa z Sianitą.
+- `haroks` — **Haroks Magnusson**, berserker, żyje, Hrafnvik.
+- `ylva` — **Ylva**, łuczniczka, żyje, Hrafnvik.
+- `floki` — **Floki**, budowniczy statków, poległ w wyprawie na Eylendę; **Bohaterowie i Zmarli** jednocześnie, Hrafnvik.
+
+Wszyscy figurują w `places.hrafnvik.personIds`, więc mogą być otwierani również z karty osady. Nowe karty rozłożono na wolnych pozycjach sieci; w `app.js` „Dopasuj widok” obejmuje teraz wszystkie widoczne karty bez zmiany ich współrzędnych.
