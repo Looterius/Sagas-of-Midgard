@@ -21,6 +21,17 @@
     visibleIds: new Set(data.people.map(p => p.id))
   };
   const groupFilter = { primary: "all", dimension: null, value: null, expanded: null, search: "" };
+  // Indywidualny, lokalny układ dla każdego widoku/filtra. Zmiana zakładki
+  // nie może kasować pozycji, które użytkownik właśnie sam ustawił.
+  const savedLayouts = new Map();
+  const editedLayouts = new Set();
+  const layoutKey = () => JSON.stringify({
+    primary: groupFilter.primary,
+    dimension: groupFilter.dimension,
+    value: groupFilter.value,
+    search: groupFilter.search.trim()
+  });
+  let activeLayoutKey = null;
   const groups = window.SOM_GROUPS;
   const nodes = new Map();
   const NS = "http://www.w3.org/2000/svg";
@@ -71,6 +82,7 @@
     portrait.alt = "";
     portrait.className = "asset-photo";
     portrait.decoding = "async";
+    portrait.draggable = false; // natywny drag obrazu nie może blokować ruchu karty
     portrait.loading = size === "full" ? "eager" : "lazy";
     portrait.fetchPriority = size === "full" ? "high" : "low";
     let attempt = 0;
@@ -160,11 +172,34 @@
       card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectPerson(p.id); } });
       // Lewy: przeciągaj kartę; zwykłe kliknięcie nadal otwiera historię.
       // Prawy: zdarzenie przechodzi do viewportu i przesuwa całą mapę.
-      let dragging = null, lastDragEnd = -Infinity;
+      let dragging = null, lastDragEnd = -Infinity, touchHold = null;
+      const clearTouchHold = () => {
+        if (touchHold) clearTimeout(touchHold.timer);
+        touchHold = null;
+      };
+      card.addEventListener("dragstart", e => e.preventDefault());
       card.addEventListener("pointerdown", e => {
-        // Na ekranach dotykowych jeden palec przesuwa płótno, dwa przybliżają.
-        // Przeciąganie pojedynczych kart zostaje na komputerze (mysz / rysik).
-        if (e.pointerType === "touch" || e.button !== 0 || !state.visibleIds.has(p.id)) return;
+        if (!state.visibleIds.has(p.id)) return;
+        if (e.pointerType === "touch") {
+          // Krótki tap otwiera kartę, przeciągnięcie palcem przesuwa planszę.
+          // Dopiero przytrzymanie 380 ms przełącza gest na przeciąganie postaci.
+          if (!e.isPrimary) return;
+          clearTouchHold();
+          const point = {id:e.pointerId,x:e.clientX,y:e.clientY};
+          point.timer = setTimeout(() => {
+            if (touchHold !== point || dragging) return;
+            const pos=state.positions[p.id];
+            if (!pos) return;
+            dragging = {pointerId:point.id,x:point.x,y:point.y,
+              startX:pos.x,startY:pos.y,moved:false,touch:true};
+            clearTouchHold();
+            card.classList.add("is-dragging");
+            card.setPointerCapture(point.id);
+          },380);
+          touchHold = point;
+          return; // viewport nadal obsługuje zwykłe przesuwanie planszy
+        }
+        if (e.button !== 0) return;
         e.stopPropagation();
         const pos = state.positions[p.id];
         dragging = {
@@ -174,7 +209,11 @@
         card.setPointerCapture(e.pointerId);
       });
       card.addEventListener("pointermove", e => {
+        if (touchHold && e.pointerId === touchHold.id &&
+            Math.hypot(e.clientX-touchHold.x,e.clientY-touchHold.y)>9)
+          clearTouchHold(); // gest przesuwania planszy, nie karty
         if (!dragging || dragging.pointerId !== e.pointerId) return;
+        e.stopPropagation(); // przytrzymana karta nie może równocześnie przesuwać planszy
         const dx = e.clientX - dragging.x;
         const dy = e.clientY - dragging.y;
         // Małe ruchy dłoni traktujemy jak kliknięcie, nie przestawienie karty.
@@ -191,11 +230,15 @@
         };
         positionCard(p.id);
         drawConnections();
+        if (activeLayoutKey !== null) editedLayouts.add(activeLayoutKey);
         $("#reset-positions").hidden = false;
       });
       function stopCardDrag(e) {
+        if (touchHold && touchHold.id === e.pointerId) clearTouchHold();
         if (!dragging || dragging.pointerId !== e.pointerId) return;
-        if (dragging.moved) lastDragEnd = e.timeStamp;
+        // Po długim przytrzymaniu nie otwieramy przypadkowo biografii,
+        // nawet jeżeli palec nie przemieścił karty.
+        if (dragging.moved || dragging.touch) lastDragEnd = e.timeStamp;
         dragging = null;
         card.classList.remove("is-dragging");
       }
@@ -249,17 +292,27 @@
     }
   }
 
-  function applyGrouping() {
+  function applyGrouping(reset = false) {
     if (!groups) return;
     const people = data.people.filter(person => groups.matches(data, person, groupFilter));
     const isDefault = groupFilter.primary === "all" &&
       !groupFilter.value && !groupFilter.search.trim();
+    const nextKey = layoutKey();
+    const copyPositions = positions => Object.fromEntries(
+      Object.entries(positions).map(([id, pos])=>[id,{...pos}]));
+    if (activeLayoutKey !== null && activeLayoutKey !== nextKey)
+      savedLayouts.set(activeLayoutKey,copyPositions(state.positions));
+    if (reset) {
+      savedLayouts.delete(nextKey);
+      editedLayouts.delete(nextKey);
+    }
+    const earlier = !reset && activeLayoutKey === nextKey
+      ? state.positions : savedLayouts.get(nextKey);
     state.visibleIds = new Set(people.map(person => person.id));
-    // Filtr zmienia tylko lokalny widok, nie zapisane pozycje postaci.
-    state.positions = isDefault
-      ? Object.fromEntries(Object.entries(officialPositions).map(([id, pos]) => [id, { ...pos }]))
-      : groups.layout(people);
-    $("#reset-positions").hidden = true;
+    state.positions = earlier ? copyPositions(earlier) : isDefault
+      ? copyPositions(officialPositions) : groups.layout(people);
+    activeLayoutKey = nextKey;
+    $("#reset-positions").hidden = !editedLayouts.has(nextKey);
     nodes.forEach((card, id) => {
       card.hidden = !state.visibleIds.has(id);
       if (!card.hidden) {
@@ -745,8 +798,8 @@
   $("#zoom-out").addEventListener("click", () => setZoom(state.zoom / 1.17));
   $("#fit").addEventListener("click", fit);
   $("#reset-positions").addEventListener("click", () => {
-    // Przywróć układ aktualnie wybranej grupy; filtr i wyszukiwarka bez zmian.
-    applyGrouping();
+    // Przywróć układ tylko wybranego filtra, nie kasuj innych ustawień.
+    applyGrouping(true);
   });
   const requestCloseCharacter = () => {
     if (window.SOM_NAV) window.SOM_NAV.closeLayer(closeCharacter);
