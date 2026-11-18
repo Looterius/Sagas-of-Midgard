@@ -3,7 +3,7 @@
 window.CHRONICLE = {
   title: "Sagas of Midgard",
   subtitle: "Kronika graczy • Eylenda",
-  updated: "2026-11-17",
+  updated: "2026-11-18",
   people: [
     { id: "haki", name: "Haki Torfinnsson", kind: "Postać", image: "", x: 35, y: 25 },
     { id: "erik", name: "Erik Żelaznadłoń", kind: "Postać", image: "assets/portraits/Erik Zelaznadłoń.png", x: 255, y: 25 },
@@ -17,11 +17,46 @@ window.CHRONICLE = {
     { id: "anslem", name: "Brat Anslem", kind: "Postać", grouping: { role: "npc" }, image: "assets/portraits/Brat Anslem.png", x: 145, y: 609 },
     { id: "svala", name: "Svala Ketilsdóttir i synowie", kind: "Rodzina", image: "assets/portraits/svala-ketilsdottir-i-synowie.jpg", x: 365, y: 609 },
     { id: "runa", name: "Runa Hroaldsdottir", kind: "Postać", grouping: { role: "npc" }, image: "assets/portraits/Runa Hroaldsdottir.png", x: 585, y: 609 },
-    { id: "leif", name: "Leif Anundsson", kind: "Postać", image: "assets/portraits/Leif Anundsson.png", x: 805, y: 609 }
+    { id: "leif", name: "Leif Anundsson", kind: "Postać", image: "assets/portraits/Leif Anundsson.png", x: 805, y: 609 },
+    // Pięcioro bohaterów graczy z Hrafnviku. Floki poległ; reszta żyje.
+    // Bez portretów do czasu dostarczenia zatwierdzonych ilustracji.
+    {
+      id: "sianita", name: "Sianita Gunnarsdóttir", kind: "Bohater", image: "",
+      grouping: { role: "hero", lifeStatus: "living", titles: ["ruler"], settlementIds: ["hrafnvik"] },
+      description: "Jarlowa i tarczowniczka z Hrafnviku. Po śmierci Sigurda wzięła na siebie odpowiedzialność za osadę. Spory o władzę doprowadziły ją przed możnych Północy, a później na Eylendę, gdzie drużyna podjęła wyprawę po Gungnir, włócznię Odyna.",
+      x: 1135, y: 25
+    },
+    {
+      id: "halvard", name: "Halvard „Snake-Eye”", kind: "Bohater", image: "",
+      grouping: { role: "hero", lifeStatus: "living", settlementIds: ["hrafnvik"] },
+      description: "Wyznawca Lokiego, młodszy brat Sianity. Pochodzi z Hrafnviku i uczestniczył w losach drużyny, od sporów o władzę w osadzie po wydarzenia na Eylendzie.",
+      x: 1355, y: 25
+    },
+    {
+      id: "haroks", name: "Haroks Magnusson", kind: "Bohater", image: "",
+      grouping: { role: "hero", lifeStatus: "living", settlementIds: ["hrafnvik"] },
+      description: "Berserker z Hrafnviku, wojownik związany z niedźwiedzią naturą. Przetrwał wyprawę na Eylendę. Po śmierci Flokiego pochował towarzysza w niedokończonym statku w lesie Odyna.",
+      x: 1135, y: 317
+    },
+    {
+      id: "ylva", name: "Ylva", kind: "Bohater", image: "",
+      grouping: { role: "hero", lifeStatus: "living", settlementIds: ["hrafnvik"] },
+      description: "Łuczniczka z Hrafnviku i członkini drużyny. Jej droga wiodła od wydarzeń rodzinnej osady przez wyprawy wojowników Północy aż po Eylendę i Wielki Althing.",
+      x: 1355, y: 317
+    },
+    {
+      id: "floki", name: "Floki", kind: "Bohater", image: "",
+      grouping: { role: "hero", lifeStatus: "deceased", settlementIds: ["hrafnvik"] },
+      description: "Budowniczy statków i wizjoner z Hrafnviku, zafascynowany runami i opowieściami o Odynie. Wyruszył z drużyną po Gungnir na Eylendę. Poległ w walce z Haraldem Hardradą. Pozostaje jednym z bohaterów tej sagi.",
+      x: 1135, y: 609
+    }
   ],
   // Publiczne POWIĄZANIA FABULARNE można dodać dopiero po zatwierdzeniu przez Skalda.
   // Format: {from:"hroald",to:"runa",type:"rodzina",label:"..."}.
-  relationships: [],
+  relationships: [
+    // Ujawniona więź rodzinna bohaterów.
+    { from: "sianita", to: "halvard", type: "family", label: "Rodzeństwo" }
+  ],
   // Uwaga: grouping jest opcjonalne. Niepotwierdzone klasyfikacje pozostają puste.
   // role: "hero" lub "npc"; lifeStatus: "deceased"; titles: ["jarl", "ruler"];
   // statuses: ["captive"]; kingdomIds, settlementIds, familyIds i factionIds to ID.
@@ -156,7 +191,7 @@ window.CHRONICLE = {
       id: "hrafnvik", name: "Hrafnvik", kind: "Osada bohaterów", visibility: "known", parentRegionId: "osady-bohaterow",
       description: "Osada, w której brat wystąpił przeciw bratu, a przelana krew zmieniła porządek władzy. Tutaj rozpoczęła się opowieść o Sianicie, Styrze i ludziach, których losy odmieniła śmierć jarla Sigurda.",
       history: "Hroald utracił władzę i wzrok, a jego brat Sigurd objął miejsce jarla. Wkrótce Sigurd został zamordowany, a Sianita przejęła odpowiedzialność za osadę. W Hrafnviku pamięta się zarówno rozlew krwi, jak i tych, którzy zginęli podczas późniejszych wypraw.",
-      image: "assets/locations/Hrafnvik.png", personIds: ["hroald","runa","anslem"]
+      image: "assets/locations/Hrafnvik.png", personIds: ["hroald","runa","anslem","sianita","halvard","haroks","ylva","floki"]
     },
     {
       id: "skjorvik", name: "Skjǫrvik", kind: "Osada", visibility: "known", parentRegionId: "drengrlands",

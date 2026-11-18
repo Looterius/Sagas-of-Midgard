@@ -511,3 +511,10 @@ body.atlas2-modal-open{overflow:hidden}
  .character-group-dimensions button{font-size:11px;padding:8px 9px}
  .character-group-heading{margin-bottom:11px}
 }
+
+/* Oznaczenia bohaterów graczy w Sieci postaci. Portrety można podmienić później. */
+.person-role-badge{position:absolute;z-index:2;top:8px;right:8px;padding:5px 8px;
+  border:1px solid #d4b981;background:#20231fe9;color:#f3d8a3;
+  font:600 10px/1.15 Arial,sans-serif;letter-spacing:.08em;
+  pointer-events:none;box-shadow:0 3px 13px #0009}
+.person-role-badge.is-deceased{color:#ecd8cf;background:#372925ee;border-color:#ae8a7c}
