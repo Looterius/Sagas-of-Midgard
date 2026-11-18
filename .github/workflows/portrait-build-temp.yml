@@ -1,0 +1,38 @@
+name: Temporary optimized portrait build
+on:
+  push:
+    branches: [perf/optimized-portraits-20261118]
+permissions:
+  contents: write
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build responsive WebP variants
+        run: |
+          python -m pip install --disable-pip-version-check 'Pillow>=11,<13'
+          node scripts/export-public-portrait-references.mjs > /tmp/som-portrait-refs.json
+          python scripts/optimize-portraits.py /tmp/som-portrait-refs.json
+          find assets/portraits/optimized -name '*.webp' -type f | wc -l
+      - name: Commit optimized images and manifest to feature branch
+        run: |
+          set -eu
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/portraits/optimized portrait-assets.js
+          if ! git diff --cached --quiet; then
+            git commit -m 'perf: add prebuilt optimized WebP portrait variants'
+            git push origin HEAD:perf/optimized-portraits-20261118
+          else
+            echo "No image changes to commit"
+          fi
