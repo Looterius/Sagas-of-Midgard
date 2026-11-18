@@ -314,7 +314,11 @@
     }, { passive: false });
   }
 
-  document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click", () => switchView(b.dataset.view)));
+  document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click", () => {
+    // Każde otwarcie zakładki Atlas lokacji zaczyna się na poziomie Midgardu.
+    if (b.dataset.view === "locations") window.SOM_ATLAS?.showRegion("midgard");
+    switchView(b.dataset.view);
+  }));
   $("#search").addEventListener("input", e => {
     const query = e.target.value.trim().toLocaleLowerCase("pl");
     nodes.forEach((node, id) => {
