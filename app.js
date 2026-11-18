@@ -95,6 +95,7 @@
       card.role = "button";
       card.setAttribute("aria-label", "Otwórz: " + p.name);
       card.dataset.id = p.id;
+      card.classList.toggle("is-deceased", p.grouping?.lifeStatus === "deceased");
       const art = make("div", "person-art");
       art.appendChild(make("span", "avatar-rune", initials(p.name)));
       setArt(art, p.image);
@@ -257,6 +258,7 @@
       }
     }
     const dialog = $("#inspector");
+    dialog.classList.toggle("is-deceased", p.grouping?.lifeStatus === "deceased");
     dialog.hidden = false;
     dialog.setAttribute("aria-hidden", "false");
     dialog.classList.add("open");
