@@ -20,6 +20,10 @@ window.SOM_PORTRAITS = Object.freeze({
     "full": "assets/portraits/optimized/floki-full.webp",
     "thumb": "assets/portraits/optimized/floki-thumb.webp"
   },
+  "assets/portraits/Alfheld Gudrodsson.png": {
+    "full": "assets/portraits/optimized/alfheld-gudrodsson-full.webp",
+    "thumb": "assets/portraits/optimized/alfheld-gudrodsson-thumb.webp"
+  },
   "assets/portraits/Alrek Eriksson.png": {
     "full": "assets/portraits/optimized/alrek-full.webp",
     "thumb": "assets/portraits/optimized/alrek-thumb.webp"
@@ -35,6 +39,10 @@ window.SOM_PORTRAITS = Object.freeze({
   "assets/portraits/Astrid Freyjadottir.png": {
     "full": "assets/portraits/optimized/astrid-full.webp",
     "thumb": "assets/portraits/optimized/astrid-thumb.webp"
+  },
+  "assets/portraits/Audbjorn.png": {
+    "full": "assets/portraits/optimized/audbjorn-full.webp",
+    "thumb": "assets/portraits/optimized/audbjorn-thumb.webp"
   },
   "assets/portraits/Brat Anslem.png": {
     "full": "assets/portraits/optimized/anslem-full.webp",
@@ -64,9 +72,17 @@ window.SOM_PORTRAITS = Object.freeze({
     "full": "assets/portraits/optimized/leif-full.webp",
     "thumb": "assets/portraits/optimized/leif-thumb.webp"
   },
+  "assets/portraits/Mord.png": {
+    "full": "assets/portraits/optimized/mord-full.webp",
+    "thumb": "assets/portraits/optimized/mord-thumb.webp"
+  },
   "assets/portraits/Morotar Jednooki.png": {
     "full": "assets/portraits/optimized/morotar-full.webp",
     "thumb": "assets/portraits/optimized/morotar-thumb.webp"
+  },
+  "assets/portraits/Olaf Gudrodsson.png": {
+    "full": "assets/portraits/optimized/olaf-gudrodsson-full.webp",
+    "thumb": "assets/portraits/optimized/olaf-gudrodsson-thumb.webp"
   },
   "assets/portraits/Orm.png": {
     "full": "assets/portraits/optimized/orm-full.webp",
@@ -103,6 +119,10 @@ window.SOM_PORTRAITS = Object.freeze({
   "assets/portraits/Thorwald, the Viking Blacksmith.png": {
     "full": "assets/portraits/optimized/torvald-full.webp",
     "thumb": "assets/portraits/optimized/torvald-thumb.webp"
+  },
+  "assets/portraits/Torsten Gudrodsson.png": {
+    "full": "assets/portraits/optimized/torsten-gudrodsson-full.webp",
+    "thumb": "assets/portraits/optimized/torsten-gudrodsson-thumb.webp"
   },
   "assets/portraits/Ulf, Vigilant Lord of the Riverside Hall.png": {
     "full": "assets/portraits/optimized/ulf-full.webp",

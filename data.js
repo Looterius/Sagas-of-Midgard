@@ -3,7 +3,7 @@
 window.CHRONICLE = {
   title: "Sagas of Midgard",
   subtitle: "Kronika graczy • Eylenda",
-  updated: "2026-11-18",
+  updated: "2026-11-19",
   // PUBLICZNE biografie. Nowe osoby bez portretów otrzymają ilustracje po ich dostarczeniu.
   // Sten: los niepotwierdzony — nie nadajemy flagi zmarły.
   // Sianita Gunnarsdóttir: zatwierdzona pisownia, mimo że ojcem był Sigurd.
@@ -179,7 +179,7 @@ window.CHRONICLE = {
           "rod-svali"
         ]
       },
-      "image": "",
+      "image": "assets/portraits/Mord.png",
       "description": "Mord był jednym z bliźniaczych synów Svali Ketilsdóttir i zmarłego Ketila Brandssona. Wyrastał w rodzinie, która długo domagała się sprawiedliwości po krwawym przewrocie. Brał udział w działaniach wojowników Hrafnviku przeciw obcej osadzie, a na Wielkim Althingu stanął przed możnymi jako świadek tych wydarzeń. Przyznał się do własnego udziału i oświadczył, że działał dla Jarlowej. Później zginął podczas wyprawy na Eylendzie. Do pamięci o utraconym ojcu jego rodziny dopisana została śmierć następnego pokolenia.",
       "x": 10,
       "y": 255
@@ -436,13 +436,16 @@ window.CHRONICLE = {
     },
     {
       "id": "orm",
-      "name": "Orm",
+      "name": "Orm Półgłos",
       "kind": "Postać",
       "grouping": {
-        "role": "npc"
+        "role": "npc",
+        "settlementIds": [
+          "skjorvik"
+        ]
       },
       "image": "assets/portraits/Orm.png",
-      "description": "Orm to postać, której imię pojawia się w dziejach ludzi Północy. Jego pochodzenie, przydomek oraz dokładny udział w wydarzeniach wymagają jeszcze potwierdzenia w kronice. Zachowano wizerunek podpisany imieniem Orm, lecz bez przypisywania mu cudzych czynów, przysiąg lub rodu. Dopóki nie zostanie ustalone, o którego z noszących to imię chodzi, skald pozostawia jego historię otwartą.",
+      "description": "Orm Półgłos był rybakiem ze Skjǫrviku, osady zniszczonej podczas najazdu wojowników Hrafnviku. Znał miejscowe wody, szlaki i ludzi przybywających od strony morza. Gdy ogień i żelazo spadły na jego dom, los Orma związał się ze sporem pomiędzy napastnikami a ocalałymi mieszkańcami. Pozostał jednym z tych, którzy mogą opowiedzieć o wydarzeniach z perspektywy pokonanej osady, a nie jej zdobywców.",
       "x": 211,
       "y": 745
     },
@@ -495,9 +498,72 @@ window.CHRONICLE = {
           "fjordane"
         ]
       },
-      "image": "",
+      "image": "assets/portraits/Audbjorn.png",
       "description": "Audbjorn jest królem Fjordane, kraju stali, kuźni, run i rzemieślników. Podczas Wielkiego Althingu na Eylendzie zasiadał obok innych władców Drengrlands, lecz jego głos różnił się od wojowniczych nawoływań niektórych królów. Dla Fjordane istotne są porty, wymiana towarów i swoboda żeglugi. W debatach o wyprawach ku zachodnim ziemiom oraz o wspólnej koronie potrafił przypominać, że morze daje nie tylko sławę, lecz także utrzymanie tysiącom ludzi. Jego pozycja łączy ambicję monarchy z interesami kupców.",
       "x": 814,
+      "y": 745
+    },
+    {
+      "id": "olaf-gudrodsson",
+      "name": "Olaf Gudrodsson",
+      "kind": "Postać",
+      "grouping": {
+        "role": "npc",
+        "titles": [
+          "ruler"
+        ],
+        "kingdomIds": [
+          "vestmar"
+        ],
+        "familyIds": [
+          "rod-gudrodssonow"
+        ]
+      },
+      "image": "assets/portraits/Olaf Gudrodsson.png",
+      "description": "Olaf Gudrodsson jest najstarszym synem Gudroda Łowcy i dziedzicem, który po śmierci ojca upomniał się o panowanie nad całym Vestmarem. Zamiast spokojnego tronu zastał bunt dwóch braci oraz sprzymierzonych z nimi przeciwników dawnego rodu. Gdy Romsdal spłonął, wycofał się do górskiej twierdzy Myrka. Wciąż uważa się za prawowitego władcę, lecz ziemia jego ojca jest podzielona, a słowa o jedności królestwa brzmią dziś bardziej jak żądanie niż rzeczywistość.",
+      "x": 1015,
+      "y": 745
+    },
+    {
+      "id": "alfheld-gudrodsson",
+      "name": "Alfheld Gudrodsson",
+      "kind": "Postać",
+      "grouping": {
+        "role": "npc",
+        "titles": [
+          "jarl"
+        ],
+        "kingdomIds": [
+          "vestmar"
+        ],
+        "familyIds": [
+          "rod-gudrodssonow"
+        ]
+      },
+      "image": "assets/portraits/Alfheld Gudrodsson.png",
+      "description": "Alfheld Gudrodsson, syn Gudroda Łowcy i brat Olafa oraz Torstena, należy do pretendentów walczących o przyszłość podzielonego Vestmaru. Jego sala biesiadna stoi w Guntersborgu. Jest młodym, jasnowłosym możnym, którego otwartość i dar zjednywania sobie ludzi przyniosły popularność w wielu osadach. Nie słynie jednak ani z nadzwyczajnego kunsztu wojennego, ani z bezbłędnych decyzji politycznych. W kraju rozdartym między braćmi przychylność ludu nie zawsze wystarcza, by utrzymać władzę.",
+      "x": 1216,
+      "y": 745
+    },
+    {
+      "id": "torsten-gudrodsson",
+      "name": "Torsten Gudrodsson",
+      "kind": "Postać",
+      "grouping": {
+        "role": "npc",
+        "titles": [
+          "jarl"
+        ],
+        "kingdomIds": [
+          "vestmar"
+        ],
+        "familyIds": [
+          "rod-gudrodssonow"
+        ]
+      },
+      "image": "assets/portraits/Torsten Gudrodsson.png",
+      "description": "Torsten Gudrodsson jest środkowym synem Gudroda Łowcy i bratem dwóch rywali o władzę nad Vestmarem. Włada najmniejszym z jarldomów, którego siedzibą stał się ufortyfikowany Dagrfjell. Ma mniej stronników wśród mieszkańców niż jego bracia, lecz potrafi przyciągnąć zbrojnych obietnicą srebra i łupów. Utrzymuje, że sam Odyn udzielił mu prawa do rządów. Wśród czterech obozów rozbitego królestwa Torsten szuka własnej drogi do panowania, nie zamierzając ugiąć się przed wolą Olafa.",
+      "x": 1417,
       "y": 745
     }
   ],
@@ -611,8 +677,27 @@ window.CHRONICLE = {
       "to": "asgrim",
       "type": "family",
       "label": "Ojciec i syn"
+    },
+    {
+      "from": "olaf-gudrodsson",
+      "to": "alfheld-gudrodsson",
+      "type": "family",
+      "label": "Bracia; rywale o władzę w Vestmarze"
+    },
+    {
+      "from": "olaf-gudrodsson",
+      "to": "torsten-gudrodsson",
+      "type": "family",
+      "label": "Bracia; rywale o władzę w Vestmarze"
+    },
+    {
+      "from": "alfheld-gudrodsson",
+      "to": "torsten-gudrodsson",
+      "type": "family",
+      "label": "Bracia; rywale o władzę w Vestmarze"
     }
   ],
+
   // Rodzina stanowi jawne powiązanie genealogiczne, nie wymyślone stronnictwo polityczne.
   characterGroupCatalog: {
     "families": [
@@ -624,6 +709,11 @@ window.CHRONICLE = {
       {
         "id": "rod-svali",
         "name": "Rodzina Svali i Ketila",
+        "visibility": "known"
+      },
+      {
+        "id": "rod-gudrodssonow",
+        "name": "Ród Gudrodssonów",
         "visibility": "known"
       }
     ],
@@ -671,7 +761,7 @@ window.CHRONICLE = {
     {id: "hordalands", name: "Hordalands", parentId: "drengrlands", kind: "Królestwo Drengrów", visibility: "known",
      description: "Królestwo żeglarzy i kupców, którego bogactwo płynie z morza. Pod panowaniem Alreka Erikssona handel, polityka i królewskie przysięgi splatają się w sieć trudnych zobowiązań."},
     {id: "vestmar", name: "Vestmar", parentId: "drengrlands", kind: "Królestwo Drengrów", visibility: "known",
-     description: "Kraina podzielonych koron i rywalizujących możnych. Tutaj władza pozostaje przedmiotem sporów, a sojusze mogą być równie niebezpieczne jak otwarta wojna."},
+     description: "Po śmierci Gudroda Łowcy jego synowie Olaf, Alfheld i Torsten znaleźli się po przeciwnych stronach walki o dziedzictwo. Vestmar pozostał podzielony między ich trzy obozy i gildisbroedr."},
     {id: "fjordane", name: "Fjordane", parentId: "drengrlands", kind: "Królestwo Drengrów", visibility: "known",
      description: "Królestwo mistrzów ognia, stali i run. Pod rządami Audbjorna bogactwo rodzi się w kuźniach, gdzie powstaje broń, a dawną wiedzę przekuwa się w potęgę."},
     {id: "eylenda", name: "Eylenda", parentId: "drengrlands", kind: "Niezależna wyspa", visibility: "known",
@@ -764,7 +854,7 @@ window.CHRONICLE = {
       id: "skjorvik", name: "Skjǫrvik", kind: "Osada", visibility: "known", parentRegionId: "drengrlands",
       description: "Osada zdobyta ogniem i żelazem przez wojowników Hrafnviku. Zwycięzcy zabrali stąd srebro, łupy i jeńców, lecz dla pokonanych dzień najazdu stał się początkiem zupełnie innej historii.",
       history: "Wojownicy Hrafnviku zdobyli osadę, zabierając srebro, towary i jeńców. Wśród pojmanych znalazł się Aslak Cieśla. Dla najeźdźców był to triumf, dla mieszkańców Skjǫrviku — dzień straty, o którym trudno zapomnieć.",
-      image: "assets/locations/skjorvik.svg", personIds: ["aslak","haki","ragnvald-s"]
+      image: "assets/locations/skjorvik.svg", personIds: ["aslak","haki","ragnvald-s","orm"]
     }
   ]
 };
