@@ -14,6 +14,7 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check data.js
+          node --check portrait-assets.js
           node --check atlas.js
           node --check graph-geometry.js
           node --check app.js
@@ -29,3 +30,5 @@ jobs:
         run: node scripts/check-character-graph.mjs
       - name: Check mobile interface and relations
         run: node scripts/check-mobile-rwd.mjs
+      - name: Check optimized portrait assets and lazy loading
+        run: node scripts/check-portrait-assets.mjs
