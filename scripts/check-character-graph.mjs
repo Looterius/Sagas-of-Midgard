@@ -75,7 +75,7 @@ for(let i=1;i<route.points.length;i++)assert.ok(
 const html=fs.readFileSync("index.html","utf8");
 const css=fs.readFileSync("styles.css","utf8");
 const app=fs.readFileSync("app.js","utf8");
-assert.ok(html.includes('<script src="graph-geometry.js?v=graph-v1" defer></script>'),
+assert.ok(html.includes('<script src="graph-geometry.js?v=canon-route-v2" defer></script>'),
   "Load geometry before app.js");
 assert.ok(html.includes('viewBox="0 0 1600 1000"')&&
   html.includes('class="connections" width="1600" height="1000"'),
