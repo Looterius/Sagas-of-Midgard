@@ -246,10 +246,16 @@
       const addPersonCard = p => {
         const button = el("button", "atlas2-npc-card");
         button.type = "button";
+        if (p.grouping?.lifeStatus === "deceased") {
+          button.classList.add("is-deceased");
+          button.setAttribute("aria-label", p.name + " — postać zmarła");
+        }
         const thumb = el("span", "atlas2-npc-thumb");
         art(thumb, p.image, p.name.slice(0, 1));
         button.appendChild(thumb);
         button.appendChild(el("span", "", p.name));
+        if (p.grouping?.lifeStatus === "deceased")
+          button.appendChild(el("span", "atlas2-npc-deceased", "† ZMARŁY"));
         button.addEventListener("click", () => {
           close();
           if (callbacks.openPerson) callbacks.openPerson(p.id);

@@ -667,3 +667,25 @@ body.atlas2-modal-open{overflow:hidden}
     overflow-wrap:anywhere;align-items:center}
   .rail .nav-icon{flex:0 0 18px;font-size:18px}
 }
+
+/* Jawnie zmarli NPC w Atlasie: ten sam status co w Sieci postaci. */
+.atlas2-npc-card.is-deceased .atlas2-npc-thumb img{filter:grayscale(1) brightness(.64)}
+.atlas2-npc-deceased{display:block;font:700 9px/1.4 Arial,sans-serif;letter-spacing:.12em;color:#cdbbaa}
+
+/* Odrębna karta postaci bez dostarczonego portretu: kompaktowa oprawa na telefonie.
+   Portret dodany później automatycznie przywraca standardową wysokość. */
+.character-image:not(.has-photo){
+  background:radial-gradient(circle at 50% 50%,#4f4635 0%,#1c2124 52%,#101417 100%);
+}
+.character-image:not(.has-photo) > span{
+  color:#c9b186;letter-spacing:.11em;
+  text-shadow:0 0 35px #d2ba8044;font:italic 74px/1 Georgia,serif;
+}
+@media(max-width:720px){
+  .character-overlay:not([hidden]) .character-image:not(.has-photo){
+    height:clamp(122px,18dvh,152px);max-height:152px;
+  }
+  .character-overlay:not([hidden]) .character-image:not(.has-photo) > span{
+    font:italic clamp(48px,13vw,64px)/1 Georgia,serif;
+  }
+}

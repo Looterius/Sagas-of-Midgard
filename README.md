@@ -173,3 +173,26 @@ Przykładowe drogi:
 Bez sztucznego przechwytywania `popstate` na korzeniu, bez zapętlonego dopisywania historii podczas odtwarzania. W obrębie jednego kliknięcia (np. zamknięcie postaci + otwarcie miejsca) wpisy historii są konsolidowane w jednym mikrozadaniu. X i Escape w modalach cofają do poprzedniego wewnętrznego ekranu, jeśli istnieje wpis w historii. Po odświeżeniu otwartego ekranu można kontynuować nawigację na podstawie `history.state`. Nie używać `sessionStorage` do zapisywania postępów fabularnych; historia nie zawiera sekretów MG.
 
 Test: `node scripts/check-navigation-history.mjs`, uruchamiany w CI; ponadto test interakcji mobilnych w Chromium/Android.
+
+## Kanon Sieci postaci — listopad 2026
+
+Nowa lista zawiera **25 jawnych postaci** (6 bohaterów graczy, 19 NPC), każda z osobną biografią opartą na Tomie I, znanych wydarzeniach Eylendy i korektach MG. Nowo dodani: Sigurd, Sten (Stern), Hakon Czerwony, Torvald Kowal, Mord, Ulf. Dawna zbiorcza karta „Svala Ketilsdóttir i synowie” jest teraz indywidualną kartą Svali; jej bliźniacy Mord i Ulf otrzymali własne pozycje.
+
+### Obowiązujące korekty Skalda
+- Sigurd i Hroald byli braćmi; **Sigurd oślepił Hroalda** i przejął tron Hrafnviku.
+- Sigurd był ojcem **Sianity Gunnarsdóttir** oraz **Halvarda „Snake-Eye”**. Zachowujemy nieregularny patronimik Sianity na wyraźną prośbę MG — NIE zamieniamy go na Sigurdsdóttir. Styr to wycofane imię Halvarda.
+- **Runa** = dawna „Rona”, **Sten** = dawny „Stern”; oboje są dziećmi Hroalda.
+- **Ulf i Mord są braćmi bliźniakami**, synami Svali. Mord jest NPC-em, który poległ; Ulf nie jest automatycznie Ulfem Szarym (osobny bohater w scenariuszu).
+- Potwierdzeni zmarli w filtrze Zmarli: **Sigurd, Mord i Floki**. Floki pozostaje bohaterem gracza, mimo śmierci. **Sten ma nieustalony los** (w Tomie I oficjalnie uznawany za martwego/zaginionego), więc nie nadano mu flagi „zmarły”.
+- Hakon Czerwony jest najbogatszym mieszkańcem i właścicielem floty; dawniej zatrudniał Flokiego, obecnie Aslaka. Torvald Kowal powrócił od chrześcijaństwa do wiary w Thora i Odyna pod wpływem Flokiego.
+
+### Połączenia i Atlas
+W `data.js.relationships` znajdują się **17 jawnych relacji**: najbliższe więzi rodzinne, bliźniactwo, narzeczeństwo, spór na Thingu oraz relacje zawodowe i religijne. Karty obu końców są klikalne; status zmarłego jest wizualnie pokazany także przy NPC-ach Atlasu.
+
+Katalog rodzin zawiera jawne etykiety „Rodzina Sigurda i Hroalda” oraz „Rodzina Svali i Ketila”. Nie dorabiamy nienazwanych rodów, skrywanych frakcji ani nowej historii. Połączenia lokacji dotyczą publicznie znanych związków, **nie zawsze pochodzenia lub aktualnego adresu**. Hrafnvik grupuje znanych mieszkańców i osoby z nim związane, Skjǫrvik — Ragnvalda Skjoldssona, Hakiego i Aslaka; Eylenda i kurhan odnoszą się do uczestników wyprawy. Nie deklarujemy, do którego królestwa należy Hrafnvik.
+
+**Portrety:** sześć nowych NPC-ów nie otrzymało jeszcze zdjęć — czekają na pliki przekazane przez MG. **Nie wykorzystujemy sztucznych zdjęć ani wizerunków innych postaci jako zastępników.** W razie braku ilustracji istniejące inicjały; oryginały WebP i manifest pozostają nienaruszone. Po dołożeniu nowych zdjęć należy zregenerować `portrait-assets.js` i miniatury za pomocą `scripts/optimize-portraits.py`.
+
+Testy: `node scripts/check-character-groups.mjs` oraz `node scripts/check-character-graph.mjs`; standardowe testy publicznego Atlasu i wydajności portretów nadal obowiązują.
+
+Źródła narracyjne: `Scenariusz dla Sagas of Midgard(3).pdf` (Tom I), `Scenariusz dla Sagas of Midgard IIa.pdf` (Tom II) i dziennik faktycznie rozegranych wydarzeń 05.11.2026 w Notion. **Nie wolno przenosić do publicznego `data.js` sekretów Skalda ani nierozstrzygniętych wariantów scenariusza.**
