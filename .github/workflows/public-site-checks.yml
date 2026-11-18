@@ -16,8 +16,11 @@ jobs:
           node --check data.js
           node --check atlas.js
           node --check app.js
+          node --check character-groups.js
           node --check maps.js
       - name: Check public Atlas
         run: node scripts/check-public-atlas.mjs
       - name: Check public Maps
         run: node scripts/check-public-maps.mjs
+      - name: Check public Character Groups
+        run: node scripts/check-character-groups.mjs

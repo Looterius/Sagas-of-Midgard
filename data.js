@@ -9,19 +9,24 @@ window.CHRONICLE = {
     { id: "erik", name: "Erik Żelaznadłoń", kind: "Postać", image: "assets/portraits/Erik Zelaznadłoń.png", x: 255, y: 25 },
     { id: "ragnvald-p", name: "Ragnvald Prawomówca", kind: "Postać", image: "assets/portraits/Ragnvald Prawomówca.png", x: 475, y: 25 },
     { id: "styrbjorn", name: "Styrbjorn Ragnsson", kind: "Postać", image: "assets/portraits/Styrbjorn Ragnsson.png", x: 695, y: 25 },
-    { id: "hroald", name: "Hroald", kind: "Postać", image: "assets/portraits/Hroald.png", x: 915, y: 25 },
+    { id: "hroald", name: "Hroald", kind: "Postać", grouping: { role: "npc", titles: ["jarl"] }, image: "assets/portraits/Hroald.png", x: 915, y: 25 },
     { id: "ragnvald-s", name: "Ragnvald Skjoldsson", kind: "Postać", image: "", x: 145, y: 317 },
-    { id: "aslak", name: "Aslak Cieśla", kind: "Postać", image: "assets/portraits/Aslak Cieśla.png", x: 365, y: 317 },
+    { id: "aslak", name: "Aslak Cieśla", kind: "Postać", grouping: { role: "npc", statuses: ["captive"] }, image: "assets/portraits/Aslak Cieśla.png", x: 365, y: 317 },
     { id: "morotar", name: "Morotar Jednooki", kind: "Postać", image: "assets/portraits/Morotar Jednooki.png", x: 585, y: 317 },
     { id: "astrid", name: "Astrid Freyjadottir", kind: "Postać", image: "assets/portraits/Astrid Freyjadottir.png", x: 805, y: 317 },
-    { id: "anslem", name: "Brat Anslem", kind: "Postać", image: "assets/portraits/Brat Anslem.png", x: 145, y: 609 },
+    { id: "anslem", name: "Brat Anslem", kind: "Postać", grouping: { role: "npc" }, image: "assets/portraits/Brat Anslem.png", x: 145, y: 609 },
     { id: "svala", name: "Svala Ketilsdóttir i synowie", kind: "Rodzina", image: "assets/portraits/svala-ketilsdottir-i-synowie.jpg", x: 365, y: 609 },
-    { id: "runa", name: "Runa Hroaldsdottir", kind: "Postać", image: "assets/portraits/Runa Hroaldsdottir.png", x: 585, y: 609 },
+    { id: "runa", name: "Runa Hroaldsdottir", kind: "Postać", grouping: { role: "npc" }, image: "assets/portraits/Runa Hroaldsdottir.png", x: 585, y: 609 },
     { id: "leif", name: "Leif Anundsson", kind: "Postać", image: "assets/portraits/Leif Anundsson.png", x: 805, y: 609 }
   ],
   // Publiczne POWIĄZANIA FABULARNE można dodać dopiero po zatwierdzeniu przez Skalda.
   // Format: {from:"hroald",to:"runa",type:"rodzina",label:"..."}.
   relationships: [],
+  // Uwaga: grouping jest opcjonalne. Niepotwierdzone klasyfikacje pozostają puste.
+  // role: "hero" lub "npc"; lifeStatus: "deceased"; titles: ["jarl", "ruler"];
+  // statuses: ["captive"]; kingdomIds, settlementIds, familyIds i factionIds to ID.
+  // Katalog jawnych rodzin i frakcji zostanie uzupełniony po potwierdzeniu.
+  characterGroupCatalog: { families: [], factions: [] },
 
   // Kronika PUBLICZNA: wyłącznie wydarzenia znane graczom. Nie wpisuj tu sekretów Skalda.
   chronicle: [

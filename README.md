@@ -74,3 +74,16 @@ Osobny tab **Mapy świata** nie zastępuje Atlasu. Zaczyna się od mapy Midgardu
 - Nie dopisuj nowych map, lokacji, markerów ani nieodkrytych sekretów bez potwierdzenia, że gracze mogą je zobaczyć.
 
 Kontrola: `node --check maps.js && node scripts/check-public-atlas.mjs && node scripts/check-public-maps.mjs`. Walidacja działa również przez GitHub Actions na PR i `main`.
+
+## Sieć postaci — grupowanie i potwierdzona wiedza
+
+Nowy panel pod wyszukiwarką pozwala wyświetlić tylko wybrane postacie, bez ingerencji w oficjalne pozycje kart. Zakładki: **Wszyscy, Bohaterowie, NPC, Zmarli, Władcy i jarlowie, Jeńcy**. Drugi poziom: **Królestwa i krainy, Osady, Rody i rodziny, Frakcje**. Wybrane kryteria można łączyć (logiczne AND), a wyszukiwarka przeszukuje wyłącznie pasujące karty. Filtry ukrywają inne karty i ich linie relacji; widoczna grupa układa się automatycznie. Powrót do „Wszyscy” przywraca oryginalne współrzędne. Gracze nie zapisują zmian.
+
+- `character-groups.js` — wyłącznie reguły filtrowania i tymczasowego układu, nie zapisuje do repozytorium danych graczy.
+- `data.js → people[].grouping` — **opcjonalne, jawnie potwierdzone** informacje: `role: "hero" | "npc"`, `lifeStatus: "deceased"`, `titles: ["jarl", "ruler"]`, `statuses: ["captive"]`, listy `kingdomIds`, `settlementIds`, `familyIds`, `factionIds`.
+- `data.js → places[].personIds` — znane powiązania postaci z osadą, nie dowód miejsca pochodzenia ani aktualnego zamieszkania.
+- `data.js → characterGroupCatalog` — jawne etykiety rodów i frakcji (puste, dopóki ich przynależności nie zostały zatwierdzone).
+- Początkowo tylko cztery postacie mają potwierdzone metadane na podstawie obecnej publicznej kroniki: Hroald (NPC, dawny jarl), Aslak (NPC, jeniec), Runa i brat Anslem (NPC). Bohaterów graczy, zmarłych, rodów i frakcji **nie domyślamy się**.
+- Kategorie bez przypisań pozostają dostępne, ale pokazują komunikat o braku potwierdzonych danych; nie dorabiaj fabuły, żeby zapełnić widok.
+
+Kontrola: `node scripts/check-character-groups.mjs` (również w CI). Test obejmuje filtry, połączenia kategorii i powtarzalność układu 110 kart.

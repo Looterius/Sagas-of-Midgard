@@ -11,10 +11,14 @@
   const svg = $("#connections");
   // Publiczny widok jest tylko do odczytu: pozycje pochodzą z danych kroniki.
   // Ani kliknięcia, ani ruchy gości nie nadpisują oficjalnego układu.
+  const officialPositions = Object.fromEntries(data.people.map(p => [p.id, { x: p.x, y: p.y }]));
   const state = {
     zoom: 0.66, panX: 0, panY: 0, selected: null, view: "relationships",
-    positions: Object.fromEntries(data.people.map(p => [p.id, { x: p.x, y: p.y }]))
+    positions: officialPositions,
+    visibleIds: new Set(data.people.map(p => p.id))
   };
+  const groupFilter = { primary: "all", dimension: null, value: null, expanded: null, search: "" };
+  const groups = window.SOM_GROUPS;
   const nodes = new Map();
   const NS = "http://www.w3.org/2000/svg";
 
@@ -68,6 +72,7 @@
   function drawConnections() {
     svg.replaceChildren();
     (data.relationships || []).forEach(rel => {
+      if (!state.visibleIds.has(rel.from) || !state.visibleIds.has(rel.to)) return;
       const a = state.positions[rel.from], b = state.positions[rel.to];
       if (!a || !b) return;
       const ax = a.x + 90, ay = a.y + 120, bx = b.x + 90, by = b.y + 120;
@@ -108,6 +113,106 @@
     drawConnections();
     $("#people-count").textContent = data.people.length;
     $("#links-count").textContent = (data.relationships || []).length;
+  }
+
+  function renderGroupOptions() {
+    const panel = $("#character-group-options");
+    const dimension = groupFilter.expanded;
+    panel.replaceChildren();
+    panel.hidden = !dimension;
+    document.querySelectorAll("[data-character-dimension]").forEach(button => {
+      const isOpen = button.dataset.characterDimension === dimension;
+      button.setAttribute("aria-expanded", String(isOpen));
+      button.classList.toggle("active", isOpen);
+      button.classList.toggle("chosen", button.dataset.characterDimension === groupFilter.dimension);
+    });
+    if (!dimension) return;
+    const available = groups.options(data, dimension);
+    if (!available.length) {
+      panel.appendChild(make("p", "character-group-unavailable",
+        "Nie ma jeszcze potwierdzonych przynależności postaci do tej kategorii."));
+      return;
+    }
+    for (const option of available) {
+      const selected = groupFilter.dimension === dimension && groupFilter.value === option.id;
+      const button = make("button", "character-group-option", option.label);
+      button.type = "button";
+      button.setAttribute("aria-pressed", String(selected));
+      button.addEventListener("click", () => {
+        groupFilter.dimension = selected ? null : dimension;
+        groupFilter.value = selected ? null : option.id;
+        applyGrouping();
+      });
+      panel.appendChild(button);
+    }
+  }
+
+  function applyGrouping() {
+    if (!groups) return;
+    const people = data.people.filter(person => groups.matches(data, person, groupFilter));
+    const isDefault = groupFilter.primary === "all" &&
+      !groupFilter.value && !groupFilter.search.trim();
+    state.visibleIds = new Set(people.map(person => person.id));
+    state.positions = isDefault ? officialPositions : groups.layout(people);
+    nodes.forEach((card, id) => {
+      card.hidden = !state.visibleIds.has(id);
+      if (!card.hidden) {
+        positionCard(id);
+        card.classList.remove("muted");
+      }
+    });
+    drawConnections();
+    const relationCount = (data.relationships || []).filter(rel =>
+      state.visibleIds.has(rel.from) && state.visibleIds.has(rel.to)).length;
+    $("#people-count").textContent = people.length;
+    $("#links-count").textContent = relationCount;
+    $("#character-group-summary").textContent = people.length + " z " + data.people.length + " postaci";
+    const empty = $("#character-group-empty");
+    empty.hidden = people.length > 0;
+    if (!people.length) {
+      empty.textContent = "Brak potwierdzonych postaci w tym widoku. Możesz wybrać inną grupę lub wyczyścić filtry.";
+    }
+    document.querySelectorAll("[data-character-primary]").forEach(button => {
+      const selected = button.dataset.characterPrimary === groupFilter.primary;
+      button.setAttribute("aria-pressed", String(selected));
+      button.classList.toggle("active", selected);
+    });
+    $("#character-group-reset").hidden = isDefault && !groupFilter.expanded;
+    renderGroupOptions();
+    if (state.view === "relationships") fit();
+  }
+
+  function setupGrouping() {
+    document.querySelectorAll("[data-character-primary]").forEach(button => {
+      button.addEventListener("click", () => {
+        groupFilter.primary = button.dataset.characterPrimary;
+        if (groupFilter.primary === "all") {
+          groupFilter.dimension = null;
+          groupFilter.value = null;
+          groupFilter.expanded = null;
+        }
+        applyGrouping();
+      });
+    });
+    document.querySelectorAll("[data-character-dimension]").forEach(button => {
+      button.addEventListener("click", () => {
+        const id = button.dataset.characterDimension;
+        groupFilter.expanded = groupFilter.expanded === id ? null : id;
+        renderGroupOptions();
+        $("#character-group-reset").hidden = !groupFilter.expanded &&
+          groupFilter.primary === "all" && !groupFilter.value && !groupFilter.search.trim();
+      });
+    });
+    $("#character-group-reset").addEventListener("click", () => {
+      groupFilter.primary = "all";
+      groupFilter.dimension = null;
+      groupFilter.value = null;
+      groupFilter.expanded = null;
+      groupFilter.search = "";
+      $("#search").value = "";
+      applyGrouping();
+    });
+    applyGrouping();
   }
 
   function positionCard(id) {
@@ -289,7 +394,8 @@
     dialog.setAttribute("aria-hidden", "true");
     dialog.hidden = true;
     document.body.classList.remove("character-modal-open");
-    if (state.selected && nodes.get(state.selected)) nodes.get(state.selected).focus({preventScroll:true});
+    if (state.selected && nodes.get(state.selected) && !nodes.get(state.selected).hidden)
+      nodes.get(state.selected).focus({preventScroll:true});
     state.selected = null;
   }
 
@@ -301,13 +407,26 @@
   }
 
   function setZoom(value) {
-    state.zoom = Math.max(.28, Math.min(1.7, value));
+    state.zoom = Math.max(.06, Math.min(1.7, value));
     applyTransform();
   }
   function fit() {
     if (!viewport.clientWidth || !viewport.clientHeight) return;
-    state.zoom = Math.min(1.05, Math.max(.28, Math.min((viewport.clientWidth - 55) / 1130, (viewport.clientHeight - 65) / 870)));
-    state.panX = 0; state.panY = 0;
+    const isDefault = groupFilter.primary === "all" && !groupFilter.value && !groupFilter.search.trim();
+    if (isDefault || state.visibleIds.size === 0) {
+      // Wszyscy: dokładnie ten sam układ i skalowanie, które były przed grupowaniem.
+      state.zoom = Math.min(1.05, Math.max(.28, Math.min((viewport.clientWidth - 55) / 1130, (viewport.clientHeight - 65) / 870)));
+      state.panX = 0; state.panY = 0;
+    } else {
+      const visible = [...state.visibleIds].map(id => state.positions[id]).filter(Boolean);
+      const minX = Math.min(...visible.map(p => p.x)), maxX = Math.max(...visible.map(p => p.x + 180));
+      const minY = Math.min(...visible.map(p => p.y)), maxY = Math.max(...visible.map(p => p.y + 240));
+      const width = maxX - minX, height = maxY - minY;
+      state.zoom = Math.max(.06, Math.min(1.15,
+        (viewport.clientWidth - 90) / width, (viewport.clientHeight - 90) / height));
+      state.panX = (800 - (minX + maxX) / 2) * state.zoom;
+      state.panY = (500 - (minY + maxY) / 2) * state.zoom;
+    }
     applyTransform();
   }
 
@@ -339,11 +458,8 @@
     switchView(b.dataset.view);
   }));
   $("#search").addEventListener("input", e => {
-    const query = e.target.value.trim().toLocaleLowerCase("pl");
-    nodes.forEach((node, id) => {
-      const p = data.people.find(x => x.id === id);
-      node.classList.toggle("muted", !!query && !p.name.toLocaleLowerCase("pl").includes(query));
-    });
+    groupFilter.search = e.target.value.trim();
+    applyGrouping();
   });
   $("#zoom-in").addEventListener("click", () => setZoom(state.zoom * 1.17));
   $("#zoom-out").addEventListener("click", () => setZoom(state.zoom / 1.17));
@@ -363,6 +479,7 @@
   });
   window.addEventListener("resize", () => { if (state.view === "relationships") fit(); });
   renderPeople();
+  setupGrouping();
   renderPlaces();
   renderMaps();
   renderChronicle();
