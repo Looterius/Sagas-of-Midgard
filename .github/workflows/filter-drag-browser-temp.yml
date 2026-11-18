@@ -72,6 +72,21 @@ jobs:
             assert.ok(box?.width>20,"King card not rendered on mobile "+JSON.stringify(box));
             const x=Math.round(box.x+box.width/2), y=Math.round(box.y+box.height/2);
             const start=await target.evaluate(el=>parseFloat(el.style.left));
+            await m.evaluate(()=>{
+              window.__debugTouch=[];
+              for(const selector of ['.person-card[data-id="alrek"]','#map-viewport','#map-scene']){
+                const el=document.querySelector(selector);
+                for(const name of ['pointerdown','pointermove','pointerup','gotpointercapture','lostpointercapture','touchstart','touchmove']){
+                  el.addEventListener(name,e=>{
+                    window.__debugTouch.push({
+                      selector,name,pointerType:e.pointerType,isPrimary:e.isPrimary,
+                      button:e.button,target:e.target?.className,
+                      x:e.clientX,y:e.clientY
+                    });
+                  },{capture:true});
+                }
+              }
+            });
             const cdp=await ctx.newCDPSession(m);
             await cdp.send("Input.dispatchTouchEvent",{type:"touchStart",touchPoints:[{x,y}]});
             await m.waitForTimeout(560);
@@ -80,6 +95,7 @@ jobs:
             await cdp.send("Input.dispatchTouchEvent",{type:"touchEnd",touchPoints:[]});
             await m.waitForTimeout(100);
             const moved=await target.evaluate(el=>parseFloat(el.style.left));
+            console.log("TOUCH_DEBUG",JSON.stringify(await m.evaluate(()=>({eventLog:window.__debugTouch,cardClass:document.querySelector('.person-card[data-id="alrek"]').className}))));
             assert.ok(moved>start+15,"Mobile long-press must drag king card "+JSON.stringify({start,moved}));
             assert.ok(await m.locator("#inspector").isHidden(),"Long press must not open biography");
             console.log("PASS long-press-drag on mobile Władcy i jarlowie");
