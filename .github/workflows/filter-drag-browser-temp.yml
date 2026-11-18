@@ -68,9 +68,16 @@ jobs:
             await m.goto("http://127.0.0.1:8765/",{waitUntil:"load"});
             await m.locator('[data-character-primary="rulers"]').click();
             const target=m.locator('.person-card[data-id="alrek"]');
+            await target.scrollIntoViewIfNeeded();
             const box=await target.boundingBox();
+            console.log("TOUCH_TARGET",JSON.stringify({box,viewport:await m.evaluate(()=>({w:innerWidth,h:innerHeight,scrollY}))}));
             assert.ok(box?.width>20,"King card not rendered on mobile "+JSON.stringify(box));
             const x=Math.round(box.x+box.width/2), y=Math.round(box.y+box.height/2);
+            console.log("TOUCH_HIT",JSON.stringify(await m.evaluate(([x,y])=>({
+              x,y,tag:document.elementFromPoint(x,y)?.tagName,
+              cls:document.elementFromPoint(x,y)?.className,
+              parent:document.elementFromPoint(x,y)?.closest(".person-card")?.dataset?.id
+            }),[x,y])));
             const start=await target.evaluate(el=>parseFloat(el.style.left));
             await m.evaluate(()=>{
               window.__debugTouch=[];
