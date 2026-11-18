@@ -125,3 +125,11 @@ Wszyscy figurują w `places.hrafnvik.personIds`, więc mogą być otwierani rów
 W publicznej kronice brat Sigurda, **Hroald**, został pozbawiony władzy i wzroku. **Sianita i Halvard** są rodzeństwem i dziećmi Sigurda, a więc Hroald jest ich **wujem** (Sianita — jego bratanica; Halvard — bratanek). W `data.js → relationships` są dwa osobne łuki rodzinne do Hroalda oraz wcześniejszy łuk rodzeństwa Sianita–Halvard. Zaręczyny Sianita–Asgrim pozostają niezmienione.
 
 Relacje są jawne i widoczne na mapie **Wszyscy**; gdy filtr ukryje jedną z postaci, nie rysujemy krawędzi do ukrytej karty.
+
+## Korekta Sieci postaci: zgodność płótna, ramki i połączeń
+
+Wcześniejsze style odziedziczone po starej siatce deklarowały `map-scene: 1130×870`, podczas gdy po dodaniu bohaterów pozycje kart i `svg#connections` działały na `1600×1000`. Powodowało to przesunięcie końców linii, a także obcinanie kart przy dopasowaniu widoku. Teraz wszystkie trzy warstwy korzystają z tych samych wymiarów **1600×1000**, a funkcja `fit()` bierze pod uwagę rzeczywiste pozycje widocznych kart i margines bezpieczeństwa. Usunięto dekoracyjną wewnętrzną ramkę, którą można było błędnie uznać za granicę mapy.
+
+`graph-geometry.js` wyprowadza połączenia **od ramki do ramki**. Dla zasłoniętego połączenia wyznacza trasę przez wolny korytarz, omijając pośrednie portrety, jeśli istnieje przejście. Zawiera tytuł relacji dostępny po najechaniu na linię, punkty zakotwiczenia i podświetlanie połączonych kart. Działa po przeciągnięciu postaci oraz przełączeniu filtrów, bo rysowanie używa aktualnych współrzędnych.
+
+Test `node scripts/check-character-graph.mjs` kontroluje miejsca zaczepienia, przeszkody, wszystkie ujawnione relacje i filtry oraz zgodność SVG i CSS. **Przy ręcznym zoomowaniu lub przesuwaniu treść może celowo znaleźć się poza widokiem i zostać przycięta**; przycisk `Dopasuj widok` przywraca wszystkie widoczne karty na ekran.
