@@ -269,8 +269,8 @@
         else if(!event.shiftKey && idx===buttons.length-1){event.preventDefault();buttons[0].focus();}
       }
     });
-    // Kampania koncentruje się w Ziemiach Drengrów — pokazujemy od razu sześć klocków.
-    showRegion("drengrlands");
+    // Atlas zaczyna się od świata Midgard; do Ziem Drengrów przechodzi się przez kartę obszaru.
+    showRegion("midgard");
   }
   window.SOM_ATLAS = {mount,open,showRegion};
 })();
