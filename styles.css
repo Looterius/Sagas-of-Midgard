@@ -464,3 +464,18 @@ body.atlas2-modal-open{overflow:hidden}
  .maps-zoom-tools button{width:34px;height:34px}
 }
 @media(prefers-reduced-motion:reduce){.maps-marker{transition:none}}
+
+/* Klikalne miejsca na dostarczonej mapie Ziem Drengrów.
+   Nie zasłaniamy oryginalnych podpisów — tylko niewielkie punkty i obrys przy najechaniu. */
+.maps-viewport[data-map-id="drengrlands"]{aspect-ratio:1190 / 896;min-height:0}
+.maps-hotspot{position:absolute;transform:translate(-50%,-50%);z-index:3;cursor:pointer}
+.maps-hotspot--region{border:1px solid transparent;border-radius:3px;background:transparent;box-shadow:none;padding:0;color:transparent}
+.maps-hotspot--region::before{content:"✦";position:absolute;right:-7px;top:-8px;color:#ffda91;font:15px/1 Georgia,serif;text-shadow:0 2px 5px #12100c,0 0 8px #12100c}
+.maps-hotspot--region:hover,.maps-hotspot--region:focus-visible{background:#e8ba6d22;border-color:#f1d397;box-shadow:0 0 0 2px #30251766}
+.maps-hotspot--place{width:clamp(27px,3vw,36px);height:clamp(27px,3vw,36px);display:grid;place-items:center;border-radius:50%;border:1px solid #f0d09a;background:#202b2bd9;color:#f5d9a5;box-shadow:0 1px 8px #05090aab}
+.maps-hotspot--place::before{content:"✦";font:15px/1 Georgia,serif}
+.maps-hotspot--place:hover,.maps-hotspot--place:focus-visible,.maps-hotspot--selected{background:#6a4c2c;border-color:#ffe3ad;box-shadow:0 0 0 3px #ecbc6b77,0 1px 10px #05090acc}
+.maps-hotspot::after{content:attr(data-label);position:absolute;bottom:calc(100% + 9px);left:50%;transform:translate(-50%,3px);opacity:0;pointer-events:none;z-index:5;min-width:max-content;max-width:210px;padding:8px 12px;border:1px solid #d6b67d;background:#171d20f2;color:#f0d8ad;font:13px/1.35 Georgia,serif;white-space:nowrap;box-shadow:0 8px 24px #05090acc;transition:opacity .12s,transform .12s}
+.maps-hotspot:hover::after,.maps-hotspot:focus-visible::after,.maps-hotspot--selected::after{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){.maps-viewport[data-map-id="drengrlands"]{min-height:0}.maps-hotspot--region::before{font-size:11px;right:-5px;top:-6px}.maps-hotspot--place{width:28px;height:28px}.maps-hotspot--place::before{font-size:12px}.maps-hotspot::after{font-size:11px;max-width:150px;white-space:normal;text-align:center}}
+@media(prefers-reduced-motion:reduce){.maps-hotspot::after{transition:none}}
