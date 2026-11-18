@@ -38,7 +38,7 @@ for(const p of references) {
   fullBytes+=entry.full===p.image?fs.statSync(p.image).size:verifyWebP(entry.full);
   optimized++;
 }
-assert.ok(optimized>=27,"Uploaded named portraits and kings must be optimized");
+assert.equal(optimized,32,"All 32 public characters must have optimized portraits");
 assert.equal(missing,0,"Svala portrait now exists; do not keep stale missing entry");
 assert.ok(thumbBytes<sourceBytes*.15,"Thumbnails insufficiently compressed");
 assert.ok(fullBytes<sourceBytes*.40,"Full detail variants insufficiently compressed");
