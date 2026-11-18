@@ -83,19 +83,31 @@ Nowy panel pod wyszukiwarką pozwala wyświetlić tylko wybrane postacie, bez in
 - `data.js → people[].grouping` — **opcjonalne, jawnie potwierdzone** informacje: `role: "hero" | "npc"`, `lifeStatus: "deceased"`, `titles: ["jarl", "ruler"]`, `statuses: ["captive"]`, listy `kingdomIds`, `settlementIds`, `familyIds`, `factionIds`.
 - `data.js → places[].personIds` — znane powiązania postaci z osadą, nie dowód miejsca pochodzenia ani aktualnego zamieszkania.
 - `data.js → characterGroupCatalog` — jawne etykiety rodów i frakcji (puste, dopóki ich przynależności nie zostały zatwierdzone).
-- Pierwsze potwierdzone metadane przypisano Hroaldowi (NPC, dawny jarl), Aslakowi (NPC, jeniec), Runie i bratu Anslemowi (NPC). **Pięcioro bohaterów graczy** zostało następnie jawnie zatwierdzonych dla Hrafnviku: Sianita Gunnarsdóttir, Halvard „Snake-Eye”, Haroks Magnusson, Ylva i Floki. **Tylko Floki z tej piątki jest zmarły**; pozostaje w grupie Bohaterowie. Nie dopisuj innych niepotwierdzonych śmierci, rodów ani frakcji.
+- Pierwsze potwierdzone metadane przypisano Hroaldowi (NPC, dawny jarl), Aslakowi (NPC, jeniec), Runie i bratu Anslemowi (NPC). **Sześcioro bohaterów graczy** jest jawnie zatwierdzonych w sieci: Sianita Gunnarsdóttir, Halvard „Snake-Eye”, Haroks Magnusson, Ylva, Floki oraz Asgrim. Pięć pierwszych postaci pochodzi z Hrafnviku; Asgrim jest synem władcy Agder i dołączył później do drużyny. **Tylko Floki z tej szóstki jest zmarły**; pozostaje w grupie Bohaterowie. Nie dopisuj innych niepotwierdzonych śmierci, rodów ani frakcji.
 - Kategorie bez przypisań pozostają dostępne, ale pokazują komunikat o braku potwierdzonych danych; nie dorabiaj fabuły, żeby zapełnić widok.
 
 Kontrola: `node scripts/check-character-groups.mjs` (również w CI). Test obejmuje filtry, połączenia kategorii i powtarzalność układu 110 kart.
 
-## Bohaterowie Hrafnviku — pierwsza seria kart
+## Bohaterowie graczy — portrety i historie
 
-W `data.js → people` dodano pięcioro zatwierdzonych bohaterów. Portrety pozostają puste (`image: ""`) aż do dodania przez autora kampanii plików do `assets/portraits/`. Wówczas uzupełnij ich `image` bez zmiany ID. Ich krótkie biografie są publicznymi streszczeniami znanych wydarzeń; nie zawierają sekretów MG.
+W `data.js → people` znajduje się sześć zatwierdzonych postaci graczy. Publiczne portrety zostały obejrzane i przypisane na podstawie wyglądu (Asgrim ma własny podpisany plik). Nie zmieniaj istniejących identyfikatorów postaci. Ich historie zawierają jedynie znane graczom wydarzenia, bez przyszłych scen i notatek Skalda. Jeden dodatkowy, niejednoznaczny portret `ChatGPT Image 17 wrz 2026, 11_37_54.png` pozostawiono bez przypisania.
 
 - `sianita` — **Sianita Gunnarsdóttir**, jarlowa, żyje, Hrafnvik.
 - `halvard` — **Halvard „Snake-Eye”**, dawniej roboczo nazywany Styr (wycofane imię nie pojawia się na stronie), żyje, Hrafnvik. Ma jedną potwierdzoną więź rodzeństwa z Sianitą.
 - `haroks` — **Haroks Magnusson**, berserker, żyje, Hrafnvik.
 - `ylva` — **Ylva**, łuczniczka, żyje, Hrafnvik.
-- `floki` — **Floki**, budowniczy statków, poległ w wyprawie na Eylendę; **Bohaterowie i Zmarli** jednocześnie, Hrafnvik.
+- `floki` — **Floki**, budowniczy statków, poległ w wyprawie na Eylendę; **Bohaterowie i Zmarli** jednocześnie, Hrafnvik. Jego portret jest wyszarzany przez CSS w obu widokach.
+- `asgrim` — **Asgrim**, syn Halfdana Czarnego, przybył z tarczownikami, zaręczył się z Sianitą. Ma związek z Agder oraz drużyną Hrafnviku; nie utożsamiaj tego z pochodzeniem z osady.
 
 Wszyscy figurują w `places.hrafnvik.personIds`, więc mogą być otwierani również z karty osady. Nowe karty rozłożono na wolnych pozycjach sieci; w `app.js` „Dopasuj widok” obejmuje teraz wszystkie widoczne karty bez zmiany ich współrzędnych.
+
+### Portrety — przypisania z wizualnej weryfikacji
+
+- Sianita: `841056920_1454607076732851_414940541375700284_n.jpg` — kobieta w zbroi
+- Halvard: `836508976_2515877412221096_575784062671443810_n.jpg` — ciemnowłosy wojownik w czarnym stroju
+- Haroks: `819106917_1403096258558492_2259915694493588498_n.jpg` — muskularny wojownik w futrze z toporem
+- Ylva: `836713553_1631673708686109_4202120061548436723_n.png` — łuczniczka z sową
+- Floki: `843041093_29439569015649515_6290487889105704541_n.jpg` — szkutnik pracujący przy statku
+- Asgrim: `Asgrim.jpeg` — podpisany plik
+
+**Efekt żałobny:** `app.js` nadaje klasę `is-deceased` kartom osób z `grouping.lifeStatus === "deceased"`. `styles.css` wyszarza ich zdjęcia w sieci i w oknie szczegółów. Nie modyfikujemy oryginalnych obrazów na dysku. Pliki numerowane nie zostały przemianowane, tylko podpięte do właściwych identyfikatorów postaci.
