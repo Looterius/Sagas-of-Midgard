@@ -399,3 +399,68 @@ body.atlas2-modal-open{overflow:hidden}
 .atlas2-community-note{grid-column:1/-1;padding:7px 4px 0;color:#c7b7a2;font:13px/1.7 Arial,sans-serif}
 @media(max-width:1180px){.atlas2-region-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:710px){.atlas2-region-grid{grid-template-columns:1fr}.atlas2-region{min-height:180px}.atlas2-region-heading{align-items:center}}
+
+
+/* Mapy Świata — moduł kartografii; nie zmienia wyglądu istniejącego Atlasu. */
+.maps-view{padding:0 0 48px;min-width:0}
+.maps-heading{margin:0 0 0;padding:30px clamp(18px,3vw,42px);background:linear-gradient(125deg,#222a2d,#161e22 78%);border-bottom:1px solid #685539;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.maps-heading .eyebrow{margin:0 0 11px}
+.maps-heading h2{font:normal clamp(28px,3.2vw,44px)/1.15 Georgia,serif;color:#f0dfc1;margin:0 0 9px}
+.maps-heading p:not(.eyebrow){margin:0;color:#afa89a;font:14px/1.6 Arial,sans-serif}
+.maps-heading-mark{font:70px/1 Georgia,serif;color:#947d58;opacity:.65}
+.maps-browser{padding:28px clamp(16px,3vw,42px)}
+.maps-breadcrumbs{display:flex;align-items:center;gap:10px;margin:0 0 25px;font:12px/1.5 Arial,sans-serif;color:#a59a87}
+.maps-crumb{color:#cfb482;background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:4px;font:inherit}
+.maps-crumb:disabled{color:#d0b889;text-decoration:none;cursor:default}
+.maps-separator{color:#786e5d}.maps-current{color:#dfd0b3}
+.maps-caption{display:flex;align-items:end;justify-content:space-between;gap:22px;margin:0 0 19px}
+.maps-caption .eyebrow{margin:0 0 8px}
+.maps-caption h3{font:normal clamp(26px,3vw,36px)/1.1 Georgia,serif;color:#f0dfc6;margin:0 0 9px}
+.maps-caption p:not(.eyebrow){color:#b2ab9f;font:13px/1.65 Arial,sans-serif;margin:0}
+.maps-atlas-link,.atlas2-map-link{background:#292a26;color:#e6cda0;border:1px solid #a0885e;padding:11px 15px;white-space:normal;font:13px/1.4 Georgia,serif;cursor:pointer}
+.maps-atlas-link:hover,.atlas2-map-link:hover{background:#3b3429;border-color:#d7bb89}
+.atlas2-map-link{margin:-9px 0 22px}
+.atlas2-map-link[hidden]{display:none!important}
+.maps-toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:10px;min-height:38px}
+.maps-toolbar>button{border:1px solid #64543c;background:#242a2c;color:#ebd3ac;padding:9px 14px;font:13px Arial,sans-serif}
+.maps-toolbar>button[hidden]{visibility:hidden!important;display:block!important}
+.maps-zoom-tools{display:flex;align-items:center;gap:6px;margin-left:auto;font:12px Arial,sans-serif;color:#b5a997}
+.maps-zoom-tools button{width:37px;height:37px;display:grid;place-items:center;background:#22282a;color:#e3c897;border:1px solid #635237;font:20px Georgia,serif}
+.maps-zoom-tools button:disabled{opacity:.38;cursor:default}
+.maps-zoom-tools span{text-align:center;min-width:49px}
+.maps-viewport{width:100%;aspect-ratio:5/3;position:relative;overflow:hidden;background:#15242b;border:1px solid #97754d;box-shadow:0 20px 50px #0005;cursor:grab;touch-action:none}
+.maps-viewport:active{cursor:grabbing}
+.maps-canvas{position:absolute;inset:0;transform-origin:center center;will-change:transform}
+.maps-canvas>img{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;user-select:none;pointer-events:none}
+.maps-marker-layer{position:absolute;inset:0;pointer-events:none}
+.maps-marker{position:absolute;transform:translate(-50%,-50%);background:#191e20ed;color:#f0dbb5;border:1px solid #d1af75;border-radius:2px;padding:10px 14px;font:600 clamp(11px,1.25vw,15px)/1.2 Georgia,serif;white-space:nowrap;box-shadow:0 3px 14px #071016b5;pointer-events:auto;transition:background .14s,border-color .14s}
+.maps-marker:before{content:"✦";margin-right:8px;font-size:11px;color:#d4ae70}
+.maps-marker:hover,.maps-marker:focus-visible{background:#61452d;color:#fff0cc;border-color:#f4d49b;z-index:2}
+.maps-accuracy{font:11px/1.65 Arial,sans-serif;color:#a7a194;margin:10px 0 35px}
+.maps-places-section[hidden]{display:none!important}
+.maps-places-section{border-top:1px solid #54483a;padding-top:25px}
+.maps-place-heading{margin-bottom:16px}
+.maps-place-heading h3{font:normal 26px Georgia,serif;color:#e8d1aa;margin:0 0 8px}
+.maps-place-heading p{font:13px/1.65 Arial,sans-serif;color:#a9a296;margin:0}
+.maps-place-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.maps-site-group{padding:17px 18px;background:#1e2428;border:1px solid #4c453a;min-width:0}
+.maps-site-group h3{font:normal 18px Georgia,serif;color:#e5cc9e;margin:0 0 12px}
+.maps-site-links{display:flex;flex-wrap:wrap;gap:8px}
+.maps-site-link{max-width:100%;background:#292e2f;border:1px solid #6d5c40;padding:7px 10px;color:#ddceb5;font:13px/1.35 Georgia,serif;text-align:left}
+.maps-site-link:hover,.maps-site-link:focus-visible,.maps-site-link--highlight{border-color:#e5be82;background:#473727;color:#fff0cb}
+.maps-empty{color:#a7a194;font:13px Arial,sans-serif}
+@media(max-width:760px){
+ .maps-heading{padding:23px 18px}.maps-heading-mark{font-size:45px}
+ .maps-browser{padding:21px 16px}
+ .maps-caption{align-items:start;flex-direction:column;gap:14px}
+ .maps-viewport{min-height:250px}
+ .maps-marker{font-size:10px;padding:6px 7px;max-width:120px;white-space:normal;text-align:center}
+ .maps-marker:before{margin-right:3px}
+ .maps-place-list{grid-template-columns:1fr}
+}
+@media(max-width:420px){
+ .maps-viewport{min-height:230px}
+ .maps-marker{font-size:9px;padding:6px 5px;max-width:100px}
+ .maps-zoom-tools button{width:34px;height:34px}
+}
+@media(prefers-reduced-motion:reduce){.maps-marker{transition:none}}

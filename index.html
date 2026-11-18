@@ -6,10 +6,11 @@
   <meta name="theme-color" content="#121419">
   <meta name="description" content="Sagas of Midgard — interaktywna kronika postaci, relacji i lokacji dla graczy.">
   <title>Sagas of Midgard | Kronika</title>
-  <link rel="stylesheet" href="styles.css?v=atlas-v6">
+  <link rel="stylesheet" href="styles.css?v=maps-v1">
   <script src="data.js?v=atlas-v6" defer></script>
-  <script src="atlas.js?v=atlas-v8" defer></script>
-  <script src="app.js?v=atlas-v6" defer></script>
+  <script src="atlas.js?v=atlas-v9" defer></script>
+  <script src="maps.js?v=maps-v1" defer></script>
+  <script src="app.js?v=maps-v1" defer></script>
 </head>
 <body>
  <div class="app-shell">
@@ -20,6 +21,7 @@
    <div class="rail-divider"></div>
    <nav class="nav" aria-label="Widoki kroniki">
     <button class="nav-btn active" type="button" data-view="relationships"><span class="nav-icon">✦</span><span>Sieć postaci</span></button>
+    <button class="nav-btn" type="button" data-view="maps"><span class="nav-icon">◇</span><span>Mapy świata</span></button>
     <button class="nav-btn" type="button" data-view="locations"><span class="nav-icon">⌖</span><span>Atlas lokacji</span></button>
     <button class="nav-btn" type="button" data-view="chronicle"><span class="nav-icon">ᚱ</span><span>Kronika wydarzeń</span></button>
    </nav>
@@ -66,6 +68,45 @@
      <div class="map-foot">
        <div class="legend"><span class="legend-dash"></span> W kronice <span class="sep">·</span> <span class="legend-solid"></span> Potwierdzone relacje (po dodaniu)</div>
        <div class="hint">Kliknij kartę, aby poznać postać · Przeciągnij tło, aby przesunąć mapę · Scroll = zoom</div>
+     </div>
+   </section>
+
+   <section id="maps-view" class="view maps-view" aria-label="Mapy świata" hidden>
+     <header class="maps-heading">
+       <div><p class="eyebrow">MAPY ŚWIATA · ODKRYTE ZIEMIE</p><h2>Odkrywaj Midgard</h2>
+       <p>Klikaj znane krainy i miejsca, aby przejść do ich kart w Atlasie.</p></div>
+       <span class="maps-heading-mark" aria-hidden="true">ᚹ</span>
+     </header>
+     <div class="maps-browser">
+       <nav id="maps-breadcrumbs" class="maps-breadcrumbs" aria-label="Ścieżka mapy"></nav>
+       <div class="maps-caption">
+         <div><p class="eyebrow">WĘDRÓWKA PO ZNANYCH ZIEMIACH</p>
+         <h3 id="maps-current-title">Midgard</h3><p id="maps-current-description"></p></div>
+         <button id="maps-open-atlas" class="maps-atlas-link" type="button">Otwórz w Atlasie lokacji</button>
+       </div>
+       <div class="maps-toolbar">
+         <button id="maps-back" type="button" hidden>← Midgard</button>
+         <div class="maps-zoom-tools">
+           <button id="maps-zoom-out" type="button" aria-label="Oddal mapę">−</button>
+           <span id="maps-zoom-label" aria-live="polite">100%</span>
+           <button id="maps-zoom-in" type="button" aria-label="Przybliż mapę">+</button>
+           <button id="maps-reset" type="button" aria-label="Dopasuj mapę">⤢</button>
+         </div>
+       </div>
+       <div id="maps-viewport" class="maps-viewport" aria-label="Interaktywna mapa; przybliżaj i wybieraj oznaczone krainy">
+         <div id="maps-canvas" class="maps-canvas">
+           <img id="maps-art" src="assets/maps/midgard.svg" alt="" draggable="false">
+           <div id="maps-marker-layer" class="maps-marker-layer"></div>
+         </div>
+       </div>
+       <p class="maps-accuracy">Mapa poglądowa · symbole krain nie określają dokładnych granic ani odległości.</p>
+       <section id="maps-places-section" class="maps-places-section" hidden>
+         <div class="maps-place-heading">
+           <h3>Znane lokacje</h3>
+           <p>Miejsca bez potwierdzonych współrzędnych otwieraj z listy — nie stawiamy fikcyjnych znaczników.</p>
+         </div>
+         <div id="maps-place-list" class="maps-place-list"></div>
+       </section>
      </div>
    </section>
 
@@ -117,6 +158,7 @@
         <h2 id="atlas2-dialog-title" class="atlas2-detail-title">Lokacja</h2>
         <div class="atlas2-detail-rule"></div>
         <p id="atlas2-dialog-summary" class="atlas2-detail-lead"></p>
+        <button id="atlas2-dialog-map" class="atlas2-map-link" type="button" hidden>Zobacz obszar na mapie</button>
         <section class="atlas2-detail-section"><h3>Historia miejsca</h3><p id="atlas2-dialog-history"></p></section>
         <section class="atlas2-detail-section"><h3>Powiązane postacie</h3><div id="atlas2-dialog-people" class="atlas2-npc-grid"></div><button id="atlas2-dialog-people-toggle" class="atlas2-people-toggle" type="button" aria-controls="atlas2-dialog-people" aria-expanded="false" hidden>Pokaż wszystkie</button></section>
         <section class="atlas2-detail-section"><h3>Wydarzenia w kronice</h3><div id="atlas2-dialog-events" class="atlas2-event-list"></div></section>

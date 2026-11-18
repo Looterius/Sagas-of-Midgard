@@ -210,6 +210,12 @@
     $("#atlas2-dialog-title").textContent = place.name;
     $("#atlas2-dialog-kind").textContent = (place.kind || "Lokacja").toLocaleUpperCase("pl");
     $("#atlas2-dialog-summary").textContent = place.description || "Miejsce znane bohaterom.";
+    const mapLink = $("#atlas2-dialog-map");
+    mapLink.hidden = typeof callbacks.openMap !== "function";
+    mapLink.onclick = () => {
+      close();
+      callbacks.openMap?.(place.id);
+    };
     $("#atlas2-dialog-history").textContent = place.history || "Dalsze dzieje tego miejsca zostaną dopisane wraz z kolejnymi sesjami.";
     const personArea = $("#atlas2-dialog-people");
     const peopleToggle = $("#atlas2-dialog-people-toggle");
@@ -284,7 +290,7 @@
   }
   function mount(options) {
     content=options.data;
-    callbacks={openPerson:options.openPerson,openChronicle:options.openChronicle};
+    callbacks={openPerson:options.openPerson,openChronicle:options.openChronicle,openMap:options.openMap};
     $("#atlas2-dialog-close").addEventListener("click",close);
     $("#place-dialog").addEventListener("click",event=>{
       if(event.target===$("#place-dialog")) close();

@@ -157,6 +157,10 @@
     window.SOM_ATLAS.mount({
       data,
       openPerson: id => selectPerson(id),
+      openMap: placeId => {
+        switchView("maps");
+        window.SOM_MAPS?.showForPlace(placeId);
+      },
       openChronicle: eventId => {
         switchView("chronicle");
         const card = document.querySelector('[data-event-id="' + eventId + '"]');
@@ -164,6 +168,17 @@
         const story = card.querySelector(".chronicle-story");
         if (story && story.hidden) card.querySelector(".chronicle-expand")?.click();
         card.scrollIntoView({behavior:"smooth",block:"center"});
+      }
+    });
+  }
+
+  function renderMaps() {
+    window.SOM_MAPS?.mount({
+      data,
+      openPlace: id => window.SOM_ATLAS?.open(id),
+      openAtlasRegion: id => {
+        switchView("locations");
+        window.SOM_ATLAS?.showRegion(id);
       }
     });
   }
@@ -249,17 +264,20 @@
     state.view = view;
     for (const b of document.querySelectorAll("[data-view]"))
       b.classList.toggle("active", b.dataset.view === view);
+    const viewIds = { relationships: "relationships-view", maps: "maps-view", locations: "locations-view", chronicle: "chronicle-view" };
     for (const section of document.querySelectorAll(".view")) {
-      const show = section.id === (view === "relationships" ? "relationships-view" : view === "chronicle" ? "chronicle-view" : "locations-view");
+      const show = section.id === viewIds[view];
       section.classList.toggle("active", show);
       section.hidden = !show;
     }
-    $("#page-title").textContent = view === "relationships" ? "Sieć postaci" : view === "chronicle" ? "Kronika wydarzeń" : "Atlas lokacji";
-    $("#eyebrow").textContent = view === "relationships" ? "SAGA · ŚWIAT POSTACI" : view === "chronicle" ? "SAGA · ZAPISANE CZYNY" : "SAGA · ODKRYTE KRAINY";
-    $("#page-description").textContent = view === "relationships"
-      ? "Portrety, powiązania i losy ludzi Północy."
-      : view === "chronicle" ? "Dzieje bohaterów spisane w pamięci Północy."
-      : "Miejsca odwiedzone i wspominane w kronice."
+    $("#page-title").textContent = ({ relationships: "Sieć postaci", maps: "Mapy świata", locations: "Atlas lokacji", chronicle: "Kronika wydarzeń" })[view];
+    $("#eyebrow").textContent = ({ relationships: "SAGA · ŚWIAT POSTACI", maps: "SAGA · KARTOGRAFIA", locations: "SAGA · ODKRYTE KRAINY", chronicle: "SAGA · ZAPISANE CZYNY" })[view];
+    $("#page-description").textContent = ({
+      relationships: "Portrety, powiązania i losy ludzi Północy.",
+      maps: "Interaktywne mapy poznanych krain i miejsc.",
+      locations: "Miejsca odwiedzone i wspominane w kronice.",
+      chronicle: "Dzieje bohaterów spisane w pamięci Północy."
+    })[view];
     if (view === "relationships") fit();
     closeCharacter();
   }
@@ -317,6 +335,7 @@
   document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click", () => {
     // Każde otwarcie zakładki Atlas lokacji zaczyna się na poziomie Midgardu.
     if (b.dataset.view === "locations") window.SOM_ATLAS?.showRegion("midgard");
+    if (b.dataset.view === "maps") window.SOM_MAPS?.show("midgard");
     switchView(b.dataset.view);
   }));
   $("#search").addEventListener("input", e => {
@@ -345,6 +364,7 @@
   window.addEventListener("resize", () => { if (state.view === "relationships") fit(); });
   renderPeople();
   renderPlaces();
+  renderMaps();
   renderChronicle();
   bindViewportPan();
   fit();

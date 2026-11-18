@@ -1,6 +1,6 @@
 # Sagas of Midgard — Kronika Graczy
 
-Publiczna kronika RPG z interaktywną mapą postaci, atlasem lokacji i **Kroniką wydarzeń**.
+Publiczna kronika RPG z siecią postaci, osobną zakładką **Mapy świata**, Atlasem lokacji i **Kroniką wydarzeń**.
 
 ## Publikacja strony (jednorazowo)
 
@@ -15,7 +15,8 @@ Publiczna kronika RPG z interaktywną mapą postaci, atlasem lokacji i **Kronik�
 - `styles.css` — wygląd.
 - `data.js` — NPC, lokacje, **jawne** relacje i publiczne rozdziały w tablicy `chronicle`.
 - Zakładka **Kronika wydarzeń** — filtrowanie historii według lokacji, rozwijanie opowieści oraz odnośniki do miejsc i postaci.
-- `app.js` — zachowanie mapy.
+- `app.js` — nawigacja i interaktywna sieć postaci.
+- `maps.js` — Mapy świata, klikalne krainy, podpięcie do Atlasu i zoom.
 
 Nazwy postaci pochodzą z tablicy FigJam. Obecnie część kart ma inicjały zamiast portretów, a relacje osobiste zostaną dodane dopiero po potwierdzeniu kanonu.
 
@@ -58,6 +59,18 @@ W katalogu repozytorium uruchom `node scripts/check-public-atlas.mjs`, aby spraw
 
 ## Ekran Ziem Drengrów — układ królestw
 
-Atlas od razu otwiera Ziemie Drengrów, prezentując sześć klocków: **Agder, Hordalands, Vestmar, Fjordane** (cztery królestwa), **Eylenda** (niezależna wyspa bez króla) oraz **Osada bohaterów** (Hrafnvik, bez przypisania do królestwa). Skjǫrvik pozostaje osobnym, znanym miejscem w spisie Ziem Drengrów, bez przypisania do konkretnego królestwa. Przyszłe, poznane miejscowości przypinamy do właściwych regionów jako listy nazw oddzielonych przecinkami; kliknięcie otwiera kartę lokacji.
+Atlas otwiera **Midgard**, a po kliknięciu Ziem Drengrów pokazuje sześć klocków: **Agder, Hordalands, Vestmar, Fjordane** (cztery królestwa), **Eylenda** (niezależna wyspa bez króla) oraz **Osada bohaterów** (Hrafnvik, bez przypisania do królestwa). Skjǫrvik pozostaje osobnym, znanym miejscem w spisie Ziem Drengrów, bez przypisania do konkretnego królestwa. Przyszłe, poznane miejscowości przypinamy do właściwych regionów jako listy nazw oddzielonych przecinkami; kliknięcie otwiera kartę lokacji.
 
 Nazwa rodzinnej wioski w kampanii wymaga ostatecznego potwierdzenia przez Skalda (w dotychczasowej kronice jest to **Hrafnvik**, wcześniej pojawiało się również **Kjordvik**). Do czasu potwierdzenia nie zastępuj automatycznie nazw w istniejących rozdziałach.
+
+## Mapy świata — pierwszy etap
+
+Osobny tab **Mapy świata** nie zastępuje Atlasu. Zaczyna się od mapy Midgardu, a kliknięcie Ziem Drengrów otwiera drugi poziom z pięcioma klikalnymi regionami: czterema królestwami Drengrów i niezależną Eylendą. Kliknięcie krainy przechodzi do istniejącego Atlasu; kliknięcie znanej lokacji w wykazie pod mapą otwiera jej istniejącą kartę. W kartach Atlasu przycisk **Zobacz obszar na mapie** prowadzi z powrotem do map.
+
+- `assets/maps/midgard.svg`, `assets/maps/drengrlands.svg` — oryginalne, stylizowane tła SVG, **poglądowe**, nie oficjalne mapy i niezweryfikowana geografia. Można je zastąpić ilustracjami z prawem do publikacji; zachowaj format widoku 1200 × 720.
+- `maps.js` — pozycje dużych etykiet krain są wyłącznie kompozycją ekranową. **Nie są współrzędnymi geograficznymi.**
+- Wszystkie znane lokacje można otworzyć w liście pod mapą Ziem Drengrów. Dotyczy to zwłaszcza Hrafnviku i Skjǫrviku, których położenie w konkretnym królestwie nie zostało potwierdzone.
+- Dopiero po zatwierdzeniu lokalizacji przez Skalda można dodać do wpisu `places` pole `mapPosition: { mapId: "drengrlands", x: 43, y: 56, confirmed: true }` — wartości `x`, `y` są procentami położenia pinezki na zatwierdzonej ilustracji, nie współrzędnymi GPS. **Przykład składni, nie wskazanie żadnego rzeczywistego miejsca.**
+- Nie dopisuj nowych map, lokacji, markerów ani nieodkrytych sekretów bez potwierdzenia, że gracze mogą je zobaczyć.
+
+Kontrola: `node --check maps.js && node scripts/check-public-atlas.mjs && node scripts/check-public-maps.mjs`. Walidacja działa również przez GitHub Actions na PR i `main`.
