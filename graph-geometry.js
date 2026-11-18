@@ -70,16 +70,22 @@
     for(const r of rects)v.push(r[coord]+r[size]/2);
     if(boundaries.length){
       const first=boundaries[0],last=boundaries[boundaries.length-1];
-      if(first>=4)v.push(first/2);
-      if(limit-last>=4)v.push((limit+last)/2);
+      // Dla standardowego układu nie zmieniamy współrzędnych rysunku.
+      // Po swobodnym przesunięciu poza początkowe płótno router
+      // rozszerza korytarze tylko w odpowiednim kierunku.
+      const lower=first<0?first-40:0;
+      const upper=last>limit?last+40:limit;
+      if(first-lower>=4)v.push((first+lower)/2);
+      if(upper-last>=4)v.push((last+upper)/2);
       const distinct=[...new Set(boundaries)];
       for(let i=1;i<distinct.length;i++){
         if(distinct[i]-distinct[i-1]>=4)
           v.push((distinct[i]+distinct[i-1])/2);
       }
+      return [...new Set(v.map(x=>Number(x.toFixed(4))))]
+        .filter(x=>x>=lower&&x<=upper).sort((a,b)=>a-b);
     }
-    return [...new Set(v.map(x=>Number(x.toFixed(4))))]
-      .filter(x=>x>=0&&x<=limit).sort((a,b)=>a-b);
+    return [...new Set(v.map(x=>Number(x.toFixed(4))))].sort((a,b)=>a-b);
   }
 
   function simplify(points){
