@@ -21,20 +21,34 @@
 
   function art(node, image, fallback) {
     node.replaceChildren();
-    const imagePath = safeImage(image);
-    if (!imagePath) {
+    const entry = window.SOM_PORTRAITS?.[image];
+    const isPersonThumb = node.classList.contains("atlas2-npc-thumb");
+    if (entry?.missing) {
       node.appendChild(el("span", "atlas2-art-fallback", fallback || "Ilustracja w przygotowaniu"));
       return;
     }
+    const first = safeImage(isPersonThumb ? entry?.thumb || image : entry?.full || image);
+    const original = safeImage(image);
+    if (!first) {
+      node.appendChild(el("span", "atlas2-art-fallback", fallback || "Ilustracja w przygotowaniu"));
+      return;
+    }
+    const sources = [...new Set([first, original].filter(Boolean))];
     const photo = el("img", "atlas2-image");
     photo.alt = "";
-    photo.loading = "eager";
+    photo.loading = node.id === "atlas2-dialog-art" ? "eager" : "lazy";
+    photo.fetchPriority = node.id === "atlas2-dialog-art" ? "high" : "low";
     photo.decoding = "async";
+    let attempt = 0;
     photo.onerror = () => {
-      photo.remove();
-      node.appendChild(el("span", "atlas2-art-fallback", fallback || "Ilustracja w przygotowaniu"));
+      if (++attempt < sources.length) {
+        photo.src = sources[attempt];
+      } else {
+        photo.remove();
+        node.appendChild(el("span", "atlas2-art-fallback", fallback || "Ilustracja w przygotowaniu"));
+      }
     };
-    photo.src = imagePath;
+    photo.src = sources[0];
     node.appendChild(photo);
   }
 

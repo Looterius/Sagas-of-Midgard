@@ -38,31 +38,61 @@
     return el;
   }
 
-  function setArt(el, image) {
-    // Zdjęcia mogą mieć spacje i polskie znaki. Używamy prawdziwego <img>,
-    // nie tła CSS, i sprawdzamy alternatywny publiczny adres GitHuba.
-    if (!image || !/^assets\/portraits\/[^<>"'?#\\]+\.(png|jpe?g|webp|avif)$/i.test(image)) return;
-    const path = image.split("/").map(encodeURIComponent).join("/");
-    const sources = [
-      path,
-      "https://raw.githubusercontent.com/Looterius/Sagas-of-Midgard/main/" + path
-    ];
+  // Zamiast wczytywania 2–3 MB zdjęć dla kart 180×189:
+  // miniatura WebP na mapie, szczegół WebP dopiero po otwarciu biografii.
+  const portraitObserver = "IntersectionObserver" in window
+    ? new IntersectionObserver(entries => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const photo = entry.target;
+          if (photo.dataset.pendingSrc) {
+            photo.src = photo.dataset.pendingSrc;
+            delete photo.dataset.pendingSrc;
+          }
+          portraitObserver.unobserve(photo);
+        }
+      }, { root: viewport, rootMargin: "150px", threshold: 0 })
+    : null;
+
+  function setArt(el, image, size = "thumb") {
+    if (!image || !/^assets\/portraits\/[^<>"'?#\\]+\.(png|jpe?g|webp|avif)$/i.test(image))
+      return;
+    const entry = window.SOM_PORTRAITS?.[image];
+    if (entry?.missing) return; // brak potwierdzonego pliku: bez zbędnego 404
+    const preferred = size === "full" ? entry?.full : entry?.thumb;
+    // Jeśli nowy portret nie został jeszcze zoptymalizowany, nadal zadziała oryginał.
+    const choices = [...new Set([preferred, image].filter(Boolean))];
+    const sources = choices.map(file =>
+      file.split("/").map(encodeURIComponent).join("/")
+    );
+    sources.push("https://raw.githubusercontent.com/Looterius/Sagas-of-Midgard/main/" +
+      image.split("/").map(encodeURIComponent).join("/"));
     const portrait = document.createElement("img");
     portrait.alt = "";
     portrait.className = "asset-photo";
     portrait.decoding = "async";
-    portrait.loading = "eager";
+    portrait.loading = size === "full" ? "eager" : "lazy";
+    portrait.fetchPriority = size === "full" ? "high" : "low";
     let attempt = 0;
     portrait.onload = () => el.classList.add("has-photo");
     portrait.onerror = () => {
       attempt++;
-      if (attempt < sources.length) portrait.src = sources[attempt];
-      else {
+      if (attempt < sources.length) {
+        portrait.src = sources[attempt];
+      } else {
+        portraitObserver?.unobserve(portrait);
         portrait.remove();
         el.classList.remove("has-photo");
       }
     };
-    portrait.src = sources[attempt];
+    // Tylko widoczne miniatury sieci pobieramy z wyprzedzeniem.
+    // Zoom/pan aktualizują IntersectionObserver automatycznie.
+    if (size === "thumb" && portraitObserver && el.classList.contains("person-art")) {
+      portrait.dataset.pendingSrc = sources[0];
+      portraitObserver.observe(portrait);
+    } else {
+      portrait.src = sources[0];
+    }
     el.appendChild(portrait);
   }
 
@@ -306,7 +336,7 @@
     art.style.backgroundImage = "";
     art.classList.remove("has-photo");
     art.replaceChildren(make("span", "", initials(p.name)));
-    setArt(art, p.image);
+    setArt(art, p.image, "full");
     const relations = $("#inspector-relations");
     relations.replaceChildren();
     relations.className = "character-relations";
