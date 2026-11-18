@@ -1,0 +1,54 @@
+name: Temporary graph visual review
+on:
+  push:
+    branches: [fix/character-graph-geometry-20261118]
+permissions:
+  contents: read
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Render real browser screenshot and emit small preview
+        run: |
+          set -eu
+          BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          echo "Browser=$BROWSER"
+          test -n "$BROWSER"
+          python -m pip install pillow -q
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          js="""<script>
+          window.addEventListener('load',()=>{
+            setTimeout(()=>{
+              if(new URLSearchParams(location.search).get('qa')==='heroes')
+                document.querySelector('[data-character-primary="heroes"]').click();
+              document.getElementById('map-viewport').scrollIntoView({block:'start'});
+            },300);
+          });
+          </script>"""
+          p.write_text(s.replace('</body>',js+'</body>'))
+          PY
+          for mode in all heroes; do
+            "$BROWSER" --headless --no-sandbox --disable-gpu --hide-scrollbars               --allow-file-access-from-files --force-device-scale-factor=1               --virtual-time-budget=5000 --window-size=1440,850               --screenshot="/tmp/graph-$mode.png"               "file://$PWD/index.html?qa=$mode" >/dev/null 2>/tmp/browser-errors.log || {
+                cat /tmp/browser-errors.log
+                exit 1
+              }
+          done
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import io,base64
+          for mode in ('all','heroes'):
+            image=Image.open('/tmp/graph-'+mode+'.png').convert('RGB')
+            output=io.BytesIO();image.save(output,'JPEG',quality=61,optimize=True)
+            encoded=base64.b64encode(output.getvalue()).decode()
+            print('SCREEN_'+mode.upper()+'_LEN='+str(len(encoded)))
+            for i in range(0,len(encoded),3000):
+              print('SCREEN_'+mode.upper()+'_PART_'+str(i//3000).zfill(3)+'='+encoded[i:i+3000])
+          PY
