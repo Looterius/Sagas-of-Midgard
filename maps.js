@@ -191,6 +191,7 @@
     });
     resetTransform();
     renderPlaceLinks();
+    window.SOM_NAV?.changed();
   }
 
   function showForPlace(placeId) {
@@ -247,5 +248,5 @@
     bindPanAndZoom();
     show("midgard");
   }
-  window.SOM_MAPS = { mount, show, showForPlace };
+  window.SOM_MAPS = { mount, show, showForPlace, getCurrent: () => current };
 })();
