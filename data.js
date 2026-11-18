@@ -1266,8 +1266,8 @@ window.CHRONICLE = {
     {
       id: "skjorvik", name: "Skjordvik", kind: "Osada", visibility: "known", parentRegionId: "drengrlands",
       description: "Osada zdobyta ogniem i żelazem przez wojowników Hrafnviku. Zwycięzcy zabrali stąd srebro, łupy i jeńców, lecz dla pokonanych dzień najazdu stał się początkiem zupełnie innej historii.",
-      history: "Wojownicy Hrafnviku zdobyli osadę, zabierając srebro, towary i jeńców. Wśród pojmanych znalazł się Aslak Cieśla. Dla najeźdźców był to triumf, dla mieszkańców Skjordviku — dzień straty, o którym trudno zapomnieć.",
-      image: "assets/locations/skjorvik.svg", personIds: ["aslak","haki","ragnvald-s","orm"]
+      history: "Wojownicy Hrafnviku zdobyli osadę, zabierając srebro, towary i jeńców. Dla najeźdźców był to triumf, dla mieszkańców Skjordvik — dzień straty, o którym trudno zapomnieć. Aslak Cieśla nie został pojmany podczas tego najazdu: wcześniej był wolnym rzemieślnikiem Hrafnviku, a po wyroku wygnania porwał go kupiec Hakon Czerwony i uczynił swoim trallem.",
+      image: "assets/locations/skjorvik.svg", personIds: ["haki","ragnvald-s","orm"]
     }
   ]
 };
