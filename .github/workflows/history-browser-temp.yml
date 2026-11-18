@@ -1,0 +1,118 @@
+name: Temporary Android Back browser QA
+on:
+  push:
+    branches: [feat/mobile-browser-back-history-20261118]
+permissions:
+  contents: read
+jobs:
+  android-back:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser test driver
+        run: npm install --no-save --no-package-lock playwright-core@1.57.0
+      - name: Test same-document Back history on Android-sized viewport
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/som-nav-qa.log 2>&1 &
+          sleep 1
+          node <<'JS'
+          const { chromium } = require("playwright-core");
+          const assert = require("node:assert/strict");
+          (async()=>{
+            const browser=await chromium.launch({executablePath:"/usr/bin/google-chrome",args:["--no-sandbox","--disable-dev-shm-usage"]});
+            const context=await browser.newContext({
+              viewport:{width:360,height:780},isMobile:true,hasTouch:true,deviceScaleFactor:2
+            });
+            const page=await context.newPage();
+            const errors=[];
+            page.on("pageerror",err=>errors.push(err.message));
+            const site="http://127.0.0.1:8765/";
+            const route=()=>page.evaluate(()=>history.state?.somNavigation?.route);
+            const depth=()=>page.evaluate(()=>history.state?.somNavigation?.depth);
+            const wait=(key,value)=>page.waitForFunction(([k,v])=>
+              window.history.state?.somNavigation?.route?.[k]===v,[key,value]);
+            const back=async(key,value)=>{
+              await page.evaluate(()=>history.back());
+              await wait(key,value);
+            };
+            await page.goto(site,{waitUntil:"load"});
+            assert.equal(await depth(),0);
+            // Sieć -> Sianita -> Halvard -> back -> Sianita -> back -> sieć
+            await page.locator('.person-card[data-id="sianita"]').evaluate(el=>el.click());
+            await wait("person","sianita");
+            await page.locator("#inspector-relations .relation-link").filter({hasText:"Halvard"}).click();
+            await wait("person","halvard");
+            assert.equal(await depth(),2);
+            await back("person","sianita");
+            assert.equal(await page.locator("#inspector-name").innerText(),"Sianita Gunnarsdóttir");
+            await back("person",null);
+            assert.ok(await page.locator("#inspector").isHidden(),"Back must close person");
+            console.log("PASS Android Back: Sianita -> Halvard -> Sianita -> Sieć");
+            // Android back from linked Atlas place restores the previous person.
+            await page.locator('.person-card[data-id="sianita"]').evaluate(el=>el.click());
+            await wait("person","sianita");
+            await page.locator("#inspector-relations .relation-link--place").filter({hasText:"Hrafnvik"}).click();
+            await wait("place","hrafnvik");
+            assert.equal((await route()).view,"locations");
+            await back("person","sianita");
+            assert.equal(await page.locator("#inspector-name").innerText(),"Sianita Gunnarsdóttir");
+            await page.locator("#close-inspector").click();
+            await wait("person",null);
+            console.log("PASS Android Back: karta Hrafnviku -> Sianita -> Sieć; X closes via history");
+            // Multi-level map: map tab -> Drengrlands -> map Midgard -> prior tab
+            await page.locator('[data-view="maps"]').click();
+            await wait("view","maps");
+            await page.locator('#maps-marker-layer button').first().click();
+            await wait("map","drengrlands");
+            await back("map","midgard");
+            await back("view","relationships");
+            console.log("PASS Android Back: Drengrlands -> Midgard -> previous tab");
+            // Atlas region tree + refresh restoring current state.
+            await page.locator('[data-view="locations"]').click();
+            await wait("view","locations");
+            await page.locator('[data-region-id="drengrlands"] .atlas2-region-heading').click();
+            await wait("region","drengrlands");
+            await page.locator('[data-region-id="agder"] .atlas2-region-heading').click();
+            await wait("region","agder");
+            await page.reload({waitUntil:"load"});
+            await wait("region","agder");
+            assert.equal((await route()).view,"locations");
+            await back("region","drengrlands");
+            console.log("PASS Android Back and refresh: Atlas Agder -> Drengrlands");
+            // Chronicle expansion should be a navigable step.
+            await page.locator('[data-view="chronicle"]').click();
+            await wait("view","chronicle");
+            const toggle=page.locator(".chronicle-expand").first();
+            await toggle.click();
+            await page.waitForFunction(()=>
+              window.history.state?.somNavigation?.route?.chronicleExpanded?.length>0);
+            await page.evaluate(()=>history.back());
+            await page.waitForFunction(()=>
+              window.history.state?.somNavigation?.route?.view==="chronicle" &&
+              window.history.state?.somNavigation?.route?.chronicleExpanded?.length===0);
+            assert.equal(await page.locator(".chronicle-story").first().isHidden(),true);
+            console.log("PASS Android Back: expanded Chronicle returns to list");
+            // Group chips are also steps, but typing in search is not 1 step per letter.
+            await page.locator('[data-view="relationships"]').click();
+            await wait("view","relationships");
+            await page.locator('[data-character-primary="heroes"]').click();
+            await page.waitForFunction(()=>window.history.state?.somNavigation?.route?.group?.primary==="heroes");
+            await page.evaluate(()=>history.back());
+            await page.waitForFunction(()=>window.history.state?.somNavigation?.route?.group?.primary==="all");
+            console.log("PASS Android Back: Bohaterowie -> Wszyscy");
+            // Root is NOT intercepted: standard Back returns to a previous document.
+            const outside=await context.newPage();
+            await outside.goto(site+"README.md",{waitUntil:"load"});
+            await outside.goto(site,{waitUntil:"load"});
+            assert.equal(await outside.evaluate(()=>history.state?.somNavigation?.depth),0);
+            await outside.goBack({waitUntil:"load"});
+            assert.ok(outside.url().includes("/README.md"),"Root back was trapped inside app");
+            console.log("PASS Android Back at app root exits to previous page");
+            assert.deepEqual(errors,[],"JavaScript exceptions");
+            console.log("PASS all mobile History API flows; no runtime errors");
+            await browser.close();
+          })().catch(err=>{console.error(err);process.exitCode=1});
+          JS
