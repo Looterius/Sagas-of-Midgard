@@ -214,3 +214,14 @@ Po zmianie `people[].image` ponownie generujemy WebP i `portrait-assets.js` z pu
 **Vestmar:** synowie Gudroda Łowcy to Olaf (najstarszy, pretendent przebywający w Myrka), Torsten (środkowy, jarl Dagrfjell) i Alfheld (młody, popularny jarl Guntersborgu). O ich rywalizacji i ojcu mówi jawna część podręcznika *Sagas of Midgard*, rozdział o Broken Kingdom of Vestmar, s. 83. MG potwierdził trzech braci i dostarczył portrety. Każdy ma swoją biografię, `kingdomIds:["vestmar"]`, wspólny filtr `Ród Gudrodssonów`, i obustronne klikalne połączenia oznaczone `Bracia; rywale o władzę w Vestmarze`. Vestmar **nie ma obecnie jednego niekwestionowanego króla** — trzech braci oraz gildisbroedr reprezentują odrębne obozy. Nie publikujemy zaplanowanych scen ani wyników, których gracze nie rozegrali.
 
 Zaktualizowany manifest portretów i warianty WebP są generowane na podstawie wszystkich 32 aktualnych publicznych `people[]`. Nie wolno nadpisywać oryginałów ani dodawać niepotwierdzonych relacji.
+
+## Potwierdzenia kanonu i obsługa sieci — 19.11.2026
+
+- **Floki i Haroks** byli braćmi; **Morotar Jednooki** jest przybranym ojcem obu. Czworokąt nie jest domniemaną więzią krwi: trzy relacje rozróżniają braterstwo i przybrane ojcostwo. Dodano filtr „Rodzina Morotara”.
+- **Ylva** jest córką **Astrid Freyjadóttir**. Dodano linię „Matka i córka” oraz filtr „Rodzina Astrid i Ylvy”.
+- **Alrek Eriksson**, król Hordalands, był **konungiem uznawanym przez Hroalda**. Gdy Sianita objęła władzę w Hrafnviku, Alrek domagał się od niej przysięgi i proponował za męża swego syna. Sianita **odmówiła obu propozycjom**. Dodano jawne więzi polityczne Alrek–Hroald i Alrek–Sianita; nie mylić z rodziną ani formalnym lennem bez dodatkowego zatwierdzenia.
+- **Ragnvald Skjoldsson** to jeniec pojmany w najechanym Skjǫrviku i zabrany do **Hrafnviku**. Został dodany do filtra Jeńcy i powiązany z oboma miejscami, bez zmiany statusu Ragnvalda Prawomówcy.
+- Sieć ma **32 osoby, 27 relacji, 5 rodzin**. Na urządzeniach dotykowych krótkie dotknięcie otwiera biografię, normalny ruch palca przesuwa planszę, **przytrzymanie postaci przez 380 ms i przeciągnięcie** przesuwa samą kartę. Na desktopie działa bezpośredni drag myszą, również za zdjęcie (wyłączony natywny drag obrazu).
+- Osobny układ pozycji jest utrzymywany **w pamięci bieżącej wizyty dla każdego filtra**, także po przełączeniu na „Władcy i jarlowie” i z powrotem; „Przywróć układ” resetuje tylko aktualną grupę. Po przeładowaniu strony układ wraca do domyślnego — publiczny kod nie zapisuje pozycji graczy.
+
+**Synchronizacja z najnowszą kroniką:** zachowano pięć rozdziałów i 21 publicznych wydarzeń z równoległego commita, a także pisownię Halward i Skjordvik. Nowe więzi i mechanika przeciągania zostały nałożone na te materiały, nie zastąpiły ich.
