@@ -65,7 +65,8 @@ jobs:
             await page.locator("#close-inspector").click();
             await page.waitForFunction(()=>history.state?.somNavigation?.route?.person===null);
             await page.evaluate(()=>window.SOM_ATLAS.open("skjorvik"));
-            await page.locator("#atlas2-dialog-people-toggle").click();
+            const expandPeople=page.locator("#atlas2-dialog-people-toggle");
+            if(await expandPeople.isVisible())await expandPeople.click();
             const orm=page.locator("#atlas2-dialog-people .atlas2-npc-card").filter({hasText:"Orm Półgłos"});
             assert.equal(await orm.count(),1,"Orm must appear in destroyed settlement");
             await orm.click();
