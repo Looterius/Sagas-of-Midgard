@@ -24,6 +24,8 @@
   const groups = window.SOM_GROUPS;
   const nodes = new Map();
   const NS = "http://www.w3.org/2000/svg";
+  // Przesunięcie palcem nie może przypadkowo otwierać karty postaci.
+  let lastTouchGestureEnd = -Infinity;
 
   function initials(name) {
     return name.split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join("").toUpperCase();
@@ -130,7 +132,9 @@
       // Prawy: zdarzenie przechodzi do viewportu i przesuwa całą mapę.
       let dragging = null, lastDragEnd = -Infinity;
       card.addEventListener("pointerdown", e => {
-        if (e.button !== 0 || !state.visibleIds.has(p.id)) return;
+        // Na ekranach dotykowych jeden palec przesuwa płótno, dwa przybliżają.
+        // Przeciąganie pojedynczych kart zostaje na komputerze (mysz / rysik).
+        if (e.pointerType === "touch" || e.button !== 0 || !state.visibleIds.has(p.id)) return;
         e.stopPropagation();
         const pos = state.positions[p.id];
         dragging = {
@@ -166,7 +170,8 @@
       card.addEventListener("pointercancel", stopCardDrag);
       card.addEventListener("lostpointercapture", stopCardDrag);
       card.addEventListener("click", e => {
-        if (e.timeStamp - lastDragEnd < 500) {
+        if (e.timeStamp - lastTouchGestureEnd < 650 ||
+            e.timeStamp - lastDragEnd < 500) {
           e.preventDefault(); // po przeciągnięciu nie otwieraj karty
           return;
         }
@@ -304,18 +309,73 @@
     setArt(art, p.image);
     const relations = $("#inspector-relations");
     relations.replaceChildren();
+    relations.className = "character-relations";
+    let hasLinks = false;
     const known = (data.relationships || []).filter(r => r.from === id || r.to === id);
-    if (!known.length) {
-      relations.textContent = "Brak ujawnionych relacji. Sieć powiązań zostanie uzupełniona po kolejnych sesjach.";
-      relations.className = "relations-empty";
-    } else {
-      relations.className = "";
+    if (known.length) {
       for (const r of known) {
         const other = data.people.find(p2 => p2.id === (r.from === id ? r.to : r.from));
-        const chip = make("div", "relation-chip", other ? other.name : "Nieznana postać");
-        chip.appendChild(make("small", "", r.label || r.type || "Powiązanie"));
-        relations.appendChild(chip);
+        if (!other) continue;
+        const button = make("button", "relation-chip relation-link");
+        button.type = "button";
+        button.setAttribute("aria-label", "Otwórz postać: " + other.name +
+          (r.label ? ", " + r.label : ""));
+        button.appendChild(make("span", "relation-link-name", other.name));
+        button.appendChild(make("small", "", r.label || r.type || "Powiązanie"));
+        button.appendChild(make("span", "relation-arrow", "→"));
+        button.addEventListener("click", () => selectPerson(other.id));
+        relations.appendChild(button);
+        hasLinks = true;
       }
+    }
+    // Jawne miejsca z Atlasu: powiązanie, nie domniemane miejsce urodzenia.
+    const knownPlaceIds = new Set(p.grouping?.settlementIds || []);
+    for (const place of data.places || []) {
+      if (place.visibility === "known" && place.personIds?.includes(id))
+        knownPlaceIds.add(place.id);
+    }
+    const linkedPlaces = [...knownPlaceIds]
+      .map(placeId => (data.places || []).find(place =>
+        place.id === placeId && place.visibility === "known"))
+      .filter(Boolean);
+    const linkedRegions = [...new Set(p.grouping?.kingdomIds || [])]
+      .map(regionId => (data.atlasRegions || []).find(region =>
+        region.id === regionId && region.visibility === "known"))
+      .filter(Boolean);
+    if (linkedPlaces.length || linkedRegions.length) {
+      relations.appendChild(make("div", "relation-subheading", "ZWIĄZANE MIEJSCA I KRAINY"));
+    }
+    for (const place of linkedPlaces) {
+      const button = make("button", "relation-chip relation-link relation-link--place");
+      button.type = "button";
+      button.appendChild(make("span", "relation-link-name", "⌖ " + place.name));
+      button.appendChild(make("small", "", "Znany związek z miejscem · Otwórz Atlas"));
+      button.appendChild(make("span", "relation-arrow", "→"));
+      button.addEventListener("click", () => {
+        closeCharacter();
+        switchView("locations");
+        window.SOM_ATLAS?.open(place.id);
+      });
+      relations.appendChild(button);
+      hasLinks = true;
+    }
+    for (const region of linkedRegions) {
+      const button = make("button", "relation-chip relation-link relation-link--place");
+      button.type = "button";
+      button.appendChild(make("span", "relation-link-name", "⌖ " + region.name));
+      button.appendChild(make("small", "", "Znany związek z krainą · Otwórz Atlas"));
+      button.appendChild(make("span", "relation-arrow", "→"));
+      button.addEventListener("click", () => {
+        closeCharacter();
+        switchView("locations");
+        window.SOM_ATLAS?.showRegion(region.id);
+      });
+      relations.appendChild(button);
+      hasLinks = true;
+    }
+    if (!hasLinks) {
+      relations.textContent = "Brak ujawnionych relacji. Sieć powiązań zostanie uzupełniona po kolejnych sesjach.";
+      relations.className = "relations-empty";
     }
     const dialog = $("#inspector");
     dialog.classList.toggle("is-deceased", p.grouping?.lifeStatus === "deceased");
@@ -323,6 +383,11 @@
     dialog.setAttribute("aria-hidden", "false");
     dialog.classList.add("open");
     document.body.classList.add("character-modal-open");
+    // Nawigacja między powiązanymi osobami zawsze rozpoczyna kartę od góry.
+    const scroller = dialog.querySelector(".character-dialog");
+    if (scroller) scroller.scrollTop = 0;
+    const details = dialog.querySelector(".character-details");
+    if (details) details.scrollTop = 0;
     $("#close-inspector").focus();
   }
 
@@ -476,7 +541,7 @@
   }
 
   function setZoom(value) {
-    state.zoom = Math.max(.06, Math.min(1.7, value));
+    state.zoom = Math.max(.06, Math.min(3, value));
     applyTransform();
   }
   function fit() {
@@ -507,10 +572,45 @@
 
   function bindViewportPan() {
     let pan = null;
-    // Prawy przycisk: przesuwaj mapę również po rozpoczęciu na portrecie.
-    // Lewy przycisk: przesuwaj tło, natomiast na karcie przeciągaj tę kartę.
+    const fingers = new Map();
+    let gesture = null;
+    let movedTouch = false;
+    const midpoint = (a, b) => ({
+      x: (a.x + b.x) / 2,
+      y: (a.y + b.y) / 2
+    });
+    const distance = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+
+    function beginTouchGesture() {
+      const points = [...fingers.values()];
+      if (points.length >= 2) {
+        const mid = midpoint(points[0], points[1]);
+        const rect = viewport.getBoundingClientRect();
+        gesture = {
+          kind: "pinch",
+          startDistance: Math.max(1, distance(points[0], points[1])),
+          startZoom: state.zoom,
+          worldX: 800 + (mid.x - rect.left - viewport.clientWidth / 2 - state.panX) / state.zoom,
+          worldY: 500 + (mid.y - rect.top - viewport.clientHeight / 2 - state.panY) / state.zoom
+        };
+        movedTouch = true; // każdy dwupalcowy gest wyłącza przypadkowy klik
+      } else if (points.length === 1) {
+        gesture = {
+          kind: "pan", x: points[0].x, y: points[0].y,
+          startPanX: state.panX, startPanY: state.panY
+        };
+      } else {
+        gesture = null;
+      }
+    }
     viewport.addEventListener("contextmenu", e => e.preventDefault());
     viewport.addEventListener("pointerdown", e => {
+      if (e.pointerType === "touch") {
+        fingers.set(e.pointerId, {x: e.clientX, y: e.clientY});
+        if (fingers.size === 1) movedTouch = false;
+        beginTouchGesture();
+        return; // zostaw naturalny tap na karcie, nie przechwytuj wskaźnika
+      }
       if (e.button !== 0 && e.button !== 2) return;
       if (e.button === 0 && e.target.closest(".person-card")) return;
       if (e.button === 2) e.preventDefault();
@@ -520,19 +620,55 @@
       viewport.classList.add("is-panning");
     });
     viewport.addEventListener("pointermove", e => {
+      if (e.pointerType === "touch") {
+        if (!fingers.has(e.pointerId)) return;
+        fingers.set(e.pointerId, {x: e.clientX, y: e.clientY});
+        const points = [...fingers.values()];
+        if (!gesture) return;
+        if (gesture.kind === "pinch" && points.length >= 2) {
+          const mid = midpoint(points[0], points[1]);
+          const rect = viewport.getBoundingClientRect();
+          const newZoom = Math.max(.06, Math.min(3,
+            gesture.startZoom * distance(points[0], points[1]) / gesture.startDistance));
+          state.zoom = newZoom;
+          // Zachowaj ten sam punkt mapy dokładnie pod środkiem dwóch palców.
+          state.panX = mid.x - rect.left - viewport.clientWidth / 2 -
+            (gesture.worldX - 800) * newZoom;
+          state.panY = mid.y - rect.top - viewport.clientHeight / 2 -
+            (gesture.worldY - 500) * newZoom;
+          movedTouch = true;
+          applyTransform();
+        } else if (gesture.kind === "pan" && points.length === 1) {
+          const dx = points[0].x - gesture.x, dy = points[0].y - gesture.y;
+          if (Math.hypot(dx, dy) > 6) movedTouch = true;
+          if (movedTouch) {
+            state.panX = gesture.startPanX + dx;
+            state.panY = gesture.startPanY + dy;
+            applyTransform();
+          }
+        }
+        return;
+      }
       if (!pan || pan.id !== e.pointerId) return;
       state.panX = pan.startX + e.clientX - pan.x;
       state.panY = pan.startY + e.clientY - pan.y;
       applyTransform();
     });
     const stopPan = e => {
+      if (e.pointerType === "touch") {
+        if (!fingers.has(e.pointerId)) return;
+        if (movedTouch) lastTouchGestureEnd = e.timeStamp;
+        fingers.delete(e.pointerId);
+        // Po puszczeniu jednego palca można kontynuować przesuwanie bez skoku.
+        beginTouchGesture();
+        return;
+      }
       if (!pan || pan.id !== e.pointerId) return;
       pan = null;
       viewport.classList.remove("is-panning");
     };
-    for (const eventName of ["pointerup", "pointercancel", "lostpointercapture"]) {
-      viewport.addEventListener(eventName, stopPan);
-    }
+    for (const name of ["pointerup", "pointercancel", "lostpointercapture"])
+      viewport.addEventListener(name, stopPan);
     viewport.addEventListener("wheel", e => {
       e.preventDefault();
       setZoom(state.zoom * (e.deltaY < 0 ? 1.08 : .92));
@@ -564,9 +700,17 @@
     if ($("#inspector").hidden) return;
     if (e.key === "Escape") { e.preventDefault(); closeCharacter(); return; }
     if (e.key === "Tab") {
-      // Modal pozostaje klawiaturowo zamknięty; jedynym interaktywnym elementem jest zamknięcie.
-      e.preventDefault();
-      $("#close-inspector").focus();
+      const buttons = [...$("#inspector").querySelectorAll("button:not([disabled])")]
+        .filter(button => button.getClientRects().length > 0);
+      if (!buttons.length) return;
+      const first = buttons[0], last = buttons[buttons.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     }
   });
   window.addEventListener("resize", () => { if (state.view === "relationships") fit(); });
