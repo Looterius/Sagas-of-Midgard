@@ -26,7 +26,7 @@ assert.equal(value("all", "settlements", "hrafnvik").join(","), ["anslem", "hroa
 assert.equal(value("all", "settlements", "skjorvik").join(","), "aslak");
 assert.equal(value("captives", "settlements", "hrafnvik").length, 0, "Filters must intersect");
 assert.equal(value("all", null, null).length - 1, data.people.filter(p =>
-  groups.matches(data, p, { primary: "all", dimension: null, value: null, search: "Hroald" }) === false).length);
+  groups.matches(data, p, { primary: "all", dimension: null, value: null, search: "Aslak" }) === false).length);
 
 const settlementOptions = groups.options(data, "settlements").map(x => x.id).sort();
 assert.equal(settlementOptions.join(","), "hrafnvik,skjorvik");
