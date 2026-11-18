@@ -192,6 +192,7 @@
     if (!cards.children.length) {
       cards.appendChild(el("p", "atlas2-empty", "Na razie nie zapisano tutaj żadnych odkrytych miejsc."));
     }
+    window.SOM_NAV?.changed();
   }
 
   function namesFor(place) {
@@ -293,6 +294,7 @@
     modal.setAttribute("aria-hidden","false");
     document.body.classList.add("atlas2-modal-open");
     $("#atlas2-dialog-close").focus();
+    window.SOM_NAV?.changed();
   }
   function close() {
     const modal=$("#place-dialog");
@@ -301,17 +303,28 @@
     modal.setAttribute("aria-hidden","true");
     document.body.classList.remove("atlas2-modal-open");
     if (opener?.isConnected) opener.focus({preventScroll:true});
+    window.SOM_NAV?.changed();
+  }
+  function getNavigationState() {
+    return {
+      region: current,
+      place: $("#place-dialog").hidden ? null : lastPlace
+    };
+  }
+  function requestClose() {
+    if (window.SOM_NAV) window.SOM_NAV.closeLayer(close);
+    else close();
   }
   function mount(options) {
     content=options.data;
     callbacks={openPerson:options.openPerson,openChronicle:options.openChronicle,openMap:options.openMap};
-    $("#atlas2-dialog-close").addEventListener("click",close);
+    $("#atlas2-dialog-close").addEventListener("click",requestClose);
     $("#place-dialog").addEventListener("click",event=>{
-      if(event.target===$("#place-dialog")) close();
+      if(event.target===$("#place-dialog")) requestClose();
     });
     document.addEventListener("keydown",event=>{
       if($("#place-dialog").hidden)return;
-      if(event.key==="Escape"){event.preventDefault();close();return;}
+      if(event.key==="Escape"){event.preventDefault();requestClose();return;}
       if(event.key==="Tab"){
         const buttons=[...$("#place-dialog").querySelectorAll("button:not([disabled])")].filter(x=>x.offsetParent!==null);
         if(!buttons.length)return;
@@ -323,5 +336,5 @@
     // Atlas zaczyna się od świata Midgard; do Ziem Drengrów przechodzi się przez kartę obszaru.
     showRegion("midgard");
   }
-  window.SOM_ATLAS = {mount,open,showRegion};
+  window.SOM_ATLAS = {mount,open,showRegion,close,getNavigationState};
 })();
