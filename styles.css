@@ -667,3 +667,7 @@ body.atlas2-modal-open{overflow:hidden}
     overflow-wrap:anywhere;align-items:center}
   .rail .nav-icon{flex:0 0 18px;font-size:18px}
 }
+
+/* Jawnie zmarli NPC w Atlasie: ten sam status co w Sieci postaci. */
+.atlas2-npc-card.is-deceased .atlas2-npc-thumb img{filter:grayscale(1) brightness(.64)}
+.atlas2-npc-deceased{display:block;font:700 9px/1.4 Arial,sans-serif;letter-spacing:.12em;color:#cdbbaa}
