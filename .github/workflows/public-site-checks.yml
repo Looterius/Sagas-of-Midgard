@@ -27,3 +27,5 @@ jobs:
         run: node scripts/check-character-groups.mjs
       - name: Check character graph geometry
         run: node scripts/check-character-graph.mjs
+      - name: Check mobile interface and relations
+        run: node scripts/check-mobile-rwd.mjs
