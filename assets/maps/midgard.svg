@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Symboliczna mapa Midgardu">
+<defs>
+ <radialGradient id="ocean"><stop stop-color="#243e47"/><stop offset=".7" stop-color="#112b37"/><stop offset="1" stop-color="#0d1a23"/></radialGradient>
+ <linearGradient id="land" x1="0" x2=".8" y1="0" y2="1"><stop stop-color="#65705f"/><stop offset=".52" stop-color="#3f594e"/><stop offset="1" stop-color="#293d36"/></linearGradient>
+ <pattern id="waves" width="80" height="65" patternUnits="userSpaceOnUse"><path d="M10 18q12-8 24 0m18 24q12-8 24 0" stroke="#8da8a0" stroke-opacity=".11" fill="none"/></pattern>
+ <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency=".45" numOctaves="2" seed="8"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".11"/></feComponentTransfer></filter>
+</defs>
+<rect width="1200" height="720" fill="url(#ocean)"/><rect width="1200" height="720" fill="url(#waves)"/>
+<g fill="url(#land)" stroke="#b1a17c" stroke-width="4" stroke-opacity=".52">
+ <path d="M-30 0H490L461 48 510 105 483 159 536 211 496 258 547 309 510 370 562 431 502 478 532 529 476 593 408 582 391 646 330 653 285 709H-30Z"/>
+ <path d="M853-15 910 39 894 85 960 110 947 160 1016 194 1017 247 1087 294 1046 341 1109 387 1074 449 1136 483 1096 535 1138 603 1200 645V-15Z"/>
+ <path d="M660 120 693 145 688 196 730 220 713 269 668 263 644 204Z"/>
+ <path d="M756 479 784 464 823 495 810 553 766 560 743 518Z"/>
+ <path d="M614 568 631 551 653 572 646 600Z"/>
+</g>
+<g fill="#101f28" opacity=".65">
+ <path d="M-15 124Q120 108 208 144T432 185l-18 22Q270 153 170 176T-15 155Z"/>
+ <path d="M-10 320Q156 290 276 344T506 364l-22 24Q348 382 264 376T-10 364Z"/>
+</g>
+<g stroke="#d5c79d" stroke-opacity=".22" stroke-width="2" fill="none">
+ <path d="M115 0Q210 175 96 382T139 720"/><path d="M782 0Q700 194 818 390T781 720"/>
+ <path d="M0 360H1200" stroke-dasharray="3 22"/><path d="M600 0V720" stroke-dasharray="3 22"/>
+ <circle cx="600" cy="360" r="295" stroke-dasharray="3 16"/>
+</g>
+<g fill="#b3bca6" opacity=".36">
+ <path d="m285 96 32-65 35 65h-18l-17-31-16 31Zm-80 67 29-53 28 53h-16l-12-25-13 25Zm135 80 35-78 36 78h-20l-17-39-16 39Z"/>
+ <path d="m992 132 27-58 27 58h-18l-9-23-10 23Zm110 91 27-62 27 62h-17l-10-27-11 27Z"/>
+</g>
+<g transform="translate(1030 100)" stroke="#d1be95" fill="none" opacity=".83">
+ <circle r="48"/><circle r="36"/><path d="M0-66V66M-66 0H66M-34-34l68 68m-68 0 68-68"/>
+ <path d="M0-58 8-10 0-20-8-10Z" fill="#cfbc96"/><text y="-77" text-anchor="middle" font-size="18" fill="#e0c99b" font-family="serif" stroke="none">N</text>
+</g>
+<rect width="1200" height="720" filter="url(#noise)" opacity=".4"/>
+<rect x="18" y="18" width="1164" height="684" fill="none" stroke="#c6ab7e" stroke-opacity=".45" stroke-width="2"/>
+</svg>
