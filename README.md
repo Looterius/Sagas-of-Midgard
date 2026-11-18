@@ -196,3 +196,13 @@ Katalog rodzin zawiera jawne etykiety „Rodzina Sigurda i Hroalda” oraz „Ro
 Testy: `node scripts/check-character-groups.mjs` oraz `node scripts/check-character-graph.mjs`; standardowe testy publicznego Atlasu i wydajności portretów nadal obowiązują.
 
 Źródła narracyjne: `Scenariusz dla Sagas of Midgard(3).pdf` (Tom I), `Scenariusz dla Sagas of Midgard IIa.pdf` (Tom II) i dziennik faktycznie rozegranych wydarzeń 05.11.2026 w Notion. **Nie wolno przenosić do publicznego `data.js` sekretów Skalda ani nierozstrzygniętych wariantów scenariusza.**
+
+## Swobodne przesuwanie kart i kolejne portrety (listopad 2026)
+
+Usunięto ograniczenie x=0..1420/y=0..760 dla przeciągania kart myszką w Sieci postaci. Pozycje mogą być również ujemne lub przekraczać pierwotne 1600×1000. Router grafu generuje korytarze poza pierwotną sceną; przycisk „Dopasuj widok” obejmuje wszystkie widoczne karty również po ręcznym przesunięciu. Przesuwanie płótna i gest pinch na telefonie pozostają bez zmian, a „Resetuj układ” przywraca wyjściowy porządek.
+
+Wykorzystane oryginalne zdjęcia z `assets/portraits/`: Sigurd, Sten (plik zawiera dawną formę Stern), Svala, Ulf, Hakon Czerwony, Torvald Kowal (plik nazywa się Thorwald), Orm, Ragnvald Skjoldsson i Haki. Portret Morda nadal nie ma jednoznacznie potwierdzonego odpowiednika plikowego; nie przypisujemy mu obcego zdjęcia.
+
+Potwierdzony, jawny kanon władców: Alrek Eriksson — Hordalands, Halfdan Czarny — Agder (ojciec Asgrima), Audbjorn — Fjordane. Vestmar nie jest w źródłach jednym zjednoczonym królestwem pod jednym jarlem: są tam cztery rywalizujące obozy. Nie przypisujemy zdjęć Alfhelda, Olafa i Torstena Gudrodssonów do Vestmaru bez zatwierdzenia przez MG. Drengrlands to obszar nadrzędny dla czterech królestw i Eylendy — **nie jest nazwą dynastii**. Orm Półgłos został powiązany wyłącznie z jawnie znanym Skjǫrvikiem, bez publikowania szczegółów śledztwa, których bohaterowie mogli nie odkryć.
+
+Po zmianie `people[].image` ponownie generujemy WebP i `portrait-assets.js` z publicznych `data.js.people[]`. W katalogu zachowujemy oryginały.
