@@ -1,0 +1,92 @@
+name: Temporary free drag and rulers browser QA
+on:
+  push:
+    branches: [fix/free-character-layout-portraits-rulers-20261118]
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - name: Install browser driver
+        run: npm install --no-save --no-package-lock playwright-core@1.57.0
+      - name: Validate drag outside scene and new portraits on desktop/mobile
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/som-free-drag-site.log 2>&1 &
+          sleep 1
+          node <<'JS'
+          const {chromium}=require("playwright-core"),assert=require("node:assert/strict");
+          (async()=>{
+            const browser=await chromium.launch({executablePath:"/usr/bin/google-chrome",
+              args:["--no-sandbox","--disable-dev-shm-usage"]});
+            const context=await browser.newContext({viewport:{width:1600,height:980}});
+            const page=await context.newPage();page.setDefaultTimeout(12000);
+            const errors=[],badPhotos=[];
+            page.on("pageerror",x=>errors.push(x.message));
+            page.on("response",x=>{if(x.url().includes("/assets/portraits/")&&x.status()>=400)badPhotos.push(x.url());});
+            await page.goto("http://127.0.0.1:8765/",{waitUntil:"load"});
+            assert.equal(await page.locator(".person-card").count(),29);
+            assert.equal(await page.locator(".person-card.is-deceased").count(),3);
+            assert.equal(await page.locator("#links-count").innerText(),"18");
+            const p=page.locator('.person-card[data-id="asgrim"]');
+            const before=await p.evaluate(x=>({x:parseFloat(x.style.left),y:parseFloat(x.style.top)}));
+            const rect=await p.boundingBox();
+            const x=rect.x+rect.width/2,y=rect.y+rect.height/2;
+            await page.mouse.move(x,y);
+            await page.mouse.down();
+            await page.mouse.move(x+250,y,{steps:12});
+            await page.mouse.up();
+            const after=await p.evaluate(x=>({x:parseFloat(x.style.left),y:parseFloat(x.style.top)}));
+            assert.ok(after.x>1420,"Drag must move past former 1420px limit: "+JSON.stringify({before,after}));
+            assert.ok(after.x>before.x+170,"Drag did not follow mouse");
+            console.log("PASS free drag to x="+after.x+" beyond scene boundary");
+            await page.locator("#fit").click();
+            const outer=await page.locator("#map-viewport").boundingBox();
+            const focus=await p.boundingBox();
+            assert.ok(focus.x>=outer.x-3&&focus.x+focus.width<=outer.x+outer.width+3,
+              "Fit fails to include moved card");
+            console.log("PASS fit shows far-moved card");
+            await page.locator('[data-character-primary="rulers"]').click();
+            assert.equal(await page.locator(".person-card:visible").count(),6);
+            console.log("PASS all six jarls/kings visible");
+            await page.locator('.person-card[data-id="alrek"]').evaluate(x=>x.click());
+            assert.equal(await page.locator("#inspector-name").innerText(),"Alrek Eriksson");
+            const full=await page.locator("#inspector-art img").getAttribute("src");
+            assert.ok(full.includes("optimized/alrek-full.webp"),"King detail portrait not WebP");
+            await page.locator("#inspector-relations .relation-link--place").filter({hasText:"Hordalands"}).click();
+            assert.ok((await page.locator("#page-title").innerText()).includes("Atlas"));
+            console.log("PASS Alrek portrait + Hordalands navigation");
+            await page.locator("#atlas2-dialog-close").count();
+            await page.locator('[data-view="relationships"]').evaluate(x=>x.click());
+            await page.locator('[data-character-primary="all"]').evaluate(x=>x.click());
+            await page.locator('.person-card[data-id="orm"]').evaluate(x=>x.click());
+            assert.equal(await page.locator("#inspector-name").innerText(),"Orm Półgłos");
+            assert.ok((await page.locator("#inspector-art img").getAttribute("src")).includes("optimized/orm-full.webp"));
+            console.log("PASS Orm existing portrait and biography");
+            assert.deepEqual(errors,[],"Browser JS exceptions");
+            assert.deepEqual(badPhotos,[],"Broken portrait URL");
+            await browser.close();
+
+            const mobile=await chromium.launch({executablePath:"/usr/bin/google-chrome",
+              args:["--no-sandbox","--disable-dev-shm-usage"]});
+            const cx=await mobile.newContext({viewport:{width:360,height:780},deviceScaleFactor:2,isMobile:true,hasTouch:true});
+            const mp=await cx.newPage();mp.setDefaultTimeout(12000);
+            await mp.goto("http://127.0.0.1:8765/",{waitUntil:"load"});
+            await mp.locator('.person-card[data-id="svala"]').evaluate(x=>x.click());
+            const src=await mp.locator("#inspector-art img").getAttribute("src");
+            assert.ok(src.includes("optimized/svala-full.webp"));
+            const rects=await mp.evaluate(()=>({
+              width:innerWidth,modal:document.querySelector(".character-dialog").getBoundingClientRect().width,
+              doc:document.documentElement.scrollWidth
+            }));
+            assert.ok(rects.doc<=rects.width+2 && rects.modal<=rects.width+2,
+              "Mobile portrait card overflows: "+JSON.stringify(rects));
+            console.log("PASS mobile Svala picture, no horizontal overflow");
+            await mobile.close();
+            console.log("PASS desktop/mobile free drag, kings, portrait assignments");
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
