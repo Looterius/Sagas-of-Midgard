@@ -133,3 +133,13 @@ Wcześniejsze style odziedziczone po starej siatce deklarowały `map-scene: 1130
 `graph-geometry.js` wyprowadza połączenia **od ramki do ramki**. Dla zasłoniętego połączenia wyznacza trasę przez wolny korytarz, omijając pośrednie portrety, jeśli istnieje przejście. Zawiera tytuł relacji dostępny po najechaniu na linię, punkty zakotwiczenia i podświetlanie połączonych kart. Działa po przeciągnięciu postaci oraz przełączeniu filtrów, bo rysowanie używa aktualnych współrzędnych.
 
 Test `node scripts/check-character-graph.mjs` kontroluje miejsca zaczepienia, przeszkody, wszystkie ujawnione relacje i filtry oraz zgodność SVG i CSS. **Przy ręcznym zoomowaniu lub przesuwaniu treść może celowo znaleźć się poza widokiem i zostać przycięta**; przycisk `Dopasuj widok` przywraca wszystkie widoczne karty na ekran.
+
+## RWD i mobilna Sieć postaci (listopad 2026)
+
+- Na telefonie **przeciągnięcie jednym palcem** przesuwa całe płótno, a **rozsunięcie lub zsunięcie dwóch palców** przybliża i oddala mapę wokół ich środka. Zakres skali 6–300%; przyciski ± i Dopasuj widok wciąż działają. Tap na portret otwiera kartę; po ruchu gestem nie powinien otwierać jej przypadkowo.
+- Na komputerze dotychczasowe sterowanie pozostaje bez zmian: prawy przycisk przesuwa sieć, lewy na karcie — kartę, lewy na tle — sieć.
+- **Mobilna karta postaci** to jeden przewijany ekran o szerokości urządzenia: krótszy portret, czytelna typografia, opis i relacje bez poziomego przewijania. Zamknięcie pozostaje widoczne.
+- **Znane powiązania** są teraz przyciskami prowadzącymi do kart innych postaci. Potwierdzone powiązania z osadami (jawne `people[].grouping.settlementIds` lub `places[].personIds`) otwierają kartę danego miejsca w Atlasie; `kingdomIds` otwiera jawny region Atlasu. Powiązanie z osadą oznacza znaną więź, nie koniecznie miejsce urodzenia.
+- Po przejściu do kolejnej karty postaci czytanie zaczyna się od góry. Tab/Shift+Tab przemieszczają się po interaktywnych kontrolkach w karcie; Escape ją zamyka.
+- **Sekrety MG pozostają poza danymi strony**. Nie dodano nowych niepotwierdzonych przynależności.
+- W CI: `node scripts/check-mobile-rwd.mjs` wraz z dotychczasowymi testami Atlasu, map i grafu.
