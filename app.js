@@ -240,6 +240,7 @@
         groupFilter.dimension = selected ? null : dimension;
         groupFilter.value = selected ? null : option.id;
         applyGrouping();
+        window.SOM_NAV?.changed();
       });
       panel.appendChild(button);
     }
@@ -294,6 +295,7 @@
           groupFilter.expanded = null;
         }
         applyGrouping();
+        window.SOM_NAV?.changed();
       });
     });
     document.querySelectorAll("[data-character-dimension]").forEach(button => {
@@ -303,6 +305,7 @@
         renderGroupOptions();
         $("#character-group-reset").hidden = !groupFilter.expanded &&
           groupFilter.primary === "all" && !groupFilter.value && !groupFilter.search.trim();
+        window.SOM_NAV?.changed();
       });
     });
     $("#character-group-reset").addEventListener("click", () => {
@@ -313,6 +316,7 @@
       groupFilter.search = "";
       $("#search").value = "";
       applyGrouping();
+      window.SOM_NAV?.changed();
     });
     applyGrouping();
   }
@@ -419,6 +423,7 @@
     const details = dialog.querySelector(".character-details");
     if (details) details.scrollTop = 0;
     $("#close-inspector").focus();
+    window.SOM_NAV?.changed();
   }
 
   function renderPlaces() {
@@ -508,6 +513,7 @@
           expanded.hidden = !opening;
           toggle.textContent = opening ? "Zwiń opowieść" : "Czytaj kronikę";
           toggle.setAttribute("aria-expanded", String(opening));
+          window.SOM_NAV?.changed();
         });
         actions.appendChild(toggle);
         if (place) {
@@ -525,11 +531,15 @@
         list.appendChild(card);
       }
     }
-    filter.addEventListener("change", paint);
+    filter.addEventListener("change", () => {
+      paint();
+      window.SOM_NAV?.changed();
+    });
     paint();
   }
 
   function switchView(view) {
+    const previousView = state.view;
     state.view = view;
     for (const b of document.querySelectorAll("[data-view]"))
       b.classList.toggle("active", b.dataset.view === view);
@@ -547,8 +557,9 @@
       locations: "Miejsca odwiedzone i wspominane w kronice.",
       chronicle: "Dzieje bohaterów spisane w pamięci Północy."
     })[view];
-    if (view === "relationships") fit();
+    if (view === "relationships" && previousView !== "relationships") fit();
     closeCharacter();
+    window.SOM_NAV?.changed();
   }
 
   function closeCharacter() {
@@ -561,6 +572,7 @@
     if (state.selected && nodes.get(state.selected) && !nodes.get(state.selected).hidden)
       nodes.get(state.selected).focus({preventScroll:true});
     state.selected = null;
+    window.SOM_NAV?.changed();
   }
 
   function applyTransform() {
@@ -722,13 +734,17 @@
     // Przywróć układ aktualnie wybranej grupy; filtr i wyszukiwarka bez zmian.
     applyGrouping();
   });
-  $("#close-inspector").addEventListener("click", closeCharacter);
+  const requestCloseCharacter = () => {
+    if (window.SOM_NAV) window.SOM_NAV.closeLayer(closeCharacter);
+    else closeCharacter();
+  };
+  $("#close-inspector").addEventListener("click", requestCloseCharacter);
   $("#inspector").addEventListener("click", e => {
-    if (e.target === $("#inspector")) closeCharacter();
+    if (e.target === $("#inspector")) requestCloseCharacter();
   });
   document.addEventListener("keydown", e => {
     if ($("#inspector").hidden) return;
-    if (e.key === "Escape") { e.preventDefault(); closeCharacter(); return; }
+    if (e.key === "Escape") { e.preventDefault(); requestCloseCharacter(); return; }
     if (e.key === "Tab") {
       const buttons = [...$("#inspector").querySelectorAll("button:not([disabled])")]
         .filter(button => button.getClientRects().length > 0);
@@ -744,6 +760,77 @@
     }
   });
   window.addEventListener("resize", () => { if (state.view === "relationships") fit(); });
+
+  // Stan nawigacji to WYŁĄCZNIE jawne identyfikatory i lokalne ustawienia UI.
+  // Nie zapisujemy danych Skalda ani plików w historii przeglądarki.
+  function captureNavigation() {
+    const atlas = window.SOM_ATLAS?.getNavigationState() || {};
+    return {
+      view: state.view,
+      person: $("#inspector").hidden ? null : state.selected,
+      place: atlas.place || null,
+      region: atlas.region || "midgard",
+      map: window.SOM_MAPS?.getCurrent() || "midgard",
+      group: {
+        primary: groupFilter.primary,
+        dimension: groupFilter.dimension,
+        value: groupFilter.value,
+        expanded: groupFilter.expanded
+      },
+      chronicleFilter: $("#chronicle-place-filter").value,
+      chronicleExpanded: [...document.querySelectorAll(".chronicle-card")]
+        .filter(card => !card.querySelector(".chronicle-story")?.hidden)
+        .map(card => card.dataset.eventId)
+    };
+  }
+
+  function restoreNavigation(route) {
+    const views = new Set(["relationships", "maps", "locations", "chronicle"]);
+    if (!views.has(route.view)) return;
+
+    // Wyczyść aktualne modale przed przywróceniem poprzedniego ekranu.
+    closeCharacter();
+    window.SOM_ATLAS?.close();
+
+    const group = route.group || {};
+    if (["all", "heroes", "npc", "deceased", "rulers", "captives"].includes(group.primary)) {
+      const different = groupFilter.primary !== group.primary ||
+        groupFilter.dimension !== (group.dimension || null) ||
+        groupFilter.value !== (group.value || null) ||
+        groupFilter.expanded !== (group.expanded || null);
+      if (different) {
+        groupFilter.primary = group.primary;
+        groupFilter.dimension = group.dimension || null;
+        groupFilter.value = group.value || null;
+        groupFilter.expanded = group.expanded || null;
+        applyGrouping();
+      }
+    }
+
+    if (window.SOM_ATLAS?.getNavigationState()?.region !== route.region)
+      window.SOM_ATLAS?.showRegion(route.region || "midgard");
+    if (window.SOM_MAPS?.getCurrent() !== route.map)
+      window.SOM_MAPS?.show(route.map || "midgard");
+
+    const filter = $("#chronicle-place-filter");
+    if (route.chronicleFilter && filter.value !== route.chronicleFilter) {
+      filter.value = route.chronicleFilter;
+      filter.dispatchEvent(new Event("change"));
+    }
+    const intended = new Set(route.chronicleExpanded || []);
+    for (const card of document.querySelectorAll(".chronicle-card")) {
+      const story = card.querySelector(".chronicle-story");
+      if (story && story.hidden === intended.has(card.dataset.eventId))
+        card.querySelector(".chronicle-expand")?.click();
+    }
+
+    switchView(route.view);
+    if (route.place && data.places.some(p => p.id === route.place && p.visibility === "known"))
+      window.SOM_ATLAS?.open(route.place);
+    if (route.person && data.people.some(p => p.id === route.person))
+      selectPerson(route.person);
+  }
+
   renderPeople();
   setupGrouping();
   renderPlaces();
@@ -751,4 +838,5 @@
   renderChronicle();
   bindViewportPan();
   fit();
+  window.SOM_NAV?.mount({ snapshot: captureNavigation, restore: restoreNavigation });
 })();
