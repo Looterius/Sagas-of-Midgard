@@ -13,7 +13,7 @@ const people=data.people, ids=people.map(p=>p.id), peopleById=new Map(people.map
 const value=(primary,dimension,id)=>people.filter(p=>groups.matches(data,p,{
   primary,dimension,value:id,search:""
 })).map(p=>p.id).sort();
-const equals=(actual,expected,message)=>assert.deepEqual(actual,[...expected].sort(),message);
+const equals=(actual,expected,message)=>assert.equal([...actual].sort().join(","),[...expected].sort().join(","),message);
 
 assert.equal(people.length,25,"25 known player-facing people; do not overwrite earlier cards");
 assert.equal(new Set(ids).size,people.length,"Duplicate person ID");
