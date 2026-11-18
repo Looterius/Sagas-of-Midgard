@@ -151,6 +151,9 @@
     const config = MAPS[current];
     $("#maps-current-title").textContent = config.name;
     $("#maps-current-description").textContent = config.intro;
+    $("#maps-accuracy").textContent = current === "drengrlands"
+      ? "Mapa kampanii · kliknij nazwę krainy lub złoty punkt. Oznaczenia nie zmieniają granic w Atlasie."
+      : "Poglądowa mapa Midgardu · wybierz Ziemie Drengrów, aby otworzyć mapę kampanii.";
     $("#maps-art").src = config.image;
     $("#maps-viewport").dataset.mapId = current;
     $("#maps-back").hidden = current === "midgard";
