@@ -24,6 +24,7 @@
   // Indywidualny, lokalny układ dla każdego widoku/filtra. Zmiana zakładki
   // nie może kasować pozycji, które użytkownik właśnie sam ustawił.
   const savedLayouts = new Map();
+  const editedLayouts = new Set();
   const layoutKey = () => JSON.stringify({
     primary: groupFilter.primary,
     dimension: groupFilter.dimension,
@@ -229,6 +230,7 @@
         };
         positionCard(p.id);
         drawConnections();
+        if (activeLayoutKey !== null) editedLayouts.add(activeLayoutKey);
         $("#reset-positions").hidden = false;
       });
       function stopCardDrag(e) {
@@ -300,13 +302,17 @@
       Object.entries(positions).map(([id, pos])=>[id,{...pos}]));
     if (activeLayoutKey !== null && activeLayoutKey !== nextKey)
       savedLayouts.set(activeLayoutKey,copyPositions(state.positions));
-    if (reset) savedLayouts.delete(nextKey);
-    const earlier=savedLayouts.get(nextKey);
+    if (reset) {
+      savedLayouts.delete(nextKey);
+      editedLayouts.delete(nextKey);
+    }
+    const earlier = !reset && activeLayoutKey === nextKey
+      ? state.positions : savedLayouts.get(nextKey);
     state.visibleIds = new Set(people.map(person => person.id));
     state.positions = earlier ? copyPositions(earlier) : isDefault
       ? copyPositions(officialPositions) : groups.layout(people);
     activeLayoutKey = nextKey;
-    $("#reset-positions").hidden = !earlier || reset;
+    $("#reset-positions").hidden = !editedLayouts.has(nextKey);
     nodes.forEach((card, id) => {
       card.hidden = !state.visibleIds.has(id);
       if (!card.hidden) {
