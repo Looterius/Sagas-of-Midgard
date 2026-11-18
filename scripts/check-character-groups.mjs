@@ -23,7 +23,7 @@ assert.equal(value("npc",null,null).length,23,"23 known NPC");
 equals(value("deceased",null,null),["sigurd","mord","floki"],"Only confirmed deaths");
 equals(value("rulers",null,null),["hroald","sigurd","sianita","alrek","halfdan","audbjorn"],"Confirmed jarls and kings");
 equals(value("captives",null,null),["aslak"],"Existing marked captive");
-equals(value("all","settlements","skjorvik"),["aslak","haki","ragnvald-s","orm"],"Skjǫrvik persons");
+equals(value("all","settlements","skjorvik"),["aslak","haki","ragnvald-s"],"Skjǫrvik persons");
 assert.equal(value("all","settlements","hrafnvik").length,23,"Known Hrafnvik associations");
 equals(value("deceased","settlements","hrafnvik"),["sigurd","floki","mord"],"Dead Hrafnvik persons");
 equals(value("heroes","settlements","hrafnvik"),["sianita","halvard","haroks","ylva","floki","asgrim"],"Hero settlement");
@@ -127,7 +127,9 @@ for(const p of people.filter(p=>p.grouping.settlementIds?.includes("hrafnvik")))
 for(const id of ["mord","floki"])
   assert.ok(data.places.find(p=>p.id==="eylenda").personIds.includes(id));
 assert.ok(data.places.find(p=>p.id==="skjorvik").personIds.includes("haki"));
-assert.ok(data.places.find(p=>p.id==="skjorvik").personIds.includes("orm"));
+assert.equal(peopleById.get("orm").name,"Orm","Keep Orm identity neutral");
+assert.equal(peopleById.get("orm").grouping.settlementIds,undefined,"Do not conflate Skjoldvik with Skjǫrvik");
+assert.ok(!peopleById.get("orm").description.includes("Półgłos"),"Do not conflate Orm Półgłos and Jednoręki");
 assert.ok(data.places.find(p=>p.id==="skjorvik").personIds.includes("ragnvald-s"));
 
 const positions=people.map(p=>({id:p.id,x:p.x,y:p.y}));
