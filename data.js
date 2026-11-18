@@ -25,9 +25,9 @@ window.CHRONICLE = {
           "rod-jarla"
         ]
       },
-      "image": "",
+      "image": "assets/portraits/Sigurd, Jarl of the Northern Stronghold.png",
       "description": "Sigurd zdobył władzę w Hrafnviku po rebelii przeciw własnemu bratu Hroaldowi. Pokonanego jarla pozbawił wzroku i tronu, lecz zwycięstwo nie zakończyło dawnych sporów. Sigurd był ojcem Sianity Gunnarsdóttir i Halvarda „Snake-Eye”, którym pozostawił skomplikowane dziedzictwo. Wkrótce sam został zamordowany. Jego śmierć wyniosła Sianitę na czoło osady i pozostawiła pytania o zabójcę, dawne przysięgi oraz cenę zdobytej władzy.",
-      "x": 35,
+      "x": 10,
       "y": 10
     },
     {
@@ -48,7 +48,7 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/Hroald.png",
       "description": "Hroald niegdyś władał Hrafnvikiem. Jego własny brat Sigurd obalił go podczas rebelii, odebrał mu władzę i kazał pozbawić wzroku. Podczas wiosennych zgromadzeń starego jarla wystawiano w ciężkiej klatce, pod strażą ludzi nowej władzy. Utracił tron, lecz nie znaczenie: pamięć o jego panowaniu nadal dzieli osadę. Jest ojcem Runy i Stena, a zarazem wujem Sianity i Halvarda. Dla starych rodów pozostaje żywym przypomnieniem dawnych przysiąg.",
-      "x": 255,
+      "x": 211,
       "y": 10
     },
     {
@@ -66,7 +66,7 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/Runa Hroaldsdottir.png",
       "description": "Runa jest córką oślepionego jarla Hroalda i siostrą Stena. Po obaleniu ojca pozostała blisko starego rodu, zachowując godność również wtedy, gdy inni świętowali zwycięstwo Sigurda. Na zgromadzeniach nie urządza demonstracji: sam sposób, w jaki odmawia toastu za dawną rebelię, mówi mieszkańcom Hrafnviku dość. Jako kuzynka Sianity i Halvarda łączy oba odłamy rodziny, chociaż historia ich ojców wciąż stoi między nimi.",
-      "x": 475,
+      "x": 412,
       "y": 10
     },
     {
@@ -82,9 +82,9 @@ window.CHRONICLE = {
           "rod-jarla"
         ]
       },
-      "image": "",
+      "image": "assets/portraits/Stern Haraldson, Norse Noble Warrior.png",
       "description": "Sten jest synem dawnego jarla Hroalda i bratem Runy. Należy do tej gałęzi rodu Hrafnviku, która utraciła władzę po rebelii Sigurda. W dawnych przekazach Sten figurował jako zaginiony, a nawet uznawany za martwego. Do dziś opowieści o jego losie pozostają niejednoznaczne, a samo jego imię przypomina, że potomków pokonanego jarla nie wymazano z pamięci osady.",
-      "x": 695,
+      "x": 613,
       "y": 10
     },
     {
@@ -106,7 +106,7 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/841056920_1454607076732851_414940541375700284_n.jpg",
       "description": "Sianita, tarczowniczka i jarlowa Hrafnviku, przejęła władzę po zamordowaniu ojca, Sigurda. Odziedziczyła osadę podzieloną między ludzi nowego porządku a stronników oślepionego Hroalda, własnego stryja. Na Wielkim Althingu Eylendy mierzyła się z roszczeniami możnych i oskarżeniami o los zdobytej osady. Odmówiła królowi Alrekowi przysięgi i małżeństwa z jego synem; jej decyzje doprowadziły drużynę do próby odzyskania Gungnir. Narzeczona Asgrima, niesie ciężar władzy, dawnych win i nowych zobowiązań.",
-      "x": 915,
+      "x": 814,
       "y": 10
     },
     {
@@ -125,7 +125,7 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/836508976_2515877412221096_575784062671443810_n.jpg",
       "description": "Halvard, znany jako „Snake-Eye”, jest synem Sigurda i bratem jarlowej Sianity. Jako wyznawca Lokiego woli podstęp, negocjacje i grę wpływów od prostych deklaracji. Na Althingu Eylendy zabiegał o poparcie dla drużyny, prowadząc trudne rozmowy z przedstawicielami innych krain. To, co robił w cieniu politycznych sporów, miało znaczenie równie wielkie jak publiczne przemówienia siostry.",
-      "x": 1135,
+      "x": 1015,
       "y": 10
     },
     {
@@ -144,7 +144,7 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/Asgrim.jpeg",
       "description": "Asgrim, syn Halfdana Czarnego, władcy Agder, przybył z własnymi tarczownikami i dołączył do drużyny po śmierci Flokiego. Jego zaręczyny z Sianitą połączyły losy rodu z Agder z przyszłością Hrafnviku. Zna opowieści i polityczne zamiary krain południa; wspominał między innymi zasłyszaną historię o ziemiach Albionu, nie przedstawiając jej jako własnego planu podboju. Choć pochodzenie otwiera mu drzwi możnych, Asgrim towarzyszy również wojownikom Hrafnviku i dzieli z nimi ryzyko drogi.",
-      "x": 1355,
+      "x": 1216,
       "y": 10
     },
     {
@@ -160,10 +160,10 @@ window.CHRONICLE = {
           "rod-svali"
         ]
       },
-      "image": "assets/portraits/svala-ketilsdottir-i-synowie.jpg",
+      "image": "assets/portraits/Svala.png",
       "description": "Svala jest wdową po Ketilu Brandssonie, pojmanym i zabitym bez sądu podczas przewrotu Sigurda. Na Thingu stanęła przed nową władzą, domagając się zapłaty długu krwi — nie za czyn Sianity, lecz od domu, który odziedziczył władzę i obowiązki po jej ojcu. Jest matką bliźniaków Morda i Ulfa. Później przyznano jej ziemię, jednak los jej rodziny pozostał związany z wyprawami i sporami Hrafnviku. Po śmierci Morda musi nosić pamięć o kolejnej stracie.",
-      "x": 35,
-      "y": 255
+      "x": 1417,
+      "y": 10
     },
     {
       "id": "mord",
@@ -181,7 +181,7 @@ window.CHRONICLE = {
       },
       "image": "",
       "description": "Mord był jednym z bliźniaczych synów Svali Ketilsdóttir i zmarłego Ketila Brandssona. Wyrastał w rodzinie, która długo domagała się sprawiedliwości po krwawym przewrocie. Brał udział w działaniach wojowników Hrafnviku przeciw obcej osadzie, a na Wielkim Althingu stanął przed możnymi jako świadek tych wydarzeń. Przyznał się do własnego udziału i oświadczył, że działał dla Jarlowej. Później zginął podczas wyprawy na Eylendzie. Do pamięci o utraconym ojcu jego rodziny dopisana została śmierć następnego pokolenia.",
-      "x": 255,
+      "x": 10,
       "y": 255
     },
     {
@@ -197,9 +197,9 @@ window.CHRONICLE = {
           "rod-svali"
         ]
       },
-      "image": "",
+      "image": "assets/portraits/Ulf, Vigilant Lord of the Riverside Hall.png",
       "description": "Ulf jest synem Svali Ketilsdóttir i bliźniaczym bratem Morda. Ich ojciec, Ketil Brandsson, został zabity w czasie przewrotu, a matka przez długi czas zabiegała o uznanie krzywdy i należne zadośćuczynienie. Los Ulfa splótł się z nowym porządkiem Hrafnviku, nadanym rodzinie gospodarstwem i niebezpiecznymi wyprawami ludzi Jarlowej. Po śmierci brata pozostał jednym z żywych świadków tego, jak dawne długi krwi obciążają kolejne pokolenie. Po śmierci Morda jego imię nierozerwalnie związało się z pamięcią o bracie i losem ich rodziny.",
-      "x": 475,
+      "x": 211,
       "y": 255
     },
     {
@@ -214,7 +214,7 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/Erik Zelaznadłoń.png",
       "description": "Erik Żelaznadłoń, hersir Hrafnviku, dowodzi wojownikami i stanowi jeden z filarów porządku ustanowionego po obaleniu Hroalda. W osadzie, w której pamięć o rebelii wciąż wpływa na przysięgi i sądy, jego znaczenie wynika nie tylko z umiejętności walki, lecz także z posłuchu wśród zbrojnych. Podczas Thingu i sporów o dawną przemoc stoi po stronie stabilności nowej władzy. Musi jednak służyć osadzie, w której nie wszyscy uznali dawną zmianę jarla za sprawiedliwą.",
-      "x": 695,
+      "x": 412,
       "y": 255
     },
     {
@@ -229,7 +229,7 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/Ragnvald Prawomówca.png",
       "description": "Ragnvald Prawomówca jest strażnikiem prawa i pamięci zwyczajów Hrafnviku. Jako znawca Thingu przypomina, że przysięga, roszczenie i zadośćuczynienie mają wagę większą niż doraźna wola silniejszego. W sprawach świętego gaju, sporu wojowników oraz długu krwi Svali pomagał oddzielić prawo od zemsty. Nie rządzi osadą i nie wydaje wyroków za Jarlową; jego autorytet polega na tym, że pamięta, jakie konsekwencje rodzi naruszenie obyczaju.",
-      "x": 915,
+      "x": 613,
       "y": 255
     },
     {
@@ -244,7 +244,7 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/Styrbjorn Ragnsson.png",
       "description": "Styrbjorn Ragnsson należy do ludzi związanych z dawnym obozem Hroalda. Podczas wiosennego Thingu odmówił świętowania zwycięstwa nowej władzy, a jego spór z młodym wojownikiem Leifem Anundssonem przerodził się w bójkę. Wydarzenie pokazało, jak cienka bywa granica między osobistą urazą a konfliktem całych rodów. Styrbjorn nie jest wyłącznie przeciwnikiem Jarlowej: pozostaje człowiekiem, który pamięta, po której stronie stali jego bliscy podczas rebelii.",
-      "x": 1135,
+      "x": 814,
       "y": 255
     },
     {
@@ -259,7 +259,7 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/Leif Anundsson.png",
       "description": "Leif Anundsson jest młodym wojownikiem wiernym nowej władzy Hrafnviku i jarlowej Sianicie. Podczas Thingu wszedł w gwałtowny spór ze Styrbjornem Ragnssonem, związanym z dawnym obozem Hroalda. Ich starcie uczyniło z osobistej kłótni symbol pęknięcia dzielącego osadę. Leif należy do pokolenia, które chce budować przyszłość po rebelii, lecz jego żarliwa lojalność bywa równie niebezpieczna jak niechęć dawnych przeciwników.",
-      "x": 1355,
+      "x": 1015,
       "y": 255
     },
     {
@@ -272,10 +272,10 @@ window.CHRONICLE = {
           "hrafnvik"
         ]
       },
-      "image": "",
+      "image": "assets/portraits/Hakon Czerwony, Merchant of Midgard.png",
       "description": "Hakon Czerwony jest najbogatszym mieszkańcem Hrafnviku i właścicielem niemal całej floty osady. Zarządza statkami, warsztatami i handlem; gdy trzeba wypłynąć na rajd lub przygotować poselstwo, jego okręty i srebro ważą wiele. Dawniej zatrudniał Flokiego, wybitnego szkutnika, lecz ich współpraca zakończyła się konfliktem. Teraz w jego szopie pracuje chrześcijański cieśla Aslak. Hakon umie przeliczyć każdy ładunek na zysk i doskonale rozumie, jak silnie jarl zależy od ludzi, którzy utrzymują port.",
-      "x": 35,
-      "y": 500
+      "x": 1216,
+      "y": 255
     },
     {
       "id": "floki",
@@ -290,8 +290,8 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/843041093_29439569015649515_6290487889105704541_n.jpg",
       "description": "Floki był znakomitym szkutnikiem i wizjonerem Hrafnviku. Budował okręty, niegdyś pracując dla Hakona Czerwonego, z którym później się poróżnił. Pomógł Torvaldowi Kowalowi powrócić od chrześcijaństwa do wiary w Thora i Odyna. W jednej ze swoich wizji zobaczył możliwość zbudowania statku zdolnego żeglować po gałęziach Yggdrasilu. Podczas wyprawy po Gungnir na Eylendzie poniósł śmierć w starciu z Haraldem Hardradą. Haroks złożył jego ciało w niedokończonym statku w lesie Odyna. Floki pozostał bohaterem sagi — lecz zmarłym.",
-      "x": 255,
-      "y": 500
+      "x": 1417,
+      "y": 255
     },
     {
       "id": "aslak",
@@ -309,7 +309,7 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/Aslak Cieśla.png",
       "description": "Aslak, chrześcijański cieśla Hrafnviku, pracował przy budowie nowego kościoła. Spór wybuchł, gdy robotnicy ścięli stare drzewa z gaju od pokoleń poświęconego Freyi. Sprawa Aslaka trafiła przed Thing, stawiając prawo i dwie religie naprzeciw siebie. Po wyroku jego losy związały się z Hakonem Czerwonym, najbogatszym kupcem osady, w którego warsztacie okrętowym pracuje teraz jako rzemieślnik. Jego historia przypomina, że spór o święte miejsca dotyka również zwyczajnego człowieka, jego pracy i wolności.",
-      "x": 475,
+      "x": 10,
       "y": 500
     },
     {
@@ -322,9 +322,9 @@ window.CHRONICLE = {
           "hrafnvik"
         ]
       },
-      "image": "",
+      "image": "assets/portraits/Thorwald, the Viking Blacksmith.png",
       "description": "Torvald jest najważniejszym kowalem Hrafnviku. Jego kuźnia służyła wojownikom różnych stron konfliktu dynastycznego, a broń, którą wykuwał, trafiała zarówno do zwolenników starego, jak i nowego jarla. Na pewien czas przyjął chrześcijaństwo. Później Floki przekonał go do powrotu ku wierze w Thora i Odyna. Jego los ukazuje, jak osobiste przekonania zmieniają się pośród sporów religijnych, których echa słychać nad każdym paleniskiem i w każdej sali Hrafnviku.",
-      "x": 695,
+      "x": 211,
       "y": 500
     },
     {
@@ -339,7 +339,7 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/Morotar Jednooki.png",
       "description": "Morotar Jednooki jest skaldem, śpiewakiem i strażnikiem opowieści Hrafnviku. Podczas uczt potrafi rozśmieszyć zarówno wojowników nowej władzy, jak i ludzi pamiętających czasy Hroalda. Jego pieśni zachowują imiona poległych, czyny żywych oraz opowieści, które łatwo zagubić pod ciężarem łupów i srebra. To on nadaje słowom wydarzeń miejsce w sadze: przypomina, że sława może przetrwać dłużej niż uczta i że pamięć nie wybiera jedynie zwycięzców.",
-      "x": 915,
+      "x": 412,
       "y": 500
     },
     {
@@ -354,7 +354,7 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/Astrid Freyjadottir.png",
       "description": "Astrid Freyjadóttir, vala Freyi, należy do najważniejszych strażniczek starej wiary w Hrafnviku. Przyjmuje dary, przewodzi rytuałom i cieszy się autorytetem wśród wojowników i gospodarzy. Stanęła po stronie świętości dawnego gaju, kiedy cieśle pracujący nad kościołem ścięli drzewa używane podczas obrzędów. Jako matka jednego z bohaterów łączy religijny obowiązek z troską o rodzinę. W czasach przemiany osady jej głos przypomina o przysięgach składanych dawnym bogom.",
-      "x": 1135,
+      "x": 613,
       "y": 500
     },
     {
@@ -369,7 +369,7 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/Brat Anslem.png",
       "description": "Brat Anselm jest chrześcijańskim duchownym w Hrafnviku, spokojnym w słowach, ale wytrwałym w działaniu. Zamiast publicznie piętnować wyznawców dawnych bogów, pomaga potrzebującym, rozmawia z rannymi i gromadzi wokół nowej wiary rosnącą wspólnotę. Wraz z cieślą Aslakiem był związany z budową kościoła i sporem o drzewa wycięte w świętym gaju Freyi. Jego obecność pokazuje, że konflikt religijny rozgrywa się nie tylko między kapłanami, lecz także w codziennym życiu sąsiadów.",
-      "x": 1355,
+      "x": 814,
       "y": 500
     },
     {
@@ -385,8 +385,8 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/819106917_1403096258558492_2259915694493588498_n.jpg",
       "description": "Haroks Magnusson jest potężnym berserkerem z drużyny Hrafnviku, wojownikiem związanym z niedźwiedzią naturą. Podczas pobytu na Eylendzie spotkał Úlfhéðnarów, wojowników wilczej tradycji Odyna, którzy poddali go brutalnej próbie, pragnąc obudzić jego własną przemianę. Jego droga nie sprowadza się jednak do samej siły. Po śmierci Flokiego Haroks osobiście pożegnał towarzysza, składając jego ciało w niedokończonym statku w lesie Odyna. Ten gest zapisał się w sadze równie mocno jak walki.",
-      "x": 365,
-      "y": 745
+      "x": 1015,
+      "y": 500
     },
     {
       "id": "ylva",
@@ -401,8 +401,8 @@ window.CHRONICLE = {
       },
       "image": "assets/portraits/836713553_1631673708686109_4202120061548436723_n.png",
       "description": "Ylva jest łuczniczką drużyny Hrafnviku, często przedstawianą z sową u boku. Tam, gdzie wojownicy wolą otwartą walkę, jej łuk, cierpliwość i czujność pozwalają dostrzegać więcej. Towarzyszyła wyprawom drużyny oraz uczestniczyła w wydarzeniach Wielkiego Althingu na Eylendzie. Wśród przedstawicieli różnych krain, wojowników i wyznawców dawnych bogów poznawała obyczaje oraz opowieści, które wykraczały poza codzienność rodzinnej osady. Jej droga wciąż wiedzie przez nieznane szlaki, gdzie opowieści Północy dopiero nabierają kształtu.",
-      "x": 585,
-      "y": 745
+      "x": 1216,
+      "y": 500
     },
     {
       "id": "ragnvald-s",
@@ -414,10 +414,10 @@ window.CHRONICLE = {
           "skjorvik"
         ]
       },
-      "image": "",
+      "image": "assets/portraits/Ragnvald Skjoldsson.png",
       "description": "Ragnvald Skjoldsson był przywódcą Skjǫrviku, osady, przeciw której wyruszyli wojownicy Hrafnviku. Podczas poszukiwań człowieka oskarżonego o zabójstwo Sigurda jego ludzie znaleźli się po niewłaściwej stronie sporu między osadami. Najazd przyniósł spustoszenie, jeńców i łupy, których pamięć przetrwała także wśród pokonanych. Ragnvald pozostaje postacią przypominającą, że wojowniczy triumf jednych zapisywany jest przez innych jako krzywda.",
-      "x": 805,
-      "y": 745
+      "x": 1417,
+      "y": 500
     },
     {
       "id": "haki",
@@ -429,12 +429,79 @@ window.CHRONICLE = {
           "skjorvik"
         ]
       },
-      "image": "",
+      "image": "assets/portraits/Hakiego Torfinnssona.png",
       "description": "Haki Torfinnsson jest rybakiem i przemytnikiem ze Skjǫrviku, przywykłym do zatok, straży i niebezpiecznych szlaków między wybrzeżami. W czasie najazdu wojowników Hrafnviku znalazł się pomiędzy bezpieczeństwem własnym a lojalnością wobec przywódców osady. Znał drogi, hasła i rytm patroli, dlatego jego wiedza mogła ważyć więcej niż miecz. W kronice pozostaje jednym z ludzi, którzy pokazują wydarzenia wyprawy z perspektywy mieszkańców napadniętego brzegu.",
-      "x": 1025,
+      "x": 10,
+      "y": 745
+    },
+    {
+      "id": "orm",
+      "name": "Orm",
+      "kind": "Postać",
+      "grouping": {
+        "role": "npc"
+      },
+      "image": "assets/portraits/Orm.png",
+      "description": "Orm to postać, której imię pojawia się w dziejach ludzi Północy. Jego pochodzenie, przydomek oraz dokładny udział w wydarzeniach wymagają jeszcze potwierdzenia w kronice. Zachowano wizerunek podpisany imieniem Orm, lecz bez przypisywania mu cudzych czynów, przysiąg lub rodu. Dopóki nie zostanie ustalone, o którego z noszących to imię chodzi, skald pozostawia jego historię otwartą.",
+      "x": 211,
+      "y": 745
+    },
+    {
+      "id": "alrek",
+      "name": "Alrek Eriksson",
+      "kind": "Postać",
+      "grouping": {
+        "role": "npc",
+        "titles": [
+          "ruler"
+        ],
+        "kingdomIds": [
+          "hordalands"
+        ]
+      },
+      "image": "assets/portraits/Alrek Eriksson.png",
+      "description": "Alrek Eriksson jest królem Hordalands, krainy, której siła opiera się na portach, handlu i flotach kupieckich. Jego dwór znajduje się w Innrihólmur, a Alrekstad pozostaje jednym z głównych ośrodków rodu. Podczas Wielkiego Althingu na Eylendzie uczestniczył w sporach między królami o przyszłość ziem Drengrów. Od Sianity z Hrafnviku domagał się przysięgi i małżeństwa z własnym synem, spotykając się z odmową. W polityce łączy interes królestwa z uważnym szacowaniem wpływów pozostałych władców.",
+      "x": 412,
+      "y": 745
+    },
+    {
+      "id": "halfdan",
+      "name": "Halfdan Czarny",
+      "kind": "Postać",
+      "grouping": {
+        "role": "npc",
+        "titles": [
+          "ruler"
+        ],
+        "kingdomIds": [
+          "agder"
+        ]
+      },
+      "image": "assets/portraits/Halfdan Czarny.png",
+      "description": "Halfdan Czarny włada Agder, jednym z najstarszych królestw ziem Drengrów. W królestwie znany jest z wojowniczej dumy i ambicji sięgających poza jego własne granice. Jest ojcem Asgrima, który wraz z tarczownikami zbliżył się do drużyny Sianity. Na Wielkim Althingu Halfdan zabierał głos w debatach o ziemiach za zachodnim morzem i przyszłości wspólnej władzy nad Drengrami. Przedkłada siłę oręża nad obietnice łatwego zysku z handlu, lecz rozumie wagę sojuszy między królami.",
+      "x": 613,
+      "y": 745
+    },
+    {
+      "id": "audbjorn",
+      "name": "Audbjorn",
+      "kind": "Postać",
+      "grouping": {
+        "role": "npc",
+        "titles": [
+          "ruler"
+        ],
+        "kingdomIds": [
+          "fjordane"
+        ]
+      },
+      "image": "",
+      "description": "Audbjorn jest królem Fjordane, kraju stali, kuźni, run i rzemieślników. Podczas Wielkiego Althingu na Eylendzie zasiadał obok innych władców Drengrlands, lecz jego głos różnił się od wojowniczych nawoływań niektórych królów. Dla Fjordane istotne są porty, wymiana towarów i swoboda żeglugi. W debatach o wyprawach ku zachodnim ziemiom oraz o wspólnej koronie potrafił przypominać, że morze daje nie tylko sławę, lecz także utrzymanie tysiącom ludzi. Jego pozycja łączy ambicję monarchy z interesami kupców.",
+      "x": 814,
       "y": 745
     }
   ],
+
   // Jawne relacje rodzinne i związki wynikające z rozegranej historii.
   relationships: [
     {
@@ -538,6 +605,12 @@ window.CHRONICLE = {
       "to": "styrbjorn",
       "type": "hostile",
       "label": "Spór na Thingu"
+    },
+    {
+      "from": "halfdan",
+      "to": "asgrim",
+      "type": "family",
+      "label": "Ojciec i syn"
     }
   ],
   // Rodzina stanowi jawne powiązanie genealogiczne, nie wymyślone stronnictwo polityczne.

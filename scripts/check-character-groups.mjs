@@ -15,13 +15,13 @@ const value=(primary,dimension,id)=>people.filter(p=>groups.matches(data,p,{
 })).map(p=>p.id).sort();
 const equals=(actual,expected,message)=>assert.equal([...actual].sort().join(","),[...expected].sort().join(","),message);
 
-assert.equal(people.length,25,"25 known player-facing people; do not overwrite earlier cards");
+assert.equal(people.length,29,"29 public characters, including three kings and Orm");
 assert.equal(new Set(ids).size,people.length,"Duplicate person ID");
 equals(value("heroes",null,null),["sianita","halvard","haroks","ylva","floki","asgrim"],"Six playable heroes");
 equals(value("npc",null,null),people.filter(p=>p.grouping?.role==="npc").map(p=>p.id),"NPC filter");
-assert.equal(value("npc",null,null).length,19,"19 NPC including new canonical characters");
+assert.equal(value("npc",null,null).length,23,"23 known NPC");
 equals(value("deceased",null,null),["sigurd","mord","floki"],"Only confirmed deaths");
-equals(value("rulers",null,null),["hroald","sigurd","sianita"],"Former and current jarls");
+equals(value("rulers",null,null),["hroald","sigurd","sianita","alrek","halfdan","audbjorn"],"Confirmed jarls and kings");
 equals(value("captives",null,null),["aslak"],"Existing marked captive");
 equals(value("all","settlements","skjorvik"),["aslak","haki","ragnvald-s"],"Skjǫrvik persons");
 assert.equal(value("all","settlements","hrafnvik").length,23,"Known Hrafnvik associations");
@@ -29,17 +29,21 @@ equals(value("deceased","settlements","hrafnvik"),["sigurd","floki","mord"],"Dea
 equals(value("heroes","settlements","hrafnvik"),["sianita","halvard","haroks","ylva","floki","asgrim"],"Hero settlement");
 assert.equal(value("heroes","settlements","skjorvik").length,0);
 equals(groups.options(data,"settlements").map(p=>p.id),["ejkjavik","hrafnvik","skjorvik"]);
-equals(groups.options(data,"kingdoms").map(p=>p.id),["agder"]);
+equals(groups.options(data,"kingdoms").map(p=>p.id),["agder","hordalands","fjordane"]);
 equals(groups.options(data,"families").map(p=>p.id),["rod-jarla","rod-svali"]);
 assert.equal(groups.options(data,"factions").length,0,"Do not invent factions");
 equals(value("all","families","rod-jarla"),["sigurd","hroald","runa","sten","sianita","halvard"]);
 equals(value("all","families","rod-svali"),["svala","mord","ulf"]);
 equals(value("heroes","kingdoms","agder"),["asgrim"]);
+equals(value("all","kingdoms","agder"),["asgrim","halfdan"]);
+equals(value("all","kingdoms","fjordane"),["audbjorn"]);
+equals(value("all","kingdoms","hordalands"),["alrek"]);
 
 const requiredDescriptions=[
   "sigurd","hroald","runa","sten","sianita","halvard","asgrim","svala",
   "mord","ulf","erik","ragnvald-p","styrbjorn","leif","hakon","floki","aslak",
-  "torvald","morotar","astrid","anslem","haroks","ylva","ragnvald-s","haki"
+  "torvald","morotar","astrid","anslem","haroks","ylva","ragnvald-s","haki",
+  "orm","alrek","halfdan","audbjorn"
 ];
 equals(ids,requiredDescriptions);
 for(const p of people){
@@ -59,7 +63,7 @@ for(const p of people){
         "Unknown "+key+" "+p.id);
   assert.ok(Number.isFinite(p.x)&&Number.isFinite(p.y)&&p.x>=0&&p.y>=0&&
     p.x+180<=1600&&p.y+240<=1000,"Card exceeds 1600×1000 canvas: "+p.id);
-  if(p.image && p.id!=="svala")
+  if(p.image)
     assert.ok(fs.existsSync(p.image),"Missing earlier portrait for "+p.id);
 }
 assert.equal(peopleById.get("sianita").name,"Sianita Gunnarsdóttir",
@@ -123,6 +127,9 @@ for(const p of people.filter(p=>p.grouping.settlementIds?.includes("hrafnvik")))
 for(const id of ["mord","floki"])
   assert.ok(data.places.find(p=>p.id==="eylenda").personIds.includes(id));
 assert.ok(data.places.find(p=>p.id==="skjorvik").personIds.includes("haki"));
+assert.equal(peopleById.get("orm").name,"Orm","Keep Orm identity neutral");
+assert.equal(peopleById.get("orm").grouping.settlementIds,undefined,"Do not conflate Skjoldvik with Skjǫrvik");
+assert.ok(!peopleById.get("orm").description.includes("Półgłos"),"Do not conflate Orm Półgłos and Jednoręki");
 assert.ok(data.places.find(p=>p.id==="skjorvik").personIds.includes("ragnvald-s"));
 
 const positions=people.map(p=>({id:p.id,x:p.x,y:p.y}));
@@ -152,7 +159,7 @@ for(const id of ["character-group-tabs","character-group-dimensions","character-
  "character-group-reset","character-group-empty","character-group-summary"])
   assert.ok(html.includes('id="'+id+'"'),"Missing grouping UI "+id);
 assert.ok(html.includes('src="character-groups.js?v='));
-assert.ok(html.includes('data.js?v=canon-v2'),"Bust public data cache after canonical update");
+assert.ok(html.includes('data.js?v=portraits-rulers-v1'),"Bust public data cache after canonical update");
 assert.ok(css.includes(".person-card[hidden]"));
 assert.ok(app.includes("groupFilter.primary")&&app.includes("state.visibleIds.has(rel.from)"));
 assert.ok(app.includes('card.classList.toggle("is-deceased"')&&
@@ -168,4 +175,16 @@ for(const person of people){
   assert.ok(!/Dawniej używał imienia Styr|znany również jako Stern|nie bohaterem gracza|Nie jest to Ulf Szary|jeden z bohaterów graczy/i.test(person.description),
     "Editorial alias/GM note in public character biography: "+person.id);
 }
-console.log("PASS — 25 canonical biographies, 17 public relationships, dead NPC and Atlas links");
+assert.ok(peopleById.get("sigurd").image.endsWith("Sigurd, Jarl of the Northern Stronghold.png"));
+assert.ok(peopleById.get("svala").image.endsWith("Svala.png"));
+assert.ok(peopleById.get("hakon").image.includes("Hakon Czerwony"));
+assert.ok(peopleById.get("torvald").image.includes("Thorwald"));
+assert.ok(peopleById.get("sten").image.includes("Stern"));
+assert.ok(peopleById.get("ulf").image.includes("Ulf, Vigilant"));
+assert.ok(peopleById.get("orm").image.endsWith("Orm.png"));
+assert.equal(peopleById.get("mord").image,"","Mord portrait still requires verified match");
+assert.ok(hasRel("halfdan","asgrim","family","Ojciec i syn"));
+assert.ok(app.includes("x: dragging.startX + dx / state.zoom") &&
+  app.includes("y: dragging.startY + dy / state.zoom"),"Free card dragging must be unclamped");
+assert.ok(!app.includes("Math.min(1600 - 180, dragging.startX"),"Old card boundary must stay removed");
+console.log("PASS — 29 canonical biographies, 18 public relationships, rulers, images and unrestricted dragging");

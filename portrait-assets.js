@@ -20,6 +20,10 @@ window.SOM_PORTRAITS = Object.freeze({
     "full": "assets/portraits/optimized/floki-full.webp",
     "thumb": "assets/portraits/optimized/floki-thumb.webp"
   },
+  "assets/portraits/Alrek Eriksson.png": {
+    "full": "assets/portraits/optimized/alrek-full.webp",
+    "thumb": "assets/portraits/optimized/alrek-thumb.webp"
+  },
   "assets/portraits/Asgrim.jpeg": {
     "full": "assets/portraits/optimized/asgrim-full.webp",
     "thumb": "assets/portraits/optimized/asgrim-thumb.webp"
@@ -40,6 +44,18 @@ window.SOM_PORTRAITS = Object.freeze({
     "full": "assets/portraits/optimized/erik-full.webp",
     "thumb": "assets/portraits/optimized/erik-thumb.webp"
   },
+  "assets/portraits/Hakiego Torfinnssona.png": {
+    "full": "assets/portraits/optimized/haki-full.webp",
+    "thumb": "assets/portraits/optimized/haki-thumb.webp"
+  },
+  "assets/portraits/Hakon Czerwony, Merchant of Midgard.png": {
+    "full": "assets/portraits/optimized/hakon-full.webp",
+    "thumb": "assets/portraits/optimized/hakon-thumb.webp"
+  },
+  "assets/portraits/Halfdan Czarny.png": {
+    "full": "assets/portraits/optimized/halfdan-full.webp",
+    "thumb": "assets/portraits/optimized/halfdan-thumb.webp"
+  },
   "assets/portraits/Hroald.png": {
     "full": "assets/portraits/optimized/hroald-full.webp",
     "thumb": "assets/portraits/optimized/hroald-thumb.webp"
@@ -52,19 +68,44 @@ window.SOM_PORTRAITS = Object.freeze({
     "full": "assets/portraits/optimized/morotar-full.webp",
     "thumb": "assets/portraits/optimized/morotar-thumb.webp"
   },
+  "assets/portraits/Orm.png": {
+    "full": "assets/portraits/optimized/orm-full.webp",
+    "thumb": "assets/portraits/optimized/orm-thumb.webp"
+  },
   "assets/portraits/Ragnvald Prawomówca.png": {
     "full": "assets/portraits/optimized/ragnvald-p-full.webp",
     "thumb": "assets/portraits/optimized/ragnvald-p-thumb.webp"
+  },
+  "assets/portraits/Ragnvald Skjoldsson.png": {
+    "full": "assets/portraits/optimized/ragnvald-s-full.webp",
+    "thumb": "assets/portraits/optimized/ragnvald-s-thumb.webp"
   },
   "assets/portraits/Runa Hroaldsdottir.png": {
     "full": "assets/portraits/optimized/runa-full.webp",
     "thumb": "assets/portraits/optimized/runa-thumb.webp"
   },
+  "assets/portraits/Sigurd, Jarl of the Northern Stronghold.png": {
+    "full": "assets/portraits/optimized/sigurd-full.webp",
+    "thumb": "assets/portraits/optimized/sigurd-thumb.webp"
+  },
+  "assets/portraits/Stern Haraldson, Norse Noble Warrior.png": {
+    "full": "assets/portraits/optimized/sten-full.webp",
+    "thumb": "assets/portraits/optimized/sten-thumb.webp"
+  },
   "assets/portraits/Styrbjorn Ragnsson.png": {
     "full": "assets/portraits/optimized/styrbjorn-full.webp",
     "thumb": "assets/portraits/optimized/styrbjorn-thumb.webp"
   },
-  "assets/portraits/svala-ketilsdottir-i-synowie.jpg": {
-    "missing": true
+  "assets/portraits/Svala.png": {
+    "full": "assets/portraits/optimized/svala-full.webp",
+    "thumb": "assets/portraits/optimized/svala-thumb.webp"
+  },
+  "assets/portraits/Thorwald, the Viking Blacksmith.png": {
+    "full": "assets/portraits/optimized/torvald-full.webp",
+    "thumb": "assets/portraits/optimized/torvald-thumb.webp"
+  },
+  "assets/portraits/Ulf, Vigilant Lord of the Riverside Hall.png": {
+    "full": "assets/portraits/optimized/ulf-full.webp",
+    "thumb": "assets/portraits/optimized/ulf-thumb.webp"
   }
 });

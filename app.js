@@ -182,9 +182,12 @@
         dragging.moved = true;
         card.classList.add("is-dragging");
         // Przeliczenie pikseli ekranu na jednostki płótna niezależnie od zoomu.
+        // Wolne płótno: bez sztucznej granicy 1600×1000.
+        // Portrety mogą wyjść poza początkową scenę; przyciskiem Dopasuj
+        // użytkownik może ponownie zobaczyć wszystkie widoczne postacie.
         state.positions[p.id] = {
-          x: Math.max(0, Math.min(1600 - 180, dragging.startX + dx / state.zoom)),
-          y: Math.max(0, Math.min(1000 - 240, dragging.startY + dy / state.zoom))
+          x: dragging.startX + dx / state.zoom,
+          y: dragging.startY + dy / state.zoom
         };
         positionCard(p.id);
         drawConnections();
@@ -584,7 +587,7 @@
   }
 
   function setZoom(value) {
-    state.zoom = Math.max(.06, Math.min(3, value));
+    state.zoom = Math.max(.01, Math.min(3, value));
     applyTransform();
   }
   function fit() {
@@ -606,7 +609,7 @@
     const padding = Math.min(52, viewport.clientWidth * .075, viewport.clientHeight * .075);
     const availableWidth = Math.max(100, viewport.clientWidth - padding * 2);
     const availableHeight = Math.max(100, viewport.clientHeight - padding * 2);
-    state.zoom = Math.max(.06, Math.min(1.15,
+    state.zoom = Math.max(.01, Math.min(1.15,
       availableWidth / groupWidth, availableHeight / groupHeight));
     state.panX = (800 - (minX + maxX) / 2) * state.zoom;
     state.panY = (500 - (minY + maxY) / 2) * state.zoom;
@@ -671,7 +674,7 @@
         if (gesture.kind === "pinch" && points.length >= 2) {
           const mid = midpoint(points[0], points[1]);
           const rect = viewport.getBoundingClientRect();
-          const newZoom = Math.max(.06, Math.min(3,
+          const newZoom = Math.max(.01, Math.min(3,
             gesture.startZoom * distance(points[0], points[1]) / gesture.startDistance));
           state.zoom = newZoom;
           // Zachowaj ten sam punkt mapy dokładnie pod środkiem dwóch palców.

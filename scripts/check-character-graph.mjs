@@ -72,10 +72,29 @@ for(let i=1;i<route.points.length;i++)assert.ok(
   "Route must not cross the middle character"
 );
 
+// Cards can be moved arbitrarily far beyond the initial scene, including
+// negative coordinates. Related lines must still connect their borders.
+for(const moved of [
+  {sigurd:{x:-900,y:-550}},
+  {sigurd:{x:2700,y:1750}},
+  {sianita:{x:-1500,y:1400}},
+]){
+  const loose=positionMap(data.people,true);
+  for(const [id,pos] of Object.entries(moved))loose[id]=pos;
+  const visible=new Set(data.people.map(p=>p.id));
+  for(const rel of data.relationships){
+    if(!moved[rel.from]&&!moved[rel.to])continue;
+    const routed=graph.link(rel.from,rel.to,loose,visible);
+    assert.ok(routed?.isClear,"Free drag route must remain clear: "+rel.from+"/"+rel.to);
+    assert.ok(edgePointOnRect(routed.from,loose[rel.from])&&
+      edgePointOnRect(routed.to,loose[rel.to]),
+      "Free drag route must touch both cards: "+rel.from+"/"+rel.to);
+  }
+}
 const html=fs.readFileSync("index.html","utf8");
 const css=fs.readFileSync("styles.css","utf8");
 const app=fs.readFileSync("app.js","utf8");
-assert.ok(html.includes('<script src="graph-geometry.js?v=canon-route-v2" defer></script>'),
+assert.ok(html.includes('<script src="graph-geometry.js?v=free-v1" defer></script>'),
   "Load geometry before app.js");
 assert.ok(html.includes('viewBox="0 0 1600 1000"')&&
   html.includes('class="connections" width="1600" height="1000"'),
