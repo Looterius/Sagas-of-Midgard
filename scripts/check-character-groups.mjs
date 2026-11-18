@@ -34,7 +34,10 @@ equals(groups.options(data,"families").map(p=>p.id),["rod-jarla","rod-svali"]);
 assert.equal(groups.options(data,"factions").length,0,"Do not invent factions");
 equals(value("all","families","rod-jarla"),["sigurd","hroald","runa","sten","sianita","halvard"]);
 equals(value("all","families","rod-svali"),["svala","mord","ulf"]);
-equals(value("heroes","kingdoms","agder"),["asgrim","halfdan"]);
+equals(value("heroes","kingdoms","agder"),["asgrim"]);
+equals(value("all","kingdoms","agder"),["asgrim","halfdan"]);
+equals(value("all","kingdoms","fjordane"),["audbjorn"]);
+equals(value("all","kingdoms","hordalands"),["alrek"]);
 
 const requiredDescriptions=[
   "sigurd","hroald","runa","sten","sianita","halvard","asgrim","svala",
