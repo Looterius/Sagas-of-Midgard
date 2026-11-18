@@ -559,6 +559,7 @@
     })[view];
     if (view === "relationships" && previousView !== "relationships") fit();
     closeCharacter();
+    if (previousView !== view) window.scrollTo(0, 0);
     window.SOM_NAV?.changed();
   }
 
@@ -807,9 +808,11 @@
       }
     }
 
-    if (window.SOM_ATLAS?.getNavigationState()?.region !== route.region)
+    const previousRegion = window.SOM_ATLAS?.getNavigationState()?.region;
+    const previousMap = window.SOM_MAPS?.getCurrent();
+    if (previousRegion !== route.region)
       window.SOM_ATLAS?.showRegion(route.region || "midgard");
-    if (window.SOM_MAPS?.getCurrent() !== route.map)
+    if (previousMap !== route.map)
       window.SOM_MAPS?.show(route.map || "midgard");
 
     const filter = $("#chronicle-place-filter");
@@ -824,7 +827,14 @@
         card.querySelector(".chronicle-expand")?.click();
     }
 
+    const wasView = state.view;
     switchView(route.view);
+    // Wstecz między poziomami Atlasu/Map nie powinno pozostawiać ekranu
+    // przewiniętego do przypadkowego miejsca w poprzedniej krainie.
+    if (wasView === route.view &&
+        ((route.view === "locations" && previousRegion !== route.region) ||
+         (route.view === "maps" && previousMap !== route.map)))
+      window.scrollTo(0, 0);
     if (route.place && data.places.some(p => p.id === route.place && p.visibility === "known"))
       window.SOM_ATLAS?.open(route.place);
     if (route.person && data.people.some(p => p.id === route.person))
