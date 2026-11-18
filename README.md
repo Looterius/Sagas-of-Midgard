@@ -33,8 +33,8 @@ Wersja statyczna, bez bazy, logowania, płatnego API i frameworków. W podstawow
 Do NPC przypisz `image: "assets/nazwa.webp"`, gdy obraz zostanie umieszczony w folderze `assets`. Na start używane są eleganckie zastępcze awatary. Bezpieczniej wrzucać jedynie ilustracje, które wolno publicznie udostępniać.
 
 ## Uprawnienia odwiedzających
-- W publicznej kronice **karty są tylko do odczytu**: gracze mogą otworzyć kartę, przybliżyć mapę i przesuwać jej tło, lecz nie mogą przestawiać NPC-ów.
-- Oficjalne pozycje kart zapisane są w `data.js` i aktualizowane przez właściciela repozytorium / asystenta z dostępem do GitHub.
+- W publicznej kronice **karty i relacje są do odczytu**: gracze mogą przybliżać, przesuwać płótno prawym przyciskiem myszy (także nad kartami), przesuwać tło lewym, a lewym przyciskiem przeciągać pojedyncze karty **wyłącznie lokalnie w bieżącej stronie**. Nie mogą zapisać tych zmian do repozytorium.
+- Oficjalne pozycje kart zapisane są w `data.js` i aktualizowane przez właściciela repozytorium / asystenta z dostępem do GitHub. Ruchy odwiedzających nie zmieniają tych danych; odświeżenie strony przywraca je automatycznie. Przycisk **Przywróć układ** zeruje lokalne przesunięcia w aktualnym filtrowanym widoku.
 - Kronikę wydarzeń można rozszerzać o rozdziały po kolejnych sesjach, aktualizując tablicę `chronicle` w `data.js`.
 
 ## Atlas lokacji — aktualny model
@@ -77,7 +77,7 @@ Kontrola: `node --check maps.js && node scripts/check-public-atlas.mjs && node s
 
 ## Sieć postaci — grupowanie i potwierdzona wiedza
 
-Nowy panel pod wyszukiwarką pozwala wyświetlić tylko wybrane postacie, bez ingerencji w oficjalne pozycje kart. Zakładki: **Wszyscy, Bohaterowie, NPC, Zmarli, Władcy i jarlowie, Jeńcy**. Drugi poziom: **Królestwa i krainy, Osady, Rody i rodziny, Frakcje**. Wybrane kryteria można łączyć (logiczne AND), a wyszukiwarka przeszukuje wyłącznie pasujące karty. Filtry ukrywają inne karty i ich linie relacji; widoczna grupa układa się automatycznie. Powrót do „Wszyscy” przywraca oryginalne współrzędne. Gracze nie zapisują zmian.
+Nowy panel pod wyszukiwarką pozwala wyświetlić tylko wybrane postacie, bez ingerencji w oficjalne pozycje kart. Zakładki: **Wszyscy, Bohaterowie, NPC, Zmarli, Władcy i jarlowie, Jeńcy**. Drugi poziom: **Królestwa i krainy, Osady, Rody i rodziny, Frakcje**. Wybrane kryteria można łączyć (logiczne AND), a wyszukiwarka przeszukuje wyłącznie pasujące karty. Filtry ukrywają inne karty i ich linie relacji; widoczna grupa układa się automatycznie. Powrót do „Wszyscy” przywraca oryginalne współrzędne. Goście mogą tymczasowo przesuwać karty; zmiany nie są zapisywane ani współdzielone.
 
 - `character-groups.js` — wyłącznie reguły filtrowania i tymczasowego układu, nie zapisuje do repozytorium danych graczy.
 - `data.js → people[].grouping` — **opcjonalne, jawnie potwierdzone** informacje: `role: "hero" | "npc"`, `lifeStatus: "deceased"`, `titles: ["jarl", "ruler"]`, `statuses: ["captive"]`, listy `kingdomIds`, `settlementIds`, `familyIds`, `factionIds`.
@@ -111,3 +111,17 @@ Wszyscy figurują w `places.hrafnvik.personIds`, więc mogą być otwierani rów
 - Asgrim: `Asgrim.jpeg` — podpisany plik
 
 **Efekt żałobny:** `app.js` nadaje klasę `is-deceased` kartom osób z `grouping.lifeStatus === "deceased"`. `styles.css` wyszarza ich zdjęcia w sieci i w oknie szczegółów. Nie modyfikujemy oryginalnych obrazów na dysku. Pliki numerowane nie zostały przemianowane, tylko podpięte do właściwych identyfikatorów postaci.
+
+## Sieć postaci — obsługa myszy i więzi Hrafnviku
+
+- **Prawy przycisk + przeciągnięcie**: przesuwanie całego widoku, również po rozpoczęciu na portrecie. Domyślne menu kontekstowe jest wyłączone wyłącznie nad płótnem Sieci postaci.
+- **Lewy przycisk na pustym tle + przeciągnięcie**: przesuwanie całej mapy.
+- **Lewy przycisk na portrecie + przeciągnięcie**: przestawienie tylko tej karty, z aktualizacją linii relacji w trakcie ruchu; prędkość niezależna od przybliżenia.
+- **Zwykłe kliknięcie portretu / Enter / spacja**: otwarcie biografii. Drobny ruch wskaźnika nie powinien uruchamiać przeciągania; po faktycznym przeciągnięciu nie otwiera się przypadkowo biografia.
+- **Przywróć układ**: odtwarza oficjalne współrzędne w „Wszyscy” lub domyślny układ bieżącego filtra. Zmiana filtra także zeruje przesunięcia. Po odświeżeniu strony układ zawsze wraca do oryginału.
+
+### Ujawnione więzi rodzinne
+
+W publicznej kronice brat Sigurda, **Hroald**, został pozbawiony władzy i wzroku. **Sianita i Halvard** są rodzeństwem i dziećmi Sigurda, a więc Hroald jest ich **wujem** (Sianita — jego bratanica; Halvard — bratanek). W `data.js → relationships` są dwa osobne łuki rodzinne do Hroalda oraz wcześniejszy łuk rodzeństwa Sianita–Halvard. Zaręczyny Sianita–Asgrim pozostają niezmienione.
+
+Relacje są jawne i widoczne na mapie **Wszyscy**; gdy filtr ukryje jedną z postaci, nie rysujemy krawędzi do ukrytej karty.
