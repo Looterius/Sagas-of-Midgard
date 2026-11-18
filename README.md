@@ -143,3 +143,18 @@ Test `node scripts/check-character-graph.mjs` kontroluje miejsca zaczepienia, pr
 - Po przejściu do kolejnej karty postaci czytanie zaczyna się od góry. Tab/Shift+Tab przemieszczają się po interaktywnych kontrolkach w karcie; Escape ją zamyka.
 - **Sekrety MG pozostają poza danymi strony**. Nie dodano nowych niepotwierdzonych przynależności.
 - W CI: `node scripts/check-mobile-rwd.mjs` wraz z dotychczasowymi testami Atlasu, map i grafu.
+
+## Wydajność portretów — WebP + loading on demand
+
+**Nie usuwaj i nie nadpisuj oryginalnych obrazów w `assets/portraits/`.** Oryginały służą do ponownej kompresji i stanowią fallback.
+
+Z pliku `data.js → people[].image` generator tworzy w katalogu `assets/portraits/optimized/`:
+- `<person-id>-thumb.webp` (do 480×640 px, WebP quality 73) dla małych kart w Sieci postaci i NPC-ów Atlasu;
+- `<person-id>-full.webp` (do 1200×1600 px, WebP quality 78), o ile jest co najmniej 6% mniejszy od oryginału; w przeciwnym wypadku w szczegółach pozostaje oryginalny plik;
+- `portrait-assets.js` — jawny manifest mapujący aktualne oryginalne ścieżki na wersje WebP i oznaczający nieistniejące pliki (bez zbędnych 404).
+
+**Zachowanie:** `app.js` odracza pobieranie niewidocznych miniatur w Sieci postaci przez `IntersectionObserver` z zakresem 150 px od ekranu mapy. Wersja pełna jest pobierana dopiero przy otwarciu biografii. `atlas.js` używa miniatur WebP dla NPC oraz natywnego `loading="lazy"` dla obrazów poza widokiem. Jeżeli wariant WebP nie jest dostępny, aplikacja próbuje załadować oryginał, a następnie zdalny adres źródła.
+
+Wynik optymalizacji z 18 listopada 2026: **16 plików** skompresowano z **25,24 MiB oryginałów** do **0,50 MiB łącznych miniaturek** oraz **2,03 MiB łącznych wersji do szczegółów** (część już małych JPEG pozostaje oryginałem w widoku pełnym). To zmniejsza transfer wszystkich 16 miniaturek o **około 98%**. `Svala Ketilsdóttir i synowie` nadal nie ma dostarczonego portretu, dlatego używa placeholdera, bez niepotrzebnego żądania.
+
+**Po dodaniu lub podmianie obrazów:** `node scripts/export-public-portrait-references.mjs > /tmp/som-portrait-refs.json`, następnie `python -m pip install Pillow` i `python scripts/optimize-portraits.py /tmp/som-portrait-refs.json`. Zacommituj wygenerowane pliki WebP i `portrait-assets.js` razem ze zmianą w `data.js`. Walidacja CI: `node scripts/check-portrait-assets.mjs`. Nie dodawać ręcznie nazw/sekretów Skalda — manifest budujemy tylko z publicznych `people[]`.
