@@ -81,7 +81,7 @@
 
   function layout(people) {
     // Stabilna, automatyczna siatka tylko dla filtrowanego widoku.
-    const columns = Math.min(5, Math.max(1, Math.ceil(Math.sqrt(people.length * 1.5))));
+    const columns = Math.min(10, Math.max(1, Math.ceil(Math.sqrt(people.length * 1.5))));
     const rows = Math.max(1, Math.ceil(people.length / columns));
     const stepX = 225, stepY = 290, cardWidth = 180, cardHeight = 240;
     const startX = (1600 - (columns - 1) * stepX - cardWidth) / 2;
