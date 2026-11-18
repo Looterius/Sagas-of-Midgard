@@ -83,7 +83,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "",
-      "description": "Sten, znany również jako Stern, jest synem dawnego jarla Hroalda i bratem Runy. Należy do tej gałęzi rodu Hrafnviku, która utraciła władzę po rebelii Sigurda. W dawnych przekazach Sten figurował jako zaginiony, a nawet uznawany za martwego. Jego aktualnego losu nie należy jednak przesądzać bez potwierdzenia wydarzeń. Już samo jego imię przypomina, że potomkowie pokonanego jarla nie zostali wymazani z dziejów osady.",
+      "description": "Sten jest synem dawnego jarla Hroalda i bratem Runy. Należy do tej gałęzi rodu Hrafnviku, która utraciła władzę po rebelii Sigurda. W dawnych przekazach Sten figurował jako zaginiony, a nawet uznawany za martwego. Do dziś opowieści o jego losie pozostają niejednoznaczne, a samo jego imię przypomina, że potomków pokonanego jarla nie wymazano z pamięci osady.",
       "x": 695,
       "y": 10
     },
@@ -105,7 +105,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/841056920_1454607076732851_414940541375700284_n.jpg",
-      "description": "Sianita, tarczowniczka i jarlowa Hrafnviku, przejęła władzę po zamordowaniu ojca, Sigurda. Jej nazwisko pozostaje Gunnarsdóttir — tak zapisała je saga. Odziedziczyła osadę podzieloną między ludzi nowego porządku a stronników oślepionego Hroalda, własnego stryja. Na Wielkim Althingu Eylendy mierzyła się z roszczeniami możnych i oskarżeniami o los zdobytej osady. Odmówiła królowi Alrekowi przysięgi i małżeństwa z jego synem; jej decyzje doprowadziły drużynę do próby odzyskania Gungnir. Narzeczona Asgrima, niesie ciężar władzy, dawnych win i nowych zobowiązań.",
+      "description": "Sianita, tarczowniczka i jarlowa Hrafnviku, przejęła władzę po zamordowaniu ojca, Sigurda. Odziedziczyła osadę podzieloną między ludzi nowego porządku a stronników oślepionego Hroalda, własnego stryja. Na Wielkim Althingu Eylendy mierzyła się z roszczeniami możnych i oskarżeniami o los zdobytej osady. Odmówiła królowi Alrekowi przysięgi i małżeństwa z jego synem; jej decyzje doprowadziły drużynę do próby odzyskania Gungnir. Narzeczona Asgrima, niesie ciężar władzy, dawnych win i nowych zobowiązań.",
       "x": 915,
       "y": 10
     },
@@ -124,7 +124,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/836508976_2515877412221096_575784062671443810_n.jpg",
-      "description": "Halvard, znany jako „Snake-Eye”, jest synem Sigurda i bratem jarlowej Sianity. Dawniej używał imienia Styr, ale obecne imię postaci to Halvard. Jako wyznawca Lokiego woli podstęp, negocjacje i grę wpływów od prostych deklaracji. Na Althingu Eylendy zabiegał o poparcie dla drużyny, prowadząc trudne rozmowy z przedstawicielami innych krain. To, co robił w cieniu politycznych sporów, miało znaczenie równie wielkie jak publiczne przemówienia siostry.",
+      "description": "Halvard, znany jako „Snake-Eye”, jest synem Sigurda i bratem jarlowej Sianity. Jako wyznawca Lokiego woli podstęp, negocjacje i grę wpływów od prostych deklaracji. Na Althingu Eylendy zabiegał o poparcie dla drużyny, prowadząc trudne rozmowy z przedstawicielami innych krain. To, co robił w cieniu politycznych sporów, miało znaczenie równie wielkie jak publiczne przemówienia siostry.",
       "x": 1135,
       "y": 10
     },
@@ -143,7 +143,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/Asgrim.jpeg",
-      "description": "Asgrim, syn Halfdana Czarnego, władcy Agder, przybył z własnymi tarczownikami i dołączył do drużyny po śmierci Flokiego. Jego zaręczyny z Sianitą połączyły losy rodu z Agder z przyszłością Hrafnviku. Zna opowieści i polityczne zamiary krain południa; wspominał między innymi zasłyszaną historię o ziemiach Albionu, nie przedstawiając jej jako własnego planu podboju. Choć jego pochodzenie otwiera drzwi możnych, w tej sadze występuje również jako towarzysz wyprawy i jeden z bohaterów graczy.",
+      "description": "Asgrim, syn Halfdana Czarnego, władcy Agder, przybył z własnymi tarczownikami i dołączył do drużyny po śmierci Flokiego. Jego zaręczyny z Sianitą połączyły losy rodu z Agder z przyszłością Hrafnviku. Zna opowieści i polityczne zamiary krain południa; wspominał między innymi zasłyszaną historię o ziemiach Albionu, nie przedstawiając jej jako własnego planu podboju. Choć pochodzenie otwiera mu drzwi możnych, Asgrim towarzyszy również wojownikom Hrafnviku i dzieli z nimi ryzyko drogi.",
       "x": 1355,
       "y": 10
     },
@@ -180,7 +180,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "",
-      "description": "Mord był jednym z bliźniaczych synów Svali Ketilsdóttir i zmarłego Ketila Brandssona. Wyrastał w rodzinie, która długo domagała się sprawiedliwości po krwawym przewrocie. Brał udział w działaniach wojowników Hrafnviku przeciw obcej osadzie, a na Wielkim Althingu stanął przed możnymi jako świadek tych wydarzeń. Przyznał się do własnego udziału i oświadczył, że działał dla Jarlowej. Później zginął podczas wyprawy na Eylendzie. W kronice pozostaje zmarłym NPC-em, nie bohaterem gracza.",
+      "description": "Mord był jednym z bliźniaczych synów Svali Ketilsdóttir i zmarłego Ketila Brandssona. Wyrastał w rodzinie, która długo domagała się sprawiedliwości po krwawym przewrocie. Brał udział w działaniach wojowników Hrafnviku przeciw obcej osadzie, a na Wielkim Althingu stanął przed możnymi jako świadek tych wydarzeń. Przyznał się do własnego udziału i oświadczył, że działał dla Jarlowej. Później zginął podczas wyprawy na Eylendzie. Do pamięci o utraconym ojcu jego rodziny dopisana została śmierć następnego pokolenia.",
       "x": 255,
       "y": 255
     },
@@ -198,7 +198,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "",
-      "description": "Ulf jest synem Svali Ketilsdóttir i bliźniaczym bratem Morda. Ich ojciec, Ketil Brandsson, został zabity w czasie przewrotu, a matka przez długi czas zabiegała o uznanie krzywdy i należne zadośćuczynienie. Los Ulfa splótł się z nowym porządkiem Hrafnviku, nadanym rodzinie gospodarstwem i niebezpiecznymi wyprawami ludzi Jarlowej. Po śmierci brata pozostał jednym z żywych świadków tego, jak dawne długi krwi obciążają kolejne pokolenie. Nie jest to Ulf Szary, inny człowiek znany z dawnych opowieści.",
+      "description": "Ulf jest synem Svali Ketilsdóttir i bliźniaczym bratem Morda. Ich ojciec, Ketil Brandsson, został zabity w czasie przewrotu, a matka przez długi czas zabiegała o uznanie krzywdy i należne zadośćuczynienie. Los Ulfa splótł się z nowym porządkiem Hrafnviku, nadanym rodzinie gospodarstwem i niebezpiecznymi wyprawami ludzi Jarlowej. Po śmierci brata pozostał jednym z żywych świadków tego, jak dawne długi krwi obciążają kolejne pokolenie. Po śmierci Morda jego imię nierozerwalnie związało się z pamięcią o bracie i losem ich rodziny.",
       "x": 475,
       "y": 255
     },
@@ -400,7 +400,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/836713553_1631673708686109_4202120061548436723_n.png",
-      "description": "Ylva jest łuczniczką drużyny Hrafnviku, często przedstawianą z sową u boku. Tam, gdzie wojownicy wolą otwartą walkę, jej łuk, cierpliwość i czujność pozwalają dostrzegać więcej. Towarzyszyła wyprawom drużyny oraz uczestniczyła w wydarzeniach Wielkiego Althingu na Eylendzie. Wśród przedstawicieli różnych krain, wojowników i wyznawców dawnych bogów poznawała obyczaje oraz opowieści, które wykraczały poza codzienność rodzinnej osady. Pozostaje jednym z żyjących bohaterów tej sagi.",
+      "description": "Ylva jest łuczniczką drużyny Hrafnviku, często przedstawianą z sową u boku. Tam, gdzie wojownicy wolą otwartą walkę, jej łuk, cierpliwość i czujność pozwalają dostrzegać więcej. Towarzyszyła wyprawom drużyny oraz uczestniczyła w wydarzeniach Wielkiego Althingu na Eylendzie. Wśród przedstawicieli różnych krain, wojowników i wyznawców dawnych bogów poznawała obyczaje oraz opowieści, które wykraczały poza codzienność rodzinnej osady. Jej droga wciąż wiedzie przez nieznane szlaki, gdzie opowieści Północy dopiero nabierają kształtu.",
       "x": 585,
       "y": 745
     },
