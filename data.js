@@ -980,7 +980,7 @@ window.CHRONICLE = {
       ]
     },
     {
-      "id": "wielki-althing",
+      "id": "glosy-althingu",
       "chapter": "IV",
       "title": "Wielki Althing Eylendy",
       "placeId": "ejkjavik",
