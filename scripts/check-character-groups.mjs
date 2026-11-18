@@ -28,7 +28,7 @@ assert.equal(value("all","settlements","hrafnvik").length,23,"Known Hrafnvik ass
 equals(value("deceased","settlements","hrafnvik"),["sigurd","floki","mord"],"Dead Hrafnvik persons");
 equals(value("heroes","settlements","hrafnvik"),["sianita","halvard","haroks","ylva","floki","asgrim"],"Hero settlement");
 assert.equal(value("heroes","settlements","skjorvik").length,0);
-equals(groups.options(data,"settlements").map(p=>p.id),["hrafnvik","skjorvik"]);
+equals(groups.options(data,"settlements").map(p=>p.id),["ejkjavik","hrafnvik","skjorvik"]);
 equals(groups.options(data,"kingdoms").map(p=>p.id),["agder"]);
 equals(groups.options(data,"families").map(p=>p.id),["rod-jarla","rod-svali"]);
 assert.equal(groups.options(data,"factions").length,0,"Do not invent factions");
