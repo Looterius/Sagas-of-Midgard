@@ -56,7 +56,7 @@ for(const id of ["agder","hordalands","eylenda","gardarike"]) {
  const desc=lore.regions[id].join(" ").toLowerCase();
  assert.ok(!desc.includes("skald"),"Player-facing prose references GM role: "+id);
 }
-assert.ok(lore.regions.eylenda.join(" ").includes("Ejkjaviku"),
+assert.ok(lore.regions.eylenda.join(" ").includes("zgromadzenie odbyło się jednak w osadzie Ejkjavik"),
  "Must preserve campaign Althing in Ejkjavik");
 assert.ok(lore.regions.hordalands.join(" ").includes("Fjordane"),
  "Trade Hordalands vs craft Fjordane must be explicit");
