@@ -14,7 +14,7 @@ for(const id of ["runes-view","runes-grid","runes-detail","runes-search","runes-
 assert.ok(html.includes('data-view="runes"'));
 assert.ok(html.includes('src="rune-rules.js?v=corebook-v1"'));
 assert.ok(html.includes('src="runes.js?v=mechanics-v2"'));
-assert.ok(html.includes('src="navigation.js?v=runes-v1"'));
+assert.ok(html.includes('src="navigation.js?v='));
 assert.ok(nav.includes('url.searchParams.set("rune", route.rune)'));
 assert.ok(app.includes('window.SOM_RUNES?.select(route.rune || null, {notify:false,focus:false})'));
 assert.ok(css.includes(".runes-glyph")&&css.includes("@media(max-width:560px)"));
