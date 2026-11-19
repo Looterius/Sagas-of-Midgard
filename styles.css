@@ -867,3 +867,10 @@ body.map-fullscreen-lock{overflow:hidden}
 @media(max-width:850px){.runes-layout{grid-template-columns:1fr}.runes-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.runes-detail{position:static;min-height:250px}}
 @media(max-width:560px){.runes-view{padding:20px 15px 38px}.runes-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.runes-tile{min-height:123px;padding:12px 5px}.runes-glyph{font-size:55px}.runes-tile-name{font-size:12px}.runes-tile-meaning{font-size:10px}.runes-detail-glyph{font-size:79px;min-width:80px}.runes-detail-top{gap:12px}.runes-detail{padding:17px}}
 @media(max-width:380px){.runes-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Pozycje run, osobno z parametrami mechanicznymi. */
+.runes-positions{list-style:none;padding:0;margin:16px 0 22px;display:grid;gap:10px}
+.runes-position{padding:14px 16px;border:1px solid #776143;border-left:3px solid #d7b982;background:#211f20;color:#e4d7c4}
+.runes-position-label{display:block;margin-bottom:7px;font:700 12px/1.5 system-ui,sans-serif;letter-spacing:.08em;color:#eed09b}
+.runes-position-desc{font:14px/1.7 system-ui,sans-serif;margin:0;overflow-wrap:anywhere}
+.runes-rules-glossary{font:12px/1.7 system-ui,sans-serif;color:#c2b5a2;margin:8px 0}
+@media(max-width:560px){.runes-position{padding:12px}.runes-position-desc{font-size:13px}}
