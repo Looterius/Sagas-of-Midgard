@@ -32,7 +32,7 @@ assert.equal(entries.get("draugry-kurhanu").eventId,"kurhan-gungnir");
 assert.equal(entries.get("harald-hardrada-nieumarly").placeId,"hardrada-mound");
 assert.equal(entries.get("zjawy-z-gospodarstwa").eventId,"gospodarstwo-zapomnianych");
 assert.match(entries.get("zjawy-z-gospodarstwa").history,/nie pokonała ich w bitwie/);
-assert.equal(data.items.length,1,"Item catalog untouched");
+assert.equal(data.items.length,4,"Four public item cards including Gungnir");
 const images=[
  ["gods-cauldron","assets/locations/Boiling Lake Beneath Stormy Peaks.png"],
  ["harstad","assets/locations/Harstad_ Royal Mead-Hall at Dusk.png"],

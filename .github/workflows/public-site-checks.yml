@@ -46,6 +46,8 @@ jobs:
         run: node scripts/check-navigation-history.mjs
       - name: Check public catalog and shareable deep links
         run: node scripts/check-public-deep-links.mjs
+      - name: Check handout-safe item cards
+        run: node scripts/check-player-items.mjs
       - name: Check revealed Bestiary encounters and location art
         run: node scripts/check-bestiary-encounters.mjs
       - name: Check readable Chronicle chapters and event navigation

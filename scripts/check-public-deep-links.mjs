@@ -12,7 +12,7 @@ const data=source.window.CHRONICLE, groups=source.window.SOM_GROUPS;
 const people=new Map(data.people.map(p=>[p.id,p]));
 assert.equal(data.people.length,32);
 assert.equal(data.bestiary.length,5);
-assert.equal(data.items.length,1);
+assert.equal(data.items.length,4);
 const knownPlaces=new Set(data.places.filter(p=>p.visibility==="known").map(p=>p.id));
 const knownEvents=new Set(data.chronicle.map(e=>e.id));
 for(const [kind,entries] of [["bestiary",data.bestiary],["items",data.items]]){
@@ -21,7 +21,8 @@ for(const [kind,entries] of [["bestiary",data.bestiary],["items",data.items]]){
   assert.ok(entry.name && entry.summary && entry.history && entry.kind);
   // Pierwszy sezon: Backahast nie ma jeszcze osobnej publicznej karty miejsca
   // ani rozdziału. Nie wolno podłączać go do niepowiązanego wydarzenia.
-  if (kind === "bestiary" && entry.id === "backahast") {
+  if ((kind === "bestiary" && entry.id === "backahast") ||
+      (kind === "items" && entry.id !== "gungnir")) {
     assert.equal(entry.placeId,null);
     assert.equal(entry.eventId,null);
     assert.ok(entry.locationLabel);
@@ -38,7 +39,9 @@ assert.deepEqual(Array.from(data.bestiary,entry=>entry.id),[
   "troll-w-klatce","backahast","draugry-kurhanu",
   "harald-hardrada-nieumarly","zjawy-z-gospodarstwa"
 ]);
-assert.equal(data.items[0].id,"gungnir");
+assert.deepEqual(Array.from(data.items,e=>e.id),[
+ "gungnir","hrafnsauga-oko-kruka","srebrne-krazki","zlote-jablka-idunn"
+]);
 const captive=people.get("ragnvald-s");
 assert.ok(captive.grouping.statuses.includes("captive"));
 assert.ok(captive.grouping.settlementIds.includes("hrafnvik"));
@@ -129,6 +132,9 @@ const versions=[
  {url:"?view=bestiary&entry=harald-hardrada-nieumarly",check:r=>r.view==="bestiary"&&r.entry==="harald-hardrada-nieumarly"},
  {url:"?view=bestiary&entry=zjawy-z-gospodarstwa",check:r=>r.view==="bestiary"&&r.entry==="zjawy-z-gospodarstwa"},
  {url:"?view=items&entry=gungnir",check:r=>r.view==="items"&&r.entry==="gungnir"},
+ {url:"?view=items&entry=hrafnsauga-oko-kruka",check:r=>r.view==="items"&&r.entry==="hrafnsauga-oko-kruka"},
+ {url:"?view=items&entry=srebrne-krazki",check:r=>r.view==="items"&&r.entry==="srebrne-krazki"},
+ {url:"?view=items&entry=zlote-jablka-idunn",check:r=>r.view==="items"&&r.entry==="zlote-jablka-idunn"},
  {url:"?view=runes&rune=algiz",check:r=>r.view==="runes"&&r.rune==="algiz"}
 ];
 for(const entry of versions){

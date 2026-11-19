@@ -1550,6 +1550,39 @@ window.CHRONICLE = {
       "symbol": "ᚨ",
       "summary": "Boska włócznia odzyskana z kurhanu Haralda Hardrady.",
       "history": "Bohaterowie wyprawili się na Eylendę, by odzyskać Gungnir z kurhanu Haralda Hardrady. Zdobycie włóczni kosztowało życie Flokiego, Morda i dziesięciu braci krwi. Oręż powrócił z drużyną do Hrafnviku; nie ustanowiono jego nowego właściciela. Konkretne właściwości mechaniczne włóczni nie zostały publicznie opisane."
+    },
+    {
+      "id": "hrafnsauga-oko-kruka",
+      "name": "Hrafnsauga — „Oko Kruka”",
+      "kind": "Zaginiony relikt rodowy",
+      "placeId": null,
+      "eventId": null,
+      "symbol": "ᚨ",
+      "locationLabel": "Pierwszy tom · relikt zaginiony po zabójstwie jarla",
+      "summary": "Stary skarb rodu, który zniknął tej samej nocy, gdy zamordowano jarla. Jego wygląd przywodzi na myśl symbol Odyna.",
+      "history": "Hrafnsauga, nazywane Okiem Kruka, należało do najcenniejszych pamiątek rodu jarla. Po jego śmierci relikt zaginął. Dwa kunsztownie wykonane krucze łby obejmują ciemny, niemal szklisty rdzeń, a wokół biegną drobne znaki runiczne. Przedmiot nie wydaje się wykonany ani z kamienia, ani z żelaza. Jego obecne położenie i właściwości pozostają nieznane bohaterom."
+    },
+    {
+      "id": "srebrne-krazki",
+      "name": "Srebrne krążki",
+      "kind": "Niezwykłe srebro · ślad z pierwszego tomu",
+      "placeId": null,
+      "eventId": null,
+      "symbol": "ᛟ",
+      "locationLabel": "Pierwszy tom · ślad związany ze Skjoldvik",
+      "summary": "Gładkie, niemal idealnie okrągłe kawałki srebra, jakich nie sposób łatwo porównać ze zwykłym kruszcem kowala.",
+      "history": "Krążki wyglądają jak srebro, ale ich forma budzi niepokój: brzeg jest tak równy, jak gdyby nie kształtował go młot, a powierzchnia nie przypomina zwyczajnie kutego metalu. Bohaterowie dowiedzieli się, że przybysz płacił podobnymi krążkami ludziom Skjoldvik. Sam ich wygląd i fakt używania ich jako zapłaty nie wyjaśniają ani miejsca wytworzenia, ani znaczenia tego srebra."
+    },
+    {
+      "id": "zlote-jablka-idunn",
+      "name": "Złote jabłka Idunn",
+      "kind": "Motyw z podań · niepotwierdzony łup",
+      "placeId": null,
+      "eventId": null,
+      "symbol": "ᛁ",
+      "locationLabel": "Nordyckie podania · brak potwierdzonego znalezienia w Kronice",
+      "summary": "Złociste owoce znane z opowieści o Idunn, którym przypisuje się moc zachowania młodości bogów.",
+      "history": "W pieśniach o Asgardzie Idunn strzeże jabłek, dzięki którym bogowie zachowują młodość. Dla Drengrów to opowieść o wielkim darze, utracie i nieprzemijającym życiu, nie zwykły opis sadu. Publiczna Kronika nie potwierdza, by drużyna odnalazła takie owoce lub poznała ich działanie. Wpis zachowuje motyw z podań, bez ustanawiania przedmiotu w ekwipunku bohaterów i bez podawania fikcyjnych premii."
     }
   ]
 };
