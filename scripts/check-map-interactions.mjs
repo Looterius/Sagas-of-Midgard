@@ -79,7 +79,8 @@ assert.ok(app.includes('function openAtlasPlace(id)') &&
   app.includes('switchView("maps");') &&
   app.includes('window.SOM_ATLAS?.open(id)'),
   "Map place links must open within Atlas świata");
-assert.ok(app.includes('if (b.dataset.view === "maps") window.SOM_MAPS?.show("drengrlands")'));
+assert.ok(app.includes('window.SOM_MAPS?.show("drengrlands")'),
+  "Map tab still starts on the actual campaign map");
 assert.ok(app.includes('window.SOM_ATLAS?.showRegion("drengrlands");'),
   "Atlas world must open directly at known lands");
 const css=fs.readFileSync("styles.css","utf8");
