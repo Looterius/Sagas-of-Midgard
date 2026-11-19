@@ -225,3 +225,19 @@ Zaktualizowany manifest portretów i warianty WebP są generowane na podstawie w
 - Osobny układ pozycji jest utrzymywany **w pamięci bieżącej wizyty dla każdego filtra**, także po przełączeniu na „Władcy i jarlowie” i z powrotem; „Przywróć układ” resetuje tylko aktualną grupę. Po przeładowaniu strony układ wraca do domyślnego — publiczny kod nie zapisuje pozycji graczy.
 
 **Synchronizacja z najnowszą kroniką:** zachowano pięć rozdziałów i 21 publicznych wydarzeń z równoległego commita, a także pisownię Halward i Skjordvik. Nowe więzi i mechanika przeciągania zostały nałożone na te materiały, nie zastąpiły ich.
+
+## Łatwe udostępnianie, prawdziwy pełny ekran i nowe działy (19.11.2026)
+
+### Link do dowolnego widoku
+Przycisk **„Kopiuj link”** w nagłówku generuje adres aktualnej zakładki, wybranego filtra, otwartej karty postaci lub lokacji, poziomu mapy, wydarzenia Kroniki albo jawnego wpisu Bestiariusza/Przedmiotów. Adres jest aktualizowany równocześnie z `history.pushState`, ale **Wstecz** nadal odtwarza poprzednie kroki wewnątrz aplikacji. Początkowy link z query wczytywany jest przez `navigation.js` bez serwera, np. `?view=relationships&grupa=rulers`, `?grupa=rulers`, `?view=relationships&dimension=families&value=rod-halfdana`, `?view=locations&place=hrafnvik`, `?view=bestiary&entry=troll-w-klatce` i `?view=items&entry=gungnir`. Wszystkie identyfikatory linków muszą istnieć w danych publicznych; **nie publikować sekretów MG w adresach URL**.
+
+### Pełny ekran
+W Sieci postaci są **dwa odrębne przyciski**: `Dopasuj` tylko obejmuje wszystkie widoczne karty, a `Pełny ekran` włącza natywny Fullscreen API na całej sekcji sieci (narzędzia, filtry, karty), ewentualnie CSS fallback, jeśli API niedostępne. Drugi klik lub Escape kończy pełny ekran. Reszta UI pozostaje bez zmian.
+
+### Rozszerzenie grupowania
+**6 jawnych rodzin**, w tym nowy `Ród Halfdana Czarnego` łączący Halfdana i jego syna Asgrima. Rodzina Morotara (Floki, Haroks, przybrany ojciec) i rodzina Astrid/Ylvy były obecne wcześniej. Osobne **frakcje** nie oznaczają pokrewieństwa: `Drużyna Hrafnviku` (6 graczy), `Berserkerzy` (potwierdzony Haroks) i `Czciciele Odyna` (Floki i Torvald, związani z powrotem do wiary w Thora i Odyna). Nie dopisujemy przynależności na podstawie samego pochodzenia lub wyglądu. Ragnvald Skjoldsson ma `statuses:["captive"]` i dostaje widoczny znacznik **JENIEC** również na swojej karcie oraz w biografii.
+
+### Nowe działy nawigacji
+**Bestiariusz**: pierwsza jawna karta — troll napotkany w żelaznej klatce w Dolinie Olbrzymów podczas rozegranej wyprawy. **Przedmioty**: pierwsza jawna karta — Gungnir odzyskany z kurhanu Haralda Hardrady, sprowadzony do Hrafnviku. Opisy są oparte wyłącznie na `data.chronicle`, bez wymyślania zdolności, statystyk, pochodzenia czy przyszłych wydarzeń. Oba działy łączą się z powiązanymi wydarzeniami Kroniki i miejscami Atlasu; mają udostępnialne, rozwijane karty. Kolejne wpisy dopiero po odkryciu w kampanii.
+
+Testy: `node scripts/check-public-deep-links.mjs` + dotychczasowe regresje.

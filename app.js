@@ -21,6 +21,7 @@
     visibleIds: new Set(data.people.map(p => p.id))
   };
   const groupFilter = { primary: "all", dimension: null, value: null, expanded: null, search: "" };
+  const activeCatalog = { bestiary: null, items: null };
   // Indywidualny, lokalny układ dla każdego widoku/filtra. Zmiana zakładki
   // nie może kasować pozycji, które użytkownik właśnie sam ustawił.
   const savedLayouts = new Map();
@@ -160,10 +161,13 @@
       const name = make("div", "card-name" + (p.name.length > 21 ? " long" : ""), p.name);
       card.appendChild(name);
       card.appendChild(make("span", "card-corner", "ᛟ"));
-      if (p.grouping?.role === "hero" || p.grouping?.lifeStatus === "deceased") {
-        const dead = p.grouping.lifeStatus === "deceased";
-        const marker = make("span", "person-role-badge" + (dead ? " is-deceased" : ""),
-          dead ? "† ZMARŁY" : "BOHATER");
+      if (p.grouping?.role === "hero" || p.grouping?.lifeStatus === "deceased" ||
+          p.grouping?.statuses?.includes("captive")) {
+        const dead = p.grouping?.lifeStatus === "deceased";
+        const captive = p.grouping?.statuses?.includes("captive");
+        const label = dead ? "† ZMARŁY" : captive ? "JENIEC" : "BOHATER";
+        const marker = make("span", "person-role-badge" +
+          (dead ? " is-deceased" : captive ? " is-captive" : ""), label);
         card.appendChild(marker);
       }
       layer.appendChild(card);
@@ -388,7 +392,8 @@
     state.selected = id;
     nodes.forEach((el, key) => el.classList.toggle("selected", key === id));
     $("#inspector-type").textContent = p.kind.toUpperCase() +
-      (p.grouping?.lifeStatus === "deceased" ? " · ZMARŁY" : "") + " · KRONIKA";
+      (p.grouping?.lifeStatus === "deceased" ? " · ZMARŁY" :
+       p.grouping?.statuses?.includes("captive") ? " · JENIEC" : "") + " · KRONIKA";
     $("#inspector-name").textContent = p.name;
     $("#inspector-description").textContent =
       p.description || "Postać znana z kroniki. Jej historia i motywacje będą uzupełniane wraz z odkryciami graczy.";
@@ -513,6 +518,83 @@
     });
   }
 
+  // Bestiariusz i przedmioty zawierają wyłącznie wydarzenia już zapisane
+  // w PUBLICZNEJ kronice. Brak danych = pusty dział, bez sekretów MG.
+  function setCatalogEntry(view, id) {
+    const container = $(view === "bestiary" ? "#bestiary-list" : "#items-list");
+    if (!container) return;
+    const selected = [...container.querySelectorAll(".lore-entry")]
+      .find(node => node.dataset.entryId === id) ? id : null;
+    activeCatalog[view] = selected;
+    for (const card of container.querySelectorAll(".lore-entry"))
+      card.open = card.dataset.entryId === selected;
+  }
+
+  function renderCatalog(view, entries) {
+    const container = $(view === "bestiary" ? "#bestiary-list" : "#items-list");
+    container.replaceChildren();
+    const knownEvents = new Set((data.chronicle || []).map(event => event.id));
+    const knownPlaces = new Set((data.places || [])
+      .filter(place => place.visibility === "known").map(place => place.id));
+    for (const entry of entries || []) {
+      if (!entry?.id || !entry.name || !knownEvents.has(entry.eventId) ||
+          !knownPlaces.has(entry.placeId)) continue;
+      const card = make("details", "lore-entry");
+      card.dataset.entryId = entry.id;
+      const summary = make("summary", "lore-entry-summary");
+      const illustration = make("span", "lore-entry-symbol", entry.symbol || "ᛟ");
+      illustration.setAttribute("aria-hidden", "true");
+      summary.appendChild(illustration);
+      const content = make("div", "lore-entry-overview");
+      content.appendChild(make("span", "lore-entry-kind", entry.kind));
+      content.appendChild(make("h3", "lore-entry-title", entry.name));
+      content.appendChild(make("p", "lore-entry-excerpt", entry.summary));
+      summary.appendChild(content);
+      summary.appendChild(make("span", "lore-entry-arrow", "⌄"));
+      card.appendChild(summary);
+      const body = make("div", "lore-entry-detail");
+      body.appendChild(make("p", "", entry.history));
+      const actions = make("div", "lore-entry-actions");
+      const place = (data.places || []).find(p => p.id === entry.placeId);
+      const atlasLink = make("button", "lore-entry-action", "⌖ " + (place?.name || "Atlas"));
+      atlasLink.type = "button";
+      atlasLink.addEventListener("click", () => {
+        switchView("locations");
+        window.SOM_ATLAS?.open(entry.placeId);
+      });
+      actions.appendChild(atlasLink);
+      const eventLink = make("button", "lore-entry-action", "ᚱ Zobacz w Kronice");
+      eventLink.type = "button";
+      eventLink.addEventListener("click", () => {
+        switchView("chronicle");
+        const target = document.querySelector('[data-event-id="' + entry.eventId + '"]');
+        if (!target) return;
+        if (target.querySelector(".chronicle-story")?.hidden)
+          target.querySelector(".chronicle-expand")?.click();
+        target.scrollIntoView({behavior:"smooth",block:"center"});
+      });
+      actions.appendChild(eventLink);
+      body.appendChild(actions);
+      card.appendChild(body);
+      card.addEventListener("toggle", () => {
+        if (card.open) {
+          if (activeCatalog[view] === entry.id) return;
+          activeCatalog[view] = entry.id;
+          for (const other of container.querySelectorAll(".lore-entry"))
+            if (other !== card) other.open = false;
+          window.SOM_NAV?.changed();
+        } else if (activeCatalog[view] === entry.id) {
+          activeCatalog[view] = null;
+          window.SOM_NAV?.changed();
+        }
+      });
+      container.appendChild(card);
+    }
+    if (!container.children.length)
+      container.appendChild(make("p", "lore-catalog-empty",
+        "Brak jeszcze opisanych odkryć w tym dziale. Nowe wpisy pojawią się po kolejnych sesjach."));
+  }
+
   function renderChronicle() {
     const placeMap = new Map(data.places.map(p => [p.id, p]));
     const filter = $("#chronicle-place-filter");
@@ -609,19 +691,28 @@
     state.view = view;
     for (const b of document.querySelectorAll("[data-view]"))
       b.classList.toggle("active", b.dataset.view === view);
-    const viewIds = { relationships: "relationships-view", maps: "maps-view", locations: "locations-view", chronicle: "chronicle-view" };
+    const viewIds = {
+      relationships: "relationships-view", maps: "maps-view",
+      locations: "locations-view", chronicle: "chronicle-view",
+      bestiary: "bestiary-view", items: "items-view"
+    };
     for (const section of document.querySelectorAll(".view")) {
       const show = section.id === viewIds[view];
       section.classList.toggle("active", show);
       section.hidden = !show;
     }
-    $("#page-title").textContent = ({ relationships: "Sieć postaci", maps: "Mapy świata", locations: "Atlas lokacji", chronicle: "Kronika wydarzeń" })[view];
-    $("#eyebrow").textContent = ({ relationships: "SAGA · ŚWIAT POSTACI", maps: "SAGA · KARTOGRAFIA", locations: "SAGA · ODKRYTE KRAINY", chronicle: "SAGA · ZAPISANE CZYNY" })[view];
+    $("#page-title").textContent = ({ relationships: "Sieć postaci", maps: "Mapy świata", locations: "Atlas lokacji",
+       chronicle: "Kronika wydarzeń", bestiary: "Bestiariusz", items: "Przedmioty" })[view];
+    $("#eyebrow").textContent = ({ relationships: "SAGA · ŚWIAT POSTACI", maps: "SAGA · KARTOGRAFIA",
+       locations: "SAGA · ODKRYTE KRAINY", chronicle: "SAGA · ZAPISANE CZYNY",
+       bestiary: "SAGA · ZNANE STWORZENIA", items: "SAGA · RELIKWIE I PRZEDMIOTY" })[view];
     $("#page-description").textContent = ({
       relationships: "Portrety, powiązania i losy ludzi Północy.",
       maps: "Interaktywne mapy poznanych krain i miejsc.",
       locations: "Miejsca odwiedzone i wspominane w kronice.",
-      chronicle: "Dzieje bohaterów spisane w pamięci Północy."
+      chronicle: "Dzieje bohaterów spisane w pamięci Północy.",
+      bestiary: "Istoty napotkane w znanych już wyprawach.",
+      items: "Odkryte relikwie i przedmioty drużyny."
     })[view];
     if (view === "relationships" && previousView !== "relationships") fit();
     closeCharacter();
@@ -797,6 +888,76 @@
   $("#zoom-in").addEventListener("click", () => setZoom(state.zoom * 1.17));
   $("#zoom-out").addEventListener("click", () => setZoom(state.zoom / 1.17));
   $("#fit").addEventListener("click", fit);
+
+  // Dopasuj ≠ Pełny ekran. Fullscreen API, a gdy przeglądarka go blokuje
+  // (np. część przeglądarek na iOS), bezpieczna nakładka zajmująca cały ekran.
+  const fullscreenSection = $("#relationships-view");
+  const fullscreenButton = $("#fullscreen-toggle");
+  function isFullScreen() {
+    return document.fullscreenElement === fullscreenSection ||
+      fullscreenSection.classList.contains("is-fullscreen-fallback");
+  }
+  function updateFullScreen() {
+    const enabled = isFullScreen();
+    fullscreenButton.setAttribute("aria-pressed", String(enabled));
+    fullscreenButton.setAttribute("aria-label", enabled ? "Wyjdź z pełnego ekranu" : "Włącz pełny ekran");
+    fullscreenButton.title = enabled ? "Zamknij pełny ekran" : "Otwórz pełny ekran";
+    const caption = fullscreenButton.querySelector("span");
+    if (caption) caption.textContent = enabled ? "Zamknij" : "Pełny ekran";
+    if (state.view === "relationships") requestAnimationFrame(fit);
+  }
+  function setFallbackFullscreen(enabled) {
+    fullscreenSection.classList.toggle("is-fullscreen-fallback", enabled);
+    document.body.classList.toggle("map-fullscreen-lock", enabled);
+    updateFullScreen();
+  }
+  fullscreenButton.addEventListener("click", async () => {
+    if (fullscreenSection.classList.contains("is-fullscreen-fallback")) {
+      setFallbackFullscreen(false);
+    } else if (document.fullscreenElement === fullscreenSection) {
+      if (document.exitFullscreen) await document.exitFullscreen();
+    } else if (fullscreenSection.requestFullscreen) {
+      try { await fullscreenSection.requestFullscreen(); }
+      catch { setFallbackFullscreen(true); }
+    } else {
+      setFallbackFullscreen(true);
+    }
+    updateFullScreen();
+  });
+  document.addEventListener("fullscreenchange", updateFullScreen);
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && fullscreenSection.classList.contains("is-fullscreen-fallback"))
+      setFallbackFullscreen(false);
+  });
+
+  const shareButton = $("#share-current-view");
+  const shareStatus = $("#share-status");
+  shareButton.addEventListener("click", async () => {
+    const address = window.SOM_NAV?.shareUrl();
+    if (!address) return;
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
+      await navigator.clipboard.writeText(address);
+      shareStatus.textContent = "Skopiowano!";
+    } catch {
+      // Starsze przeglądarki bez Clipboard API mogą skopiować adres ręcznie.
+      const field = document.createElement("textarea");
+      field.value = address;
+      field.setAttribute("readonly", "");
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.appendChild(field);
+      field.select();
+      let copied = false;
+      try { copied = document.execCommand("copy"); } catch {}
+      field.remove();
+      if (copied) shareStatus.textContent = "Skopiowano!";
+      else {
+        shareStatus.textContent = "Skopiuj adres z okna";
+        window.prompt("Skopiuj link do wybranego widoku:", address);
+      }
+    }
+  });
   $("#reset-positions").addEventListener("click", () => {
     // Przywróć układ tylko wybranego filtra, nie kasuj innych ustawień.
     applyGrouping(true);
@@ -844,6 +1005,8 @@
         value: groupFilter.value,
         expanded: groupFilter.expanded
       },
+      entry: (state.view === "bestiary" || state.view === "items")
+        ? activeCatalog[state.view] : null,
       chronicleFilter: $("#chronicle-place-filter").value,
       chronicleExpanded: [...document.querySelectorAll(".chronicle-card")]
         .filter(card => !card.querySelector(".chronicle-story")?.hidden)
@@ -852,7 +1015,7 @@
   }
 
   function restoreNavigation(route) {
-    const views = new Set(["relationships", "maps", "locations", "chronicle"]);
+    const views = new Set(["relationships", "maps", "locations", "chronicle", "bestiary", "items"]);
     if (!views.has(route.view)) return;
 
     // Wyczyść aktualne modale przed przywróceniem poprzedniego ekranu.
@@ -868,7 +1031,10 @@
       if (different) {
         groupFilter.primary = group.primary;
         groupFilter.dimension = group.dimension || null;
-        groupFilter.value = group.value || null;
+        const supported = group.dimension &&
+          groups.options(data, group.dimension).some(item => item.id === group.value);
+        groupFilter.value = supported ? group.value : null;
+        groupFilter.dimension = supported ? group.dimension : null;
         groupFilter.expanded = group.expanded || null;
         applyGrouping();
       }
@@ -903,8 +1069,11 @@
       window.scrollTo(0, 0);
     if (route.place && data.places.some(p => p.id === route.place && p.visibility === "known"))
       window.SOM_ATLAS?.open(route.place);
-    if (route.person && data.people.some(p => p.id === route.person))
+    if (route.person && route.view === "relationships" &&
+        data.people.some(p => p.id === route.person))
       selectPerson(route.person);
+    if (route.view === "bestiary" || route.view === "items")
+      setCatalogEntry(route.view, route.entry || null);
   }
 
   renderPeople();
@@ -912,6 +1081,8 @@
   renderPlaces();
   renderMaps();
   renderChronicle();
+  renderCatalog("bestiary", data.bestiary);
+  renderCatalog("items", data.items);
   bindViewportPan();
   fit();
   window.SOM_NAV?.mount({ snapshot: captureNavigation, restore: restoreNavigation });

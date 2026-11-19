@@ -6,15 +6,15 @@
   <meta name="theme-color" content="#121419">
   <meta name="description" content="Sagas of Midgard — interaktywna kronika postaci, relacji i lokacji dla graczy.">
   <title>Sagas of Midgard | Kronika</title>
-  <link rel="stylesheet" href="styles.css?v=canon-v1">
-  <script src="data.js?v=kinship-chronicle-v1" defer></script>
+  <link rel="stylesheet" href="styles.css?v=deep-links-v1">
+  <script src="data.js?v=lore-catalog-v1" defer></script>
   <script src="portrait-assets.js?v=vestmar-v1" defer></script>
   <script src="atlas.js?v=canon-v1" defer></script>
   <script src="maps.js?v=history-v1" defer></script>
   <script src="character-groups.js?v=free-v1" defer></script>
   <script src="graph-geometry.js?v=free-v1" defer></script>
-  <script src="navigation.js?v=history-v1" defer></script>
-  <script src="app.js?v=kinship-chronicle-v1" defer></script>
+  <script src="navigation.js?v=deep-links-v1" defer></script>
+  <script src="app.js?v=deep-links-v1" defer></script>
 </head>
 <body>
  <div class="app-shell">
@@ -28,6 +28,8 @@
     <button class="nav-btn" type="button" data-view="maps"><span class="nav-icon">◇</span><span>Mapy świata</span></button>
     <button class="nav-btn" type="button" data-view="locations"><span class="nav-icon">⌖</span><span>Atlas lokacji</span></button>
     <button class="nav-btn" type="button" data-view="chronicle"><span class="nav-icon">ᚱ</span><span>Kronika wydarzeń</span></button>
+    <button class="nav-btn" type="button" data-view="bestiary"><span class="nav-icon">ᛉ</span><span>Bestiariusz</span></button>
+    <button class="nav-btn" type="button" data-view="items"><span class="nav-icon">⚒</span><span>Przedmioty</span></button>
    </nav>
    <div class="rail-bottom">
     <p class="rail-note">„Słowa przemijają.<br>Opowieści trwają.”</p>
@@ -43,9 +45,9 @@
       <h1 id="page-title">Sieć postaci</h1>
       <p class="page-description" id="page-description">Portrety, powiązania i losy ludzi Północy.</p>
     </div>
-    <div class="header-right">
-      <span class="chapter">EYLENDA <i>·</i> KRONIKA</span>
-      <span class="sun-mark">✧</span>
+    <div class="header-right share-tools">
+      <button type="button" id="share-current-view" class="share-current-view" title="Skopiuj link do aktualnego widoku" aria-label="Skopiuj link do tego widoku">⛓ <span>Kopiuj link</span></button>
+      <span id="share-status" class="share-status" role="status" aria-live="polite"></span>
     </div>
    </header>
 
@@ -57,7 +59,8 @@
         <button id="zoom-out" class="tool" aria-label="Oddal">−</button>
         <span class="zoom-text" id="zoom-text">100%</span>
         <button id="zoom-in" class="tool" aria-label="Przybliż">+</button>
-        <button id="fit" class="tool fit" title="Dopasuj widok do postaci" aria-label="Dopasuj widok">⤢</button>
+        <button id="fit" class="tool fit" title="Dopasuj wszystkie widoczne karty" aria-label="Dopasuj widok">Dopasuj</button>
+        <button id="fullscreen-toggle" class="tool fullscreen-toggle" type="button" aria-pressed="false" title="Otwórz prawdziwy pełny ekran" aria-label="Włącz pełny ekran">⛶ <span>Pełny ekran</span></button>
         <button id="reset-positions" class="tool reset-positions" type="button" title="Przywróć domyślny układ kart tej grupy" hidden>Przywróć układ</button>
        </div>
      </div>
@@ -171,6 +174,26 @@
      </div>
      <div id="chronicle-list" class="chronicle-list"></div>
      <p class="chronicle-disclaimer">Zapisujemy tylko wydarzenia znane drużynie. Przyszłe sceny, sekrety Skalda i niepotwierdzone pogłoski pozostają poza publiczną kroniką.</p>
+   </section>
+
+   <section id="bestiary-view" class="view lore-catalog-view" aria-label="Bestiariusz" hidden>
+     <header class="lore-catalog-head">
+       <p class="eyebrow">KRONIKI PÓŁNOCY · STWORZENIA</p>
+       <h2>Bestiariusz</h2>
+       <p>Stworzenia spotkane przez bohaterów podczas rozegranych wypraw. Nieznane istoty i sekrety Skalda pozostają poza kroniką.</p>
+     </header>
+     <div id="bestiary-list" class="lore-catalog-grid"></div>
+     <p class="lore-catalog-foot">Nowe wpisy pojawią się, gdy drużyna pozna kolejne istoty.</p>
+   </section>
+
+   <section id="items-view" class="view lore-catalog-view" aria-label="Przedmioty" hidden>
+     <header class="lore-catalog-head">
+       <p class="eyebrow">KRONIKI PÓŁNOCY · ZDOBYCZE I RELIKWIE</p>
+       <h2>Przedmioty</h2>
+       <p>Znane drużynie przedmioty i relikwie. Nieujawnione właściwości oraz sekrety pozostają w rękach Skalda.</p>
+     </header>
+     <div id="items-list" class="lore-catalog-grid"></div>
+     <p class="lore-catalog-foot">Kolejne przedmioty dopiszemy po ich odkryciu w czasie gry.</p>
    </section>
   </div>
 

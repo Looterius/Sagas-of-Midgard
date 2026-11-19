@@ -30,8 +30,12 @@ equals(value("heroes","settlements","hrafnvik"),["sianita","halvard","haroks","y
 assert.equal(value("heroes","settlements","skjorvik").length,0);
 equals(groups.options(data,"settlements").map(p=>p.id),["ejkjavik","hrafnvik","skjorvik"]);
 equals(groups.options(data,"kingdoms").map(p=>p.id),["agder","hordalands","fjordane","vestmar"]);
-equals(groups.options(data,"families").map(p=>p.id),["rod-jarla","rod-svali","rod-gudrodssonow","rod-morotara","rod-astrid"]);
-assert.equal(groups.options(data,"factions").length,0,"Do not invent factions");
+equals(groups.options(data,"families").map(p=>p.id),["rod-jarla","rod-svali","rod-gudrodssonow","rod-morotara","rod-astrid","rod-halfdana"]);
+equals(groups.options(data,"factions").map(p=>p.id),["druzyna-hrafnviku","berserkerzy","czciciele-odyna"]);
+equals(value("all","families","rod-halfdana"),["halfdan","asgrim"]);
+equals(value("all","factions","berserkerzy"),["haroks"]);
+equals(value("all","factions","czciciele-odyna"),["floki","torvald"]);
+equals(value("all","factions","druzyna-hrafnviku"),["sianita","halvard","asgrim","haroks","ylva","floki"]);
 equals(value("all","families","rod-jarla"),["sigurd","hroald","runa","sten","sianita","halvard"]);
 equals(value("all","families","rod-svali"),["svala","mord","ulf"]);
 equals(value("all","families","rod-morotara"),["morotar","floki","haroks"]);
@@ -175,7 +179,7 @@ for(const id of ["character-group-tabs","character-group-dimensions","character-
  "character-group-reset","character-group-empty","character-group-summary"])
   assert.ok(html.includes('id="'+id+'"'),"Missing grouping UI "+id);
 assert.ok(html.includes('src="character-groups.js?v='));
-assert.ok(html.includes('data.js?v=kinship-chronicle-v1'),"Bust public data cache after canonical update");
+assert.ok(html.includes('data.js?v=lore-catalog-v1'),"Bust public data cache after catalog update");
 assert.ok(css.includes(".person-card[hidden]"));
 assert.ok(app.includes("groupFilter.primary")&&app.includes("state.visibleIds.has(rel.from)"));
 assert.ok(app.includes('card.classList.toggle("is-deceased"')&&
@@ -186,6 +190,11 @@ assert.ok(css.includes("filter:grayscale(1)"));
 assert.ok(app.includes('card.setPointerCapture(e.pointerId)')&&app.includes("drawConnections();"),
   "Existing drag controls must survive expansion");
 assert.ok(app.includes('window.SOM_NAV?.changed()'),"History navigation preserved");
+assert.ok(app.includes('p.grouping?.statuses?.includes("captive")') &&
+  app.includes('const label = dead ? "† ZMARŁY" : captive ? "JENIEC" : "BOHATER"'),
+  "Captive Ragnvald must have a visible card label");
+assert.ok(app.includes('renderCatalog("bestiary", data.bestiary)') &&
+  app.includes('renderCatalog("items", data.items)'),"Public catalog renders are mounted");
 // Biografie w publicznej kronice nie powinny zawierać roboczych uwag dla MG.
 for(const person of people){
   assert.ok(!/Dawniej używał imienia Styr|znany również jako Stern|nie bohaterem gracza|Nie jest to Ulf Szary|jeden z bohaterów graczy/i.test(person.description),
