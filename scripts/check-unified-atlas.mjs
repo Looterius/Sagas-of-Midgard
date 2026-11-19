@@ -26,7 +26,7 @@ const details=html.match(/<details id="maps-places-section"[\s\S]*?<\/details>/)
 assert.ok(details&&!details.includes(" open"),"All-places list should be collapsible and closed initially");
 assert.ok(css.includes(".atlas-world-details")&&css.includes(".maps-all-places-toggle"));
 for(const snippet of [
- 'function openAtlasPlace(id)', 'function openAtlasRegion(id)',
+ 'function openAtlasPlace(id)', 'function openAtlasRegion(id,',
  'window.SOM_ATLAS?.open(id)',
  '$("#atlas-world-details")?.scrollIntoView',
  'openPlace: openAtlasPlace', 'openAtlasRegion',
