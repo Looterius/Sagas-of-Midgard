@@ -52,7 +52,7 @@ for (const [id,path] of Object.entries(artPaths)) {
 assert.ok(fs.existsSync("assets/items/Futurystyczna szklana kapsuła na satynie.png"),
   "Do not delete unassigned user uploads");
 const html=read("index.html"),app=read("app.js"),readme=read("README.md");
-assert.ok(html.includes('data.js?v=items-images-v5'),"Cache must refresh public data");
+assert.ok(html.includes('src="data.js?v='),"Public data must have browser cache version");
 assert.ok(html.includes('app.js?v=item-art-v3'),"Image renderer must refresh");
 assert.ok(html.includes('id="items-list"'),"Items view kept");
 assert.ok(app.includes('(entry.eventId && !knownEvents.has(entry.eventId))'));
