@@ -249,3 +249,13 @@ Kronika zachowuje dotychczasowe **5 części i 21 jawnych wydarzeń**. Zamiast p
 Wszystkie stare adresy `?view=chronicle&event=<publiczne-id>` otwierają właściwą historię. `navigation.js` zachowuje `chronicleExpanded[0]` jako publiczne ID **aktualnie czytanej historii**, dzięki czemu działają „Kopiuj link” i przeglądarkowy Wstecz. Odsyłacze z Atlasu, Bestiariusza i Przedmiotów otwierają bezpośrednio odpowiadającą opowieść. **Nie zmieniono żadnych treści ani `id` w `data.js`.**
 
 Test regresji: `node scripts/check-chronicle-reader.mjs`, wykonywany w CI razem z testem deep linków.
+
+
+## Runy — katalog 24 znaków i wyszukiwanie po polsku (19.11.2026)
+
+- Nowy widok **Runy** prezentuje wszystkie 24 znaki starszego futharku, którego używa system *Sagas of Midgard*. Rozpoznawanie po dużym znaku Unicode, normalna czcionka nazw i polskie etymologiczne/symboliczne znaczenia. Bez dodawania zależności, backendu, autoryzacji lub zapisu postępu.
+- Wpisywanie naturalnego zdania (np. „potrzebuję ochrony przed ranami”, „podróż po morzu”), nazwy lub pojedynczego symbolu filtruje galerię, również bez polskich znaków. Kliknięcie kafelka pokazuje znaczenie w tym samym widoku. Na mobile panel opisu jest pod galerią.
+- `?view=runes&rune=algiz` (analogicznie pozostałe publiczne identyfikatory) otwiera konkretną runę; działa `Kopiuj link` i `Wstecz`. Tekst wpisany w wyszukiwarkę nie trafia do URL ani pamięci trwałej.
+- **Ważne:** etymologia i skojarzenia nie są mechanicznymi efektami RPG. W grze runy są jednorazowe i każda ma trzy pozycje działania. Bez uprawnionej, zatwierdzonej kopii konkretnych opisów z używanej edycji nie publikujemy domyślonych premii, obrażeń, czasów i zasięgów. Jedyny przykład Algiz opiera się na [wypowiedzi twórców (2018)](https://gmshoe.wordpress.com/2018/02/07/qa-nick-porter-dominic-deduonni-sagas-of-midgard/) i nie podaje spornych wartości liczbowych. **Nie publikować prywatnych tabel run MG/rajdów ani własności run zdobytych przez drużynę.**
+- Źródła: [wydawca](https://drinkinghorngames.itch.io/sagas-of-midgard-corebook), [Uniwersytet Kopenhaski](https://nors.ku.dk/english/research/runes/), [nazwy run i zastrzeżenia etymologiczne](https://runoscript.com/the-elder-futhark-24-runes-reconstructed-names-and-meanings.html).
+- Testy: `node scripts/check-public-runes.mjs` i `node scripts/check-public-deep-links.mjs`, uruchamiane w CI.

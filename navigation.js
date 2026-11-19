@@ -11,7 +11,7 @@
   let scheduled = false;
   let session = "";
 
-  const VIEWS = ["relationships", "maps", "locations", "chronicle", "bestiary", "items"];
+  const VIEWS = ["relationships", "maps", "locations", "chronicle", "runes", "bestiary", "items"];
   const PRIMARY = ["all", "heroes", "npc", "deceased", "rulers", "captives"];
   const DIMENSIONS = ["kingdoms", "settlements", "families", "factions"];
   const valid = route => route && typeof route === "object" && VIEWS.includes(route.view);
@@ -42,6 +42,8 @@
       if (route.chronicleFilter && route.chronicleFilter !== "all")
         url.searchParams.set("filter", route.chronicleFilter);
       if (route.chronicleExpanded?.[0]) url.searchParams.set("event", route.chronicleExpanded[0]);
+    } else if (route.view === "runes" && route.rune) {
+      url.searchParams.set("rune", route.rune);
     } else if ((route.view === "bestiary" || route.view === "items") && route.entry) {
       url.searchParams.set("entry", route.entry);
     }
@@ -76,6 +78,8 @@
     } else if (view === "chronicle") {
       route.chronicleFilter = params.get("filter") || "all";
       route.chronicleExpanded = params.get("event") ? [params.get("event")] : [];
+    } else if (view === "runes") {
+      route.rune = params.get("rune") || null;
     } else {
       route.entry = params.get("entry") || null;
     }

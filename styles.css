@@ -823,3 +823,47 @@ body.map-fullscreen-lock{overflow:hidden}
   .chronicle-reader-layout .chronicle-cover{min-height:122px;height:122px}
   .chronicle-reader-layout .chronicle-story p{font-size:15px}
 }
+
+/* Jawny katalog run: glify runiczne + zwykłe nazwy, bez zależności i zapisu wyborów. */
+.runes-view{padding:34px clamp(18px,4.1vw,58px) 65px;max-width:1500px;margin:0 auto}
+.runes-head{max-width:780px;padding-bottom:22px;border-bottom:1px solid #67553c;margin-bottom:24px}
+.runes-head h2{font:normal clamp(32px,4vw,47px)/1.2 Georgia,serif;color:#f2ddba;margin:0 0 12px}
+.runes-head p:not(.eyebrow){font:15px/1.7 system-ui,sans-serif;color:#c9bdab;max-width:700px}
+.runes-search-wrap{margin:0 0 20px}
+.runes-search-wrap label{display:block;font:12px/1.5 system-ui,sans-serif;color:#dbc69d;margin-bottom:8px}
+.runes-search-line{display:flex;align-items:center;border:1px solid #816944;background:#1e2327;min-height:51px;max-width:700px}
+#runes-search{width:100%;min-width:0;border:0;background:transparent;color:#f4e6d0;padding:14px 17px;font:15px/1.4 system-ui,sans-serif}
+#runes-search::placeholder{color:#ada496}
+#runes-clear{background:none;border:0;border-left:1px solid #69583d;color:#e1c38f;padding:12px;font:12px system-ui,sans-serif}
+.runes-count{margin:9px 0 0;font:12px system-ui,sans-serif;color:#bfb29c}
+.runes-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,1fr);gap:22px;align-items:start}
+.runes-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.runes-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:16px 8px 14px;min-height:158px;background:radial-gradient(ellipse at 50% 25%,#343632,#191d22);border:1px solid #61553e;color:#f2e2c4;text-align:center}
+.runes-tile:hover,.runes-tile:focus-visible{border-color:#eac58b;background:#38342c}
+.runes-tile[aria-pressed="true"]{border-color:#edca8d;box-shadow:inset 0 0 0 1px #edca8d;background:#3c3327}
+.runes-glyph,.runes-detail-glyph,.runes-empty-symbol{font-family:"Segoe UI Historic","Noto Sans Runic","DejaVu Sans",serif;font-weight:normal;line-height:1.05;color:#ebcc8e}
+.runes-glyph{font-size:69px}
+.runes-tile-name{font:600 13px/1.4 system-ui,sans-serif}
+.runes-tile-meaning{font:11px/1.35 system-ui,sans-serif;color:#bcae99;max-width:130px}
+.runes-no-results{grid-column:1/-1;padding:20px;border:1px solid #6e5a3e;color:#d6c7b0;font:14px/1.6 system-ui,sans-serif}
+.runes-detail{position:sticky;top:18px;min-width:0;min-height:400px;padding:28px;background:linear-gradient(160deg,#2b2b28,#191e23);border:1px solid #8c744c;scroll-margin-top:15px}
+.runes-empty-symbol{display:block;text-align:center;font-size:115px;opacity:.37;margin:25px 0 16px}
+.runes-empty-heading{font:normal 27px Georgia,serif;color:#efdfc5;text-align:center}
+.runes-empty-copy{font:14px/1.7 system-ui,sans-serif;color:#bdaf9b;text-align:center}
+.runes-detail-top{display:flex;gap:21px;align-items:center;border-bottom:1px solid #65543b;padding-bottom:20px;margin-bottom:24px}
+.runes-detail-glyph{font-size:104px;min-width:105px;text-align:center}
+.runes-detail-heading{min-width:0}
+.runes-detail-label{font:10px/1.4 system-ui,sans-serif;color:#bda77f;letter-spacing:.12em}
+.runes-detail-name{font:normal clamp(24px,3vw,36px) Georgia,serif;color:#f3dfb8;margin:6px 0}
+.runes-detail-literal{font:13px/1.6 system-ui,sans-serif;color:#c9bca8;margin:0}
+.runes-detail-subheading{font:normal 20px/1.4 Georgia,serif;color:#e7cb94;margin:20px 0 9px}
+.runes-detail-copy{font:14px/1.75 system-ui,sans-serif;color:#ddd1c1;margin:0 0 12px}
+.runes-positions{padding-left:18px;font:13px/1.7 system-ui,sans-serif;color:#d9c8ac}
+.runes-positions li{margin:7px 0}
+.runes-reference{display:inline-block;margin:9px 0;color:#f1ce8a;font:13px system-ui,sans-serif;text-decoration:underline;text-underline-offset:3px}
+.runes-source-note{font:12px/1.7 system-ui,sans-serif;color:#a99f91;margin:13px 0 0}
+.runes-caveat{font:12px/1.8 system-ui,sans-serif;color:#b2a696;border-top:1px solid #514638;margin:26px 0 0;padding-top:20px}
+@media(max-width:1150px){.runes-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.runes-detail{padding:20px}}
+@media(max-width:850px){.runes-layout{grid-template-columns:1fr}.runes-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.runes-detail{position:static;min-height:250px}}
+@media(max-width:560px){.runes-view{padding:20px 15px 38px}.runes-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.runes-tile{min-height:123px;padding:12px 5px}.runes-glyph{font-size:55px}.runes-tile-name{font-size:12px}.runes-tile-meaning{font-size:10px}.runes-detail-glyph{font-size:79px;min-width:80px}.runes-detail-top{gap:12px}.runes-detail{padding:17px}}
+@media(max-width:380px){.runes-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}

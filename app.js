@@ -757,7 +757,7 @@
     const viewIds = {
       relationships: "relationships-view", maps: "maps-view",
       locations: "locations-view", chronicle: "chronicle-view",
-      bestiary: "bestiary-view", items: "items-view"
+      runes: "runes-view", bestiary: "bestiary-view", items: "items-view"
     };
     for (const section of document.querySelectorAll(".view")) {
       const show = section.id === viewIds[view];
@@ -765,15 +765,16 @@
       section.hidden = !show;
     }
     $("#page-title").textContent = ({ relationships: "Sieć postaci", maps: "Mapy świata", locations: "Atlas lokacji",
-       chronicle: "Kronika wydarzeń", bestiary: "Bestiariusz", items: "Przedmioty" })[view];
+       chronicle: "Kronika wydarzeń", runes: "Runy", bestiary: "Bestiariusz", items: "Przedmioty" })[view];
     $("#eyebrow").textContent = ({ relationships: "SAGA · ŚWIAT POSTACI", maps: "SAGA · KARTOGRAFIA",
        locations: "SAGA · ODKRYTE KRAINY", chronicle: "SAGA · ZAPISANE CZYNY",
-       bestiary: "SAGA · ZNANE STWORZENIA", items: "SAGA · RELIKWIE I PRZEDMIOTY" })[view];
+       runes: "SAGA · RUNY MOCY", bestiary: "SAGA · ZNANE STWORZENIA", items: "SAGA · RELIKWIE I PRZEDMIOTY" })[view];
     $("#page-description").textContent = ({
       relationships: "Portrety, powiązania i losy ludzi Północy.",
       maps: "Interaktywne mapy poznanych krain i miejsc.",
       locations: "Miejsca odwiedzone i wspominane w kronice.",
       chronicle: "Dzieje bohaterów spisane w pamięci Północy.",
+      runes: "Rozpoznaj znak i wyszukaj jego znaczenie.",
       bestiary: "Istoty napotkane w znanych już wyprawach.",
       items: "Odkryte relikwie i przedmioty drużyny."
     })[view];
@@ -1071,12 +1072,13 @@
       entry: (state.view === "bestiary" || state.view === "items")
         ? activeCatalog[state.view] : null,
       chronicleFilter: $("#chronicle-place-filter").value,
-      chronicleExpanded: chronicleCurrentEventId ? [chronicleCurrentEventId] : []
+      chronicleExpanded: chronicleCurrentEventId ? [chronicleCurrentEventId] : [],
+      rune: state.view === "runes" ? window.SOM_RUNES?.getSelected() || null : null
     };
   }
 
   function restoreNavigation(route) {
-    const views = new Set(["relationships", "maps", "locations", "chronicle", "bestiary", "items"]);
+    const views = new Set(["relationships", "maps", "locations", "chronicle", "runes", "bestiary", "items"]);
     if (!views.has(route.view)) return;
 
     // Wyczyść aktualne modale przed przywróceniem poprzedniego ekranu.
@@ -1133,6 +1135,8 @@
       selectPerson(route.person);
     if (route.view === "bestiary" || route.view === "items")
       setCatalogEntry(route.view, route.entry || null);
+    if (route.view === "runes")
+      window.SOM_RUNES?.select(route.rune || null, {notify:false,focus:false});
   }
 
   renderPeople();
