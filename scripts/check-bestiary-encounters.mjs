@@ -32,6 +32,30 @@ assert.equal(entries.get("draugry-kurhanu").eventId,"kurhan-gungnir");
 assert.equal(entries.get("harald-hardrada-nieumarly").placeId,"hardrada-mound");
 assert.equal(entries.get("zjawy-z-gospodarstwa").eventId,"gospodarstwo-zapomnianych");
 assert.match(entries.get("zjawy-z-gospodarstwa").history,/nie pokonała ich w bitwie/);
+const encounterArt={
+  "backahast": "assets/bestiary/Wikingowie kontra morski potwór w jaskini.png",
+  "draugry-kurhanu": "assets/bestiary/Howling Draugr Beneath Ancient Runes.png",
+  "harald-hardrada-nieumarly": "assets/bestiary/Clash in the Glacial Sanctuary.png",
+  "zjawy-z-gospodarstwa": "assets/bestiary/Aurora Welcome at the Turf House.png"
+};
+for(const [id,path] of Object.entries(encounterArt)){
+ assert.equal(entries.get(id)?.image,path,"Wrong beast illustration "+id);
+ assert.ok(fs.existsSync(path),"Missing uploaded monster art "+path);
+ const bytes=fs.readFileSync(path);
+ assert.ok(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])),
+  "Not a PNG: "+path);
+ assert.ok(bytes.readUInt32BE(16)>=600&&bytes.readUInt32BE(20)>=600,
+  "Image too small "+path);
+}
+assert.equal(entries.get("troll-w-klatce").image,"assets/bestiary/Viking Warriors Face the Caged Highland Giant.png","Caged troll must have its own illustration");
+assert.ok(fs.existsSync(entries.get("troll-w-klatce").image),"Missing uploaded troll art");
+const trollImage=fs.readFileSync(entries.get("troll-w-klatce").image);
+assert.ok(trollImage.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])),"Troll image not PNG");
+assert.ok(trollImage.readUInt32BE(16)>=600&&trollImage.readUInt32BE(20)>=600,"Troll art too small");
+const unassigned="assets/bestiary/Verðandi in the Moonlit Shrine.png";
+assert.ok(fs.existsSync(unassigned),"Preserve user-provided unmatched art");
+assert.ok(!data.bestiary.some(e=>e.image===unassigned),"Unconfirmed identity must not be attached");
+
 assert.equal(data.items.length,4,"Four public item cards including Gungnir");
 const images=[
  ["gods-cauldron","assets/locations/Boiling Lake Beneath Stormy Peaks.png"],
@@ -57,6 +81,7 @@ assert.ok(app.includes('(entry.eventId && !knownEvents.has(entry.eventId))'),
 assert.ok(app.includes('if (entry.eventId) {')&&app.includes('if (place) {'),
  "Only create real Atlas and Chronicle links");
 assert.ok(app.includes('entry.locationLabel'),"Allow truthful location label");
+assert.ok(html.includes('src="data.js?v=bestiary-art-v6"'),"Latest data cache version needed");
 assert.ok(html.includes('src="data.js?v='),"Data must have browser cache version");
 assert.ok(html.includes('src="app.js?v='),"Renderer must have browser cache version");
 console.log("PASS — five public bestiary encounters, truthful links, original location images and no hidden stats");

@@ -341,3 +341,13 @@ Po dodaniu plików do `assets/items/` podłączono cztery rzeczywiście przesła
 - `zlote-jablka-idunn` → `Golden Apples in a Norse Great Hall.png`
 
 Niepowiązany obraz `Futurystyczna szklana kapsuła na satynie.png` pozostaje zachowany, ale nie ma publicznej karty — samo przesłanie obrazu nie oznacza, że drużyna znalazła przedmiot. Idunn nadal figuruje jako motyw legendarny, nie zdobyty artefakt. Renderer `app.js` pokazuje obraz miniaturek w skróconych kartach i większą ilustrację po rozwinięciu, z obsługą mobilną; jeśli wpis nie ma `image`, pozostaje poprzednia runa. Wdrożenie nie zmienia źródeł ani właściwości przedmiotów.
+
+## Bestiariusz: przesłane ilustracje (19.11.2026)
+
+Bez tworzenia nowych stworzeń podłączono cztery obrazy **obecne w publicznym repo** do spotkań już opisanych w Kronice:
+- `backahast`: `assets/bestiary/Wikingowie kontra morski potwór w jaskini.png`;
+- `draugry-kurhanu`: `assets/bestiary/Howling Draugr Beneath Ancient Runes.png`;
+- `harald-hardrada-nieumarly`: `assets/bestiary/Clash in the Glacial Sanctuary.png` (ilustracja tematyczna sceny starcia);
+- `zjawy-z-gospodarstwa`: `assets/bestiary/Aurora Welcome at the Turf House.png` (ilustracja tematyczna gospodarstwa).
+
+`assets/bestiary/Verðandi in the Moonlit Shrine.png` pozostaje w repozytorium, lecz nie jest przypisany do trolla ani do nowego wpisu — nazwa pliku nie potwierdza związku z potworem. Troll z Doliny Olbrzymów otrzymał następnie właściwą ilustrację `assets/bestiary/Viking Warriors Face the Caged Highland Giant.png`, przesłaną po utworzeniu tej zmiany. Zatem wszystkie pięć kart Bestiariusza mają własne ilustracje. Nie zmieniono opisów potworów, odnośników do miejsc i rozdziałów, ID ani tajemnic MG. Widok kart korzysta z istniejącego już renderera miniatur i powiększonych obrazów; wymieniono tylko `data.js` i wersję cache w `index.html`. `scripts/check-bestiary-encounters.mjs` weryfikuje realne oryginalne pliki PNG, ścieżki i brak fałszywych przypisań.
