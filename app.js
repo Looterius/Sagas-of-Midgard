@@ -451,8 +451,7 @@
       button.appendChild(make("span", "relation-arrow", "→"));
       button.addEventListener("click", () => {
         closeCharacter();
-        switchView("locations");
-        window.SOM_ATLAS?.open(place.id);
+        openAtlasPlace(place.id);
       });
       relations.appendChild(button);
       hasLinks = true;
@@ -465,8 +464,7 @@
       button.appendChild(make("span", "relation-arrow", "→"));
       button.addEventListener("click", () => {
         closeCharacter();
-        switchView("locations");
-        window.SOM_ATLAS?.showRegion(region.id);
+        openAtlasRegion(region.id);
       });
       relations.appendChild(button);
       hasLinks = true;
@@ -490,6 +488,24 @@
     window.SOM_NAV?.changed();
   }
 
+  function openAtlasRegion(id) {
+    const region = (data.atlasRegions || []).find(item => item.id === id && item.visibility === "known");
+    if (!region) return;
+    switchView("maps");
+    window.SOM_ATLAS?.showRegion(id);
+    if ($("#place-dialog").hidden && id !== "osady-bohaterow")
+      $("#atlas-world-details")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function openAtlasPlace(id) {
+    const place = (data.places || []).find(item => item.id === id && item.visibility === "known");
+    if (!place) return;
+    switchView("maps");
+    const parent = place.parentRegionId === "osady-bohaterow" ? "drengrlands" : place.parentRegionId;
+    window.SOM_ATLAS?.showRegion(parent || "drengrlands");
+    window.SOM_ATLAS?.open(id);
+  }
+
   function renderPlaces() {
     if (!window.SOM_ATLAS) return;
     window.SOM_ATLAS.mount({
@@ -509,23 +525,12 @@
   function renderMaps() {
     window.SOM_MAPS?.mount({
       data,
-      openPlace: id => {
-        // Kliknięcie z Map zawsze przenosi do właściwej zakładki Atlasu.
-        const p = (data.places || []).find(item => item.id === id && item.visibility === "known");
-        if (!p) return;
-        switchView("locations");
-        const parent = p.parentRegionId === "osady-bohaterow" ? "drengrlands" : p.parentRegionId;
-        window.SOM_ATLAS?.showRegion(parent || "drengrlands");
-        window.SOM_ATLAS?.open(id);
-      },
-      openAtlasRegion: id => {
-        switchView("locations");
-        window.SOM_ATLAS?.showRegion(id);
-      }
+      openPlace: openAtlasPlace,
+      openAtlasRegion
     });
   }
 
-  // Bestiariusz i przedmioty zawierają wyłącznie wydarzenia już zapisane
+    // Bestiariusz i przedmioty zawierają wyłącznie wydarzenia już zapisane
   // w PUBLICZNEJ kronice. Brak danych = pusty dział, bez sekretów MG.
   function setCatalogEntry(view, id) {
     const container = $(view === "bestiary" ? "#bestiary-list" : "#items-list");
@@ -566,8 +571,7 @@
       const atlasLink = make("button", "lore-entry-action", "⌖ " + (place?.name || "Atlas"));
       atlasLink.type = "button";
       atlasLink.addEventListener("click", () => {
-        switchView("locations");
-        window.SOM_ATLAS?.open(entry.placeId);
+        openAtlasPlace(entry.placeId);
       });
       actions.appendChild(atlasLink);
       const eventLink = make("button", "lore-entry-action", "ᚱ Zobacz w Kronice");
@@ -715,8 +719,7 @@
         const go = make("button", "chronicle-place-link", "Miejsce: " + place.name);
         go.type = "button";
         go.addEventListener("click", () => {
-          switchView("locations");
-          window.SOM_ATLAS?.open(selected.placeId, go);
+          openAtlasPlace(selected.placeId);
         });
         actions.appendChild(go);
       }
@@ -764,23 +767,21 @@
       b.classList.toggle("active", b.dataset.view === view);
     const viewIds = {
       relationships: "relationships-view", maps: "maps-view",
-      locations: "locations-view", chronicle: "chronicle-view",
-      runes: "runes-view", bestiary: "bestiary-view", items: "items-view"
+      chronicle: "chronicle-view", runes: "runes-view",
+      bestiary: "bestiary-view", items: "items-view"
     };
     for (const section of document.querySelectorAll(".view")) {
       const show = section.id === viewIds[view];
       section.classList.toggle("active", show);
       section.hidden = !show;
     }
-    $("#page-title").textContent = ({ relationships: "Sieć postaci", maps: "Mapy świata", locations: "Atlas lokacji",
+    $("#page-title").textContent = ({ relationships: "Sieć postaci", maps: "Atlas świata",
        chronicle: "Kronika wydarzeń", runes: "Runy", bestiary: "Bestiariusz", items: "Przedmioty" })[view];
-    $("#eyebrow").textContent = ({ relationships: "SAGA · ŚWIAT POSTACI", maps: "SAGA · KARTOGRAFIA",
-       locations: "SAGA · ODKRYTE KRAINY", chronicle: "SAGA · ZAPISANE CZYNY",
+    $("#eyebrow").textContent = ({ relationships: "SAGA · ŚWIAT POSTACI", maps: "SAGA · ATLAS ŚWIATA", chronicle: "SAGA · ZAPISANE CZYNY",
        runes: "SAGA · RUNY MOCY", bestiary: "SAGA · ZNANE STWORZENIA", items: "SAGA · RELIKWIE I PRZEDMIOTY" })[view];
     $("#page-description").textContent = ({
       relationships: "Portrety, powiązania i losy ludzi Północy.",
-      maps: "Interaktywne mapy poznanych krain i miejsc.",
-      locations: "Miejsca odwiedzone i wspominane w kronice.",
+      maps: "Mapa, krainy, miejsca i ich dzieje — w jednym Atlasie.",
       chronicle: "Dzieje bohaterów spisane w pamięci Północy.",
       runes: "Rozpoznaj znak i wyszukaj jego znaczenie.",
       bestiary: "Istoty napotkane w znanych już wyprawach.",
@@ -949,8 +950,10 @@
 
   document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click", () => {
     // Bez zbędnego pierwszego ekranu świata: wchodzimy w znane Ziemie Drengrów.
-    if (b.dataset.view === "locations") window.SOM_ATLAS?.showRegion("drengrlands");
-    if (b.dataset.view === "maps") window.SOM_MAPS?.show("drengrlands");
+    if (b.dataset.view === "maps") {
+      window.SOM_MAPS?.show("drengrlands");
+      window.SOM_ATLAS?.showRegion("drengrlands");
+    }
     switchView(b.dataset.view);
   }));
   $("#search").addEventListener("input", e => {
@@ -1069,7 +1072,7 @@
       view: state.view,
       person: $("#inspector").hidden ? null : state.selected,
       place: atlas.place || null,
-      region: atlas.region || "midgard",
+      region: atlas.region || "drengrlands",
       map: window.SOM_MAPS?.getCurrent() || "drengrlands",
       group: {
         primary: groupFilter.primary,
@@ -1086,7 +1089,7 @@
   }
 
   function restoreNavigation(route) {
-    const views = new Set(["relationships", "maps", "locations", "chronicle", "runes", "bestiary", "items"]);
+    const views = new Set(["relationships", "maps", "chronicle", "runes", "bestiary", "items"]);
     if (!views.has(route.view)) return;
 
     // Wyczyść aktualne modale przed przywróceniem poprzedniego ekranu.
@@ -1114,7 +1117,7 @@
     const previousRegion = window.SOM_ATLAS?.getNavigationState()?.region;
     const previousMap = window.SOM_MAPS?.getCurrent();
     if (previousRegion !== route.region)
-      window.SOM_ATLAS?.showRegion(route.region || "midgard");
+      window.SOM_ATLAS?.showRegion(route.region || "drengrlands");
     if (previousMap !== route.map)
       window.SOM_MAPS?.show(route.map || "drengrlands");
 
@@ -1132,9 +1135,11 @@
     }
     // Wstecz między poziomami Atlasu/Map nie powinno pozostawiać ekranu
     // przewiniętego do przypadkowego miejsca w poprzedniej krainie.
-    if (wasView === route.view &&
-        ((route.view === "locations" && previousRegion !== route.region) ||
-         (route.view === "maps" && previousMap !== route.map)))
+    if (route.view === "maps" && !route.place &&
+        route.region && route.region !== "drengrlands" &&
+        (wasView !== "maps" || previousRegion !== route.region))
+      $("#atlas-world-details")?.scrollIntoView({ behavior: "auto", block: "start" });
+    else if (wasView === route.view && route.view === "maps" && previousMap !== route.map)
       window.scrollTo(0, 0);
     if (route.place && data.places.some(p => p.id === route.place && p.visibility === "known"))
       window.SOM_ATLAS?.open(route.place);

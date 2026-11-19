@@ -6,17 +6,17 @@
   <meta name="theme-color" content="#121419">
   <meta name="description" content="Sagas of Midgard — interaktywna kronika postaci, relacji i lokacji dla graczy.">
   <title>Sagas of Midgard | Kronika</title>
-  <link rel="stylesheet" href="styles.css?v=map-links-v2">
+  <link rel="stylesheet" href="styles.css?v=unified-atlas-v1">
   <script src="data.js?v=lore-catalog-v1" defer></script>
   <script src="portrait-assets.js?v=vestmar-v1" defer></script>
   <script src="atlas.js?v=map-links-v2" defer></script>
   <script src="maps.js?v=direct-drengrlands-v2" defer></script>
   <script src="character-groups.js?v=free-v1" defer></script>
   <script src="graph-geometry.js?v=free-v1" defer></script>
-  <script src="navigation.js?v=runes-v1" defer></script>
+  <script src="navigation.js?v=unified-atlas-v1" defer></script>
   <script src="rune-rules.js?v=corebook-v1" defer></script>
   <script src="runes.js?v=mechanics-v2" defer></script>
-  <script src="app.js?v=map-links-v2" defer></script>
+  <script src="app.js?v=unified-atlas-v1" defer></script>
 </head>
 <body>
  <div class="app-shell">
@@ -27,12 +27,11 @@
    <div class="rail-divider"></div>
    <nav class="nav" aria-label="Widoki kroniki">
     <button class="nav-btn active" type="button" data-view="relationships"><span class="nav-icon">✦</span><span>Sieć postaci</span></button>
-    <button class="nav-btn" type="button" data-view="maps"><span class="nav-icon">◇</span><span>Mapy świata</span></button>
-    <button class="nav-btn" type="button" data-view="locations"><span class="nav-icon">⌖</span><span>Atlas lokacji</span></button>
-    <button class="nav-btn" type="button" data-view="chronicle"><span class="nav-icon">ᚱ</span><span>Kronika wydarzeń</span></button>
+    <button class="nav-btn" type="button" data-view="maps"><span class="nav-icon">◇</span><span>Atlas świata</span></button>
     <button class="nav-btn" type="button" data-view="runes"><span class="nav-icon">ᚠ</span><span>Runy</span></button>
-     <button class="nav-btn" type="button" data-view="bestiary"><span class="nav-icon">ᛉ</span><span>Bestiariusz</span></button>
+    <button class="nav-btn" type="button" data-view="bestiary"><span class="nav-icon">ᛉ</span><span>Bestiariusz</span></button>
     <button class="nav-btn" type="button" data-view="items"><span class="nav-icon">⚒</span><span>Przedmioty</span></button>
+    <button class="nav-btn" type="button" data-view="chronicle"><span class="nav-icon">ᚱ</span><span>Kronika wydarzeń</span></button>
    </nav>
    <div class="rail-bottom">
     <p class="rail-note">„Słowa przemijają.<br>Opowieści trwają.”</p>
@@ -106,10 +105,10 @@
      </div>
    </section>
 
-   <section id="maps-view" class="view maps-view" aria-label="Mapy świata" hidden>
+   <section id="maps-view" class="view maps-view" aria-label="Atlas świata" hidden>
      <header class="maps-heading">
-       <div><p class="eyebrow">MAPY ŚWIATA · ODKRYTE ZIEMIE</p><h2>Odkrywaj Midgard</h2>
-       <p>Oryginalna mapa Ziem Drengrów — wybierz krainę z mapy albo ze spisu. Lokacje otworzysz bezpośrednio w Atlasie.</p></div>
+       <div><p class="eyebrow">ATLAS ŚWIATA · ODKRYTE ZIEMIE</p><h2>Mapa i historia krain</h2>
+       <p>Wybierz krainę na mapie albo z listy. Opisy i historie miejsc znajdziesz tutaj, bez zmiany zakładki.</p></div>
        <span class="maps-heading-mark" aria-hidden="true">ᚹ</span>
      </header>
      <div class="maps-browser">
@@ -117,7 +116,7 @@
        <div class="maps-caption">
          <div><p class="eyebrow">WĘDRÓWKA PO ZNANYCH ZIEMIACH</p>
          <h3 id="maps-current-title">Ziemie Drengrów</h3><p id="maps-current-description"></p></div>
-         <button id="maps-open-atlas" class="maps-atlas-link" type="button">Otwórz w Atlasie lokacji</button>
+         <button id="maps-open-atlas" class="maps-atlas-link" type="button">Przejdź do lokacji</button>
        </div>
        <div id="maps-region-links" class="maps-region-links" role="group" aria-label="Wybierz krainę i otwórz Atlas"></div>
         <div class="maps-toolbar">
@@ -136,35 +135,28 @@
          </div>
        </div>
        <p class="maps-accuracy" id="maps-accuracy">Zatwierdzone lokalizacje są oznaczane na mapie. Pozostałe miejsca znajdziesz w spisie pod mapą.</p>
-       <section id="maps-places-section" class="maps-places-section" hidden>
+       <details id="maps-places-section" class="maps-places-section" hidden>
+         <summary class="maps-all-places-toggle">Wszystkie znane miejsca · pokaż spis</summary>
          <div class="maps-place-heading">
            <h3>Znane lokacje</h3>
            <p>Wszystkie znane lokacje, również te bez klikalnego oznaczenia na mapie.</p>
          </div>
          <div id="maps-place-list" class="maps-place-list"></div>
-       </section>
+       </details>
      </div>
-   </section>
-
-   <section id="locations-view" class="view atlas2-view" aria-label="Atlas lokacji" hidden>
-     <header class="atlas2-hero">
-       <img src="assets/locations/eylenda.svg" alt="" class="atlas2-hero-art">
-       <div class="atlas2-hero-content">
-         <p class="eyebrow">ATLAS · ODKRYTE MIEJSCA</p>
-         <h2>Atlas Midgardu</h2>
-         <p>Świat, krainy i miejsca poznane przez bohaterów. Każda nowa wyprawa może dopisać kolejny rozdział.</p>
-       </div>
-     </header>
+      <section id="atlas-world-details" class="atlas2-view atlas-world-details" aria-label="Znane krainy i miejsca">
      <div class="atlas2-browser">
        <nav id="atlas2-breadcrumb" class="atlas2-breadcrumb" aria-label="Ścieżka Atlasu"></nav>
        <div class="atlas2-section-head">
-         <div><p class="eyebrow">ODKRYTE ZIEMIE</p><h3 id="atlas2-region-title">Midgard</h3></div>
+         <div><p class="eyebrow">ODKRYTE KRAINY I MIEJSCA</p><h3 id="atlas2-region-title">Ziemie Drengrów</h3></div>
          <p id="atlas2-region-desc">Miejsca znane bohaterom.</p>
        </div>
        <div id="atlas2-region-grid" class="atlas2-region-grid"></div>
-       <div class="atlas2-footnote">Atlas przedstawia wyłącznie miejsca poznane przez drużynę. Geografia może być uzupełniana wraz z kolejnymi sesjami.</div>
+       <div class="atlas2-footnote">Atlas prezentuje wyłącznie jawne lokacje. Miejsca bez potwierdzonego położenia nie mają pinezek.</div>
      </div>
    </section>
+</section>
+
    <section id="chronicle-view" class="view chronicle-view" aria-label="Kronika wydarzeń" hidden>
      <div class="chronicle-intro">
        <div><p class="eyebrow">ZAPISANE W PAMIĘCI PÓŁNOCY</p>

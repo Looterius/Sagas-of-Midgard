@@ -180,6 +180,7 @@
     const links = [...$("#maps-place-list").querySelectorAll(".maps-site-link")];
     const link = links.find(button => button.dataset.placeId === placeId);
     if (link) {
+      $("#maps-places-section").open = true;
       link.classList.add("maps-site-link--highlight");
       link.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }

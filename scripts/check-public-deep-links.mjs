@@ -107,7 +107,10 @@ const versions=[
    check:r=>r.group.dimension==="families"&&r.group.value==="rod-halfdana"},
  {url:"?view=relationships&postac=sianita",check:r=>r.person==="sianita"},
  {url:"?view=maps&map=drengrlands",check:r=>r.view==="maps"&&r.map==="drengrlands"},
- {url:"?view=locations&place=hrafnvik",check:r=>r.view==="locations"&&r.place==="hrafnvik"},
+ {url:"?view=locations&place=hrafnvik",check:r=>r.view==="maps"&&r.place==="hrafnvik"},
+ {url:"?view=locations&region=agder",check:r=>r.view==="maps"&&r.region==="agder"},
+ {url:"?view=maps&region=eylenda",check:r=>r.view==="maps"&&r.region==="eylenda"},
+ {url:"?view=maps&place=hrafnvik",check:r=>r.view==="maps"&&r.place==="hrafnvik"},
  {url:"?view=chronicle&event=ogien-i-olbrzymy",check:r=>r.view==="chronicle"&&r.chronicleExpanded[0]==="ogien-i-olbrzymy"},
  {url:"?view=bestiary&entry=troll-w-klatce",check:r=>r.view==="bestiary"&&r.entry==="troll-w-klatce"},
  {url:"?view=items&entry=gungnir",check:r=>r.view==="items"&&r.entry==="gungnir"},
@@ -127,7 +130,7 @@ assert.equal(invalid.depth(),0);
 const html=fs.readFileSync("index.html","utf8");
 const app=fs.readFileSync("app.js","utf8");
 const css=fs.readFileSync("styles.css","utf8");
-for(const view of ["relationships","maps","locations","chronicle","runes","bestiary","items"]){
+for(const view of ["relationships","maps","chronicle","runes","bestiary","items"]){
  assert.ok(html.includes('data-view="'+view+'"'),"No sidebar entry "+view);
  assert.ok(html.includes('id="'+view+'-view"'),"No view panel "+view);
 }
@@ -135,7 +138,7 @@ for(const el of ["share-current-view","share-status","fullscreen-toggle","fit",
                   "bestiary-list","items-list","runes-grid","runes-detail","runes-search"])
  assert.ok(html.includes('id="'+el+'"'),"Missing interface "+el);
 assert.ok(!html.includes("EYLENDA <i>·</i> KRONIKA"),"Old decorative Eylenda/Kronika removed");
-assert.ok(html.includes('src="navigation.js?v=runes-v1"'));
+assert.ok(html.includes('src="navigation.js?v=unified-atlas-v1"'));
 assert.ok(app.includes('fullscreenSection.requestFullscreen()'));
 assert.ok(app.includes('fullscreenSection.classList.toggle("is-fullscreen-fallback"'));
 assert.ok(app.includes('navigator.clipboard.writeText(address)'));

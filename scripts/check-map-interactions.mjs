@@ -67,15 +67,22 @@ maps.showForPlace("hrafnvik");
 const highlighted=nodes["#maps-place-list"].querySelectorAll(".maps-site-link").find(x=>x.dataset.placeId==="hrafnvik");
 assert.ok(highlighted.className.includes("maps-site-link--highlight"));
 assert.ok(highlighted.scrolled,"Map-to-place return should highlight the link");
+assert.equal(nodes["#maps-places-section"].open,true,
+  "Find place on map must first expand the collapsed all-places list");
 maps.show("midgard");
 assert.equal(maps.getCurrent(),"drengrlands","Old Midgard deep link should redirect");
 assert.equal(nodes["#maps-art"].src,"assets/maps/Drengrlands.png");
 nodes["#maps-open-atlas"].events.click();
 assert.deepEqual(actions.at(-1),["region","drengrlands"]);
 const app=fs.readFileSync("app.js","utf8");
-assert.ok(app.includes('switchView("locations");\n        const parent ='),"Map place links must switch to Atlas first");
-assert.ok(app.includes('if (b.dataset.view === "maps") window.SOM_MAPS?.show("drengrlands")'));
-assert.ok(app.includes('if (b.dataset.view === "locations") window.SOM_ATLAS?.showRegion("drengrlands")'));
+assert.ok(app.includes('function openAtlasPlace(id)') &&
+  app.includes('switchView("maps");') &&
+  app.includes('window.SOM_ATLAS?.open(id)'),
+  "Map place links must open within Atlas świata");
+assert.ok(app.includes('window.SOM_MAPS?.show("drengrlands")'),
+  "Map tab still starts on the actual campaign map");
+assert.ok(app.includes('window.SOM_ATLAS?.showRegion("drengrlands");'),
+  "Atlas world must open directly at known lands");
 const css=fs.readFileSync("styles.css","utf8");
 assert.ok(css.includes(".maps-hotspot,.maps-marker--place{pointer-events:auto}"),
   "Hotspot layer buttons must receive pointer events");

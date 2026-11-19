@@ -66,7 +66,7 @@ await tick();
 assert.equal(entries.length,count,"Restoration should not push a duplicate entry");
 
 // A tab switch + opening a place in the same synchronous click = one entry.
-active={view:"locations",person:null,place:"hrafnvik"};
+active={view:"maps",person:null,place:"hrafnvik"};
 nav.changed();
 nav.changed();
 await tick();
