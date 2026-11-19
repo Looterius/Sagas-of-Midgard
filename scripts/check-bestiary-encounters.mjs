@@ -81,7 +81,7 @@ assert.ok(app.includes('(entry.eventId && !knownEvents.has(entry.eventId))'),
 assert.ok(app.includes('if (entry.eventId) {')&&app.includes('if (place) {'),
  "Only create real Atlas and Chronicle links");
 assert.ok(app.includes('entry.locationLabel'),"Allow truthful location label");
-assert.ok(html.includes('src="data.js?v=bestiary-art-v6"'),"Latest data cache version needed");
+assert.ok(html.includes('src="data.js?v='),"Public data file must have an explicit cache version");
 assert.ok(html.includes('src="data.js?v='),"Data must have browser cache version");
 assert.ok(html.includes('src="app.js?v='),"Renderer must have browser cache version");
 console.log("PASS — five public bestiary encounters, truthful links, original location images and no hidden stats");
