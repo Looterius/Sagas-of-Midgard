@@ -1495,6 +1495,7 @@ window.CHRONICLE = {
       "placeId": "eylenda",
       "eventId": "ogien-i-olbrzymy",
       "symbol": "ᛉ",
+      "image": "assets/bestiary/Viking Warriors Face the Caged Highland Giant.png",
       "summary": "Stworzenie napotkane przez drużynę podczas wyprawy przez Eylendę.",
       "history": "W Dolinie Olbrzymów bohaterowie odnaleźli trolla uwięzionego w żelaznej klatce. Prosił ich o uwolnienie, lecz nie potrafili przewidzieć, co nastąpi po otwarciu zamknięcia. Drużyna zdecydowała się nie wypuszczać więźnia i ruszyła dalej. Jego dalsze losy pozostają nieznane."
     },
@@ -1506,6 +1507,7 @@ window.CHRONICLE = {
       "eventId": null,
       "locationLabel": "Czarna sadzawka na trasie pierwszej wyprawy",
       "symbol": "ᚺ",
+      "image": "assets/bestiary/Wikingowie kontra morski potwór w jaskini.png",
       "summary": "Tajemnicza istota z ciemnej wody, napotkana przez bohaterów w pierwszym sezonie.",
       "history": "W skalnym przejściu nad czarną sadzawką krył się Backahast — potwór przybierający zwodniczą postać, przypominającą starą, spróchniałą łódkę. Bliskość wody i wąska droga czyniły to spotkanie niebezpiecznym. W publicznej Kronice nie ma jeszcze osobnego rozdziału tej wyprawy, dlatego nie przypisujemy stworzeniu cudzego wydarzenia ani nie rozstrzygamy tu jego dalszych losów."
     },
@@ -1516,6 +1518,7 @@ window.CHRONICLE = {
       "placeId": "hardrada-mound",
       "eventId": "kurhan-gungnir",
       "symbol": "ᛦ",
+      "image": "assets/bestiary/Howling Draugr Beneath Ancient Runes.png",
       "summary": "Nieumarli strażnicy mogił, spotkani na drodze do kurhanu Haralda Hardrady.",
       "history": "Wśród starych grobów na Eylendzie bohaterowie napotkali draugry — poległych wojowników, którzy nie zaprzestali strzec miejsc spoczynku. Zastępowały żywe straże przy kamiennych przejściach, stojąc na drodze wyprawie po Gungnir. Ich obecność przypominała, że dawne przysięgi i groby nie zawsze milkną po śmierci. Wpis nie ujawnia niepotwierdzonych zdolności ani liczebności nieumarłych."
     },
@@ -1526,6 +1529,7 @@ window.CHRONICLE = {
       "placeId": "hardrada-mound",
       "eventId": "kurhan-gungnir",
       "symbol": "ᛏ",
+      "image": "assets/bestiary/Clash in the Glacial Sanctuary.png",
       "summary": "Król z kurhanu, który stanął przeciw bohaterom w ostatniej próbie odzyskania Gungnira.",
       "history": "W głębi kurhanu bohaterowie zmierzyli się z Haraldem Hardradą, dawnym władcą znanym z pieśni skaldów. Starcie przesądziło o losie wyprawy po włócznię Odyna. Drużyna odzyskała Gungnir, lecz straciła Flokiego, Morda oraz dziesięciu braci krwi. Zgodnie z rozegraną Kroniką Harald wreszcie odnalazł spoczynek; nie dopisujemy mu dalszych tajemnych celów ani nieujawnionych właściwości."
     },
@@ -1536,6 +1540,7 @@ window.CHRONICLE = {
       "placeId": "eylenda",
       "eventId": "gospodarstwo-zapomnianych",
       "symbol": "ᛁ",
+      "image": "assets/bestiary/Aurora Welcome at the Turf House.png",
       "summary": "Duchy dawnych mieszkańców domu na pustkowiach Eylendy, nieświadome własnej śmierci.",
       "history": "W odosobnionym gospodarstwie na Eylendzie bohaterowie spotkali zjawy zachowujące się tak, jakby nadal żyły. Zmarli wykonywali zwyczajne czynności, nie potrafiąc pogodzić się z końcem swego życia. Drużyna nie pokonała ich w bitwie, lecz pomogła im poznać prawdę i pożegnać się z doczesnym domem. Dzięki temu duchy mogły odejść ku Helheimowi."
     }
