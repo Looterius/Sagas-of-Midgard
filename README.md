@@ -241,3 +241,11 @@ W Sieci postaci są **dwa odrębne przyciski**: `Dopasuj` tylko obejmuje wszystk
 **Bestiariusz**: pierwsza jawna karta — troll napotkany w żelaznej klatce w Dolinie Olbrzymów podczas rozegranej wyprawy. **Przedmioty**: pierwsza jawna karta — Gungnir odzyskany z kurhanu Haralda Hardrady, sprowadzony do Hrafnviku. Opisy są oparte wyłącznie na `data.chronicle`, bez wymyślania zdolności, statystyk, pochodzenia czy przyszłych wydarzeń. Oba działy łączą się z powiązanymi wydarzeniami Kroniki i miejscami Atlasu; mają udostępnialne, rozwijane karty. Kolejne wpisy dopiero po odkryciu w kampanii.
 
 Testy: `node scripts/check-public-deep-links.mjs` + dotychczasowe regresje.
+
+## Czytnik Kroniki — wybór części i wydarzenia (19.11.2026)
+
+Kronika zachowuje dotychczasowe **5 części i 21 jawnych wydarzeń**. Zamiast pionowej listy wszystkich kart, wyświetla pięć przycisków części, spis wydarzeń wybranej części oraz **jedną pełną opowieść naraz**. Czytanie zaczyna się od pierwszego wydarzenia, a przyciski „Poprzednie wydarzenie” i „Następne wydarzenie” prowadzą chronologicznie. Filtr „Miejsce” pozostaje aktywny; spis i części pokazują tylko pasujące wydarzenia. Na telefonie spis można zwinąć, a po wybraniu wydarzenia zamyka się automatycznie.
+
+Wszystkie stare adresy `?view=chronicle&event=<publiczne-id>` otwierają właściwą historię. `navigation.js` zachowuje `chronicleExpanded[0]` jako publiczne ID **aktualnie czytanej historii**, dzięki czemu działają „Kopiuj link” i przeglądarkowy Wstecz. Odsyłacze z Atlasu, Bestiariusza i Przedmiotów otwierają bezpośrednio odpowiadającą opowieść. **Nie zmieniono żadnych treści ani `id` w `data.js`.**
+
+Test regresji: `node scripts/check-chronicle-reader.mjs`, wykonywany w CI razem z testem deep linków.

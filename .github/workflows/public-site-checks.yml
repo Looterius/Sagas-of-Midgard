@@ -37,3 +37,5 @@ jobs:
         run: node scripts/check-navigation-history.mjs
       - name: Check public catalog and shareable deep links
         run: node scripts/check-public-deep-links.mjs
+      - name: Check readable Chronicle chapters and event navigation
+        run: node scripts/check-chronicle-reader.mjs

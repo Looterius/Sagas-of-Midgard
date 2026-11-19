@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#121419">
   <meta name="description" content="Sagas of Midgard — interaktywna kronika postaci, relacji i lokacji dla graczy.">
   <title>Sagas of Midgard | Kronika</title>
-  <link rel="stylesheet" href="styles.css?v=deep-links-v1">
+  <link rel="stylesheet" href="styles.css?v=chronicle-reader-v1">
   <script src="data.js?v=lore-catalog-v1" defer></script>
   <script src="portrait-assets.js?v=vestmar-v1" defer></script>
   <script src="atlas.js?v=canon-v1" defer></script>
@@ -14,7 +14,7 @@
   <script src="character-groups.js?v=free-v1" defer></script>
   <script src="graph-geometry.js?v=free-v1" defer></script>
   <script src="navigation.js?v=deep-links-v1" defer></script>
-  <script src="app.js?v=deep-links-v1" defer></script>
+  <script src="app.js?v=chronicle-reader-v1" defer></script>
 </head>
 <body>
  <div class="app-shell">
@@ -172,7 +172,14 @@
        <select id="chronicle-place-filter"><option value="all">Wszystkie miejsca</option></select>
        <span id="chronicle-count" aria-live="polite"></span>
      </div>
-     <div id="chronicle-list" class="chronicle-list"></div>
+      <div id="chronicle-chapter-tabs" class="chronicle-chapter-tabs" role="group" aria-label="Wybierz część sagi"></div>
+      <div class="chronicle-reader-layout">
+        <details id="chronicle-index" class="chronicle-index" open>
+          <summary class="chronicle-index-heading">Spis wydarzeń <span id="chronicle-index-count"></span></summary>
+          <div id="chronicle-event-index" class="chronicle-index-list" role="group" aria-label="Wydarzenia wybranej części"></div>
+        </details>
+        <div id="chronicle-list" class="chronicle-list" aria-label="Treść wybranego wydarzenia"></div>
+      </div>
      <p class="chronicle-disclaimer">Zapisujemy tylko wydarzenia znane drużynie. Przyszłe sceny, sekrety Skalda i niepotwierdzone pogłoski pozostają poza publiczną kroniką.</p>
    </section>
 
