@@ -92,6 +92,20 @@ assert.equal(peopleById.get("sten").grouping.lifeStatus,undefined,
 assert.ok(!people.some(p=>p.id==="styr"),"Retired hero name should not be a separate card");
 assert.ok(peopleById.get("asgrim").description.includes("Albion"));
 assert.ok(peopleById.get("asgrim").description.includes("Halfdana Czarnego"));
+const alfheld=peopleById.get("alfheld-gudrodsson");
+const torsten=peopleById.get("torsten-gudrodsson");
+assert.match(alfheld.description,/środkowym synem/,"Alfheld is the middle brother");
+assert.match(alfheld.description,/Dagrfjell/,"Alfheld holds Dagrfjell");
+assert.match(alfheld.description,/wygnaniem Sianity/,"Alfheld supported exile");
+assert.match(torsten.description,/najmłodszym synem/,"Torsten is the youngest brother");
+assert.match(torsten.description,/Guntersborgu/,"Torsten holds Guntersborg");
+assert.match(torsten.description,/przyjaźniej/,"Torsten was kind to Sianita");
+assert.ok(!alfheld.description.includes("Jego sala biesiadna stoi w Guntersborgu"));
+assert.ok(!torsten.description.includes("jest środkowym synem"));
+assert.ok(data.chronicle.some(e=>e.id==="korony-i-odmowy" &&
+ e.paragraphs.some(p=>p.includes("Najmłodszy Torsten")&&p.includes("Alfheld wolał polityczną karę wygnania"))),
+ "The character biographies must match the already public Althing chapter");
+
 
 const pairs=new Set();
 function hasRel(a,b,type,label){

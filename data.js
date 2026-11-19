@@ -588,7 +588,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/Alfheld Gudrodsson.png",
-      "description": "Alfheld Gudrodsson, syn Gudroda Łowcy i brat Olafa oraz Torstena, należy do pretendentów walczących o przyszłość podzielonego Vestmaru. Jego sala biesiadna stoi w Guntersborgu. Jest młodym, jasnowłosym możnym, którego otwartość i dar zjednywania sobie ludzi przyniosły popularność w wielu osadach. Nie słynie jednak ani z nadzwyczajnego kunsztu wojennego, ani z bezbłędnych decyzji politycznych. W kraju rozdartym między braćmi przychylność ludu nie zawsze wystarcza, by utrzymać władzę.",
+      "description": "Alfheld Gudrodsson jest środkowym synem Gudroda Łowcy, bratem najstarszego Olafa i najmłodszego Torstena. Z ufortyfikowanego Dagrfjell włada najmniejszym spośród rywalizujących jarldomów Vestmaru. Nie zdobył takiej przychylności mieszkańców jak młodszy brat; swoją siłę opiera raczej na zbrojnych, których potrafi przyciągnąć zapłatą w srebrze i obietnicą łupów. Twierdzi, że sam Odyn dał mu prawo do rządów, i nie zamierza łatwo ustąpić innym pretendentom. Na Wielkim Althingu opowiadał się za wygnaniem Sianity w związku ze sprawą Skjordvik. Jest bardziej surowy i nieprzystępny niż Torsten, a w walce o dziedzictwo przedkłada nacisk polityczny nad zjednywanie sobie ludzi.",
       "x": 1216,
       "y": 745
     },
@@ -609,7 +609,7 @@ window.CHRONICLE = {
         ]
       },
       "image": "assets/portraits/Torsten Gudrodsson.png",
-      "description": "Torsten Gudrodsson jest środkowym synem Gudroda Łowcy i bratem dwóch rywali o władzę nad Vestmarem. Włada najmniejszym z jarldomów, którego siedzibą stał się ufortyfikowany Dagrfjell. Ma mniej stronników wśród mieszkańców niż jego bracia, lecz potrafi przyciągnąć zbrojnych obietnicą srebra i łupów. Utrzymuje, że sam Odyn udzielił mu prawa do rządów. Wśród czterech obozów rozbitego królestwa Torsten szuka własnej drogi do panowania, nie zamierzając ugiąć się przed wolą Olafa.",
+      "description": "Torsten Gudrodsson jest najmłodszym synem Gudroda Łowcy i młodszym bratem Olafa oraz Alfhelda. Jego sala biesiadna stoi w Guntersborgu. Młody, jasnowłosy i otwarty jarl z łatwością zjednuje sobie ludzi; cieszy się życzliwością mieszkańców wielu osad podzielonego Vestmaru. Nie uważa się go za wybitnego wojownika ani za nieomylnego polityka, lecz jego pogodne usposobienie wyróżnia go spośród rywalizujących braci. Na Wielkim Althingu odnosił się do Sianity znacznie przyjaźniej niż Olaf i Alfheld: dopuszczał przyszłą współpracę zamiast domagać się surowej kary. Popularność wśród poddanych daje mu silną pozycję, choć nie kończy sporu o dziedzictwo Gudroda.",
       "x": 1417,
       "y": 745
     }
