@@ -11,8 +11,76 @@
   let scheduled = false;
   let session = "";
 
-  const valid = route => route && typeof route === "object" &&
-    ["relationships", "maps", "locations", "chronicle"].includes(route.view);
+  const VIEWS = ["relationships", "maps", "locations", "chronicle", "bestiary", "items"];
+  const PRIMARY = ["all", "heroes", "npc", "deceased", "rulers", "captives"];
+  const DIMENSIONS = ["kingdoms", "settlements", "families", "factions"];
+  const valid = route => route && typeof route === "object" && VIEWS.includes(route.view);
+
+  // Stabilne, publiczne adresy odtwarzające widok na innym urządzeniu.
+  // Zawierają tylko znane ID, nigdy historii prywatnej ani pozycji kart.
+  function shareUrl(route = snapshot?.()) {
+    const url = new URL(window.location.href);
+    url.search = "";
+    url.hash = "";
+    if (!valid(route)) return url.href;
+    url.searchParams.set("view", route.view);
+    if (route.view === "relationships") {
+      const group = route.group || {};
+      if (group.primary && group.primary !== "all" && PRIMARY.includes(group.primary))
+        url.searchParams.set("grupa", group.primary);
+      if (DIMENSIONS.includes(group.dimension) && group.value) {
+        url.searchParams.set("dimension", group.dimension);
+        url.searchParams.set("value", group.value);
+      }
+      if (route.person) url.searchParams.set("postac", route.person);
+    } else if (route.view === "maps") {
+      if (route.map && route.map !== "midgard") url.searchParams.set("map", route.map);
+    } else if (route.view === "locations") {
+      if (route.region && route.region !== "midgard") url.searchParams.set("region", route.region);
+      if (route.place) url.searchParams.set("place", route.place);
+    } else if (route.view === "chronicle") {
+      if (route.chronicleFilter && route.chronicleFilter !== "all")
+        url.searchParams.set("filter", route.chronicleFilter);
+      if (route.chronicleExpanded?.[0]) url.searchParams.set("event", route.chronicleExpanded[0]);
+    } else if ((route.view === "bestiary" || route.view === "items") && route.entry) {
+      url.searchParams.set("entry", route.entry);
+    }
+    return url.href;
+  }
+
+  function parseSharedRoute() {
+    const params = new URL(window.location.href).searchParams;
+    if (![ "view", "grupa", "group", "postac", "dimension" ].some(p => params.has(p)))
+      return null;
+    const view = params.get("view") || "relationships";
+    if (!VIEWS.includes(view)) return null;
+    const base = snapshot();
+    if (!valid(base)) return null;
+    const route = { ...base, view };
+    if (view === "relationships") {
+      const primary = params.get("grupa") || params.get("group") || "all";
+      const dimension = params.get("dimension");
+      const value = params.get("value");
+      route.group = {
+        primary: PRIMARY.includes(primary) ? primary : "all",
+        dimension: DIMENSIONS.includes(dimension) && value ? dimension : null,
+        value: DIMENSIONS.includes(dimension) && value ? value : null,
+        expanded: DIMENSIONS.includes(dimension) && value ? dimension : null
+      };
+      route.person = params.get("postac") || params.get("person") || null;
+    } else if (view === "maps") {
+      route.map = params.get("map") || "midgard";
+    } else if (view === "locations") {
+      route.region = params.get("region") || "midgard";
+      route.place = params.get("place") || null;
+    } else if (view === "chronicle") {
+      route.chronicleFilter = params.get("filter") || "all";
+      route.chronicleExpanded = params.get("event") ? [params.get("event")] : [];
+    } else {
+      route.entry = params.get("entry") || null;
+    }
+    return route;
+  }
   const equal = (a, b) => JSON.stringify(a) === JSON.stringify(b);
   const current = () => window.history.state?.[KEY];
 
@@ -20,7 +88,7 @@
     window.history[method](
       { ...(window.history.state || {}), [KEY]: { session, depth, route } },
       "",
-      window.location.href
+      shareUrl(route)
     );
   }
 
@@ -75,9 +143,15 @@
       try { restore(inherited.route); }
       finally { restoring = false; }
     } else {
+      const shared = parseSharedRoute();
+      if (shared) {
+        restoring = true;
+        try { restore(shared); }
+        finally { restoring = false; }
+      }
       write(snapshot(), 0, "replaceState");
     }
   }
 
-  window.SOM_NAV = { mount, changed, closeLayer };
+  window.SOM_NAV = { mount, changed, closeLayer, shareUrl };
 })();
