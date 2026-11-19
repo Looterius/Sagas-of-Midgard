@@ -888,6 +888,76 @@
   $("#zoom-in").addEventListener("click", () => setZoom(state.zoom * 1.17));
   $("#zoom-out").addEventListener("click", () => setZoom(state.zoom / 1.17));
   $("#fit").addEventListener("click", fit);
+
+  // Dopasuj ≠ Pełny ekran. Fullscreen API, a gdy przeglądarka go blokuje
+  // (np. część przeglądarek na iOS), bezpieczna nakładka zajmująca cały ekran.
+  const fullscreenSection = $("#relationships-view");
+  const fullscreenButton = $("#fullscreen-toggle");
+  function isFullScreen() {
+    return document.fullscreenElement === fullscreenSection ||
+      fullscreenSection.classList.contains("is-fullscreen-fallback");
+  }
+  function updateFullScreen() {
+    const enabled = isFullScreen();
+    fullscreenButton.setAttribute("aria-pressed", String(enabled));
+    fullscreenButton.setAttribute("aria-label", enabled ? "Wyjdź z pełnego ekranu" : "Włącz pełny ekran");
+    fullscreenButton.title = enabled ? "Zamknij pełny ekran" : "Otwórz pełny ekran";
+    const caption = fullscreenButton.querySelector("span");
+    if (caption) caption.textContent = enabled ? "Zamknij" : "Pełny ekran";
+    if (state.view === "relationships") requestAnimationFrame(fit);
+  }
+  function setFallbackFullscreen(enabled) {
+    fullscreenSection.classList.toggle("is-fullscreen-fallback", enabled);
+    document.body.classList.toggle("map-fullscreen-lock", enabled);
+    updateFullScreen();
+  }
+  fullscreenButton.addEventListener("click", async () => {
+    if (fullscreenSection.classList.contains("is-fullscreen-fallback")) {
+      setFallbackFullscreen(false);
+    } else if (document.fullscreenElement === fullscreenSection) {
+      if (document.exitFullscreen) await document.exitFullscreen();
+    } else if (fullscreenSection.requestFullscreen) {
+      try { await fullscreenSection.requestFullscreen(); }
+      catch { setFallbackFullscreen(true); }
+    } else {
+      setFallbackFullscreen(true);
+    }
+    updateFullScreen();
+  });
+  document.addEventListener("fullscreenchange", updateFullScreen);
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && fullscreenSection.classList.contains("is-fullscreen-fallback"))
+      setFallbackFullscreen(false);
+  });
+
+  const shareButton = $("#share-current-view");
+  const shareStatus = $("#share-status");
+  shareButton.addEventListener("click", async () => {
+    const address = window.SOM_NAV?.shareUrl();
+    if (!address) return;
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
+      await navigator.clipboard.writeText(address);
+      shareStatus.textContent = "Skopiowano!";
+    } catch {
+      // Starsze przeglądarki bez Clipboard API mogą skopiować adres ręcznie.
+      const field = document.createElement("textarea");
+      field.value = address;
+      field.setAttribute("readonly", "");
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.appendChild(field);
+      field.select();
+      let copied = false;
+      try { copied = document.execCommand("copy"); } catch {}
+      field.remove();
+      if (copied) shareStatus.textContent = "Skopiowano!";
+      else {
+        shareStatus.textContent = "Skopiuj adres z okna";
+        window.prompt("Skopiuj link do wybranego widoku:", address);
+      }
+    }
+  });
   $("#reset-positions").addEventListener("click", () => {
     // Przywróć układ tylko wybranego filtra, nie kasuj innych ustawień.
     applyGrouping(true);
