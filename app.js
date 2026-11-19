@@ -560,8 +560,9 @@
     const knownPlaces = new Set((data.places || [])
       .filter(place => place.visibility === "known").map(place => place.id));
     for (const entry of entries || []) {
-      if (!entry?.id || !entry.name || !knownEvents.has(entry.eventId) ||
-          !knownPlaces.has(entry.placeId)) continue;
+      if (!entry?.id || !entry.name ||
+          (entry.eventId && !knownEvents.has(entry.eventId)) ||
+          (entry.placeId && !knownPlaces.has(entry.placeId))) continue;
       const card = make("details", "lore-entry");
       card.dataset.entryId = entry.id;
       const summary = make("summary", "lore-entry-summary");
@@ -576,23 +577,28 @@
       summary.appendChild(make("span", "lore-entry-arrow", "⌄"));
       card.appendChild(summary);
       const body = make("div", "lore-entry-detail");
+      if (entry.locationLabel) body.appendChild(make("p", "lore-entry-location", entry.locationLabel));
       body.appendChild(make("p", "", entry.history));
       const actions = make("div", "lore-entry-actions");
       const place = (data.places || []).find(p => p.id === entry.placeId);
-      const atlasLink = make("button", "lore-entry-action", "⌖ " + (place?.name || "Atlas"));
-      atlasLink.type = "button";
-      atlasLink.addEventListener("click", () => {
-        openAtlasPlace(entry.placeId);
-      });
-      actions.appendChild(atlasLink);
-      const eventLink = make("button", "lore-entry-action", "ᚱ Zobacz w Kronice");
-      eventLink.type = "button";
-      eventLink.addEventListener("click", () => {
-        switchView("chronicle");
-        chronicleSelect(entry.eventId);
-      });
-      actions.appendChild(eventLink);
-      body.appendChild(actions);
+      // Wpisy z wcześniejszego sezonu mogą nie mieć jeszcze osobnej karty
+      // lokacji albo rozdziału Kroniki. Nie tworzymy fałszywych linków.
+      if (place) {
+        const atlasLink = make("button", "lore-entry-action", "⌖ " + place.name);
+        atlasLink.type = "button";
+        atlasLink.addEventListener("click", () => openAtlasPlace(entry.placeId));
+        actions.appendChild(atlasLink);
+      }
+      if (entry.eventId) {
+        const eventLink = make("button", "lore-entry-action", "ᚱ Zobacz w Kronice");
+        eventLink.type = "button";
+        eventLink.addEventListener("click", () => {
+          switchView("chronicle");
+          chronicleSelect(entry.eventId);
+        });
+        actions.appendChild(eventLink);
+      }
+      if (actions.children.length) body.appendChild(actions);
       card.appendChild(body);
       card.addEventListener("toggle", () => {
         if (card.open) {

@@ -943,3 +943,7 @@ body.map-fullscreen-lock{overflow:hidden}
  .atlas2-detail-lore{font-size:14px;line-height:1.7}
 }
 @media(max-width:350px){.atlas2-place-chip-list{grid-template-columns:1fr}}
+
+
+/* Bestiariusz: jawny wpis z sezonu I może nie mieć jeszcze osobnego rozdziału Kroniki. */
+.lore-entry-location{font:600 12px/1.6 system-ui,sans-serif!important;color:#cead79!important;letter-spacing:.035em;margin:0 0 12px!important}

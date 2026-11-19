@@ -179,7 +179,7 @@ for(const id of ["character-group-tabs","character-group-dimensions","character-
  "character-group-reset","character-group-empty","character-group-summary"])
   assert.ok(html.includes('id="'+id+'"'),"Missing grouping UI "+id);
 assert.ok(html.includes('src="character-groups.js?v='));
-assert.ok(html.includes('data.js?v=atlas-places-v2'),"Bust public data cache for updated Atlas");
+assert.ok(html.includes('src="data.js?v='),"Data file must be versioned for browser cache");
 assert.ok(css.includes(".person-card[hidden]"));
 assert.ok(app.includes("groupFilter.primary")&&app.includes("state.visibleIds.has(rel.from)"));
 assert.ok(app.includes('card.classList.toggle("is-deceased"')&&

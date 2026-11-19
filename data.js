@@ -1369,17 +1369,17 @@ window.CHRONICLE = {
     {
       id: "harstad", name: "Harstad", kind: "Sala miodowa i osada", visibility: "known", parentRegionId: "agder",
       description: "Królewska sala Halfdana Czarnego, znana z uczt i bogatych dekoracji.", history: "Ośrodek opisany w podręcznikowym atlasie świata; nie stanowi potwierdzenia wizyty bohaterów.",
-      image: "", personIds: []
+      image: "assets/locations/Harstad_ Royal Mead-Hall at Dusk.png", personIds: []
     },
     {
       id: "yppsala-wodenhorgr", name: "Yppsala — Wodenhorgr", kind: "Sanktuarium Odyna", visibility: "known", parentRegionId: "agder",
       description: "Główna świątynia Agderu; miejsce wielkich blótów i zgromadzeń religijnych.", history: "Ośrodek opisany w podręcznikowym atlasie świata; nie stanowi potwierdzenia wizyty bohaterów.",
-      image: "", personIds: []
+      image: "assets/locations/Stormbound Ritual at the World Tree.png", personIds: []
     },
     {
       id: "omen", name: "Omen", kind: "Port zbrojmistrzów", visibility: "known", parentRegionId: "agder",
       description: "Nadmorska osada słynąca z doskonałej broni i handlu.", history: "Ośrodek opisany w podręcznikowym atlasie świata; nie stanowi potwierdzenia wizyty bohaterów.",
-      image: "", personIds: []
+      image: "assets/locations/Viking Forge Market in a Snowy Fjord.png", personIds: []
     },
     {
       id: "holmgard", name: "Holmgard", kind: "Miasto rzeczne", visibility: "known", parentRegionId: "gardarike",
@@ -1453,7 +1453,7 @@ window.CHRONICLE = {
       id: "thingvellir", name: "Thingvellir", kind: "Płaskowyż", visibility: "known", parentRegionId: "eylenda",
       description: "Wysoki, płaski górski obszar na Eylendzie, wymieniany w opisach tej krainy.",
       history: "Thingvellir jest jednym z opisanych miejsc Eylendy. Nie należy go mylić z Ejkjavikiem — osadą, w której odbywa się Althing w naszej sadze.",
-      image: "", personIds: []
+      image: "assets/locations/Stormlit Thingvellir Assembly Plain.png", personIds: []
     },
     {
       id: "freydistad", name: "Freydistad (Hardrada's Rest)", kind: "Miasto portowe", visibility: "known", parentRegionId: "eylenda",
@@ -1465,7 +1465,7 @@ window.CHRONICLE = {
       id: "gods-cauldron", name: "Kocioł Bogów", kind: "Gorące jezioro", visibility: "known", parentRegionId: "eylenda",
       description: "Znane również jako Wrzące Jezioro lub Kocioł Thora. Gorący zbiornik leży u podnóża wielkiej wulkanicznej góry.",
       history: "Woda jeziora jest tak gorąca, że nieustannie wrze. Mieszkańcy Eylendy uważają je za miejsce wyjątkowo niebezpieczne dla ludzi i zwierząt.",
-      image: "", personIds: []
+      image: "assets/locations/Boiling Lake Beneath Stormy Peaks.png", personIds: []
     },
     {
       id: "hardrada-mound", name: "Kurhan Haralda Hardrady", kind: "Kurhan", visibility: "known", parentRegionId: "eylenda",
@@ -1497,6 +1497,47 @@ window.CHRONICLE = {
       "symbol": "ᛉ",
       "summary": "Stworzenie napotkane przez drużynę podczas wyprawy przez Eylendę.",
       "history": "W Dolinie Olbrzymów bohaterowie odnaleźli trolla uwięzionego w żelaznej klatce. Prosił ich o uwolnienie, lecz nie potrafili przewidzieć, co nastąpi po otwarciu zamknięcia. Drużyna zdecydowała się nie wypuszczać więźnia i ruszyła dalej. Jego dalsze losy pozostają nieznane."
+    },
+    {
+      "id": "backahast",
+      "name": "Backahast",
+      "kind": "Wodny stwór · sezon I",
+      "placeId": null,
+      "eventId": null,
+      "locationLabel": "Czarna sadzawka na trasie pierwszej wyprawy",
+      "symbol": "ᚺ",
+      "summary": "Tajemnicza istota z ciemnej wody, napotkana przez bohaterów w pierwszym sezonie.",
+      "history": "W skalnym przejściu nad czarną sadzawką krył się Backahast — potwór przybierający zwodniczą postać, przypominającą starą, spróchniałą łódkę. Bliskość wody i wąska droga czyniły to spotkanie niebezpiecznym. W publicznej Kronice nie ma jeszcze osobnego rozdziału tej wyprawy, dlatego nie przypisujemy stworzeniu cudzego wydarzenia ani nie rozstrzygamy tu jego dalszych losów."
+    },
+    {
+      "id": "draugry-kurhanu",
+      "name": "Draugry — nieumarli wojownicy",
+      "kind": "Nieumarli strażnicy grobów",
+      "placeId": "hardrada-mound",
+      "eventId": "kurhan-gungnir",
+      "symbol": "ᛦ",
+      "summary": "Nieumarli strażnicy mogił, spotkani na drodze do kurhanu Haralda Hardrady.",
+      "history": "Wśród starych grobów na Eylendzie bohaterowie napotkali draugry — poległych wojowników, którzy nie zaprzestali strzec miejsc spoczynku. Zastępowały żywe straże przy kamiennych przejściach, stojąc na drodze wyprawie po Gungnir. Ich obecność przypominała, że dawne przysięgi i groby nie zawsze milkną po śmierci. Wpis nie ujawnia niepotwierdzonych zdolności ani liczebności nieumarłych."
+    },
+    {
+      "id": "harald-hardrada-nieumarly",
+      "name": "Harald Hardrada — nieumarły król",
+      "kind": "Nieumarły władca",
+      "placeId": "hardrada-mound",
+      "eventId": "kurhan-gungnir",
+      "symbol": "ᛏ",
+      "summary": "Król z kurhanu, który stanął przeciw bohaterom w ostatniej próbie odzyskania Gungnira.",
+      "history": "W głębi kurhanu bohaterowie zmierzyli się z Haraldem Hardradą, dawnym władcą znanym z pieśni skaldów. Starcie przesądziło o losie wyprawy po włócznię Odyna. Drużyna odzyskała Gungnir, lecz straciła Flokiego, Morda oraz dziesięciu braci krwi. Zgodnie z rozegraną Kroniką Harald wreszcie odnalazł spoczynek; nie dopisujemy mu dalszych tajemnych celów ani nieujawnionych właściwości."
+    },
+    {
+      "id": "zjawy-z-gospodarstwa",
+      "name": "Zjawy z zapomnianego gospodarstwa",
+      "kind": "Niespokojne duchy",
+      "placeId": "eylenda",
+      "eventId": "gospodarstwo-zapomnianych",
+      "symbol": "ᛁ",
+      "summary": "Duchy dawnych mieszkańców domu na pustkowiach Eylendy, nieświadome własnej śmierci.",
+      "history": "W odosobnionym gospodarstwie na Eylendzie bohaterowie spotkali zjawy zachowujące się tak, jakby nadal żyły. Zmarli wykonywali zwyczajne czynności, nie potrafiąc pogodzić się z końcem swego życia. Drużyna nie pokonała ich w bitwie, lecz pomogła im poznać prawdę i pożegnać się z doczesnym domem. Dzięki temu duchy mogły odejść ku Helheimowi."
     }
   ],
   items: [
