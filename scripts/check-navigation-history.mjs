@@ -31,7 +31,7 @@ const win = {
     listeners.get(name).push(listener);
   }
 };
-const sandbox={window:win,Date,Math,queueMicrotask};
+const sandbox={window:win,Date,Math,queueMicrotask,URL,URLSearchParams};
 vm.runInNewContext(fs.readFileSync("navigation.js","utf8"),sandbox,{filename:"navigation.js"});
 const nav=win.SOM_NAV;
 nav.mount({
