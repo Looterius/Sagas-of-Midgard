@@ -297,3 +297,19 @@ Nowe grafiki (już obecne w repo): `assets/locations/Eylenda.png`, `Ejkjavik.png
 **Bezpieczeństwo kanonu:** pominięto wątki z sekcji „Rumors”, nieodkryte zagadki i przygody Skalda. Nie dodano NPC do powiązań drużyny, nie wpisano przyszłych zdarzeń ani posiadaczy artefaktów. Nie zmieniono istniejących ID. Agder/Hordalands/Fjordane zachowują różne tożsamości, Hrafnvik i Skjordvik pozostają bez przypisania do jednego z królestw.
 
 Testy: `node scripts/check-world-atlas-two-maps.mjs` wraz z `check-public-atlas.mjs`, `check-public-maps.mjs`, `check-map-interactions.mjs`, `check-unified-atlas.mjs`, `check-public-deep-links.mjs` i `check-navigation-history.mjs`, wszystkie w GitHub Actions.
+
+## Bestiariusz — spotkania z sezonów I i V (19.11.2026)
+
+Dodano cztery **jawne, rozegrane spotkania** do istniejącego trolla:
+- **Backahast** — nie „Black Caust”: wodny stwór z czarnej sadzawki w pierwszym sezonie. Brak osobnego publicznego epizodu Kroniki i karty miejsca oznacza **brak linków**, nie fałszywe odsyłacze do Eylendy lub innego wydarzenia. Wpis nie ujawnia statystyk, tajemnych zachowań i nie opisuje niesprawdzonego końca przeciwnika.
+- **Draugry — nieumarli wojownicy** — strażnicy mogił na drodze do kurhanu, odsyłacz do rozdziału `kurhan-gungnir`.
+- **Harald Hardrada — nieumarły król** — finałowy przeciwnik w kurhanie, którego historia w rozegranej sadze kończy się spoczynkiem.
+- **Zjawy z zapomnianego gospodarstwa** — duchy, które drużyna pomogła przeprowadzić ku Helheimowi; **nie klasyfikujemy ich jako wrogów pokonanych w walce**.
+
+W `app.js` karty Bestiariusza tolerują `placeId:null` / `eventId:null` wyłącznie dla prawdziwie opisanych spotkań bez udostępnionego jeszcze rozdziału. Linki do Atlasu i Kroniki tworzą się tylko dla potwierdzonych identyfikatorów. Stare ID bestiariusza, artefaktów i rozdziałów pozostają niezmienione.
+
+## Nowe grafiki lokacji (19.11.2026)
+
+Do `assets/locations/` dotarło **sześć nowych plików**, ale dwa mają identyczny tytuł Thingvelliru i tę samą liczbę bajtów (`Stormlit Thingvellir Assembly Plain.png` oraz wariant ` (1).png`). Zachowano oba pliki bez usuwania. Pięć tematycznych ilustracji podłączono do istniejących jawnych kart: Kocioł Bogów (gorące jezioro), Harstad (sala miodowa), Yppsala–Wodenhorgr (rytuał przy drzewie), Thingvellir (miejsce zgromadzeń w podręczniku, **nie kampanijny Althing w Ejkjaviku**) i Omen (targ/kuźnia nad fiordem). Żadna z ilustracji nie oznacza potwierdzenia nieznanych współrzędnych.
+
+Testy: `node scripts/check-bestiary-encounters.mjs`, `node scripts/check-public-deep-links.mjs`, `node scripts/check-public-atlas.mjs`, pełne CI.

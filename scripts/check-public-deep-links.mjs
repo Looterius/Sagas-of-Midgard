@@ -11,7 +11,7 @@ for(const file of ["data.js","character-groups.js"]){
 const data=source.window.CHRONICLE, groups=source.window.SOM_GROUPS;
 const people=new Map(data.people.map(p=>[p.id,p]));
 assert.equal(data.people.length,32);
-assert.equal(data.bestiary.length,1);
+assert.equal(data.bestiary.length,5);
 assert.equal(data.items.length,1);
 const knownPlaces=new Set(data.places.filter(p=>p.visibility==="known").map(p=>p.id));
 const knownEvents=new Set(data.chronicle.map(e=>e.id));
@@ -19,13 +19,25 @@ for(const [kind,entries] of [["bestiary",data.bestiary],["items",data.items]]){
  for(const entry of entries){
   assert.match(entry.id,/^[a-z0-9-]+$/);
   assert.ok(entry.name && entry.summary && entry.history && entry.kind);
-  assert.ok(knownPlaces.has(entry.placeId),"Unknown public place in "+kind);
-  assert.ok(knownEvents.has(entry.eventId),"Unknown public event in "+kind);
+  // Pierwszy sezon: Backahast nie ma jeszcze osobnej publicznej karty miejsca
+  // ani rozdziału. Nie wolno podłączać go do niepowiązanego wydarzenia.
+  if (kind === "bestiary" && entry.id === "backahast") {
+    assert.equal(entry.placeId,null);
+    assert.equal(entry.eventId,null);
+    assert.ok(entry.locationLabel);
+  } else {
+    assert.ok(knownPlaces.has(entry.placeId),"Unknown public place in "+kind);
+    assert.ok(knownEvents.has(entry.eventId),"Unknown public event in "+kind);
+  }
   assert.ok(!/mechanik[aię]|obrażeni[ea]|HP:|atak:\s*\d|sekret MG/i.test(entry.summary),
     "Catalog may not claim unpublished mechanical traits");
  }
 }
 assert.equal(data.bestiary[0].id,"troll-w-klatce");
+assert.deepEqual(Array.from(data.bestiary,entry=>entry.id),[
+  "troll-w-klatce","backahast","draugry-kurhanu",
+  "harald-hardrada-nieumarly","zjawy-z-gospodarstwa"
+]);
 assert.equal(data.items[0].id,"gungnir");
 const captive=people.get("ragnvald-s");
 assert.ok(captive.grouping.statuses.includes("captive"));
@@ -113,6 +125,9 @@ const versions=[
  {url:"?view=maps&place=hrafnvik",check:r=>r.view==="maps"&&r.place==="hrafnvik"},
  {url:"?view=chronicle&event=ogien-i-olbrzymy",check:r=>r.view==="chronicle"&&r.chronicleExpanded[0]==="ogien-i-olbrzymy"},
  {url:"?view=bestiary&entry=troll-w-klatce",check:r=>r.view==="bestiary"&&r.entry==="troll-w-klatce"},
+ {url:"?view=bestiary&entry=backahast",check:r=>r.view==="bestiary"&&r.entry==="backahast"},
+ {url:"?view=bestiary&entry=harald-hardrada-nieumarly",check:r=>r.view==="bestiary"&&r.entry==="harald-hardrada-nieumarly"},
+ {url:"?view=bestiary&entry=zjawy-z-gospodarstwa",check:r=>r.view==="bestiary"&&r.entry==="zjawy-z-gospodarstwa"},
  {url:"?view=items&entry=gungnir",check:r=>r.view==="items"&&r.entry==="gungnir"},
  {url:"?view=runes&rune=algiz",check:r=>r.view==="runes"&&r.rune==="algiz"}
 ];
@@ -146,4 +161,4 @@ assert.ok(app.includes('renderCatalog("bestiary", data.bestiary)'));
 assert.ok(css.includes("#relationships-view:fullscreen"));
 assert.ok(css.includes(".lore-catalog-grid"));
 console.log("PASS: shareable rulers/family/person/place/map/chronicle/catalog links and native Back");
-console.log("PASS: 6 categories, 6 families, 3 public factions, prisoner badge, fullscreen and 2 safe catalog entries");
+console.log("PASS: 6 categories, 6 families, 3 public factions, prisoner badge, fullscreen and 6 safe catalog entries");
