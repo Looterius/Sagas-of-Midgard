@@ -23,7 +23,7 @@ for(const event of data.chronicle){
 }
 assert.equal(data.chronicleChapters.length,5);
 assert.equal(data.chronicle.length,21);
-for(const v of ['id="chronicle-chapter-tabs"','id="chronicle-event-index"','id="chronicle-index"','id="chronicle-list"','src="app.js?v=runes-v1"'])
+for(const v of ['id="chronicle-chapter-tabs"','id="chronicle-event-index"','id="chronicle-index"','id="chronicle-list"','src="app.js?v='])
  assert.ok(html.includes(v),"Missing UI "+v);
 for(const v of ['let chronicleCurrentEventId = null','chronicleSelect = (id,','chronicleCurrentEventId ? [chronicleCurrentEventId] : []','chronicleSelect(target, { notify: false, focus: false })','chronicleSelect(eventId)','chronicleSelect(entry.eventId)'])
  assert.ok(app.includes(v),"Missing reader integration "+v);
