@@ -331,3 +331,13 @@ Oprócz Gungnira publiczny katalog `data.js → items` zawiera teraz trzy osobne
 Wszystkie trzy nowe karty mają `placeId:null` i `eventId:null`, ponieważ brak osobnego zweryfikowanego publicznego rozdziału i karty miejsca; renderer nie tworzy fałszywych linków. Nie wpisano żadnej wiedzy ze stron Skalda z autorskiego scenariusza (nawet do komentarzy). Arm-ring Ketila Brandssona oraz biały materiał z tulejką występują na załączonym handoucie, ale nie zostały dodane bez wyraźnej decyzji, że zostały już odkryte.
 
 Ilustracje przedmiotów można później dołączyć jako pliki do `assets/items/`. Nie użyto niskiej rozdzielczości wycinków ze zrzutu handoutu. Test: `node scripts/check-player-items.mjs` oraz `node scripts/check-public-deep-links.mjs`.
+
+### Ilustracje czterech kart Przedmiotów
+
+Po dodaniu plików do `assets/items/` podłączono cztery rzeczywiście przesłane obrazy:
+- `gungnir` → `Mythic Runic Spear of Asgard (1).png`
+- `hrafnsauga-oko-kruka` → `Nordycki Amulet Wszechwidzącego Oka.png`
+- `srebrne-krazki` → `Tajemnicze srebrne medaliony w półmroku.png`
+- `zlote-jablka-idunn` → `Golden Apples in a Norse Great Hall.png`
+
+Niepowiązany obraz `Futurystyczna szklana kapsuła na satynie.png` pozostaje zachowany, ale nie ma publicznej karty — samo przesłanie obrazu nie oznacza, że drużyna znalazła przedmiot. Idunn nadal figuruje jako motyw legendarny, nie zdobyty artefakt. Renderer `app.js` pokazuje obraz miniaturek w skróconych kartach i większą ilustrację po rozwinięciu, z obsługą mobilną; jeśli wpis nie ma `image`, pozostaje poprzednia runa. Wdrożenie nie zmienia źródeł ani właściwości przedmiotów.

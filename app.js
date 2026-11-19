@@ -566,8 +566,20 @@
       const card = make("details", "lore-entry");
       card.dataset.entryId = entry.id;
       const summary = make("summary", "lore-entry-summary");
-      const illustration = make("span", "lore-entry-symbol", entry.symbol || "ᛟ");
+      const imagePath = typeof entry.image === "string" &&
+        /^assets\/(?:items|bestiary)\/[^?#]+\.(?:png|jpe?g|webp)$/i.test(entry.image)
+        ? entry.image : null;
+      const illustration = make("span",
+        imagePath ? "lore-entry-symbol lore-entry-symbol--image" : "lore-entry-symbol");
       illustration.setAttribute("aria-hidden", "true");
+      if (imagePath) {
+        const thumbnail = make("img", "lore-entry-thumbnail");
+        thumbnail.src = imagePath;
+        thumbnail.alt = "";
+        thumbnail.loading = "lazy";
+        thumbnail.decoding = "async";
+        illustration.appendChild(thumbnail);
+      } else illustration.textContent = entry.symbol || "ᛟ";
       summary.appendChild(illustration);
       const content = make("div", "lore-entry-overview");
       content.appendChild(make("span", "lore-entry-kind", entry.kind));
@@ -577,6 +589,16 @@
       summary.appendChild(make("span", "lore-entry-arrow", "⌄"));
       card.appendChild(summary);
       const body = make("div", "lore-entry-detail");
+      if (imagePath) {
+        const figure = make("figure", "lore-entry-figure");
+        const large = make("img", "lore-entry-large-image");
+        large.src = imagePath;
+        large.alt = "Ilustracja: " + entry.name;
+        large.loading = "lazy";
+        large.decoding = "async";
+        figure.appendChild(large);
+        body.appendChild(figure);
+      }
       if (entry.locationLabel) body.appendChild(make("p", "lore-entry-location", entry.locationLabel));
       body.appendChild(make("p", "", entry.history));
       const actions = make("div", "lore-entry-actions");

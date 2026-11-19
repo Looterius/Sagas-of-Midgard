@@ -35,11 +35,30 @@ for(const item of items.slice(1)){
  assert.ok(item.locationLabel,"Explain source / knowledge status");
 }
 assert.equal(byId.gungnir.eventId,"powrot-i-pogrzeby");
+const artPaths={
+  "gungnir": "assets/items/Mythic Runic Spear of Asgard (1).png",
+  "hrafnsauga-oko-kruka": "assets/items/Nordycki Amulet Wszechwidzącego Oka.png",
+  "srebrne-krazki": "assets/items/Tajemnicze srebrne medaliony w półmroku.png",
+  "zlote-jablka-idunn": "assets/items/Golden Apples in a Norse Great Hall.png"
+};
+for (const [id,path] of Object.entries(artPaths)) {
+ assert.equal(byId[id]?.image,path,"Wrong item image assignment: "+id);
+ assert.ok(fs.existsSync(path),"Missing uploaded item illustration: "+path);
+ const bytes=fs.readFileSync(path);
+ assert.ok(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])),
+  "Expected PNG asset: "+path);
+ assert.ok(bytes.readUInt32BE(16)>=600 && bytes.readUInt32BE(20)>=600,"Image too small: "+path);
+}
+assert.ok(fs.existsSync("assets/items/Futurystyczna szklana kapsuła na satynie.png"),
+  "Do not delete unassigned user uploads");
 const html=read("index.html"),app=read("app.js"),readme=read("README.md");
-assert.ok(html.includes('data.js?v=items-v4'),"Cache must refresh public data");
+assert.ok(html.includes('data.js?v=items-images-v5'),"Cache must refresh public data");
+assert.ok(html.includes('app.js?v=item-art-v3'),"Image renderer must refresh");
 assert.ok(html.includes('id="items-list"'),"Items view kept");
 assert.ok(app.includes('(entry.eventId && !knownEvents.has(entry.eventId))'));
 assert.ok(app.includes('(entry.placeId && !knownPlaces.has(entry.placeId))'));
+assert.ok(app.includes('lore-entry-thumbnail')&&app.includes('lore-entry-large-image'),
+ "Items must show thumbnails and full illustrations");
 assert.ok(app.includes('if (entry.eventId) {')&&app.includes('if (place) {'),
   "Only real places and episodes should generate links");
 assert.ok(readme.includes('Hrafnsauga — „Oko Kruka”'));
