@@ -1347,6 +1347,8 @@ window.CHRONICLE = {
      description: "Świat ludzi, dom bohaterów naszej sagi. Atlas przedstawia tylko poznane przez nich miejsca."},
     {id: "drengrlands", name: "Ziemie Drengrów", parentId: "midgard", kind: "Obszar", visibility: "known",
      description: "Ojczyste ziemie nordyckich wojowników, osadników i żeglarzy."},
+    {id: "gardarike", name: "Gardarike — Ruś", parentId: "midgard", kind: "Kraina wielkich rzek", visibility: "known",
+     description: "Kraina czterech rodów i handlu rzecznego łączącego północ z Miklagardem."},
     {id: "agder", name: "Agder", parentId: "drengrlands", kind: "Królestwo Drengrów", visibility: "known",
      description: "Najstarsze z królestw Drengrów, ziemia wojowników, przysiąg i pradawnych tradycji. Rządzi tu Halfdan Czarny, człowiek o ambicjach większych niż granice własnego królestwa."},
     {id: "hordalands", name: "Hordalands", parentId: "drengrlands", kind: "Królestwo Drengrów", visibility: "known",
@@ -1363,17 +1365,53 @@ window.CHRONICLE = {
   // Lokacje publiczne, poznane podczas kampanii. Pełny katalog podręcznika pozostaje poza repo.
   // Osady z niepotwierdzonym położeniem grupujemy na liście, bez deklarowania granic i przynależności politycznej.
   places: [
+    // Publiczna geografia znana z podręcznika, nie lista odwiedzonych miejsc.
+    {
+      id: "harstad", name: "Harstad", kind: "Sala miodowa i osada", visibility: "known", parentRegionId: "agder",
+      description: "Królewska sala Halfdana Czarnego, znana z uczt i bogatych dekoracji.", history: "Ośrodek opisany w podręcznikowym atlasie świata; nie stanowi potwierdzenia wizyty bohaterów.",
+      image: "", personIds: []
+    },
+    {
+      id: "yppsala-wodenhorgr", name: "Yppsala — Wodenhorgr", kind: "Sanktuarium Odyna", visibility: "known", parentRegionId: "agder",
+      description: "Główna świątynia Agderu; miejsce wielkich blótów i zgromadzeń religijnych.", history: "Ośrodek opisany w podręcznikowym atlasie świata; nie stanowi potwierdzenia wizyty bohaterów.",
+      image: "", personIds: []
+    },
+    {
+      id: "omen", name: "Omen", kind: "Port zbrojmistrzów", visibility: "known", parentRegionId: "agder",
+      description: "Nadmorska osada słynąca z doskonałej broni i handlu.", history: "Ośrodek opisany w podręcznikowym atlasie świata; nie stanowi potwierdzenia wizyty bohaterów.",
+      image: "", personIds: []
+    },
+    {
+      id: "holmgard", name: "Holmgard", kind: "Miasto rzeczne", visibility: "known", parentRegionId: "gardarike",
+      description: "Pierwsza twierdza na szlaku Dniepru, później silny ośrodek wojskowy.", history: "Ośrodek opisany w podręcznikowym atlasie świata; nie stanowi potwierdzenia wizyty bohaterów.",
+      image: "", personIds: []
+    },
+    {
+      id: "novgorod", name: "Nowogród (Novgorod)", kind: "Miasto kupieckie", visibility: "known", parentRegionId: "gardarike",
+      description: "Największe miasto Rusi, siedziba Rurykowiczów i centrum targów oraz kuźni.", history: "Ośrodek opisany w podręcznikowym atlasie świata; nie stanowi potwierdzenia wizyty bohaterów.",
+      image: "", personIds: []
+    },
+    {
+      id: "helgisrata", name: "Helgisrata", kind: "Miasto nad wodospadem", visibility: "known", parentRegionId: "gardarike",
+      description: "Osada Olegowiczów kontrolująca transport łodzi na Wołdze.", history: "Ośrodek opisany w podręcznikowym atlasie świata; nie stanowi potwierdzenia wizyty bohaterów.",
+      image: "", personIds: []
+    },
+    {
+      id: "truvorsberg", name: "Truvorsberg", kind: "Górska warownia", visibility: "known", parentRegionId: "gardarike",
+      description: "Twierdza Truworowiczów na samotnej górze.", history: "Ośrodek opisany w podręcznikowym atlasie świata; nie stanowi potwierdzenia wizyty bohaterów.",
+      image: "", personIds: []
+    },
     {
       id: "eylenda", name: "Eylenda", kind: "Wyspa", visibility: "known", parentRegionId: "drengrlands",
       description: "Na tej wyspie bohaterowie stanęli przed najpotężniejszymi ludźmi Północy, przeszli przez krainę ognia i umarłych oraz odzyskali Gungnir, włócznię Odyna. Zwycięstwo miało jednak swoją cenę.",
       history: "Na Wielkim Althingu możni rozmawiali o Winlandzie, wojnie z Frankami i idei Króla Królów, lecz nie wyłonili wspólnego władcy. Bohaterowie zapuścili się także do kurhanu Haralda Hardrady i odzyskali Gungnir. Wyprawa kosztowała życie Flokiego i Morda. Eylendę naznaczył również żywioł ognia.",
-      image: "assets/locations/eylenda.svg", personIds: ["sianita","halvard","haroks","ylva","floki","asgrim","mord"]
+      image: "assets/locations/Eylenda.png", personIds: ["sianita","halvard","haroks","ylva","floki","asgrim","mord"]
     },
     {
       id: "ejkjavik", name: "Ejkjavik", kind: "Osada", visibility: "known", parentRegionId: "eylenda",
       description: "Osada na Eylendzie, w której odbywa się Wielki Althing — zgromadzenie jarlów, przysiąg i rozstrzygania sporów.",
       history: "W Ejkjaviku podczas Wielkiego Althingu omawiano wyprawę do Winlandu, wojnę z Frankami i ideę Króla Królów. Althing jest nazwą zgromadzenia; Ejkjavik to nazwa osady, która je gości.",
-      image: "assets/locations/althing.svg", personIds: ["sianita","halvard","haroks","ylva","floki","mord"]
+      image: "assets/locations/Ejkjavik.png", personIds: ["sianita","halvard","haroks","ylva","floki","mord"]
     },
     {
       id: "innriholmur", name: "Innrihólmur", kind: "Miasto portowe · stolica", visibility: "known", parentRegionId: "hordalands",
@@ -1433,7 +1471,7 @@ window.CHRONICLE = {
       id: "hardrada-mound", name: "Kurhan Haralda Hardrady", kind: "Kurhan", visibility: "known", parentRegionId: "eylenda",
       description: "Miejsce wyprawy bohaterów na Eylendzie, związane z pochówkiem i legendą Haralda Hardrady.",
       history: "W naszej kampanii bohaterowie dotarli do kurhanu i odzyskali Gungnir, włócznię Odyna. Wyprawa stała się jednym z najważniejszych rozdziałów sagi i przyniosła bolesne straty.",
-      image: "", personIds: ["sianita","halvard","haroks","ylva","floki","mord"]
+      image: "assets/locations/Kurchan Harold Hardrary.png", personIds: ["sianita","halvard","haroks","ylva","floki","mord"]
     },
     {
       id: "hrafnvik", name: "Hrafnvik", kind: "Osada bohaterów", visibility: "known", parentRegionId: "osady-bohaterow",

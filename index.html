@@ -6,17 +6,18 @@
   <meta name="theme-color" content="#121419">
   <meta name="description" content="Sagas of Midgard — interaktywna kronika postaci, relacji i lokacji dla graczy.">
   <title>Sagas of Midgard | Kronika</title>
-  <link rel="stylesheet" href="styles.css?v=unified-atlas-v1">
-  <script src="data.js?v=lore-catalog-v1" defer></script>
+  <link rel="stylesheet" href="styles.css?v=atlas-two-worlds-v1">
+  <script src="data.js?v=atlas-places-v2" defer></script>
+  <script src="atlas-guide.js?v=public-lore-v1" defer></script>
   <script src="portrait-assets.js?v=vestmar-v1" defer></script>
-  <script src="atlas.js?v=map-links-v2" defer></script>
-  <script src="maps.js?v=direct-drengrlands-v2" defer></script>
+  <script src="atlas.js?v=atlas-two-worlds-v1" defer></script>
+  <script src="maps.js?v=atlas-two-worlds-v1" defer></script>
   <script src="character-groups.js?v=free-v1" defer></script>
   <script src="graph-geometry.js?v=free-v1" defer></script>
   <script src="navigation.js?v=unified-atlas-v1" defer></script>
   <script src="rune-rules.js?v=corebook-v1" defer></script>
   <script src="runes.js?v=mechanics-v2" defer></script>
-  <script src="app.js?v=unified-atlas-v1" defer></script>
+  <script src="app.js?v=atlas-two-worlds-v1" defer></script>
 </head>
 <body>
  <div class="app-shell">
@@ -112,6 +113,7 @@
        <span class="maps-heading-mark" aria-hidden="true">ᚹ</span>
      </header>
      <div class="maps-browser">
+       <div id="maps-world-tabs" class="maps-world-tabs" role="group" aria-label="Wybierz mapę krainy"></div>
        <nav id="maps-breadcrumbs" class="maps-breadcrumbs" aria-label="Ścieżka mapy"></nav>
        <div class="maps-caption">
          <div><p class="eyebrow">WĘDRÓWKA PO ZNANYCH ZIEMIACH</p>
@@ -151,6 +153,7 @@
          <div><p class="eyebrow">ODKRYTE KRAINY I MIEJSCA</p><h3 id="atlas2-region-title">Ziemie Drengrów</h3></div>
          <p id="atlas2-region-desc">Miejsca znane bohaterom.</p>
        </div>
+       <div id="atlas2-region-story" class="atlas2-region-story"></div>
        <div id="atlas2-region-grid" class="atlas2-region-grid"></div>
        <div class="atlas2-footnote">Atlas prezentuje wyłącznie jawne lokacje. Miejsca bez potwierdzonego położenia nie mają pinezek.</div>
      </div>
@@ -234,8 +237,9 @@
         <h2 id="atlas2-dialog-title" class="atlas2-detail-title">Lokacja</h2>
         <div class="atlas2-detail-rule"></div>
         <p id="atlas2-dialog-summary" class="atlas2-detail-lead"></p>
-        <button id="atlas2-dialog-map" class="atlas2-map-link" type="button" hidden>Zobacz obszar na mapie</button>
-        <section class="atlas2-detail-section"><h3>Historia miejsca</h3><p id="atlas2-dialog-history"></p></section>
+        <button id="atlas2-dialog-map" class="atlas2-map-link" type="button" hidden>Znajdź w spisie miejsc</button>
+        <section id="atlas2-dialog-history-section" class="atlas2-detail-section"><h3>Historia miejsca w kampanii</h3><p id="atlas2-dialog-history"></p></section>
+         <section id="atlas2-dialog-guide-section" class="atlas2-detail-section" hidden><h3>Geografia i znaczenie</h3><div id="atlas2-dialog-guide"></div></section>
         <section class="atlas2-detail-section"><h3>Powiązane postacie</h3><div id="atlas2-dialog-people" class="atlas2-npc-grid"></div><button id="atlas2-dialog-people-toggle" class="atlas2-people-toggle" type="button" aria-controls="atlas2-dialog-people" aria-expanded="false" hidden>Pokaż wszystkie</button></section>
         <section class="atlas2-detail-section"><h3>Wydarzenia w kronice</h3><div id="atlas2-dialog-events" class="atlas2-event-list"></div></section>
         <p class="atlas2-detail-foot">Wyłącznie informacje poznane w trakcie sagi</p>

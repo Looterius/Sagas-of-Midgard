@@ -279,3 +279,21 @@ W zakładce **Atlas świata** od razu pokazuje się autorska mapa `Drengrlands.p
 **Nowe mapy:** kolejne obszary będą dodawane dopiero po potwierdzeniu ich jawności i dostarczeniu zatwierdzonej ilustracji. Nie publikujemy zastępczych map, nieznanych miejsc ani przyszłych wydarzeń. Hrafnvik i Skjordvik pozostają bez przynależności do konkretnych królestw.
 
 Regresja: `node scripts/check-unified-atlas.mjs` oraz `node scripts/check-map-interactions.mjs`, `node scripts/check-public-deep-links.mjs`, `node scripts/check-navigation-history.mjs`, `node scripts/check-mobile-rwd.mjs`. Wszystkie wykonuje GitHub Actions.
+
+## Atlas świata: dwa obszary, pełniejsza geografia, brak dubli (19.11.2026)
+
+**Uspójnienie nawigacji:** „Atlas świata” ma dwa przełączniki map: **Ziemie Drengrów** i **Gardarike — Ruś**. Pierwsza mapa to dotychczasowe `assets/maps/Drengrlands.png`, druga używa istniejącego w repo `assets/locations/Gardarike_ Aged Rus’ Atlas Map.png`. Nie kopiujemy ani nie retuszujemy autorskiej ilustracji. Obydwa pliki pozostają w swoich oryginalnych ścieżkach. Na mapie Rusi nie wprowadzono zgadywanych hotspotów ani pinezek.
+
+**Jeden region w jednym miejscu:** pod mapą widoczny jest tylko aktualnie wybrany region, z jego rozwiniętym opisem i klikalnymi miejscami. Usunięto powielające nawigację wielkie karty sześciu krain. Na Ziemiach Drengrów wciąż są hotspoty podpisów krain i pomocnicze przyciski dostępne również na mobile. W Gardarike rolę nawigacji pełnią nazwy czterech znanych ośrodków, a nie niepotwierdzone współrzędne. Stan wybranej mapy i regionu zachowują Wstecz oraz linki `?view=maps&map=gardarike&region=gardarike`.
+
+**Rozbudowana wiedza:** nowe `atlas-guide.js` przechowuje autorskie, zwięzłe polskie opracowanie tła świata z *Sagas of Midgard Corebook*, rozdział 6 (drukowane strony **80–84** dla Ziem Drengrów i Eylendy, **92–94** dla Gardariki). Najobszerniej opisano:
+- **Eylendę:** niezależność polityczną, żeglugę, Althing, port Freydistad, Kocioł Bogów i miejsca wyprawy. Podręcznik wymienia Thingvellir jako miejsce Althingu; **w rozegranej kampanii Althing odbył się w Ejkjaviku** i tego nie zmieniono.
+- **Agder:** Halfdana Czarnego, dawne kulty, daniny, Harstad, Wodenhorgr w Yppsali, Omen; dodano trzy publiczne pozycje do listy miejsc.
+- **Hordalands:** kupieckie królestwo Alreka Erikssona, port Innrihólmur, obronne Alrekstad, wojownicze Voss, Góry Lodowego Grzbietu, Rozłupany Hełm i legendę Jaskini Fafnira. **Rzemieślniczym królestwem jest Fjordane**, a nie Hordalands.
+- **Gardarike:** kraina czterech nordycko-ruskich rodów, szlaki rzeczne i Tiwoz oraz Holmgard, Nowogród, Helgisrata, Truvorsberg. Nowe miejsca są encyklopedyczną geografią z podręcznika, **nie oznaczają, że bohaterowie je odwiedzili**.
+
+Nowe grafiki (już obecne w repo): `assets/locations/Eylenda.png`, `Ejkjavik.png` oraz `Kurchan Harold Hardrary.png` są używane w odpowiednich jawnych kartach.
+
+**Bezpieczeństwo kanonu:** pominięto wątki z sekcji „Rumors”, nieodkryte zagadki i przygody Skalda. Nie dodano NPC do powiązań drużyny, nie wpisano przyszłych zdarzeń ani posiadaczy artefaktów. Nie zmieniono istniejących ID. Agder/Hordalands/Fjordane zachowują różne tożsamości, Hrafnvik i Skjordvik pozostają bez przypisania do jednego z królestw.
+
+Testy: `node scripts/check-world-atlas-two-maps.mjs` wraz z `check-public-atlas.mjs`, `check-public-maps.mjs`, `check-map-interactions.mjs`, `check-unified-atlas.mjs`, `check-public-deep-links.mjs` i `check-navigation-history.mjs`, wszystkie w GitHub Actions.

@@ -14,12 +14,12 @@ const js = text("maps.js");
 const atlas = text("atlas.js");
 const app = text("app.js");
 
-for (const file of ["maps.js", "assets/maps/Drengrlands.png"]) {
+for (const file of ["maps.js", "assets/maps/Drengrlands.png", "assets/locations/Gardarike_ Aged Rus’ Atlas Map.png", "atlas-guide.js"]) {
   if (!fs.existsSync(file)) errors.push("Missing map asset: " + file);
 }
 for (const id of ["maps-view", "maps-viewport", "maps-canvas", "maps-art", "maps-marker-layer",
   "maps-breadcrumbs", "maps-zoom-in", "maps-zoom-out", "maps-reset",
-  "maps-open-atlas", "maps-place-list", "maps-region-links", "atlas2-dialog-map"]) {
+  "maps-open-atlas", "maps-place-list", "maps-region-links", "maps-world-tabs", "atlas2-dialog-map"]) {
   if (!html.includes('id="' + id + '"')) errors.push("Missing map HTML element: " + id);
 }
 for (const src of ["maps.js", "atlas.js", "app.js"]) {
@@ -67,7 +67,11 @@ for (const id of ["eylenda", "agder", "hordalands", "vestmar", "fjordane"]) {
     errors.push("Map missing clickable region: " + id);
 }
 if (!js.includes('image: "assets/maps/Drengrlands.png"'))
-  errors.push("New artwork is not used by maps.js");
+  errors.push("Drengrlands artwork missing");
+if (!js.includes('image: "assets/locations/Gardarike_ Aged Rus’ Atlas Map.png"'))
+  errors.push("Gardarike artwork missing");
+if (!data.atlasRegions.some(r => r.id === "gardarike" && r.parentId === "midgard"))
+  errors.push("Gardarike is not a separate world area");
 if (!js.includes("pin.confirmed !== true")) errors.push("Confirmed map pins are not enforced");
 if (!text("styles.css").includes(".maps-hotspot,.maps-marker--place{pointer-events:auto}"))
   errors.push("Map hotspots must receive pointer events");

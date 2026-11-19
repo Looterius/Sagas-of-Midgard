@@ -906,3 +906,40 @@ body.map-fullscreen-lock{overflow:hidden}
  .atlas-world-details .atlas2-browser{padding:18px 16px 25px}
  .atlas-world-details .atlas2-region{min-height:0}
 }
+
+
+/* Atlas świata v3: dwie mapy, jeden widok informacji, bez zduplikowanych wielkich kart. */
+.maps-world-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 17px}
+.maps-world-tab{min-height:52px;border:1px solid #827052;background:#202729;color:#e5d3b0;
+  font:600 15px/1.45 Georgia,serif;text-align:center;padding:10px 13px}
+.maps-world-tab:hover,.maps-world-tab:focus-visible{border-color:#f0c891;background:#41382d}
+.maps-world-tab[aria-pressed="true"]{background:#423627;border-color:#e4c083;box-shadow:inset 0 -3px #d9ac71;color:#fff0ce}
+.maps-region-links[hidden]{display:none!important}
+.maps-region-link[aria-pressed="true"],.maps-region-link.is-selected{border-color:#e6bc78;background:#483927;color:#fff0cc}
+.maps-hotspot--region[aria-pressed="true"]{border-color:#e1ba77;background:#d3a56526}
+.maps-viewport[data-map-id="gardarike"]{aspect-ratio:4/3;min-height:0;background:#171c22}
+.maps-viewport[data-map-id="gardarike"] .maps-canvas>img{object-fit:contain}
+.atlas2-region-story{max-width:900px;margin:4px 0 24px}
+.atlas2-lore-paragraph{font:16px/1.83 Georgia,serif;color:#ded0b9;margin:0 0 15px;max-width:83ch}
+.atlas2-lore-source{font:11px/1.6 system-ui,sans-serif;color:#ac9d85;border-top:1px solid #5a4d3d;padding-top:12px;margin-top:17px}
+.atlas2-select-hint{font:14px/1.65 system-ui,sans-serif;color:#cfbfa8;margin:8px 0 22px}
+.atlas2-list-title{font:normal 23px/1.35 Georgia,serif;color:#ebce9f;margin:0 0 15px}
+.atlas2-location-collection{margin:14px 0 26px}
+.atlas2-place-chip-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.atlas2-place-chip{display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;min-height:76px;min-width:0;
+  padding:13px 15px;background:#23292a;border:1px solid #655640;color:#f0dbb5;
+  font:16px/1.35 Georgia,serif}
+.atlas2-place-chip:hover,.atlas2-place-chip:focus-visible{background:#433829;border-color:#e4bb7b}
+.atlas2-place-name{overflow-wrap:anywhere}
+.atlas2-place-kind{font:11px/1.4 system-ui,sans-serif;color:#bdad94}
+.atlas2-detail-lore{font:15px/1.82 Georgia,serif;color:#ddceba;margin:0 0 14px;white-space:normal}
+#atlas2-dialog-guide-section[hidden],#atlas2-dialog-history-section[hidden]{display:none!important}
+@media(max-width:1050px){.atlas2-place-chip-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){
+ .maps-world-tabs{gap:7px}.maps-world-tab{font-size:12px;min-height:48px;padding:10px 7px}
+ .atlas2-place-chip-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .atlas2-place-chip{min-height:68px;padding:11px;font-size:13px}
+ .atlas2-lore-paragraph{font-size:14px;line-height:1.76}
+ .atlas2-detail-lore{font-size:14px;line-height:1.7}
+}
+@media(max-width:350px){.atlas2-place-chip-list{grid-template-columns:1fr}}
