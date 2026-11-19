@@ -6,15 +6,16 @@
   <meta name="theme-color" content="#121419">
   <meta name="description" content="Sagas of Midgard — interaktywna kronika postaci, relacji i lokacji dla graczy.">
   <title>Sagas of Midgard | Kronika</title>
-  <link rel="stylesheet" href="styles.css?v=chronicle-reader-v1">
+  <link rel="stylesheet" href="styles.css?v=runes-v1">
   <script src="data.js?v=lore-catalog-v1" defer></script>
   <script src="portrait-assets.js?v=vestmar-v1" defer></script>
   <script src="atlas.js?v=canon-v1" defer></script>
   <script src="maps.js?v=history-v1" defer></script>
   <script src="character-groups.js?v=free-v1" defer></script>
   <script src="graph-geometry.js?v=free-v1" defer></script>
-  <script src="navigation.js?v=deep-links-v1" defer></script>
-  <script src="app.js?v=chronicle-reader-v1" defer></script>
+  <script src="navigation.js?v=runes-v1" defer></script>
+  <script src="runes.js?v=runes-v1" defer></script>
+  <script src="app.js?v=runes-v1" defer></script>
 </head>
 <body>
  <div class="app-shell">
@@ -28,7 +29,8 @@
     <button class="nav-btn" type="button" data-view="maps"><span class="nav-icon">◇</span><span>Mapy świata</span></button>
     <button class="nav-btn" type="button" data-view="locations"><span class="nav-icon">⌖</span><span>Atlas lokacji</span></button>
     <button class="nav-btn" type="button" data-view="chronicle"><span class="nav-icon">ᚱ</span><span>Kronika wydarzeń</span></button>
-    <button class="nav-btn" type="button" data-view="bestiary"><span class="nav-icon">ᛉ</span><span>Bestiariusz</span></button>
+    <button class="nav-btn" type="button" data-view="runes"><span class="nav-icon">ᚠ</span><span>Runy</span></button>
+     <button class="nav-btn" type="button" data-view="bestiary"><span class="nav-icon">ᛉ</span><span>Bestiariusz</span></button>
     <button class="nav-btn" type="button" data-view="items"><span class="nav-icon">⚒</span><span>Przedmioty</span></button>
    </nav>
    <div class="rail-bottom">
@@ -182,6 +184,27 @@
       </div>
      <p class="chronicle-disclaimer">Zapisujemy tylko wydarzenia znane drużynie. Przyszłe sceny, sekrety Skalda i niepotwierdzone pogłoski pozostają poza publiczną kroniką.</p>
    </section>
+
+    <section id="runes-view" class="view runes-view" aria-label="Runy — rozpoznawanie znaków" hidden>
+      <header class="runes-head">
+        <p class="eyebrow">WIEDZA GRACZY · RUNY MOCY</p>
+        <h2>Runy</h2>
+        <p>Nie znasz nazwy? Znajdź znak po wyglądzie albo opisz zwykłymi słowami, czego szukasz. Kliknij runę, by od razu poznać jej znaczenie.</p>
+      </header>
+      <div class="runes-search-wrap">
+        <label for="runes-search">Szukaj po nazwie, znaku lub znaczeniu</label>
+        <div class="runes-search-line">
+          <input id="runes-search" type="search" autocomplete="off" spellcheck="false" placeholder="Np. ochrona przed ranami, podróż, ogień, bogactwo…" aria-controls="runes-grid">
+          <button id="runes-clear" type="button" hidden>Wyczyść</button>
+        </div>
+        <p id="runes-count" class="runes-count" role="status" aria-live="polite"></p>
+      </div>
+      <div class="runes-layout">
+        <div id="runes-grid" class="runes-grid" role="group" aria-label="Wybierz runę po znaku"></div>
+        <section id="runes-detail" class="runes-detail" aria-label="Znaczenie wybranej runy" aria-live="polite"></section>
+      </div>
+      <p class="runes-caveat">24 znaki starszego futharku, które stanowią podstawę run w <i>Sagas of Midgard</i>. Znaczenie symbolu nie jest jego efektem w zasadach gry. Każda runa jest jednorazowa i ma trzy pozycje działania. Tutaj nie zgadujemy niepotwierdzonych bonusów ani nie ujawniamy sekretów kampanii.</p>
+    </section>
 
    <section id="bestiary-view" class="view lore-catalog-view" aria-label="Bestiariusz" hidden>
      <header class="lore-catalog-head">

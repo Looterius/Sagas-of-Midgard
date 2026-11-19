@@ -39,3 +39,5 @@ jobs:
         run: node scripts/check-public-deep-links.mjs
       - name: Check readable Chronicle chapters and event navigation
         run: node scripts/check-chronicle-reader.mjs
+      - name: Check public rune catalog and natural language search
+        run: node scripts/check-public-runes.mjs
