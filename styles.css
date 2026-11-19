@@ -947,3 +947,16 @@ body.map-fullscreen-lock{overflow:hidden}
 
 /* Bestiariusz: jawny wpis z sezonu I może nie mieć jeszcze osobnego rozdziału Kroniki. */
 .lore-entry-location{font:600 12px/1.6 system-ui,sans-serif!important;color:#cead79!important;letter-spacing:.035em;margin:0 0 12px!important}
+
+
+/* Gesty map świata: pinch-to-zoom i pan na telefonach, bez deformacji obrazu. */
+.maps-touch-hint{display:none}
+.maps-viewport{touch-action:none;overscroll-behavior:contain}
+.maps-canvas{user-select:none;-webkit-user-select:none}
+.maps-canvas>img{-webkit-user-drag:none}
+@media(max-width:760px){
+ .maps-touch-hint{display:block;margin:7px 0 11px;color:#d3c09f;font:12px/1.5 system-ui,sans-serif}
+ .maps-touch-hint strong{color:#f4dcaf}
+ .maps-zoom-tools button{width:44px;height:44px;min-width:44px;min-height:44px}
+ .maps-zoom-tools{gap:8px}
+}

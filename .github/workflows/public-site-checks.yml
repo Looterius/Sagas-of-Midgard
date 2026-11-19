@@ -28,6 +28,8 @@ jobs:
         run: node scripts/check-public-maps.mjs
       - name: Check clickable map and Atlas interactions
         run: node scripts/check-map-interactions.mjs
+      - name: Check mobile map pinch gestures
+        run: node scripts/check-mobile-world-map-gestures.mjs
       - name: Check unified Atlas tab and legacy links
         run: node scripts/check-unified-atlas.mjs
       - name: Check both world maps and public setting lore

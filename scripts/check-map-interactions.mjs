@@ -17,6 +17,7 @@ class Element {
  addEventListener(name,cb){this.events[name]=cb}
  setAttribute(k,v){this[k]=v}
  setPointerCapture(){}
+ getBoundingClientRect(){return {left:0,top:0,width:400,height:300};}
  scrollIntoView(){this.scrolled=true}
  querySelectorAll(selector){
    const all=[];

@@ -75,23 +75,42 @@
   let data = null;
   let callbacks = {};
   let current = "drengrlands";
-  let zoom = 1, panX = 0, panY = 0;
+  const MIN_ZOOM = 1;
+  const MAX_ZOOM = 5;
+  let zoom = MIN_ZOOM, panX = 0, panY = 0;
   const knownRegions = () => (data?.atlasRegions || []).filter(region => region.visibility === "known");
   const knownPlaces = () => (data?.places || []).filter(place => place.visibility === "known");
   const region = id => knownRegions().find(item => item.id === id);
   const place = id => knownPlaces().find(item => item.id === id);
 
-  function updateTransform() {
-    const canvas = $("#maps-canvas");
-    canvas.style.transform = `translate(${panX}px, ${panY}px) scale(${zoom})`;
-    $("#maps-zoom-label").textContent = Math.round(zoom * 100) + "%";
-    $("#maps-zoom-out").disabled = zoom <= 1;
-    $("#maps-zoom-in").disabled = zoom >= 4;
+  function clampPan() {
+    const rect = $("#maps-viewport").getBoundingClientRect();
+    const maxX = Math.max(0, (zoom - MIN_ZOOM) * rect.width / 2);
+    const maxY = Math.max(0, (zoom - MIN_ZOOM) * rect.height / 2);
+    panX = Math.max(-maxX, Math.min(maxX, panX));
+    panY = Math.max(-maxY, Math.min(maxY, panY));
   }
-  function resetTransform() { zoom = 1; panX = 0; panY = 0; updateTransform(); }
-  function setZoom(value) {
-    zoom = Math.max(1, Math.min(4, Math.round(value * 100) / 100));
-    if (zoom === 1) { panX = 0; panY = 0; }
+
+  function updateTransform() {
+    clampPan();
+    $("#maps-canvas").style.transform = `translate(${panX}px, ${panY}px) scale(${zoom})`;
+    $("#maps-zoom-label").textContent = Math.round(zoom * 100) + "%";
+    $("#maps-zoom-out").disabled = zoom <= MIN_ZOOM;
+    $("#maps-zoom-in").disabled = zoom >= MAX_ZOOM;
+  }
+  function resetTransform() { zoom = MIN_ZOOM; panX = 0; panY = 0; updateTransform(); }
+
+  // Utrzymaj tę samą współrzędną ilustracji pod palcami, kursorem lub
+  // środkiem viewportu. Bez tej korekty mapa "ucieka" podczas szczypania.
+  function setZoom(value, clientX, clientY) {
+    const rect = $("#maps-viewport").getBoundingClientRect();
+    const x = Number.isFinite(clientX) ? clientX - rect.left - rect.width / 2 : 0;
+    const y = Number.isFinite(clientY) ? clientY - rect.top - rect.height / 2 : 0;
+    const oldZoom = zoom, oldX = panX, oldY = panY;
+    zoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, Math.round(value * 1000) / 1000));
+    panX = x - (x - oldX) * zoom / oldZoom;
+    panY = y - (y - oldY) * zoom / oldZoom;
+    if (zoom <= MIN_ZOOM) { panX = 0; panY = 0; }
     updateTransform();
   }
 
@@ -236,31 +255,129 @@
   }
   function bindPanAndZoom() {
     const viewport = $("#maps-viewport");
-    let drag = null;
+    const fingers = new Map();
+    let gesture = null; // pinch: środek i odległość dwóch palców w starcie
+    let drag = null;    // przesuwanie mapy jednym palcem lub myszą
+    let moved = false;
+    let lastGestureEnd = -Infinity;
+
+    const distance = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+    const midpoint = (a, b) => ({ x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 });
+    const beginPinch = () => {
+      const points = [...fingers.values()].slice(0, 2);
+      if (points.length < 2) return;
+      const center = midpoint(points[0], points[1]);
+      const rect = viewport.getBoundingClientRect();
+      gesture = {
+        distance: Math.max(1, distance(points[0], points[1])),
+        center,
+        startZoom: zoom,
+        startPanX: panX,
+        startPanY: panY,
+        viewportCenterX: rect.left + rect.width / 2,
+        viewportCenterY: rect.top + rect.height / 2
+      };
+      drag = null;
+      moved = true;
+    };
+    const beginDrag = point => {
+      drag = {
+        id: point.id, x: point.x, y: point.y, panX, panY,
+        startedOnButton: point.startedOnButton
+      };
+    };
+
+    // Capture phase widzi palce także gdy pierwszy dotknie hotspotu na mapie.
+    // Nie przechwytuj pojedynczego tapnięcia: przyciski krain nadal działają.
     viewport.addEventListener("pointerdown", e => {
-      if (e.button !== 0 || e.target.closest("button")) return;
-      drag = { id: e.pointerId, x: e.clientX, y: e.clientY, panX, panY };
-      viewport.setPointerCapture(e.pointerId);
-    });
+      if (e.pointerType === "touch" || e.pointerType === "pen") {
+        fingers.set(e.pointerId, { id:e.pointerId, x:e.clientX, y:e.clientY,
+          startedOnButton:!!e.target.closest?.("button") });
+        if (fingers.size === 2) beginPinch();
+        else if (fingers.size === 1) beginDrag([...fingers.values()][0]);
+        return;
+      }
+      if (e.button !== 0 || e.target.closest?.("button")) return;
+      moved = false;
+      beginDrag({ id:e.pointerId, x:e.clientX, y:e.clientY, startedOnButton:false });
+      viewport.setPointerCapture?.(e.pointerId);
+    }, { capture:true });
+
     viewport.addEventListener("pointermove", e => {
-      if (!drag || e.pointerId !== drag.id) return;
-      panX = drag.panX + e.clientX - drag.x;
-      panY = drag.panY + e.clientY - drag.y;
-      updateTransform();
-    });
-    for (const type of ["pointerup", "pointercancel", "lostpointercapture"]) {
-      viewport.addEventListener(type, () => { drag = null; });
-    }
+      if (fingers.has(e.pointerId)) {
+        const point = fingers.get(e.pointerId);
+        point.x = e.clientX;
+        point.y = e.clientY;
+        if (fingers.size >= 2) {
+          if (!gesture) beginPinch();
+          const points = [...fingers.values()].slice(0, 2);
+          const center = midpoint(points[0], points[1]);
+          const rectX = gesture.viewportCenterX;
+          const rectY = gesture.viewportCenterY;
+          zoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM,
+            Math.round(gesture.startZoom * distance(points[0], points[1]) / gesture.distance * 1000) / 1000));
+          panX = center.x - rectX -
+            zoom * (gesture.center.x - rectX - gesture.startPanX) / gesture.startZoom;
+          panY = center.y - rectY -
+            zoom * (gesture.center.y - rectY - gesture.startPanY) / gesture.startZoom;
+          updateTransform();
+          moved = true;
+          if (e.cancelable) e.preventDefault();
+        } else if (drag && drag.id === e.pointerId && zoom > MIN_ZOOM && !drag.startedOnButton) {
+          if (Math.hypot(point.x - drag.x, point.y - drag.y) > 6) moved = true;
+          panX = drag.panX + point.x - drag.x;
+          panY = drag.panY + point.y - drag.y;
+          updateTransform();
+          if (e.cancelable) e.preventDefault();
+        }
+      } else if (drag && drag.id === e.pointerId && zoom > MIN_ZOOM) {
+        if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 6) moved = true;
+        panX = drag.panX + e.clientX - drag.x;
+        panY = drag.panY + e.clientY - drag.y;
+        updateTransform();
+      }
+    }, { passive:false });
+
+    const endPointer = e => {
+      const touch = fingers.has(e.pointerId);
+      if (touch) fingers.delete(e.pointerId);
+      if (moved && (touch || (drag && drag.id === e.pointerId)))
+        lastGestureEnd = e.timeStamp;
+      if (fingers.size >= 2) beginPinch();
+      else if (fingers.size === 1) {
+        gesture = null;
+        beginDrag([...fingers.values()][0]);
+      } else if (touch) {
+        gesture = null;
+        drag = null;
+        moved = false;
+      }
+      if (!touch && drag?.id === e.pointerId) { drag = null; moved = false; }
+    };
+    for (const type of ["pointerup","pointercancel","lostpointercapture"])
+      viewport.addEventListener(type, endPointer);
+
+    // Po przesunięciu lub szczypaniu nie otwieraj przypadkowej krainy,
+    // ale nie blokuj zwykłego, pojedynczego dotknięcia przycisku.
+    viewport.addEventListener("click", e => {
+      if (e.timeStamp - lastGestureEnd >= 0 && e.timeStamp - lastGestureEnd < 350) {
+        e.preventDefault();
+        e.stopPropagation();
+        lastGestureEnd = -Infinity;
+      }
+    }, true);
+
     viewport.addEventListener("wheel", e => {
-      if (e.ctrlKey || e.metaKey) return; // zachowaj zwykłe przewijanie strony
-      if (zoom === 1 && e.deltaY > 0) return;
+      if (e.ctrlKey || e.metaKey) return;
+      if (zoom === MIN_ZOOM && e.deltaY > 0) return; // normalny scroll strony
       e.preventDefault();
-      setZoom(zoom * (e.deltaY < 0 ? 1.13 : 0.89));
-    }, { passive: false });
+      setZoom(zoom * (e.deltaY < 0 ? 1.13 : 0.89), e.clientX, e.clientY);
+    }, { passive:false });
     $("#maps-zoom-in").addEventListener("click", () => setZoom(zoom * 1.25));
     $("#maps-zoom-out").addEventListener("click", () => setZoom(zoom / 1.25));
     $("#maps-reset").addEventListener("click", resetTransform);
     $("#maps-open-atlas").addEventListener("click", () => callbacks.openAtlasRegion?.(current));
+    window.addEventListener?.("resize", updateTransform);
   }
 
   function mount(options) {
@@ -269,5 +386,5 @@
     bindPanAndZoom();
     show("drengrlands");
   }
-  window.SOM_MAPS = { mount, show, showForPlace, setSelectedRegion, mapForRegion, getCurrent: () => current };
+  window.SOM_MAPS = { mount, show, showForPlace, setSelectedRegion, mapForRegion, getCurrent: () => current, getViewState: () => ({ zoom, panX, panY }) };
 })();
