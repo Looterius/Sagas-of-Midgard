@@ -1,6 +1,6 @@
 # Sagas of Midgard — Kronika Graczy
 
-Publiczna kronika RPG z siecią postaci, osobną zakładką **Mapy świata**, Atlasem lokacji i **Kroniką wydarzeń**.
+Publiczna kronika RPG z siecią postaci, wspólnym **Atlasem świata** (mapy i lokacje), Runami, Bestiariuszem, Przedmiotami oraz **Kroniką wydarzeń** na końcu menu.
 
 ## Publikacja strony (jednorazowo)
 
@@ -16,7 +16,7 @@ Publiczna kronika RPG z siecią postaci, osobną zakładką **Mapy świata**, At
 - `data.js` — NPC, lokacje, **jawne** relacje i publiczne rozdziały w tablicy `chronicle`.
 - Zakładka **Kronika wydarzeń** — filtrowanie historii według lokacji, rozwijanie opowieści oraz odnośniki do miejsc i postaci.
 - `app.js` — nawigacja i interaktywna sieć postaci.
-- `maps.js` — Mapy świata, klikalne krainy, podpięcie do Atlasu i zoom.
+- `maps.js` — interaktywna mapa we wspólnym Atlasie świata, klikalne krainy, linki do kart miejsc i zoom.
 
 Nazwy postaci pochodzą z tablicy FigJam. Obecnie część kart ma inicjały zamiast portretów, a relacje osobiste zostaną dodane dopiero po potwierdzeniu kanonu.
 
@@ -71,7 +71,7 @@ Zakładka **Mapy świata** pokazuje **bezpośrednio oryginalną mapę Ziem Dreng
 
 **Niepewne lokacje:** zrezygnowano z siedmiu ręcznie naniesionych pinezek, których położenia nie miały pola `confirmed:true` w kanonicznych danych. Zwłaszcza **Hrafnvik, Skjordvik** nie otrzymują przez to przypisania do królestwa, a **Jaskinia Fafnira** nie udaje potwierdzonego wejścia. Wszystkie jawne lokacje wciąż są klikalne w spisie pod mapą. Pinezkę dodajemy wyłącznie z `places[].mapPosition: {mapId:"drengrlands",x:...,y:...,confirmed:true}` po zatwierdzeniu przez Skalda. Uwaga: prostokąty krain oznaczają drukowane **nazwy** na ilustracji, nie polityczne granice.
 
-Kliknięcie lokacji z mapy albo spisu najpierw otwiera zakładkę **Atlas lokacji**, ustawia jej znany region, a następnie właściwą kartę lokacji. Poprawia to spójność `Wstecz`, `Kopiuj link` i zachowanie na urządzeniach mobilnych. Eylenda pokazuje w karcie wydarzenia wszystkich znanych bezpośrednich lokacji na wyspie, nie tylko Ejkjaviku.
+Kliknięcie lokacji z mapy albo spisu otwiera jej kartę **w tej samej zakładce Atlas świata**, ustawia znany region i aktualizuje udostępnialny link. Poprawia to spójność `Wstecz`, `Kopiuj link` i zachowanie na urządzeniach mobilnych. Eylenda pokazuje w karcie wydarzenia wszystkich znanych bezpośrednich lokacji na wyspie, nie tylko Ejkjaviku.
 
 Testy: `node scripts/check-public-maps.mjs`, `node scripts/check-map-interactions.mjs`, `node scripts/check-public-atlas.mjs` oraz `node scripts/check-navigation-history.mjs`, również w CI.
 
@@ -166,7 +166,7 @@ Strona zachowuje się jak aplikacja z wewnętrznymi ekranami, ale **nie blokuje 
 Przykładowe drogi:
 - Sieć postaci → Sianita → Halvard → **Wstecz = Sianita** → **Wstecz = Sieć postaci**.
 - Sieć postaci → Sianita → Hrafnvik w Atlasie → **Wstecz = Sianita** → **Wstecz = Sieć postaci**.
-- Mapy świata otwierają od razu Ziemie Drengrów → **Wstecz = poprzednia zakładka** (bez sztucznego ekranu Midgardu).
+- Atlas świata otwiera od razu Ziemie Drengrów → kliknięcie krainy pokazuje jej opis na tej samej stronie, a **Wstecz** zachowuje poprzednie stany.
 - Atlas Midgardu → Ziemie Drengrów → Agder → miejsce → **Wstecz** cofa po jednej karcie i poziomie.
 - **Wstecz z ekranu startowego** nie jest przechwytywane. Przeglądarka wychodzi z aplikacji albo wraca na stronę poprzedzającą jej otwarcie.
 
@@ -267,3 +267,15 @@ Katalog **Runy** zawiera teraz 72 konkretne opisy działania (**24 runy × 3 poz
 Dane pochodzą z `rune-rules.js`, załadowanego przed `runes.js`. W panelu każdej runy są odrębne sekcje **Pozycja I**, **Pozycja II**, **Pozycja III** i słowniczek `SP Runecasting`, `DR`, `HP`, `Favor`, zasięgów oraz liczenia rund. Poprzednie ogólnikowe opisy trzech poziomów Algiz i wzmiankę o niepewnych zasadach zastąpiono danymi z podręcznika. Publiczne identyfikatory i linki są niezmienione; poprawiono jedynie widoczną pisownię **Naudhiz**.
 
 **Zakres jawności:** reguły mechaniczne są publiczne, ale żaden z plików nie wymienia posiadaczy run w kampanii, nie publikuje przyszłych wydarzeń ani danych Skalda. Bez dodatkowych zależności lub zapisu użytkownika. Testy: `node scripts/check-public-runes.mjs` oraz standardowe CI.
+
+## Atlas świata — połączenie Map świata i Atlasu lokacji (19.11.2026)
+
+**Menu:** Sieć postaci → **Atlas świata** → Runy → Bestiariusz → Przedmioty → **Kronika wydarzeń**. Usunięto jedynie oddzielny TAB „Atlas lokacji”; `atlas.js`, `data.js`, publiczne historie miejsc, relacje i obrazy pozostają niezmienione.
+
+W zakładce **Atlas świata** od razu pokazuje się autorska mapa `Drengrlands.png`. Pod nią umieszczono przeglądarkę krain i ich miejsc. Kliknięcie nazwy krainy na mapie albo jej przycisku przewija do jej opisu **w tym samym widoku**. „Przejdź do lokacji” przewija do regionów. Dodatkowy spis wszystkich znanych miejsc pod mapą jest zwinięty domyślnie; jego rozwinięcie nie ładuje nowej strony. Kliknięcie miejscowości otwiera jej dotychczasową kartę modalną w tym samym TAB-ie.
+
+**Deep linki:** zachowujemy kompatybilność `?view=locations&place=hrafnvik` oraz `?view=locations&region=agder`, które są automatycznie obsługiwane przez wspólny widok `maps`. Nowe adresy mają postać `?view=maps&place=hrafnvik` i `?view=maps&region=agder`. Wstecz, Kopiuj link i połączenia z postaciami, Kroniką, Bestiariuszem oraz Przedmiotami nadal działają.
+
+**Nowe mapy:** kolejne obszary będą dodawane dopiero po potwierdzeniu ich jawności i dostarczeniu zatwierdzonej ilustracji. Nie publikujemy zastępczych map, nieznanych miejsc ani przyszłych wydarzeń. Hrafnvik i Skjordvik pozostają bez przynależności do konkretnych królestw.
+
+Regresja: `node scripts/check-unified-atlas.mjs` oraz `node scripts/check-map-interactions.mjs`, `node scripts/check-public-deep-links.mjs`, `node scripts/check-navigation-history.mjs`, `node scripts/check-mobile-rwd.mjs`. Wszystkie wykonuje GitHub Actions.

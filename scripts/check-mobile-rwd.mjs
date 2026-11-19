@@ -26,8 +26,8 @@ for(const token of ['.character-overlay:not([hidden]) .character-dialog',
 }
 for(const token of ['"relation-chip relation-link"',
   'button.addEventListener("click", () => selectPerson(other.id))',
-  'window.SOM_ATLAS?.open(place.id)',
-  'window.SOM_ATLAS?.showRegion(region.id)',
+  'openAtlasPlace(place.id)',
+  'openAtlasRegion(region.id)',
   'if (place.visibility === "known" && place.personIds?.includes(id))',
   'region.id === regionId && region.visibility === "known"',
   'const buttons = [...$("#inspector").querySelectorAll("button:not([disabled])")]']) {

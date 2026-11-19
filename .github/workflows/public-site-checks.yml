@@ -27,6 +27,8 @@ jobs:
         run: node scripts/check-public-maps.mjs
       - name: Check clickable map and Atlas interactions
         run: node scripts/check-map-interactions.mjs
+      - name: Check unified Atlas tab and legacy links
+        run: node scripts/check-unified-atlas.mjs
       - name: Check public Character Groups
         run: node scripts/check-character-groups.mjs
       - name: Check character graph geometry

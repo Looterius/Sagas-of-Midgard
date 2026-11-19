@@ -11,7 +11,7 @@
   let scheduled = false;
   let session = "";
 
-  const VIEWS = ["relationships", "maps", "locations", "chronicle", "runes", "bestiary", "items"];
+  const VIEWS = ["relationships", "maps", "chronicle", "runes", "bestiary", "items"];
   const PRIMARY = ["all", "heroes", "npc", "deceased", "rulers", "captives"];
   const DIMENSIONS = ["kingdoms", "settlements", "families", "factions"];
   const valid = route => route && typeof route === "object" && VIEWS.includes(route.view);
@@ -34,9 +34,8 @@
       }
       if (route.person) url.searchParams.set("postac", route.person);
     } else if (route.view === "maps") {
-      if (route.map && route.map !== "midgard") url.searchParams.set("map", route.map);
-    } else if (route.view === "locations") {
-      if (route.region && route.region !== "midgard") url.searchParams.set("region", route.region);
+      if (route.map && route.map !== "drengrlands") url.searchParams.set("map", route.map);
+      if (route.region && route.region !== "drengrlands") url.searchParams.set("region", route.region);
       if (route.place) url.searchParams.set("place", route.place);
     } else if (route.view === "chronicle") {
       if (route.chronicleFilter && route.chronicleFilter !== "all")
@@ -54,7 +53,9 @@
     const params = new URL(window.location.href).searchParams;
     if (![ "view", "grupa", "group", "postac", "dimension" ].some(p => params.has(p)))
       return null;
-    const view = params.get("view") || "relationships";
+    // Stare linki do Atlasu wciąż otwierają to samo miejsce w jednym widoku.
+    const requested = params.get("view") || "relationships";
+    const view = requested === "locations" ? "maps" : requested;
     if (!VIEWS.includes(view)) return null;
     const base = snapshot();
     if (!valid(base)) return null;
@@ -72,7 +73,6 @@
       route.person = params.get("postac") || params.get("person") || null;
     } else if (view === "maps") {
       route.map = params.get("map") || "drengrlands";
-    } else if (view === "locations") {
       route.region = params.get("region") || "drengrlands";
       route.place = params.get("place") || null;
     } else if (view === "chronicle") {

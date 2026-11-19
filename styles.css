@@ -890,3 +890,19 @@ body.map-fullscreen-lock{overflow:hidden}
  .maps-region-link{font-size:12px;text-align:center;min-width:0}
  .maps-hotspot--region{min-height:24px}
 }
+
+
+/* Jeden Atlas świata: główna mapa i karty miejsc na jednym ekranie. */
+.atlas-world-details{padding:0 0 26px;border-top:1px solid #79633f;background:linear-gradient(#1b2325,#181d21);scroll-margin-top:15px}
+.atlas-world-details .atlas2-browser{padding-top:23px}
+.atlas-world-details .atlas2-region-grid{gap:14px}
+.atlas-world-details .atlas2-region{min-height:190px}
+.maps-all-places-toggle{cursor:pointer;font:15px/1.5 Georgia,serif;color:#ebd3a8;padding:12px 3px;margin-bottom:12px}
+.maps-all-places-toggle:hover,.maps-all-places-toggle:focus-visible{color:#ffe2ab}
+.maps-places-section:not([open]){padding:12px 0 3px}
+.maps-places-section:not([open]) .maps-place-heading{display:none}
+@media(max-width:760px){
+ .atlas-world-details{scroll-margin-top:8px}
+ .atlas-world-details .atlas2-browser{padding:18px 16px 25px}
+ .atlas-world-details .atlas2-region{min-height:0}
+}
