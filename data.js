@@ -102,6 +102,9 @@ window.CHRONICLE = {
         ],
         "familyIds": [
           "rod-jarla"
+        ],
+        "factionIds": [
+          "druzyna-hrafnviku"
         ]
       },
       "image": "assets/portraits/841056920_1454607076732851_414940541375700284_n.jpg",
@@ -121,6 +124,9 @@ window.CHRONICLE = {
         ],
         "familyIds": [
           "rod-jarla"
+        ],
+        "factionIds": [
+          "druzyna-hrafnviku"
         ]
       },
       "image": "assets/portraits/836508976_2515877412221096_575784062671443810_n.jpg",
@@ -140,6 +146,12 @@ window.CHRONICLE = {
         ],
         "settlementIds": [
           "hrafnvik"
+        ],
+        "familyIds": [
+          "rod-halfdana"
+        ],
+        "factionIds": [
+          "druzyna-hrafnviku"
         ]
       },
       "image": "assets/portraits/Asgrim.jpeg",
@@ -289,6 +301,10 @@ window.CHRONICLE = {
         ],
         "familyIds": [
           "rod-morotara"
+        ],
+        "factionIds": [
+          "czciciele-odyna",
+          "druzyna-hrafnviku"
         ]
       },
       "image": "assets/portraits/843041093_29439569015649515_6290487889105704541_n.jpg",
@@ -322,6 +338,9 @@ window.CHRONICLE = {
         "role": "npc",
         "settlementIds": [
           "hrafnvik"
+        ],
+        "factionIds": [
+          "czciciele-odyna"
         ]
       },
       "image": "assets/portraits/Thorwald, the Viking Blacksmith.png",
@@ -392,6 +411,10 @@ window.CHRONICLE = {
         ],
         "familyIds": [
           "rod-morotara"
+        ],
+        "factionIds": [
+          "berserkerzy",
+          "druzyna-hrafnviku"
         ]
       },
       "image": "assets/portraits/819106917_1403096258558492_2259915694493588498_n.jpg",
@@ -411,6 +434,9 @@ window.CHRONICLE = {
         ],
         "familyIds": [
           "rod-astrid"
+        ],
+        "factionIds": [
+          "druzyna-hrafnviku"
         ]
       },
       "image": "assets/portraits/836713553_1631673708686109_4202120061548436723_n.png",
@@ -496,6 +522,9 @@ window.CHRONICLE = {
         ],
         "kingdomIds": [
           "agder"
+        ],
+        "familyIds": [
+          "rod-halfdana"
         ]
       },
       "image": "assets/portraits/Halfdan Czarny.png",
@@ -779,9 +808,30 @@ window.CHRONICLE = {
         "id": "rod-astrid",
         "name": "Rodzina Astrid i Ylvy",
         "visibility": "known"
+      },
+      {
+        "id": "rod-halfdana",
+        "name": "Ród Halfdana Czarnego",
+        "visibility": "known"
       }
     ],
-    "factions": []
+    "factions": [
+      {
+        "id": "druzyna-hrafnviku",
+        "name": "Drużyna Hrafnviku",
+        "visibility": "known"
+      },
+      {
+        "id": "berserkerzy",
+        "name": "Berserkerzy",
+        "visibility": "known"
+      },
+      {
+        "id": "czciciele-odyna",
+        "name": "Czciciele Odyna",
+        "visibility": "known"
+      }
+    ]
   },
 
   // Kronika PUBLICZNA: wyłącznie wydarzenia znane graczom. Nie wpisuj tu sekretów Skalda.
@@ -1396,6 +1446,31 @@ window.CHRONICLE = {
       description: "Osada zdobyta ogniem i żelazem przez wojowników Hrafnviku. Zwycięzcy zabrali stąd srebro, łupy i jeńców, lecz dla pokonanych dzień najazdu stał się początkiem zupełnie innej historii.",
       history: "Wojownicy Hrafnviku zdobyli osadę, zabierając srebro, towary i jeńców. Dla najeźdźców był to triumf, dla mieszkańców Skjordvik — dzień straty, o którym trudno zapomnieć. Aslak Cieśla nie został pojmany podczas tego najazdu: wcześniej był wolnym rzemieślnikiem Hrafnviku, a po wyroku wygnania porwał go kupiec Hakon Czerwony i uczynił swoim trallem.",
       image: "assets/locations/skjorvik.svg", personIds: ["haki","ragnvald-s","orm"]
+    }
+  ],
+  // Publiczne bestiariusz i przedmioty: wyłącznie odkryte wpisy.
+  bestiary: [
+    {
+      "id": "troll-w-klatce",
+      "name": "Troll z Doliny Olbrzymów",
+      "kind": "Troll",
+      "placeId": "eylenda",
+      "eventId": "ogien-i-olbrzymy",
+      "symbol": "ᛉ",
+      "summary": "Stworzenie napotkane przez drużynę podczas wyprawy przez Eylendę.",
+      "history": "W Dolinie Olbrzymów bohaterowie odnaleźli trolla uwięzionego w żelaznej klatce. Prosił ich o uwolnienie, lecz nie potrafili przewidzieć, co nastąpi po otwarciu zamknięcia. Drużyna zdecydowała się nie wypuszczać więźnia i ruszyła dalej. Jego dalsze losy pozostają nieznane."
+    }
+  ],
+  items: [
+    {
+      "id": "gungnir",
+      "name": "Gungnir — włócznia Odyna",
+      "kind": "Legendarny oręż",
+      "placeId": "hrafnvik",
+      "eventId": "powrot-i-pogrzeby",
+      "symbol": "ᚨ",
+      "summary": "Boska włócznia odzyskana z kurhanu Haralda Hardrady.",
+      "history": "Bohaterowie wyprawili się na Eylendę, by odzyskać Gungnir z kurhanu Haralda Hardrady. Zdobycie włóczni kosztowało życie Flokiego, Morda i dziesięciu braci krwi. Oręż powrócił z drużyną do Hrafnviku; nie ustanowiono jego nowego właściciela. Konkretne właściwości mechaniczne włóczni nie zostały publicznie opisane."
     }
   ]
 };
