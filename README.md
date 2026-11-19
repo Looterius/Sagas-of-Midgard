@@ -259,3 +259,11 @@ Test regresji: `node scripts/check-chronicle-reader.mjs`, wykonywany w CI razem 
 - **Ważne:** etymologia i skojarzenia nie są mechanicznymi efektami RPG. W grze runy są jednorazowe i każda ma trzy pozycje działania. Bez uprawnionej, zatwierdzonej kopii konkretnych opisów z używanej edycji nie publikujemy domyślonych premii, obrażeń, czasów i zasięgów. Jedyny przykład Algiz opiera się na [wypowiedzi twórców (2018)](https://gmshoe.wordpress.com/2018/02/07/qa-nick-porter-dominic-deduonni-sagas-of-midgard/) i nie podaje spornych wartości liczbowych. **Nie publikować prywatnych tabel run MG/rajdów ani własności run zdobytych przez drużynę.**
 - Źródła: [wydawca](https://drinkinghorngames.itch.io/sagas-of-midgard-corebook), [Uniwersytet Kopenhaski](https://nors.ku.dk/english/research/runes/), [nazwy run i zastrzeżenia etymologiczne](https://runoscript.com/the-elder-futhark-24-runes-reconstructed-names-and-meanings.html).
 - Testy: `node scripts/check-public-runes.mjs` i `node scripts/check-public-deep-links.mjs`, uruchamiane w CI.
+
+## Zweryfikowane parametry run w pozycjach I–III (19.11.2026)
+
+Katalog **Runy** zawiera teraz 72 konkretne opisy działania (**24 runy × 3 pozycje**), opracowane na podstawie dostarczonego *Sagas of Midgard Corebook*, rozdział 4 (drukowane s. 53–61). Parametry obejmują dokładne wartości DR, HP, obrażeń, premii, liczbę celów, dystans, czas działania, warunki przerwania efektów i wzory z SP Runecasting. Polskie sformułowania są zwięzłymi opisami mechaniki, a nie przekładem tekstu literackiego książki. Nie rozstrzygamy milcząco zaokrągleń ułamkowych SP.
+
+Dane pochodzą z `rune-rules.js`, załadowanego przed `runes.js`. W panelu każdej runy są odrębne sekcje **Pozycja I**, **Pozycja II**, **Pozycja III** i słowniczek `SP Runecasting`, `DR`, `HP`, `Favor`, zasięgów oraz liczenia rund. Poprzednie ogólnikowe opisy trzech poziomów Algiz i wzmiankę o niepewnych zasadach zastąpiono danymi z podręcznika. Publiczne identyfikatory i linki są niezmienione; poprawiono jedynie widoczną pisownię **Naudhiz**.
+
+**Zakres jawności:** reguły mechaniczne są publiczne, ale żaden z plików nie wymienia posiadaczy run w kampanii, nie publikuje przyszłych wydarzeń ani danych Skalda. Bez dodatkowych zależności lub zapisu użytkownika. Testy: `node scripts/check-public-runes.mjs` oraz standardowe CI.
