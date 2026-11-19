@@ -320,3 +320,14 @@ Testy: `node scripts/check-bestiary-encounters.mjs`, `node scripts/check-public-
 - Na obu ilustracjach Atlasu świata (`drengrlands`, `gardarike`) działa teraz **pinch-to-zoom dwoma palcami**, przesuwanie **jednym palcem po przybliżeniu**, przybliżanie wokół środka gestu, ograniczenia przesunięcia do krawędzi, zoom 100–500%, przyciski +/−, reset i zoom kółkiem myszy. Zwykłe tapnięcie w oznaczoną krainę nadal otwiera jej opis, a po szczypaniu gest nie uruchamia przypadkowego linku. Przełączenie mapy zeruje zoom i przesunięcie.
 - `touch-action:none` dotyczy **wyłącznie prostokąta mapy**, aby przeglądarka mobilna nie przejmowała szczypania. Przewijanie całej strony nadal działa poza ilustracją mapy. Widoczna na telefonie wskazówka objaśnia gesty.
 - Test regresji `node scripts/check-mobile-world-map-gestures.mjs` symuluje szczypanie, przesunięcie i reset na obu mapach, sprawdza zakres zoomu i zachowanie kliknięć. Test uruchamiany w GitHub Actions wraz z dotychczasowymi kontrolami.
+
+## Przedmioty znane z pierwszego tomu i nordyckich podań (19.11.2026)
+
+Oprócz Gungnira publiczny katalog `data.js → items` zawiera teraz trzy osobne, udostępnialne karty:
+- **Hrafnsauga — „Oko Kruka”** (`hrafnsauga-oko-kruka`): zaginiony rodowy relikt. Opis obejmuje tylko to, co widnieje na **handoucie dla graczy** z Appendix O do autorskiego Tomu I „Wiosenne roztopy” — dwa krucze łby, ciemny szklisty rdzeń, runy i zaginięcie po zabójstwie jarla. Nie wyjaśnia działania przedmiotu, jego pochodzenia ani obecnego miejsca.
+- **Srebrne krążki** (`srebrne-krazki`): nietypowo równe srebro; handout podaje, że przybysz płacił nim ludziom Skjoldvik. Nie łączymy tej nazwy automatycznie z inną osadą z aktualnego Atlasu i nie przypisujemy niepotwierdzonego wydarzenia Kroniki.
+- **Złote jabłka Idunn** (`zlote-jablka-idunn`): jawny **motyw z nordyckich podań**, nie potwierdzona zdobycz ani przedmiot o ustalonych statystykach. W autorskim Tomie I i opublikowanej Kronice brak potwierdzenia odnalezienia złotych jabłek. Oficjalna zdolność o nazwie *Apples of Idunn* jest odrębną mechaniką postaci i nie daje podstaw, by przypisać fizycznemu owocowi bonusy.
+
+Wszystkie trzy nowe karty mają `placeId:null` i `eventId:null`, ponieważ brak osobnego zweryfikowanego publicznego rozdziału i karty miejsca; renderer nie tworzy fałszywych linków. Nie wpisano żadnej wiedzy ze stron Skalda z autorskiego scenariusza (nawet do komentarzy). Arm-ring Ketila Brandssona oraz biały materiał z tulejką występują na załączonym handoucie, ale nie zostały dodane bez wyraźnej decyzji, że zostały już odkryte.
+
+Ilustracje przedmiotów można później dołączyć jako pliki do `assets/items/`. Nie użyto niskiej rozdzielczości wycinków ze zrzutu handoutu. Test: `node scripts/check-player-items.mjs` oraz `node scripts/check-public-deep-links.mjs`.
