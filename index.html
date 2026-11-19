@@ -11,7 +11,7 @@
   <script src="atlas-guide.js?v=public-lore-v1" defer></script>
   <script src="portrait-assets.js?v=vestmar-v1" defer></script>
   <script src="atlas.js?v=atlas-two-worlds-v1" defer></script>
-  <script src="maps.js?v=atlas-two-worlds-v1" defer></script>
+  <script src="maps.js?v=mobile-pinch-v1" defer></script>
   <script src="character-groups.js?v=free-v1" defer></script>
   <script src="graph-geometry.js?v=free-v1" defer></script>
   <script src="navigation.js?v=unified-atlas-v1" defer></script>
@@ -130,7 +130,8 @@
            <button id="maps-reset" type="button" aria-label="Dopasuj mapę">⤢</button>
          </div>
        </div>
-       <div id="maps-viewport" class="maps-viewport" aria-label="Interaktywna mapa; przybliżaj i wybieraj oznaczone krainy">
+       <p class="maps-touch-hint"><span aria-hidden="true">☞</span> Na telefonie: <strong>zbliż dwoma palcami</strong> i przesuwaj powiększoną mapę jednym palcem.</p>
+        <div id="maps-viewport" class="maps-viewport" aria-label="Interaktywna mapa: przybliż dwoma palcami, przesuń palcem, wybierz krainę" aria-description="Na telefonie przybliżanie gestem szczypania; na komputerze myszą lub przyciskami.">
          <div id="maps-canvas" class="maps-canvas">
            <img id="maps-art" src="assets/maps/Drengrlands.png" alt="Mapa Ziem Drengrów z podpisami krain" draggable="false">
            <div id="maps-marker-layer" class="maps-marker-layer"></div>
