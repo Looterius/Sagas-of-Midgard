@@ -71,9 +71,9 @@
       };
       route.person = params.get("postac") || params.get("person") || null;
     } else if (view === "maps") {
-      route.map = params.get("map") || "midgard";
+      route.map = params.get("map") || "drengrlands";
     } else if (view === "locations") {
-      route.region = params.get("region") || "midgard";
+      route.region = params.get("region") || "drengrlands";
       route.place = params.get("place") || null;
     } else if (view === "chronicle") {
       route.chronicleFilter = params.get("filter") || "all";

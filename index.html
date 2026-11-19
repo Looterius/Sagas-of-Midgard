@@ -6,17 +6,17 @@
   <meta name="theme-color" content="#121419">
   <meta name="description" content="Sagas of Midgard — interaktywna kronika postaci, relacji i lokacji dla graczy.">
   <title>Sagas of Midgard | Kronika</title>
-  <link rel="stylesheet" href="styles.css?v=runes-v1">
+  <link rel="stylesheet" href="styles.css?v=map-links-v2">
   <script src="data.js?v=lore-catalog-v1" defer></script>
   <script src="portrait-assets.js?v=vestmar-v1" defer></script>
-  <script src="atlas.js?v=canon-v1" defer></script>
-  <script src="maps.js?v=history-v1" defer></script>
+  <script src="atlas.js?v=map-links-v2" defer></script>
+  <script src="maps.js?v=direct-drengrlands-v2" defer></script>
   <script src="character-groups.js?v=free-v1" defer></script>
   <script src="graph-geometry.js?v=free-v1" defer></script>
   <script src="navigation.js?v=runes-v1" defer></script>
   <script src="rune-rules.js?v=corebook-v1" defer></script>
   <script src="runes.js?v=mechanics-v2" defer></script>
-  <script src="app.js?v=runes-v1" defer></script>
+  <script src="app.js?v=map-links-v2" defer></script>
 </head>
 <body>
  <div class="app-shell">
@@ -109,18 +109,19 @@
    <section id="maps-view" class="view maps-view" aria-label="Mapy świata" hidden>
      <header class="maps-heading">
        <div><p class="eyebrow">MAPY ŚWIATA · ODKRYTE ZIEMIE</p><h2>Odkrywaj Midgard</h2>
-       <p>Klikaj znane krainy i miejsca, aby przejść do ich kart w Atlasie.</p></div>
+       <p>Oryginalna mapa Ziem Drengrów — wybierz krainę z mapy albo ze spisu. Lokacje otworzysz bezpośrednio w Atlasie.</p></div>
        <span class="maps-heading-mark" aria-hidden="true">ᚹ</span>
      </header>
      <div class="maps-browser">
        <nav id="maps-breadcrumbs" class="maps-breadcrumbs" aria-label="Ścieżka mapy"></nav>
        <div class="maps-caption">
          <div><p class="eyebrow">WĘDRÓWKA PO ZNANYCH ZIEMIACH</p>
-         <h3 id="maps-current-title">Midgard</h3><p id="maps-current-description"></p></div>
+         <h3 id="maps-current-title">Ziemie Drengrów</h3><p id="maps-current-description"></p></div>
          <button id="maps-open-atlas" class="maps-atlas-link" type="button">Otwórz w Atlasie lokacji</button>
        </div>
-       <div class="maps-toolbar">
-         <button id="maps-back" type="button" hidden>← Midgard</button>
+       <div id="maps-region-links" class="maps-region-links" role="group" aria-label="Wybierz krainę i otwórz Atlas"></div>
+        <div class="maps-toolbar">
+         
          <div class="maps-zoom-tools">
            <button id="maps-zoom-out" type="button" aria-label="Oddal mapę">−</button>
            <span id="maps-zoom-label" aria-live="polite">100%</span>
@@ -130,11 +131,11 @@
        </div>
        <div id="maps-viewport" class="maps-viewport" aria-label="Interaktywna mapa; przybliżaj i wybieraj oznaczone krainy">
          <div id="maps-canvas" class="maps-canvas">
-           <img id="maps-art" src="assets/maps/midgard.svg" alt="" draggable="false">
+           <img id="maps-art" src="assets/maps/Drengrlands.png" alt="Mapa Ziem Drengrów z podpisami krain" draggable="false">
            <div id="maps-marker-layer" class="maps-marker-layer"></div>
          </div>
        </div>
-       <p class="maps-accuracy" id="maps-accuracy">Mapa poglądowa · symbole krain nie określają dokładnych granic ani odległości.</p>
+       <p class="maps-accuracy" id="maps-accuracy">Zatwierdzone lokalizacje są oznaczane na mapie. Pozostałe miejsca znajdziesz w spisie pod mapą.</p>
        <section id="maps-places-section" class="maps-places-section" hidden>
          <div class="maps-place-heading">
            <h3>Znane lokacje</h3>

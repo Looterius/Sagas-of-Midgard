@@ -59,21 +59,21 @@ W katalogu repozytorium uruchom `node scripts/check-public-atlas.mjs`, aby spraw
 
 ## Ekran Ziem Drengrów — układ królestw
 
-Atlas otwiera **Midgard**, a po kliknięciu Ziem Drengrów pokazuje sześć klocków: **Agder, Hordalands, Vestmar, Fjordane** (cztery królestwa), **Eylenda** (niezależna wyspa bez króla) oraz **Osada bohaterów** (Hrafnvik, bez przypisania do królestwa). Skjǫrvik pozostaje osobnym, znanym miejscem w spisie Ziem Drengrów, bez przypisania do konkretnego królestwa. Przyszłe, poznane miejscowości przypinamy do właściwych regionów jako listy nazw oddzielonych przecinkami; kliknięcie otwiera kartę lokacji.
+Atlas otwiera od razu **Ziemie Drengrów** (Midgard pozostaje dostępny przez nawigację okruszkową) i pokazuje sześć klocków: **Agder, Hordalands, Vestmar, Fjordane** (cztery królestwa), **Eylenda** (niezależna wyspa bez króla) oraz **Osada bohaterów** (Hrafnvik, bez przypisania do królestwa). Skjǫrvik pozostaje osobnym, znanym miejscem w spisie Ziem Drengrów, bez przypisania do konkretnego królestwa. Przyszłe, poznane miejscowości przypinamy do właściwych regionów jako listy nazw oddzielonych przecinkami; kliknięcie otwiera kartę lokacji.
 
 Nazwa rodzinnej wioski w kampanii wymaga ostatecznego potwierdzenia przez Skalda (w dotychczasowej kronice jest to **Hrafnvik**, wcześniej pojawiało się również **Kjordvik**). Do czasu potwierdzenia nie zastępuj automatycznie nazw w istniejących rozdziałach.
 
-## Mapy świata — pierwszy etap
+## Mapy świata — bez ekranu pośredniego, naprawione kliknięcia (19.11.2026)
 
-Osobny tab **Mapy świata** nie zastępuje Atlasu. Zaczyna się od mapy Midgardu, a kliknięcie Ziem Drengrów otwiera drugi poziom z pięcioma klikalnymi regionami: czterema królestwami Drengrów i niezależną Eylendą. Kliknięcie krainy przechodzi do istniejącego Atlasu; kliknięcie znanej lokacji w wykazie pod mapą otwiera jej istniejącą kartę. W kartach Atlasu przycisk **Zobacz obszar na mapie** prowadzi z powrotem do map.
+Zakładka **Mapy świata** pokazuje **bezpośrednio oryginalną mapę Ziem Drengrów** (`assets/maps/Drengrlands.png`). Dekoracyjny plik `assets/maps/midgard.svg` pozostawiono w repozytorium, ale nie jest już używany w interfejsie. Stare linki `?view=maps&map=midgard` też otwierają poprawną mapę. Atlas lokacji pokazuje od razu znane regiony, bez obowiązkowego klikania Midgard → Ziemie Drengrów.
 
-- `assets/maps/midgard.svg` — poglądowy widok Midgardu; `assets/maps/Drengrlands.png` — dostarczona mapa kampanii z klikalnymi podpisami krain i znanych lokacji. Stary plik `assets/maps/drengrlands.svg` zachowano jako archiwalny, ale nie jest używany w nowym widoku.
-- `maps.js` — klikalne obszary etykiet krain (Eylenda, Agder, Hordalands, Vestmar, Fjordane) oraz siedem znanych lokacji na dostarczonym obrazie. Procentowe współrzędne wskazują napisy na obrazie, **nie są współrzędnymi GPS ani prawnym przypisaniem lokacji do królestwa**. Gardarike pozostaje na ilustracji, ale nie otrzymuje karty ani linku, dopóki nie znajdzie się w publicznym Atlasie.
-- Wszystkie znane lokacje można otworzyć w liście pod mapą Ziem Drengrów. Na grafice Hrafnvik i Skjǫrvik mają klikalne podpisy, ale w strukturze danych nadal **nie są przypisane do konkretnego królestwa**.
-- Dopiero po zatwierdzeniu lokalizacji przez Skalda można dodać do wpisu `places` pole `mapPosition: { mapId: "drengrlands", x: 43, y: 56, confirmed: true }` — wartości `x`, `y` są procentami położenia pinezki na zatwierdzonej ilustracji, nie współrzędnymi GPS. **Przykład składni, nie wskazanie żadnego rzeczywistego miejsca.**
-- Nie dopisuj nowych map, lokacji, markerów ani nieodkrytych sekretów bez potwierdzenia, że gracze mogą je zobaczyć.
+**Dlaczego kliknięcia nie działały?** Warstwa mapy miała `pointer-events:none` i odziedziczyły je również niewielkie regionowe hotspoty. Dodano `pointer-events:auto` wyłącznie na interaktywnych przyciskach mapy. Użytkownik może kliknąć obszar podpisu **Agder, Hordalands, Vestmar, Fjordane, Eylenda** bezpośrednio na oryginalnym obrazie. Dodatkowo **nad mapą** widocznych jest sześć czytelnych przycisków krain: cztery królestwa, niezależna Eylenda i oddzielna **Osada bohaterów**. Każdy prowadzi do odpowiadającej strony/karty Atlasu.
 
-Kontrola: `node --check maps.js && node scripts/check-public-atlas.mjs && node scripts/check-public-maps.mjs`. Walidacja działa również przez GitHub Actions na PR i `main`.
+**Niepewne lokacje:** zrezygnowano z siedmiu ręcznie naniesionych pinezek, których położenia nie miały pola `confirmed:true` w kanonicznych danych. Zwłaszcza **Hrafnvik, Skjordvik** nie otrzymują przez to przypisania do królestwa, a **Jaskinia Fafnira** nie udaje potwierdzonego wejścia. Wszystkie jawne lokacje wciąż są klikalne w spisie pod mapą. Pinezkę dodajemy wyłącznie z `places[].mapPosition: {mapId:"drengrlands",x:...,y:...,confirmed:true}` po zatwierdzeniu przez Skalda. Uwaga: prostokąty krain oznaczają drukowane **nazwy** na ilustracji, nie polityczne granice.
+
+Kliknięcie lokacji z mapy albo spisu najpierw otwiera zakładkę **Atlas lokacji**, ustawia jej znany region, a następnie właściwą kartę lokacji. Poprawia to spójność `Wstecz`, `Kopiuj link` i zachowanie na urządzeniach mobilnych. Eylenda pokazuje w karcie wydarzenia wszystkich znanych bezpośrednich lokacji na wyspie, nie tylko Ejkjaviku.
+
+Testy: `node scripts/check-public-maps.mjs`, `node scripts/check-map-interactions.mjs`, `node scripts/check-public-atlas.mjs` oraz `node scripts/check-navigation-history.mjs`, również w CI.
 
 ## Sieć postaci — grupowanie i potwierdzona wiedza
 
@@ -166,7 +166,7 @@ Strona zachowuje się jak aplikacja z wewnętrznymi ekranami, ale **nie blokuje 
 Przykładowe drogi:
 - Sieć postaci → Sianita → Halvard → **Wstecz = Sianita** → **Wstecz = Sieć postaci**.
 - Sieć postaci → Sianita → Hrafnvik w Atlasie → **Wstecz = Sianita** → **Wstecz = Sieć postaci**.
-- Mapy świata → Ziemie Drengrów → **Wstecz = Midgard** → **Wstecz = poprzednia zakładka**.
+- Mapy świata otwierają od razu Ziemie Drengrów → **Wstecz = poprzednia zakładka** (bez sztucznego ekranu Midgardu).
 - Atlas Midgardu → Ziemie Drengrów → Agder → miejsce → **Wstecz** cofa po jednej karcie i poziomie.
 - **Wstecz z ekranu startowego** nie jest przechwytywane. Przeglądarka wychodzi z aplikacji albo wraca na stronę poprzedzającą jej otwarcie.
 
