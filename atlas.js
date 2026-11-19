@@ -283,7 +283,7 @@
     events.replaceChildren();
     const related = (content.chronicle || []).filter(event=>{
       if(event.placeId===place.id)return true;
-      if(place.id==="eylenda")return event.placeId==="ejkjavik";
+      if(place.id==="eylenda")return places().some(p=>p.id===event.placeId && p.parentRegionId==="eylenda");
       return false;
     });
     if(!related.length) events.appendChild(el("p","atlas2-empty-people","Nie zapisano jeszcze wydarzeń związanych z tym miejscem."));
@@ -339,8 +339,8 @@
         else if(!event.shiftKey && idx===buttons.length-1){event.preventDefault();buttons[0].focus();}
       }
     });
-    // Atlas zaczyna się od świata Midgard; do Ziem Drengrów przechodzi się przez kartę obszaru.
-    showRegion("midgard");
+    // Atlas od razu pokazuje znane krainy i osady, bez pustego poziomu Midgardu.
+    showRegion("drengrlands");
   }
   window.SOM_ATLAS = {mount,open,showRegion,close,getNavigationState};
 })();

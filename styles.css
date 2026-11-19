@@ -874,3 +874,19 @@ body.map-fullscreen-lock{overflow:hidden}
 .runes-position-desc{font:14px/1.7 system-ui,sans-serif;margin:0;overflow-wrap:anywhere}
 .runes-rules-glossary{font:12px/1.7 system-ui,sans-serif;color:#c2b5a2;margin:8px 0}
 @media(max-width:560px){.runes-position{padding:12px}.runes-position-desc{font-size:13px}}
+
+/* Mapy v2: rzeczywista mapa od razu, linki krain i klikalne hot-spoty. */
+.maps-marker-layer{pointer-events:none}
+.maps-hotspot,.maps-marker--place{pointer-events:auto}
+.maps-viewport[data-map-id="drengrlands"]{aspect-ratio:1190 / 896}
+.maps-region-links{display:flex;flex-wrap:wrap;gap:9px;margin:6px 0 17px}
+.maps-region-link{border:1px solid #977951;background:#262c2c;color:#f3dfbd;padding:10px 13px;font:13px/1.4 Georgia,serif;min-height:42px}
+.maps-region-link:hover,.maps-region-link:focus-visible{background:#49392b;border-color:#edc88b}
+.maps-crumb-label{color:#baad97}
+.maps-hotspot--region:focus-visible{outline:3px solid #f4d3a1;outline-offset:2px;background:#e4ba6d33}
+.maps-places-section{margin-top:15px}
+@media(max-width:760px){
+ .maps-region-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ .maps-region-link{font-size:12px;text-align:center;min-width:0}
+ .maps-hotspot--region{min-height:24px}
+}

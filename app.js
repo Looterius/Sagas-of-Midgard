@@ -509,7 +509,15 @@
   function renderMaps() {
     window.SOM_MAPS?.mount({
       data,
-      openPlace: id => window.SOM_ATLAS?.open(id),
+      openPlace: id => {
+        // Kliknięcie z Map zawsze przenosi do właściwej zakładki Atlasu.
+        const p = (data.places || []).find(item => item.id === id && item.visibility === "known");
+        if (!p) return;
+        switchView("locations");
+        const parent = p.parentRegionId === "osady-bohaterow" ? "drengrlands" : p.parentRegionId;
+        window.SOM_ATLAS?.showRegion(parent || "drengrlands");
+        window.SOM_ATLAS?.open(id);
+      },
       openAtlasRegion: id => {
         switchView("locations");
         window.SOM_ATLAS?.showRegion(id);
@@ -940,9 +948,9 @@
   }
 
   document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click", () => {
-    // Każde otwarcie zakładki Atlas lokacji zaczyna się na poziomie Midgardu.
-    if (b.dataset.view === "locations") window.SOM_ATLAS?.showRegion("midgard");
-    if (b.dataset.view === "maps") window.SOM_MAPS?.show("midgard");
+    // Bez zbędnego pierwszego ekranu świata: wchodzimy w znane Ziemie Drengrów.
+    if (b.dataset.view === "locations") window.SOM_ATLAS?.showRegion("drengrlands");
+    if (b.dataset.view === "maps") window.SOM_MAPS?.show("drengrlands");
     switchView(b.dataset.view);
   }));
   $("#search").addEventListener("input", e => {
@@ -1062,7 +1070,7 @@
       person: $("#inspector").hidden ? null : state.selected,
       place: atlas.place || null,
       region: atlas.region || "midgard",
-      map: window.SOM_MAPS?.getCurrent() || "midgard",
+      map: window.SOM_MAPS?.getCurrent() || "drengrlands",
       group: {
         primary: groupFilter.primary,
         dimension: groupFilter.dimension,
@@ -1108,7 +1116,7 @@
     if (previousRegion !== route.region)
       window.SOM_ATLAS?.showRegion(route.region || "midgard");
     if (previousMap !== route.map)
-      window.SOM_MAPS?.show(route.map || "midgard");
+      window.SOM_MAPS?.show(route.map || "drengrlands");
 
     const filter = $("#chronicle-place-filter");
     if (route.chronicleFilter && filter.value !== route.chronicleFilter) {
