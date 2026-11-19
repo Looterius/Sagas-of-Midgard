@@ -22,6 +22,9 @@
   };
   const groupFilter = { primary: "all", dimension: null, value: null, expanded: null, search: "" };
   const activeCatalog = { bestiary: null, items: null };
+  // Czytnik pokazuje tylko wybrane publiczne wydarzenie; bez zapisu postępu.
+  let chronicleCurrentEventId = null;
+  let chronicleSelect = () => {};
   // Indywidualny, lokalny układ dla każdego widoku/filtra. Zmiana zakładki
   // nie może kasować pozycji, które użytkownik właśnie sam ustawił.
   const savedLayouts = new Map();
@@ -498,11 +501,7 @@
       },
       openChronicle: eventId => {
         switchView("chronicle");
-        const card = document.querySelector('[data-event-id="' + eventId + '"]');
-        if (!card) return;
-        const story = card.querySelector(".chronicle-story");
-        if (story && story.hidden) card.querySelector(".chronicle-expand")?.click();
-        card.scrollIntoView({behavior:"smooth",block:"center"});
+        chronicleSelect(eventId);
       }
     });
   }
@@ -567,11 +566,7 @@
       eventLink.type = "button";
       eventLink.addEventListener("click", () => {
         switchView("chronicle");
-        const target = document.querySelector('[data-event-id="' + entry.eventId + '"]');
-        if (!target) return;
-        if (target.querySelector(".chronicle-story")?.hidden)
-          target.querySelector(".chronicle-expand")?.click();
-        target.scrollIntoView({behavior:"smooth",block:"center"});
+        chronicleSelect(entry.eventId);
       });
       actions.appendChild(eventLink);
       body.appendChild(actions);
@@ -598,8 +593,12 @@
   function renderChronicle() {
     const placeMap = new Map(data.places.map(p => [p.id, p]));
     const filter = $("#chronicle-place-filter");
+    const tabs = $("#chronicle-chapter-tabs");
+    const index = $("#chronicle-event-index");
     const list = $("#chronicle-list");
     const all = data.chronicle || [];
+    const chapters = data.chronicleChapters || [];
+
     for (const id of new Set(all.map(e => e.placeId))) {
       const place = placeMap.get(id);
       if (!place) continue;
@@ -607,85 +606,149 @@
       opt.value = id;
       filter.appendChild(opt);
     }
-    function paint() {
+
+    function visibleEvents() {
+      return all.filter(e => filter.value === "all" || e.placeId === filter.value);
+    }
+
+    function paint({ focusStory = false } = {}) {
+      const shown = visibleEvents();
+      if (!shown.some(e => e.id === chronicleCurrentEventId))
+        chronicleCurrentEventId = shown[0]?.id || null;
+      const selected = shown.find(e => e.id === chronicleCurrentEventId);
+      const currentChapter = selected?.chapter;
+      const currentChapterEvents = shown.filter(e => e.chapter === currentChapter);
+      $("#chronicle-count").textContent = shown.length +
+        (shown.length === 1 ? " wydarzenie" : " wydarzeń") + " · " +
+        new Set(shown.map(e => e.chapter)).size + " części";
+
+      tabs.replaceChildren();
+      for (const chapter of chapters) {
+        const entries = shown.filter(e => e.chapter === chapter.id);
+        if (!entries.length) continue;
+        const btn = make("button", "chronicle-chapter-tab");
+        btn.type = "button";
+        btn.dataset.chapter = chapter.id;
+        btn.setAttribute("aria-pressed", String(currentChapter === chapter.id));
+        btn.appendChild(make("span", "chronicle-chapter-number", "CZĘŚĆ " + chapter.id));
+        btn.appendChild(make("span", "chronicle-chapter-name", chapter.title));
+        btn.appendChild(make("small", "", entries.length + " wydarzeń"));
+        btn.addEventListener("click", () => chronicleSelect(entries[0].id));
+        tabs.appendChild(btn);
+      }
+
+      index.replaceChildren();
+      $("#chronicle-index-count").textContent = currentChapterEvents.length + " w tej części";
+      for (let i = 0; i < currentChapterEvents.length; i++) {
+        const item = currentChapterEvents[i];
+        const btn = make("button", "chronicle-index-item");
+        btn.type = "button";
+        btn.setAttribute("aria-current", item.id === chronicleCurrentEventId ? "true" : "false");
+        btn.appendChild(make("span", "chronicle-index-num", String(i + 1).padStart(2, "0")));
+        btn.appendChild(make("span", "chronicle-index-title", item.title));
+        btn.addEventListener("click", () => chronicleSelect(item.id));
+        index.appendChild(btn);
+      }
+
       list.replaceChildren();
-      const shown = all.filter(e => filter.value === "all" || e.placeId === filter.value);
-      $("#chronicle-count").textContent = shown.length + (shown.length === 1 ? " wydarzenie" : " wydarzeń") + " · " + new Set(shown.map(e => e.chapter)).size + " części";
-      if (!shown.length) list.appendChild(make("p", "chronicle-empty", "Nie zapisano jeszcze wydarzeń z tego miejsca."));
-      let previousChapter = null;
-      for (const item of shown) {
-        if (item.chapter !== previousChapter) {
-          previousChapter = item.chapter;
-          const chapter = (data.chronicleChapters || []).find(c => c.id === item.chapter);
-          const heading = make("header", "chronicle-section-heading");
-          heading.appendChild(make("span", "chronicle-section-kicker", "CZĘŚĆ " + item.chapter));
-          heading.appendChild(make("h3", "chronicle-section-title", chapter?.title || "Kronika"));
-          if (chapter?.subtitle) heading.appendChild(make("p", "chronicle-section-subtitle", chapter.subtitle));
-          list.appendChild(heading);
+      if (!selected) {
+        list.appendChild(make("p", "chronicle-empty", "Nie zapisano jeszcze wydarzeń z tego miejsca."));
+        return;
+      }
+      const chapter = chapters.find(c => c.id === currentChapter);
+      const sectionHeading = make("header", "chronicle-section-heading");
+      sectionHeading.appendChild(make("span", "chronicle-section-kicker", "CZĘŚĆ " + currentChapter));
+      sectionHeading.appendChild(make("h3", "chronicle-section-title", chapter?.title || "Kronika"));
+      if (chapter?.subtitle)
+        sectionHeading.appendChild(make("p", "chronicle-section-subtitle", chapter.subtitle));
+      list.appendChild(sectionHeading);
+
+      const place = placeMap.get(selected.placeId);
+      const card = make("article", "chronicle-card");
+      card.dataset.eventId = selected.id;
+      const cover = make("div", "chronicle-cover");
+      cover.appendChild(make("div", "chronicle-chapter", "ROZDZIAŁ " + currentChapter));
+      cover.appendChild(make("div", "chronicle-cover-sigil", "ᚱ"));
+      cover.appendChild(make("div", "chronicle-cover-place", place ? place.name : "Północ"));
+      setArt(cover, selected.image);
+      const body = make("div", "chronicle-body");
+      body.appendChild(make("p", "chronicle-overline", selected.kind + " · " + (place ? place.name : "Północ")));
+      const heading = make("h3", "chronicle-title", selected.title);
+      heading.tabIndex = -1;
+      body.appendChild(heading);
+      body.appendChild(make("p", "chronicle-lead", selected.intro));
+      const story = make("div", "chronicle-story");
+      for (const paragraph of selected.paragraphs || [])
+        story.appendChild(make("p", "", paragraph));
+      if (selected.participants?.length) {
+        const related = make("div", "chronicle-participants");
+        related.appendChild(make("span", "", "Znane postacie: "));
+        for (const id of selected.participants) {
+          const person = data.people.find(p => p.id === id);
+          if (!person) continue;
+          const button = make("button", "chronicle-person-link", person.name);
+          button.type = "button";
+          button.addEventListener("click", () => selectPerson(person.id));
+          related.appendChild(button);
         }
-        const place = placeMap.get(item.placeId);
-        const card = make("article", "chronicle-card");
-        card.dataset.eventId = item.id;
-        const cover = make("div", "chronicle-cover");
-        cover.appendChild(make("div", "chronicle-chapter", "ROZDZIAŁ " + item.chapter));
-        cover.appendChild(make("div", "chronicle-cover-sigil", "ᚱ"));
-        cover.appendChild(make("div", "chronicle-cover-place", place ? place.name : "Północ"));
-        setArt(cover, item.image);
-        const body = make("div", "chronicle-body");
-        body.appendChild(make("p", "chronicle-overline", item.kind + " · " + (place ? place.name : "Północ")));
-        body.appendChild(make("h3", "chronicle-title", item.title));
-        body.appendChild(make("p", "chronicle-lead", item.intro));
-        const expanded = make("div", "chronicle-story");
-        expanded.hidden = true;
-        for (const paragraph of item.paragraphs) expanded.appendChild(make("p", "", paragraph));
-        if (item.participants && item.participants.length) {
-          const related = make("div", "chronicle-participants");
-          related.appendChild(make("span", "", "Znane postacie: "));
-          for (const id of item.participants) {
-            const person = data.people.find(p => p.id === id);
-            if (!person) continue;
-            const button = make("button", "chronicle-person-link", person.name);
-            button.type = "button";
-            button.addEventListener("click", () => selectPerson(person.id));
-            related.appendChild(button);
-          }
-          expanded.appendChild(related);
-        }
-        body.appendChild(expanded);
-        const actions = make("div", "chronicle-actions");
-        const toggle = make("button", "chronicle-expand", "Czytaj całą opowieść");
-        toggle.type = "button";
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.addEventListener("click", () => {
-          const opening = expanded.hidden;
-          expanded.hidden = !opening;
-          toggle.textContent = opening ? "Zwiń opowieść" : "Czytaj całą opowieść";
-          toggle.setAttribute("aria-expanded", String(opening));
-          window.SOM_NAV?.changed();
+        story.appendChild(related);
+      }
+      body.appendChild(story);
+
+      const actions = make("div", "chronicle-actions");
+      const pos = shown.findIndex(e => e.id === selected.id);
+      if (pos > 0) {
+        const prev = make("button", "chronicle-expand", "← Poprzednie wydarzenie");
+        prev.type = "button";
+        prev.addEventListener("click", () => chronicleSelect(shown[pos - 1].id));
+        actions.appendChild(prev);
+      }
+      if (place) {
+        const go = make("button", "chronicle-place-link", "Miejsce: " + place.name);
+        go.type = "button";
+        go.addEventListener("click", () => {
+          switchView("locations");
+          window.SOM_ATLAS?.open(selected.placeId, go);
         });
-        actions.appendChild(toggle);
-        if (place) {
-          const go = make("button", "chronicle-place-link", "Miejsce: " + place.name);
-          go.type = "button";
-          go.addEventListener("click", () => {
-            switchView("locations");
-            window.SOM_ATLAS?.open(item.placeId, go);
-          });
-          actions.appendChild(go);
-        }
-        body.appendChild(actions);
-        card.appendChild(cover);
-        card.appendChild(body);
-        list.appendChild(card);
+        actions.appendChild(go);
+      }
+      if (pos < shown.length - 1) {
+        const next = make("button", "chronicle-expand", "Następne wydarzenie →");
+        next.type = "button";
+        next.addEventListener("click", () => chronicleSelect(shown[pos + 1].id));
+        actions.appendChild(next);
+      }
+      body.appendChild(actions);
+      card.appendChild(cover);
+      card.appendChild(body);
+      list.appendChild(card);
+
+      if (focusStory) {
+        const menu = $("#chronicle-index");
+        if (window.matchMedia?.("(max-width: 850px)")?.matches) menu.open = false;
+        heading.focus({ preventScroll: true });
+        heading.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
+
+    chronicleSelect = (id, { notify = true, focus = true } = {}) => {
+      const item = all.find(e => e.id === id);
+      if (!item) return;
+      if (filter.value !== "all" && filter.value !== item.placeId) filter.value = "all";
+      chronicleCurrentEventId = id;
+      paint({ focusStory: focus });
+      if (notify) window.SOM_NAV?.changed();
+    };
+
     filter.addEventListener("change", () => {
+      chronicleCurrentEventId = null;
       paint();
       window.SOM_NAV?.changed();
     });
+    if (window.matchMedia?.("(max-width: 850px)")?.matches)
+      $("#chronicle-index").open = false;
     paint();
   }
-
   function switchView(view) {
     const previousView = state.view;
     state.view = view;
@@ -1008,9 +1071,7 @@
       entry: (state.view === "bestiary" || state.view === "items")
         ? activeCatalog[state.view] : null,
       chronicleFilter: $("#chronicle-place-filter").value,
-      chronicleExpanded: [...document.querySelectorAll(".chronicle-card")]
-        .filter(card => !card.querySelector(".chronicle-story")?.hidden)
-        .map(card => card.dataset.eventId)
+      chronicleExpanded: chronicleCurrentEventId ? [chronicleCurrentEventId] : []
     };
   }
 
@@ -1052,15 +1113,13 @@
       filter.value = route.chronicleFilter;
       filter.dispatchEvent(new Event("change"));
     }
-    const intended = new Set(route.chronicleExpanded || []);
-    for (const card of document.querySelectorAll(".chronicle-card")) {
-      const story = card.querySelector(".chronicle-story");
-      if (story && story.hidden === intended.has(card.dataset.eventId))
-        card.querySelector(".chronicle-expand")?.click();
-    }
-
     const wasView = state.view;
     switchView(route.view);
+    if (route.view === "chronicle") {
+      const target = (route.chronicleExpanded || []).find(id =>
+        (data.chronicle || []).some(event => event.id === id));
+      if (target) chronicleSelect(target, { notify: false, focus: false });
+    }
     // Wstecz między poziomami Atlasu/Map nie powinno pozostawiać ekranu
     // przewiniętego do przypadkowego miejsca w poprzedniej krainie.
     if (wasView === route.view &&
