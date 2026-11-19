@@ -28,7 +28,7 @@ class Element {
 }
 const ids=["maps-canvas","maps-zoom-label","maps-zoom-out","maps-zoom-in","maps-reset","maps-current-title",
   "maps-current-description","maps-accuracy","maps-art","maps-viewport","maps-breadcrumbs",
-  "maps-marker-layer","maps-region-links","maps-place-list","maps-places-section","maps-open-atlas"];
+  "maps-marker-layer","maps-region-links","maps-world-tabs","maps-place-list","maps-places-section","maps-open-atlas"];
 const nodes=Object.fromEntries(ids.map(id=>["#"+id,new Element()]));
 const document={querySelector:selector=>nodes[selector],createElement:tag=>new Element(tag)};
 const actions=[];
@@ -43,6 +43,7 @@ assert.equal(nodes["#maps-art"].src,"assets/maps/Drengrlands.png");
 assert.equal(nodes["#maps-viewport"].dataset.mapId,"drengrlands");
 assert.equal(nodes["#maps-marker-layer"].children.length,5,"Only verified region labels; no guessed site pins");
 assert.equal(nodes["#maps-region-links"].children.length,6,"Six accessible regions including home settlement");
+assert.equal(nodes["#maps-world-tabs"].children.length,2,"Two separate maps");
 for(const id of ["agder","hordalands","vestmar","fjordane","eylenda"]){
  const hit=nodes["#maps-marker-layer"].children.find(x=>x.dataset.regionId===id);
  assert.ok(hit,"Missing region hotspot "+id);
@@ -74,15 +75,24 @@ assert.equal(maps.getCurrent(),"drengrlands","Old Midgard deep link should redir
 assert.equal(nodes["#maps-art"].src,"assets/maps/Drengrlands.png");
 nodes["#maps-open-atlas"].events.click();
 assert.deepEqual(actions.at(-1),["region","drengrlands"]);
+const rusTab=nodes["#maps-world-tabs"].children.find(x=>x.dataset.mapId==="gardarike");
+assert.ok(rusTab,"Missing Gardarike map tab");
+rusTab.events.click();
+assert.equal(maps.getCurrent(),"gardarike");
+assert.equal(nodes["#maps-art"].src,"assets/locations/Gardarike_ Aged Rus’ Atlas Map.png");
+assert.deepEqual(actions.at(-1),["region","gardarike"]);
+assert.equal(nodes["#maps-marker-layer"].children.length,0,"Do not invent Rus pins");
+assert.equal(nodes["#maps-region-links"].children.length,0,"No duplicate Rus region control");
+assert.equal(nodes["#maps-place-list"].querySelectorAll(".maps-site-link").length,4,"Four Rus city cards");
 const app=fs.readFileSync("app.js","utf8");
 assert.ok(app.includes('function openAtlasPlace(id)') &&
   app.includes('switchView("maps");') &&
   app.includes('window.SOM_ATLAS?.open(id)'),
   "Map place links must open within Atlas świata");
-assert.ok(app.includes('window.SOM_MAPS?.show("drengrlands")'),
-  "Map tab still starts on the actual campaign map");
-assert.ok(app.includes('window.SOM_ATLAS?.showRegion("drengrlands");'),
-  "Atlas world must open directly at known lands");
+assert.ok(app.includes('window.SOM_MAPS?.mapForRegion('),
+  "Atlas links must select the appropriate world map");
+assert.ok(app.includes('window.SOM_ATLAS?.showRegion(id);'),
+  "Chosen region must open directly in the shared Atlas");
 const css=fs.readFileSync("styles.css","utf8");
 assert.ok(css.includes(".maps-hotspot,.maps-marker--place{pointer-events:auto}"),
   "Hotspot layer buttons must receive pointer events");

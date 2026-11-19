@@ -26,13 +26,13 @@ const details=html.match(/<details id="maps-places-section"[\s\S]*?<\/details>/)
 assert.ok(details&&!details.includes(" open"),"All-places list should be collapsible and closed initially");
 assert.ok(css.includes(".atlas-world-details")&&css.includes(".maps-all-places-toggle"));
 for(const snippet of [
- 'function openAtlasPlace(id)', 'function openAtlasRegion(id)',
+ 'function openAtlasPlace(id)', 'function openAtlasRegion(id,',
  'window.SOM_ATLAS?.open(id)',
  '$("#atlas-world-details")?.scrollIntoView',
  'openPlace: openAtlasPlace', 'openAtlasRegion',
  'maps: "Atlas świata"',
- 'window.SOM_MAPS?.show("drengrlands")',
- 'window.SOM_ATLAS?.showRegion("drengrlands")'
+ 'window.SOM_MAPS?.show(desiredMap)',
+ 'window.SOM_ATLAS?.showRegion(id)'
 ])assert.ok(app.includes(snippet),"Missing unified Atlas integration: "+snippet);
 assert.ok(!app.includes('switchView("locations")'));
 assert.ok(nav.includes('requested === "locations" ? "maps" : requested'));
@@ -46,5 +46,6 @@ const data=sandbox.window.CHRONICLE;
 assert.ok(data.atlasRegions.some(x=>x.id==="eylenda"&&x.visibility==="known"));
 assert.equal(data.places.find(x=>x.id==="hrafnvik").parentRegionId,"osady-bohaterow");
 assert.equal(data.places.find(x=>x.id==="skjorvik").parentRegionId,"drengrlands");
-assert.ok(html.includes('src="assets/maps/Drengrlands.png"'),"Only verified campaign map is displayed");
+assert.ok(html.includes('src="assets/maps/Drengrlands.png"'),"Main campaign map retained");
+assert.ok(html.includes('id="maps-world-tabs"'),"Two-map navigation missing");
 console.log("PASS — unified Atlas, six tabs, Kronika last, links, mobile details and safe geography");

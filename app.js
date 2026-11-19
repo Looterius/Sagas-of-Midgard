@@ -488,21 +488,32 @@
     window.SOM_NAV?.changed();
   }
 
-  function openAtlasRegion(id) {
-    const region = (data.atlasRegions || []).find(item => item.id === id && item.visibility === "known");
+  function openAtlasRegion(id, options = {}) {
+    const region = (data.atlasRegions || []).find(r => r.id === id && r.visibility === "known");
     if (!region) return;
+    if (id === "osady-bohaterow") {
+      openAtlasPlace("hrafnvik");
+      return;
+    }
+    const desiredMap = window.SOM_MAPS?.mapForRegion(id) || "drengrlands";
+    if (window.SOM_MAPS?.getCurrent() !== desiredMap)
+      window.SOM_MAPS?.show(desiredMap);
     switchView("maps");
     window.SOM_ATLAS?.showRegion(id);
-    if ($("#place-dialog").hidden && id !== "osady-bohaterow")
+    if (options.scroll !== false && $("#place-dialog").hidden)
       $("#atlas-world-details")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function openAtlasPlace(id) {
-    const place = (data.places || []).find(item => item.id === id && item.visibility === "known");
+    const place = (data.places || []).find(p => p.id === id && p.visibility === "known");
     if (!place) return;
+    const desiredMap = window.SOM_MAPS?.mapForRegion(place.parentRegionId) || "drengrlands";
+    if (window.SOM_MAPS?.getCurrent() !== desiredMap)
+      window.SOM_MAPS?.show(desiredMap);
     switchView("maps");
-    const parent = place.parentRegionId === "osady-bohaterow" ? "drengrlands" : place.parentRegionId;
-    window.SOM_ATLAS?.showRegion(parent || "drengrlands");
+    // Osada bohaterów pozostaje neutralna politycznie.
+    const parent = place.parentRegionId || desiredMap;
+    window.SOM_ATLAS?.showRegion(parent);
     window.SOM_ATLAS?.open(id);
   }
 
@@ -949,11 +960,7 @@
   }
 
   document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click", () => {
-    // Bez zbędnego pierwszego ekranu świata: wchodzimy w znane Ziemie Drengrów.
-    if (b.dataset.view === "maps") {
-      window.SOM_MAPS?.show("drengrlands");
-      window.SOM_ATLAS?.showRegion("drengrlands");
-    }
+    // Powrót do Atlasu zachowuje ostatnio oglądaną mapę i krainę.
     switchView(b.dataset.view);
   }));
   $("#search").addEventListener("input", e => {
@@ -1116,10 +1123,14 @@
 
     const previousRegion = window.SOM_ATLAS?.getNavigationState()?.region;
     const previousMap = window.SOM_MAPS?.getCurrent();
-    if (previousRegion !== route.region)
-      window.SOM_ATLAS?.showRegion(route.region || "drengrlands");
-    if (previousMap !== route.map)
-      window.SOM_MAPS?.show(route.map || "drengrlands");
+    const linkedPlace = (data.places || []).find(p => p.id === route.place);
+    const derivedMap = window.SOM_MAPS?.mapForRegion(linkedPlace?.parentRegionId || route.region);
+    const targetMap = route.map === "gardarike" || derivedMap === "gardarike"
+      ? "gardarike" : "drengrlands";
+    if (previousMap !== targetMap) window.SOM_MAPS?.show(targetMap);
+    const targetRegion = route.region || targetMap;
+    if (previousRegion !== targetRegion)
+      window.SOM_ATLAS?.showRegion(targetRegion);
 
     const filter = $("#chronicle-place-filter");
     if (route.chronicleFilter && filter.value !== route.chronicleFilter) {
@@ -1139,7 +1150,7 @@
         route.region && route.region !== "drengrlands" &&
         (wasView !== "maps" || previousRegion !== route.region))
       $("#atlas-world-details")?.scrollIntoView({ behavior: "auto", block: "start" });
-    else if (wasView === route.view && route.view === "maps" && previousMap !== route.map)
+    else if (wasView === route.view && route.view === "maps" && previousMap !== targetMap)
       window.scrollTo(0, 0);
     if (route.place && data.places.some(p => p.id === route.place && p.visibility === "known"))
       window.SOM_ATLAS?.open(route.place);

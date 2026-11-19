@@ -15,9 +15,9 @@
   const MAPS = {
     drengrlands: {
       name: "Ziemie Drengrów",
+      regionId: "drengrlands",
       image: "assets/maps/Drengrlands.png",
-      intro: "Oryginalna mapa kampanii. Kliknij nazwę krainy na obrazie albo wybierz ją z listy poniżej.",
-      // Prostokąty wskazują wydrukowane nazwy krain, nie ich polityczne granice.
+      intro: "Cztery królestwa, niezależna Eylenda i znane osady drużyny. Wybierz krainę z mapy lub z nazw.",
       regions: [
         { id: "eylenda", x: 22.4, y: 41.9, w: 15.3, h: 5.4 },
         { id: "agder", x: 30.9, y: 60.5, w: 11.6, h: 5.6 },
@@ -25,10 +25,52 @@
         { id: "vestmar", x: 63.5, y: 62.2, w: 11, h: 5.3 },
         { id: "fjordane", x: 84.2, y: 69, w: 13.2, h: 5.4 }
       ]
-      // Nie przypinamy tu miejsc do arbitralnych punktów.
-      // Miejsce może mieć pinezkę wyłącznie po zatwierdzeniu mapPosition.
+    },
+    gardarike: {
+      name: "Gardarike — Ruś",
+      regionId: "gardarike",
+      image: "assets/locations/Gardarike_ Aged Rus’ Atlas Map.png",
+      intro: "Mapa Rusi przekazana przez autora kampanii. Cztery rody, wielkie rzeki, miasta i szlaki kupieckie.",
+      regions: [] // Na nowej ilustracji nie zgadujemy współrzędnych.
     }
   };
+
+  function mapForRegion(id) {
+    if (id === "gardarike") return "gardarike";
+    let regionId = id, steps = 0;
+    while (regionId && steps++ < 15) {
+      if (regionId === "gardarike") return "gardarike";
+      if (regionId === "drengrlands") return "drengrlands";
+      regionId = region(regionId)?.parentId;
+    }
+    return "drengrlands";
+  }
+
+  function renderWorldTabs() {
+    const area = $("#maps-world-tabs");
+    area.replaceChildren();
+    for (const [id, config] of Object.entries(MAPS)) {
+      const tab = element("button", "maps-world-tab", config.name);
+      tab.type = "button";
+      tab.dataset.mapId = id;
+      tab.setAttribute("aria-pressed", String(current === id));
+      tab.addEventListener("click", () => {
+        if (current !== id) show(id);
+        callbacks.openAtlasRegion?.(config.regionId, { scroll: false });
+      });
+      area.appendChild(tab);
+    }
+  }
+
+  function setSelectedRegion(id) {
+    const layer = $("#maps-marker-layer");
+    for (const button of [...layer.querySelectorAll(".maps-hotspot--region"),
+                            ...$("#maps-region-links").querySelectorAll(".maps-region-link")]) {
+      const active = button.dataset.regionId === id;
+      button.setAttribute("aria-pressed", String(active));
+      if (button.classList?.toggle) button.classList.toggle("is-selected", active);
+    }
+  }
 
   let data = null;
   let callbacks = {};
@@ -74,23 +116,24 @@
   function renderRegionLinks() {
     const container = $("#maps-region-links");
     container.replaceChildren();
-    const ids = ["agder", "hordalands", "vestmar", "fjordane", "eylenda", "osady-bohaterow"];
-    for (const id of ids) {
-      const entry = region(id);
-      if (!entry) continue;
-      const button = element("button", "maps-region-link", entry.name);
+    container.hidden = current !== "drengrlands";
+    if (container.hidden) return;
+    for (const id of ["agder", "hordalands", "vestmar", "fjordane", "eylenda", "osady-bohaterow"]) {
+      const r = region(id);
+      if (!r) continue;
+      const button = element("button", "maps-region-link", r.name);
       button.type = "button";
       button.dataset.regionId = id;
+      button.setAttribute("aria-pressed", "false");
       button.addEventListener("click", () => callbacks.openAtlasRegion?.(id));
       container.appendChild(button);
     }
   }
-
   function renderPlaceLinks() {
     const container = $("#maps-place-list");
     const section = $("#maps-places-section");
     container.replaceChildren();
-    section.hidden = current !== "drengrlands";
+    section.hidden = false;
     if (section.hidden) return;
 
     // Nie umieszczaj nieznanych miejsc ani domniemanych współrzędnych na mapie.
@@ -98,7 +141,7 @@
     const items = knownPlaces().filter(p => {
       let id = p.parentRegionId, steps = 0;
       while (id && steps++ < 12) {
-        if (id === "drengrlands") return true;
+        if (id === MAPS[current].regionId) return true;
         id = region(id)?.parentId;
       }
       return false;
@@ -128,52 +171,58 @@
   }
 
   function show(id = "drengrlands") {
-    // Stare linki z map=midgard otwierają prawdziwą mapę kampanii,
-    // bez niepotrzebnego, dekoracyjnego ekranu pośredniego.
-    current = "drengrlands";
+    current = MAPS[id] ? id : "drengrlands"; // Zachowaj stare map=midgard.
     const config = MAPS[current];
     $("#maps-current-title").textContent = config.name;
     $("#maps-current-description").textContent = config.intro;
-    $("#maps-accuracy").textContent = "Położenia miejsc bez zatwierdzonych współrzędnych nie są oznaczane pinezką. Znajdziesz je w spisie pod mapą; krainy wybierzesz również z przycisków nad nią.";
-    $("#maps-art").src = config.image;
-    $("#maps-viewport").dataset.mapId = current;
-    const breadcrumbs = $("#maps-breadcrumbs");
-    breadcrumbs.replaceChildren();
-    breadcrumbs.appendChild(element("span", "maps-crumb-label", "Midgard"));
-    breadcrumbs.appendChild(element("span", "maps-separator", "›"));
-    breadcrumbs.appendChild(element("span", "maps-current", config.name));
+    $("#maps-accuracy").textContent = current === "gardarike"
+      ? "Mapa Gardariki pokazuje krainę. Miejsca wybieraj z opisu; ich pinezek nie ustawiamy bez zatwierdzonych pozycji."
+      : "Kliknij znaną krainę na mapie lub wybierz nazwę. Niepotwierdzone położenia osad nie są oznaczane.";
+    const image = $("#maps-art");
+    const viewport = $("#maps-viewport");
+    viewport.style.aspectRatio = "";
+    image.onload = () => {
+      if (image.naturalWidth && image.naturalHeight)
+        viewport.style.aspectRatio = image.naturalWidth + " / " + image.naturalHeight;
+    };
+    image.src = config.image;
+    viewport.dataset.mapId = current;
+    const crumbs = $("#maps-breadcrumbs");
+    crumbs.replaceChildren();
+    crumbs.appendChild(element("span", "maps-crumb-label", "Midgard"));
+    crumbs.appendChild(element("span", "maps-separator", "›"));
+    crumbs.appendChild(element("span", "maps-current", config.name));
     const layer = $("#maps-marker-layer");
     layer.replaceChildren();
-    config.regions.forEach(item => addMarker(layer, item));
-    // Używamy TYLKO współrzędnych osobiście zatwierdzonych dla mapy.
-    knownPlaces().forEach(site => {
-      const pin = site.mapPosition;
+    for (const marker of config.regions) addMarker(layer, marker);
+    // Pinezki miejsc wyłącznie po potwierdzeniu ich położenia przez Skalda.
+    knownPlaces().forEach(place => {
+      const pin = place.mapPosition;
       if (!pin || pin.confirmed !== true || pin.mapId !== current) return;
       if (!Number.isFinite(pin.x) || !Number.isFinite(pin.y) ||
           pin.x < 5 || pin.x > 95 || pin.y < 5 || pin.y > 95) return;
-      const button = element("button", "maps-marker maps-marker--place", site.name);
+      const button = element("button", "maps-marker maps-marker--place", place.name);
       button.type = "button";
-      button.dataset.placeId = site.id;
+      button.dataset.placeId = place.id;
       button.style.left = pin.x + "%";
       button.style.top = pin.y + "%";
-      button.title = site.name;
-      button.setAttribute("aria-label", "Otwórz kartę lokacji: " + site.name);
+      button.setAttribute("aria-label", "Otwórz miejsce: " + place.name);
       button.addEventListener("pointerdown", event => event.stopPropagation());
-      button.addEventListener("click", () => callbacks.openPlace?.(site.id));
+      button.addEventListener("click", () => callbacks.openPlace?.(place.id));
       layer.appendChild(button);
     });
+    renderWorldTabs();
     renderRegionLinks();
     resetTransform();
     renderPlaceLinks();
+    setSelectedRegion(config.regionId);
     window.SOM_NAV?.changed();
   }
-
   function showForPlace(placeId) {
     const p = place(placeId);
-    show("drengrlands");
     if (!p) return;
-    // Wskaż wyłącznie zatwierdzoną pinezkę; w przeciwnym razie podświetl
-    // link do Atlasu i NIE sugeruj dokładnej lokalizacji.
+    const desired = mapForRegion(p.parentRegionId);
+    if (current !== desired) show(desired);
     const pins = [...$("#maps-marker-layer").querySelectorAll(".maps-marker--place")];
     const pin = pins.find(button => button.dataset.placeId === placeId);
     if (pin) pin.classList.add("maps-hotspot--selected");
@@ -185,7 +234,6 @@
       link.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
   }
-
   function bindPanAndZoom() {
     const viewport = $("#maps-viewport");
     let drag = null;
@@ -221,5 +269,5 @@
     bindPanAndZoom();
     show("drengrlands");
   }
-  window.SOM_MAPS = { mount, show, showForPlace, getCurrent: () => current };
+  window.SOM_MAPS = { mount, show, showForPlace, setSelectedRegion, mapForRegion, getCurrent: () => current };
 })();

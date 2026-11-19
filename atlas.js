@@ -134,64 +134,71 @@
   }
 
   function showRegion(id) {
-    // Gdy Osada bohaterów ma tylko Hrafnvik, pomiń pusty ekran pośredni
-    // i otwórz bezpośrednio istniejącą kartę tej lokacji.
-    if (id === "osady-bohaterow") {
-      const homePlaces = places().filter(p => p.parentRegionId === id);
-      if (homePlaces.length === 1 && homePlaces[0].id === "hrafnvik") {
-        open("hrafnvik");
-        return;
-      }
-    }
-    if (!getRegion(id)) id = "midgard";
+    if (!getRegion(id)) id = "drengrlands";
     current = id;
     breadcrumb();
     const region = getRegion(id);
-    const title = $("#atlas2-region-title");
-    const caption = $("#atlas2-region-desc");
-    title.textContent = region.name;
-    caption.textContent = region.description || "Miejsca poznane przez bohaterów.";
+    $("#atlas2-region-title").textContent = region.name;
+    $("#atlas2-region-desc").textContent = region.description || "Jawne informacje o krainie.";
+
+    // Atlas opiera się na jednym panelu regionu. Nie powielamy sześciu
+    // wielkich kart pod mapą, skoro są już przyciski i hotspoty nad nią.
+    const story = $("#atlas2-region-story");
+    story.replaceChildren();
+    const paragraphs = window.SOM_ATLAS_GUIDE?.regions?.[id] || [];
+    for (const paragraph of paragraphs) story.appendChild(el("p", "atlas2-lore-paragraph", paragraph));
+    if (paragraphs.length) {
+      const note = el("p", "atlas2-lore-source",
+        "Tło świata na podstawie Sagas of Midgard Corebook, rozdział 6. Bez nieodkrytych wątków fabularnych.");
+      story.appendChild(note);
+    }
     const cards = $("#atlas2-region-grid");
     cards.replaceChildren();
-    const direct = regions().filter(r=>r.parentId === id);
-    direct.forEach(r=>cards.appendChild(cardRegion(r)));
+
     if (id === "midgard") {
-      const loose = unassignedCard();
-      if (loose) cards.appendChild(loose);
-    }
-    if (id === "eylenda") {
-      const p = getPlace("eylenda");
-      if (p) {
-        const top = el("div", "atlas2-hero-place");
-        art(top, p.image, "");
-        const openBtn = el("button", "atlas2-region-read", "Otwórz kartę Eylendy");
-        openBtn.type = "button";
-        openBtn.addEventListener("click", e => open("eylenda",e.currentTarget));
-        top.appendChild(openBtn);
-        cards.appendChild(top);
+      const heading = el("h4", "atlas2-list-title", "Wybierz znany obszar");
+      cards.appendChild(heading);
+      for (const r of regions().filter(r => r.parentId === "midgard")) {
+        const button = el("button", "atlas2-place-chip", r.name);
+        button.type = "button";
+        button.addEventListener("click", () => {
+          if (r.id === "gardarike") window.SOM_MAPS?.show("gardarike");
+          else window.SOM_MAPS?.show("drengrlands");
+          showRegion(r.id);
+        });
+        cards.appendChild(button);
       }
+    } else if (id === "drengrlands") {
+      cards.appendChild(el("p", "atlas2-select-hint",
+        "Wybierz Agder, Hordalands, Vestmar, Fjordane, Eylendę albo Osadę bohaterów na mapie lub z przycisków powyżej."));
     }
-    // Każde królestwo i każda grupa osad używa tej samej listy lokacji.
-    // Miasta, świątynie i inne miejsca to sąsiednie linki rozdzielone przecinkami.
+
     const directPlaces = places().filter(p => p.parentRegionId === id && !getRegion(p.id));
     if (directPlaces.length) {
       const block = el("div", "atlas2-location-collection");
-      block.appendChild(el("h3", "", id === "osady-bohaterow" ? "Osady znane bohaterom" : "Znane lokacje"));
-      const names = el("div", "atlas2-commalist");
-      directPlaces.forEach((p,i)=>{
-        if (i) names.appendChild(el("span", "atlas2-comma", ", "));
-        const btn = el("button", "atlas2-inline-link", p.name);
-        btn.type = "button";btn.addEventListener("click", e=>open(p.id,e.currentTarget));
-        names.appendChild(btn);
-      });
-      block.appendChild(names);cards.appendChild(block);
+      block.appendChild(el("h4", "atlas2-list-title",
+        id === "osady-bohaterow" ? "Osada drużyny" : "Miejsca i ośrodki"));
+      const items = el("div", "atlas2-place-chip-list");
+      for (const p of directPlaces) {
+        const button = el("button", "atlas2-place-chip");
+        button.type = "button";
+        button.dataset.placeId = p.id;
+        button.appendChild(el("span", "atlas2-place-name", p.name));
+        button.appendChild(el("small", "atlas2-place-kind", p.kind || "Miejsce"));
+        button.addEventListener("click", e => open(p.id, e.currentTarget));
+        items.appendChild(button);
+      }
+      block.appendChild(items);
+      cards.appendChild(block);
     }
     if (id === "osady-bohaterow") {
-      cards.appendChild(el("p", "atlas2-community-note", "Hrafnvik to główna osada znana z kroniki drużyny. Jej przynależność do konkretnego królestwa nie została jeszcze potwierdzona."));
+      cards.appendChild(el("p", "atlas2-community-note",
+        "Hrafnvik jest rodzinną osadą bohaterów. Jej politycznej przynależności do królestwa nie potwierdzono."));
     }
-    if (!cards.children.length) {
-      cards.appendChild(el("p", "atlas2-empty", "Na razie nie zapisano tutaj żadnych odkrytych miejsc."));
+    if (!cards.children.length && !paragraphs.length) {
+      cards.appendChild(el("p", "atlas2-empty", "Nie ma jeszcze publicznego opisu ani znanych miejsc w tym obszarze."));
     }
+    window.SOM_MAPS?.setSelectedRegion(id);
     window.SOM_NAV?.changed();
   }
 
@@ -231,7 +238,19 @@
       close();
       callbacks.openMap?.(place.id);
     };
-    $("#atlas2-dialog-history").textContent = place.history || "Dalsze dzieje tego miejsca zostaną dopisane wraz z kolejnymi sesjami.";
+    const lore = window.SOM_ATLAS_GUIDE?.places?.[id] || [];
+    const loreSection = $("#atlas2-dialog-guide-section");
+    const loreTarget = $("#atlas2-dialog-guide");
+    loreTarget.replaceChildren();
+    for (const paragraph of lore) loreTarget.appendChild(el("p", "atlas2-detail-lore", paragraph));
+    loreSection.hidden = !lore.length;
+    const campaignPlace = ["eylenda", "ejkjavik", "hardrada-mound", "hrafnvik", "skjorvik"].includes(id);
+    const historySection = $("#atlas2-dialog-history-section");
+    historySection.hidden = !!lore.length && !campaignPlace;
+    const historyHeading = historySection.querySelector("h3");
+    if (historyHeading) historyHeading.textContent = campaignPlace ? "Historia miejsca w kampanii" : "Historia i przekazy";
+    $("#atlas2-dialog-history").textContent = place.history ||
+      "Dalsze dzieje tego miejsca zostaną dopisane wraz z kolejnymi sesjami.";
     const personArea = $("#atlas2-dialog-people");
     const peopleToggle = $("#atlas2-dialog-people-toggle");
     personArea.replaceChildren();
